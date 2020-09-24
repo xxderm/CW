@@ -6,6 +6,9 @@
 #include <GL/glew.h>
 #include "GL/GL/GL.H"
 #include "GL/GL/GLU.H"
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+#include "easylogging++.h"
 
 class SceneMachine;
 

@@ -6,13 +6,13 @@
 class GameScene : public SceneMachine
 {
 public:
-	void Init(Scene* state) override;
+	void Init(Scene* scene) override;
 	void Clean() override;
 	void Pause() override;
 	void Resume() override;
-	void HandleEvents(Scene* state) override;
-	void Update(Scene* state) override;
-	void Draw(Scene* state) override;
+	void HandleEvents(Scene* scene) override;
+	void Update(Scene* scene) override;
+	void Draw(Scene* scene) override;
 	static GameScene* getInstance()
 	{
 		return &mGameScene;

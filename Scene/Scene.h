@@ -2,6 +2,10 @@
 #ifndef SCENE_HEADER
 #define SCENE_HEADER
 #include <list>
+#include <SDL.h>
+#include <GL/glew.h>
+#include "GL/GL/GL.H"
+#include "GL/GL/GLU.H"
 
 class SceneMachine;
 
@@ -18,8 +22,16 @@ public:
 	void Draw();
 	void Clean();
 	void Quit();
+	const SDL_Window* getWindow();
+	const SDL_GLContext getContext();
+	const SDL_Event* getEvent();
+	bool isRunning();
 private:
 	std::list<SceneMachine*> mScenes;
+	SDL_Window* mWindow;
+	SDL_GLContext mContext;
+	SDL_Event* mEvent;
+	bool mRunning;
 };
 
 class SceneMachine

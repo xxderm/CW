@@ -2,12 +2,16 @@
 #ifndef BUFFER_HEADER
 #define BUFFER_HEADER
 #include "RendererDecorator.h"
+#include "SDL.h"
+#include <GL/glew.h>
+#include "GL/GL/GL.H"
+#include "GL/GL/GLU.H"
 
-class Buffer abstract : public RendererDecorator
+class Buffer abstract
 {
 public:
-	Buffer(Renderer* renderer);
-	virtual void Set() = 0;
+	Buffer();
+	virtual void Create() = 0;
 	virtual void Bind() = 0;
 	virtual void UnBind() = 0;
 };

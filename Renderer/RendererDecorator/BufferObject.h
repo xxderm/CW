@@ -2,7 +2,6 @@
 #ifndef BUFFER_OBJECT_HEADER
 #define BUFFER_OBJECT_HEADER
 #include "Buffer.h"
-#include "RendererDecorator.h"
 
 class BufferObject final : public RendererDecorator, public Buffer
 {

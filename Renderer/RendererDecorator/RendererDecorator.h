@@ -2,6 +2,7 @@
 #ifndef RENDERER_DECORATOR_HEADER
 #define RENDERER_DECORATOR_HEADER
 #include "../Renderer.h"
+#include "easylogging++.h"
 
 class RendererDecorator : public Renderer
 {

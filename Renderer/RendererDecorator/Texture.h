@@ -6,7 +6,7 @@
 class Texture final : public RendererDecorator
 {
 public:
-
+	Texture(Renderer* renderer);
 };
 
 #endif // !TEXTURE_HEADER

@@ -6,7 +6,7 @@
 class Shader final : public RendererDecorator
 {
 public:
-
+	Shader(Renderer* renderer);
 };
 
 #endif // !SHADER_HEADER

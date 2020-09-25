@@ -6,7 +6,7 @@
 class Country final : public WorldDecorator
 {
 public:
-
+	Country(World* world);
 };
 
 #endif // !COUNTRY_HEADER

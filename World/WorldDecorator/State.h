@@ -6,7 +6,7 @@
 class State final : public WorldDecorator
 {
 public:
-
+	State(World* world);
 };
 
 #endif // !STATE_HEADER

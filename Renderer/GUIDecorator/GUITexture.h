@@ -6,7 +6,7 @@
 class GUITexture final : public GUIDecorator
 {
 public:
-
+	GUITexture(GUIRenderer* guiRenderer);
 };
 
 #endif // !GUITEXTURE_HEADER

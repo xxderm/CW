@@ -5,7 +5,8 @@
 
 class Province final : public WorldDecorator
 {
-	public
+public:
+
 };
 
 #endif // !PROVINCE_HEADER

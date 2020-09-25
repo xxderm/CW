@@ -1,6 +1,6 @@
 #pragma once
-#ifndef WARCOMMAND_HEADER
-#define WARCOMMAND_HEADER
+#ifndef WAR_COMMAND_HEADER
+#define WAR_COMMAND_HEADER
 #include "Command.h"
 
 class DeclWarCommand final : public Command

@@ -1,6 +1,6 @@
 #pragma once
-#ifndef FRAMEBUFFER_HEADER
-#define FRAMEBUFFER_HEADER
+#ifndef FRAME_BUFFER_HEADER
+#define FRAME_BUFFER_HEADER
 #include "Buffer.h"
 
 class FrameBuffer final : public Buffer

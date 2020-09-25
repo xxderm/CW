@@ -1,6 +1,6 @@
 #pragma once
-#ifndef GUIRENDERER_HEADER
-#define GUIRENDERER_HEADER
+#ifndef GUI_RENDERER_HEADER
+#define GUI_RENDERER_HEADER
 #include "Renderer.h"
 
 class GUIRenderer : public Renderer

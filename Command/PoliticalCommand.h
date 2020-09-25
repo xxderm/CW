@@ -1,6 +1,6 @@
 #pragma once
-#ifndef POLITICALCOMMAND_HEADER
-#define POLITICALCOMMAND_HEADER
+#ifndef POLITICAL_COMMAND_HEADER
+#define POLITICAL_COMMAND_HEADER
 #include "Command.h"
 
 class CreateUnionCommand final : public Command

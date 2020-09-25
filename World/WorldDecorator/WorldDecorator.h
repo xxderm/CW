@@ -3,7 +3,7 @@
 #define WORLD_DECORATOR_HEADER
 #include "../World.h"
 
-class WorldDecorator : public World
+class WorldDecorator abstract : public World
 {
 public:
 	WorldDecorator(World* world);

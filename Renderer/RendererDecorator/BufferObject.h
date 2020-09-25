@@ -1,6 +1,6 @@
 #pragma once
-#ifndef BUFFEROBJECT_HEADER
-#define BUFFEROBJECT_HEADER
+#ifndef BUFFER_OBJECT_HEADER
+#define BUFFER_OBJECT_HEADER
 #include "Buffer.h"
 
 class BufferObject final : public Buffer

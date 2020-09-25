@@ -1,7 +1,7 @@
 #pragma once
 #include "Scene.h"
-#ifndef GAMESCENE_HEADER
-#define GAMESCENE_HEADER
+#ifndef GAME_SCENE_HEADER
+#define GAME_SCENE_HEADER
 
 class GameScene : public SceneMachine
 {

@@ -1,6 +1,6 @@
 #pragma once
-#ifndef RENDERERDECORATOR_HEADER
-#define RENDERERDECORATOR_HEADER
+#ifndef RENDERER_DECORATOR_HEADER
+#define RENDERER_DECORATOR_HEADER
 #include "../Renderer.h"
 
 class RendererDecorator : public Renderer

@@ -5,7 +5,7 @@ Scene::Scene()
 	: mWindow(nullptr), mRunning(false)
 {
 }
-#include <iostream>
+
 void Scene::Init()
 {
 	std::ifstream Config("Resources/config.json");
@@ -13,7 +13,8 @@ void Scene::Init()
 		LOG(ERROR) << "Failed to open file: Resources/config.json";
 	boost::property_tree::ptree pt;
 	boost::property_tree::read_json(Config, pt);
-	SDL_Init(SDL_INIT_EVERYTHING);
+	if(SDL_Init(SDL_INIT_EVERYTHING) == -1)
+		LOG(ERROR) << "Failed to init SDL";
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, pt.get<int>("CONTEXT_MAJOR_VERSION"));
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, pt.get<int>("CONTEXT_MINOR_VERSION"));
 	mWindow = SDL_CreateWindow(
@@ -23,9 +24,11 @@ void Scene::Init()
 		pt.get<int>("SCREEN_HEIGHT"),
 		SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE
 	);
+	if(mWindow == nullptr)
+		LOG(ERROR) << "Failed to create window";
 	mContext = SDL_GL_CreateContext(mWindow);
 	if (glewInit() != GLEW_OK)
-		;// log
+		LOG(ERROR) << "Failed to init glew";
 	
 	Config.close();
 	mRunning = true;

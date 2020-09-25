@@ -18,7 +18,7 @@ int main(int argc, char** argv)
 	}
 	catch (const std::exception& e)
 	{
-		// log
+		LOG(ERROR) << e.what();
 	}
 	delete ApplicationScene;
 	return 0;

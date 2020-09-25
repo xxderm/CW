@@ -1,0 +1,5 @@
+#pragma once
+#ifndef DEBUG_COMMAND_HEADER
+#define DEBUG_COMMAND_HEADER
+
+#endif // !DEBUG_COMMAND_HEADER

@@ -5,7 +5,7 @@ Texture::Texture(Renderer* renderer)
 {
 }
 
-void Texture::Add(std::string path, int format, int activeTexture)
+void Texture::AddTexture(std::string path, int format, int activeTexture)
 {
 	glm::vec2 size;
 	int chnls;
@@ -27,6 +27,6 @@ const glm::vec2 Texture::getSize(unsigned int id)
 {
 	if (mTexture.count(id) > 0)
 		return mTexture.at(id);
-	LOG(ERROR) << "Failed to get texture size";
+	LOG(ERROR) << "Texture not found";
 	throw std::exception();
 }

@@ -3,7 +3,7 @@
 GameScene GameScene::mGameScene;
 
 void GameScene::Init(Scene* scene)
-{
+{	
 }
 
 void GameScene::Clean()

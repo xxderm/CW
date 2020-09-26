@@ -5,24 +5,25 @@ FrameBuffer::FrameBuffer(Renderer* renderer)
 {
 }
 
-void FrameBuffer::Create()
+void FrameBuffer::Create(const char* fboName)
 {
-	glGenFramebuffers(1, &mFboID);
+    mFboID.try_emplace(fboName);
+	glGenFramebuffers(1, &mFboID.at(fboName));
 }
 
-void FrameBuffer::Bind()
+void FrameBuffer::Bind(const char* fboName)
 {
-	glBindFramebuffer(GL_FRAMEBUFFER, mFboID);
+	glBindFramebuffer(GL_FRAMEBUFFER, mFboID.at(fboName));
 }
 
-void FrameBuffer::UnBind()
+void FrameBuffer::UnBind(const char* fboName)
 {
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void FrameBuffer::Set(int attachment_id, glm::vec2 scr, int texActiveId, bool blend)
+void FrameBuffer::Set(const char* fboName, int attachment_id, glm::vec2 scr, int texActiveId, bool blend)
 {
-    this->Bind();
+    this->Bind(fboName);
     if (texActiveId != -1)
         glActiveTexture(texActiveId);
     glGenTextures(1, &mTextureID);
@@ -42,5 +43,5 @@ void FrameBuffer::Set(int attachment_id, glm::vec2 scr, int texActiveId, bool bl
     glDrawBuffers(1, DrawBuffers);
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
         LOG(ERROR) << "Frame buffer status not complete";
-    this->UnBind();
+    this->UnBind(fboName);
 }

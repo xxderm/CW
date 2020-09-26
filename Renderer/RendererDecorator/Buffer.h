@@ -7,9 +7,9 @@ class Buffer abstract
 {
 public:
 	Buffer();
-	virtual void Create() = 0;
-	virtual void Bind() = 0;
-	virtual void UnBind() = 0;
+	virtual void Create(const char* fboName) = 0;
+	virtual void Bind(const char* fboName) = 0;
+	virtual void UnBind(const char* fboName) = 0;
 };
 
 #endif // !BUFFER_HEADER

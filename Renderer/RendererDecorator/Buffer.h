@@ -1,9 +1,6 @@
 #pragma once
 #ifndef BUFFER_HEADER
 #define BUFFER_HEADER
-#include "SDL.h"
-#include <GL/glew.h>
-#include "GL/GL/GL.H"
 #include "RendererDecorator.h"
 
 class Buffer abstract

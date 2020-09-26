@@ -2,7 +2,6 @@
 #ifndef FRAME_BUFFER_HEADER
 #define FRAME_BUFFER_HEADER
 #include "Buffer.h"
-#include <glm/vec2.hpp>
 
 class FrameBuffer final : public RendererDecorator, public Buffer
 {

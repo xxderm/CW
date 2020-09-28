@@ -19,4 +19,12 @@ public:
 	~CapitulateCommand();
 };
 
+class NuclearStrikeCommand final : public Command
+{
+public:
+	NuclearStrikeCommand();
+	void Execute() override;
+	~NuclearStrikeCommand();
+};
+
 #endif // !WARCOMMAND_HEADER

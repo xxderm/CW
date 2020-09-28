@@ -47,3 +47,15 @@ void NonAgressPactCommand::Execute()
 NonAgressPactCommand::~NonAgressPactCommand()
 {
 }
+
+TradeCommand::TradeCommand()
+{
+}
+
+void TradeCommand::Execute()
+{
+}
+
+TradeCommand::~TradeCommand()
+{
+}

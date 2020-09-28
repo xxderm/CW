@@ -35,4 +35,12 @@ public:
 	~NonAgressPactCommand();
 };
 
+class TradeCommand final : public Command
+{
+public:
+	TradeCommand();
+	void Execute() override;
+	~TradeCommand();
+};
+
 #endif // !POLITICALCOMMAND_HEADER

@@ -16,14 +16,19 @@
 #include <glm/gtx/transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/mat4x4.hpp>
+#include <string>
+#include "easylogging++.h"
 
 class World
 {
 public:
-
+	World();
+	~World();
 protected:
 	glm::vec2 mScrSize;
 	glm::vec2 mMapSize;
+private:
+
 };
 
 #endif // !WORLD_HEADER

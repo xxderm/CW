@@ -25,7 +25,7 @@ public:
 	void Draw();
 	void Clean();
 	void Quit();
-	const SDL_Window* getWindow();
+	SDL_Window* getWindow();
 	const SDL_GLContext getContext();
 	const SDL_Event* getEvent();
 	bool isRunning();

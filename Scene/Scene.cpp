@@ -92,7 +92,7 @@ void Scene::Quit()
 	mRunning = false;
 }
 
-const SDL_Window* Scene::getWindow()
+SDL_Window* Scene::getWindow()
 {
 	return mWindow;
 }

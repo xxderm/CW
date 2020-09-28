@@ -9,7 +9,6 @@ class WorldRenderer final : public Renderer
 public:
 
 private:
-	World* mWorld;
 };
 
 #endif // !WORLDRENDERER_HEADER

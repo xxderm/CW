@@ -23,3 +23,15 @@ void CapitulateCommand::Execute()
 CapitulateCommand::~CapitulateCommand()
 {
 }
+
+NuclearStrikeCommand::NuclearStrikeCommand()
+{
+}
+
+void NuclearStrikeCommand::Execute()
+{
+}
+
+NuclearStrikeCommand::~NuclearStrikeCommand()
+{
+}

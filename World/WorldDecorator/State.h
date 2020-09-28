@@ -3,7 +3,6 @@
 #define STATE_HEADER
 #include "WorldDecorator.h"
 #include "Province.h"
-#include "../../Reader.h"
 
 struct StateFormat
 {
@@ -18,6 +17,8 @@ class State final : public WorldDecorator
 public:
 	State(World* world);
 	void Init(Province* Provinces);
+	const StateFormat& getState(int Id);
+	void setState(int Id, StateFormat state);
 private:
 	std::vector<StateFormat> mStates;
 };

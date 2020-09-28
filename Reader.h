@@ -12,7 +12,7 @@ class Reader
 {
 public:
 	std::vector<std::string> getArray(std::string Path, std::string Keyword);
-	std::string getValue(std::string Path, std::string Keyword);
+	std::string getValue(std::string Path, std::string Keyword, int seek = 0);
 #ifdef _WIN32
 	void getFiles(std::string Path, std::vector<std::string>& Src);
 #endif

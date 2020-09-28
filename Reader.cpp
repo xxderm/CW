@@ -36,14 +36,15 @@ std::vector<std::string> Reader::getArray(std::string Path, std::string Keyword)
     return Result;
 }
 
-std::string Reader::getValue(std::string Path, std::string Keyword)
+std::string Reader::getValue(std::string Path, std::string Keyword, int seek)
 {
     Clean();
     auto f = getStream(Path);
+    f.seekg(seek, std::ios::beg);
     std::string Result;
     GET_IFSTREAM_CHAR(        
         if (mCheck)
-        {
+        {   
             if (c == '\n' or c == '\t')
             {
                 return mLiteral;

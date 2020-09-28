@@ -25,7 +25,18 @@ void State::Init(Province* Provinces)
 			currentProvince.StateId = state.Id;
 			Provinces->setProvince(std::stoi(state.Provinces.at(j)), currentProvince);
 		}
+		mStates.push_back(state);
 	}
 
 	stateFiles.clear();
+}
+
+const StateFormat& State::getState(int Id)
+{
+	return mStates.at(Id);
+}
+
+void State::setState(int Id, StateFormat state)
+{
+	mStates.at(Id) = state;
 }

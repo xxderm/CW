@@ -13,7 +13,9 @@ class Reader
 public:
 	std::vector<std::string> getArray(std::string Path, std::string Keyword);
 	std::string getValue(std::string Path, std::string Keyword);
-
+#ifdef _WIN32
+	void getFiles(std::string Path, std::vector<std::string>& Src);
+#endif
 	static Reader* getInstance()
 	{
 		return &mReader;

@@ -8,6 +8,7 @@
 struct StateFormat
 {
 	std::string Name;
+	std::string CountryTag;
 	std::vector<std::string> Provinces;
 	int Id;
 };

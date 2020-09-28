@@ -41,16 +41,16 @@ std::string Reader::getValue(std::string Path, std::string Keyword)
     Clean();
     auto f = getStream(Path);
     std::string Result;
-    GET_IFSTREAM_CHAR(
+    GET_IFSTREAM_CHAR(        
         if (mCheck)
         {
-            if (c == '\n' or c == '\t' or c == ' ')
+            if (c == '\n' or c == '\t')
             {
                 return mLiteral;
                 mCheck = false;
                 break;
             }
-            if (c == '=')
+            if (c == '=' || c == ' ')
             {
                 continue;
             }
@@ -64,6 +64,19 @@ std::string Reader::getValue(std::string Path, std::string Keyword)
     f.close();
     return Result;
 }
+
+#ifdef _WIN32
+void Reader::getFiles(std::string Path, std::vector<std::string>& Src)
+{
+    WIN32_FIND_DATAA FindFileData;
+    HANDLE hFind;
+    hFind = FindFirstFileA(Path.c_str(), &FindFileData);
+    while (FindNextFileA(hFind, &FindFileData) != NULL)
+        Src.push_back(FindFileData.cFileName);
+    Src.erase(Src.begin());
+    FindClose(hFind);    
+}
+#endif
 
 std::ifstream Reader::getStream(std::string Path)
 {

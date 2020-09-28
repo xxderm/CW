@@ -8,14 +8,8 @@ State::State(World* world)
 void State::Init(Province* Provinces)
 {
 	std::vector<std::string> stateFiles;
-	WIN32_FIND_DATAA FindFileData;
-	HANDLE hFind;
-	hFind = FindFirstFileA("Resources/states/*", &FindFileData);
-	while (FindNextFileA(hFind, &FindFileData) != NULL)
-		stateFiles.push_back(FindFileData.cFileName);
-	stateFiles.erase(stateFiles.begin());
-	FindClose(hFind);
-	
+	Reader::getInstance()->getFiles("Resources/states/*", stateFiles);
+		
 	for (size_t i = 0; i < stateFiles.size(); i++)
 	{
 		StateFormat state;
@@ -24,6 +18,7 @@ void State::Init(Province* Provinces)
 		);
 		state.Name = Reader::getInstance()->getValue("Resources/states/" + stateFiles.at(i), "name");
 		state.Provinces = Reader::getInstance()->getArray("Resources/states/" + stateFiles.at(i), "provinces");
+		state.CountryTag = Reader::getInstance()->getValue("Resources/states/" + stateFiles.at(i), "owner");
 		for (size_t j = 0; j < state.Provinces.size(); j++)
 		{
 			auto currentProvince = Provinces->getProvince(std::stoi(state.Provinces.at(j)));

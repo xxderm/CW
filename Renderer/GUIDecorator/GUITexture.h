@@ -15,7 +15,8 @@ struct GuiFormat
 class GUITexture final : public GUIDecorator
 {
 public:	
-	GUITexture(GUIRenderer* guiRenderer);
+	GUITexture(std::unique_ptr<IGUIRenderer> guiRenderer);
+	void Create() override;
 	void Add(int texId, glm::vec2 pos, glm::vec2 scale);
 	const std::list<GuiFormat*> getGui();
 	~GUITexture();

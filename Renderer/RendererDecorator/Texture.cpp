@@ -1,14 +1,18 @@
 #include "Texture.h"
 
-Texture::Texture(Renderer* renderer)
-	: RendererDecorator(renderer)
+Texture::Texture(std::unique_ptr<Renderer> renderer)
+	: RendererDecorator{ std::move(renderer) }
 {
 }
 
 void Texture::Init()
 {
 	RendererDecorator::Init();
-	// TODO: Add textures from file
+}
+
+void Texture::Render()
+{
+	RendererDecorator::Render();
 }
 
 void Texture::AddTexture(std::string path, int format, int activeTexture)

@@ -2,5 +2,8 @@
 
 void WorldRenderer::Render()
 {
-	printf("World Rendered\n");
+}
+
+void WorldRenderer::Init()
+{
 }

@@ -1,14 +1,18 @@
 #include "Shader.h"
 
-Shader::Shader(Renderer* renderer)
-	: RendererDecorator(renderer)
+Shader::Shader(std::unique_ptr<Renderer> renderer)
+    : RendererDecorator{ std::move(renderer) }
 {
 }
 
 void Shader::Init()
 {
     RendererDecorator::Init();
-    // TODO: Add and read shader settings from file
+}
+
+void Shader::Render()
+{
+    RendererDecorator::Render();
 }
 
 const unsigned Shader::getId(const char* shaderName)

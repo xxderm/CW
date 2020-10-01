@@ -5,3 +5,11 @@ void GUIRenderer::Render()
 {
 	
 }
+
+void GUIRenderer::Create()
+{
+}
+
+void GUIRenderer::Init()
+{
+}

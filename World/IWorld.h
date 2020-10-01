@@ -1,6 +1,6 @@
 #pragma once
-#ifndef WORLD_HEADER
-#define WORLD_HEADER
+#ifndef INTERFACE_WORLD_HEADER
+#define INTERFACE_WORLD_HEADER
 #include <glm/vec2.hpp>
 #include <glm/glm.hpp>
 #include <glm/gtx/matrix_transform_2d.hpp>

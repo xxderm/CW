@@ -1,14 +1,15 @@
 #pragma once
 #ifndef GUI_DECORATOR_HEADER
 #define GUI_DECORATOR_HEADER
-#include "../GUIRenderer.h"
+#include "../IGUIRenderer.h"
 
-class GUIDecorator : public GUIRenderer
+class GUIDecorator : public IGUIRenderer
 {
 public:
-	GUIDecorator(GUIRenderer* guiRenderer);
+	GUIDecorator(std::unique_ptr<IGUIRenderer> guiRenderer);
+	void Create() override;
 protected:
-	GUIRenderer* mGUIRenderer;
+	std::unique_ptr<IGUIRenderer> mGUIRenderer;
 };
 
 #endif // !GUIDECORATOR_HEADER

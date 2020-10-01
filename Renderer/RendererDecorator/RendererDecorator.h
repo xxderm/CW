@@ -6,11 +6,11 @@
 class RendererDecorator : public Renderer
 {
 public:
-	RendererDecorator(Renderer* renderer);
+	RendererDecorator(std::unique_ptr<Renderer> renderer);
 	void Init() override;
 	void Render() override;
 protected:
-	Renderer* mRenderer;
+	std::unique_ptr<Renderer> mRenderer;
 };
 
 #endif // !RENDERERDECORATOR_HEADER

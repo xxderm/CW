@@ -1,7 +1,7 @@
 #include "RendererDecorator.h"
 
-RendererDecorator::RendererDecorator(Renderer* renderer)
-	: mRenderer(renderer)
+RendererDecorator::RendererDecorator(std::unique_ptr<Renderer> renderer)
+	: mRenderer{ std::move(renderer) }
 {
 }
 

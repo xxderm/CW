@@ -8,6 +8,7 @@ class WorldRenderer final : public Renderer
 {
 public:
 	void Render() override;
+	void Init() override;
 private:
 };
 

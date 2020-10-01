@@ -1,14 +1,18 @@
 #include "FrameBuffer.h"
 
-FrameBuffer::FrameBuffer(Renderer* renderer)
-	: RendererDecorator(renderer)
+FrameBuffer::FrameBuffer(std::unique_ptr<Renderer> renderer)
+    : RendererDecorator{ std::move(renderer) }
 {
 }
 
 void FrameBuffer::Init()
 {
     RendererDecorator::Init();
-    // TODO: Read buffers from file
+}
+
+void FrameBuffer::Render()
+{
+    RendererDecorator::Render();
 }
 
 void FrameBuffer::Create(const char* fboName)

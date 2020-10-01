@@ -1,14 +1,18 @@
 #include "BufferObject.h"
 
-BufferObject::BufferObject(Renderer* renderer)
-	: RendererDecorator(renderer)
+BufferObject::BufferObject(std::unique_ptr<Renderer> renderer)
+	: RendererDecorator{ std::move(renderer) }
 {
 }
 
 void BufferObject::Init()
 {
 	RendererDecorator::Init();
-	// TODO: Add buffers from file
+}
+
+void BufferObject::Render()
+{
+	RendererDecorator::Render();
 }
 
 void BufferObject::Create(const char* fboName)

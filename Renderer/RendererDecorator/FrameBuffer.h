@@ -6,8 +6,9 @@
 class FrameBuffer final : public RendererDecorator, public Buffer
 {
 public:
-	FrameBuffer(Renderer* renderer);
+	FrameBuffer(std::unique_ptr<Renderer> renderer);
 	void Init() override;
+	void Render();
 private:
 	void Create(const char* fboName) override;
 	void Bind(const char* fboName) override;

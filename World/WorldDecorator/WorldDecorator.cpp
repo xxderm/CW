@@ -1,6 +1,11 @@
 #include "WorldDecorator.h"
 
-WorldDecorator::WorldDecorator(World* world)
+WorldDecorator::WorldDecorator(IWorld* world)
 	: mWorld(world)
 {
+}
+
+void WorldDecorator::Create()
+{
+	mWorld->Create();
 }

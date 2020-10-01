@@ -5,6 +5,12 @@ Shader::Shader(Renderer* renderer)
 {
 }
 
+void Shader::Init()
+{
+    RendererDecorator::Init();
+    // TODO: Add and read shader settings from file
+}
+
 const unsigned Shader::getId(const char* shaderName)
 {
     if (mShader.count(shaderName) > 0)

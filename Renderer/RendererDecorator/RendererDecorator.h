@@ -7,6 +7,8 @@ class RendererDecorator : public Renderer
 {
 public:
 	RendererDecorator(Renderer* renderer);
+	void Init() override;
+	void Render() override;
 protected:
 	Renderer* mRenderer;
 };

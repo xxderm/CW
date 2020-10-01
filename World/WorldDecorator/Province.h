@@ -22,11 +22,13 @@ struct ProvinceFormat
 class Province final : public WorldDecorator
 {
 public:
-	Province(World* world);
-	void Init();
+	Province(IWorld* world);
+	void Create() override;
 	const ProvinceFormat& getProvince(int Id);
 	const ProvinceFormat& getProvince(glm::vec3 Color);
 	void setProvince(int Id, ProvinceFormat provice);
+private:
+	void Init();
 private:
 	std::vector<ProvinceFormat> mProvinces;
 	std::map<glm::vec3, ProvinceFormat> mProvinceColorMap;

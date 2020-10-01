@@ -13,6 +13,8 @@ class BufferObject final : public RendererDecorator, public Buffer
 {
 public:
 	BufferObject(Renderer* renderer);
+	void Init() override;
+private:
 	void Create(const char* fboName) override;
 	void Bind(const char* fboName) override;
 	void UnBind(const char* fboName) override;

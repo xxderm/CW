@@ -6,7 +6,8 @@
 class GUIRenderer : public Renderer
 {
 public:
-
+	void Render() override;
+private:
 };
 
 #endif // !GUIRENDERER_HEADER

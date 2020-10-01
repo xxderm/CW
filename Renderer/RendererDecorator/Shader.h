@@ -7,6 +7,8 @@ class Shader final : public RendererDecorator
 {
 public:
 	Shader(Renderer* renderer);
+	void Init() override;
+private:
 	const unsigned int getId(const char* shaderName);
 	void Use(const char* shaderName);
 	void setBool(const char* shaderName, const std::string& name, bool value) const;

@@ -1,15 +1,16 @@
 #pragma once
 #ifndef WORLD_DECORATOR_HEADER
 #define WORLD_DECORATOR_HEADER
-#include "../World.h"
+#include "../IWorld.h"
 #include "../../Reader.h"
 
-class WorldDecorator abstract : public World
+class WorldDecorator abstract : public IWorld
 {
 public:
-	WorldDecorator(World* world);
+	WorldDecorator(IWorld* world);
+	void Create() override;
 protected:
-	World* mWorld;
+	IWorld* mWorld;
 };
 
 #endif // !WORLDDECORATOR_HEADER

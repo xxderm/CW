@@ -11,7 +11,9 @@ struct CountryFormat
 class Country final : public WorldDecorator
 {
 public:
-	Country(World* world);
+	Country(IWorld* world);
+	void Create() override;
+private:
 	void Init();
 private:
 	std::map<std::string, CountryFormat> mCountries;

@@ -1,8 +1,14 @@
 #include "Country.h"
 
-Country::Country(World* world)
+Country::Country(IWorld* world)
 	: WorldDecorator(world)
 {
+}
+
+void Country::Create()
+{
+	WorldDecorator::Create();
+	// TODO: Add provinces
 }
 
 void Country::Init()

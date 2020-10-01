@@ -5,6 +5,12 @@ FrameBuffer::FrameBuffer(Renderer* renderer)
 {
 }
 
+void FrameBuffer::Init()
+{
+    RendererDecorator::Init();
+    // TODO: Read buffers from file
+}
+
 void FrameBuffer::Create(const char* fboName)
 {
     mFboID.try_emplace(fboName);

@@ -9,9 +9,15 @@ namespace glm
 	}
 }
 
-Province::Province(World* world)
+Province::Province(IWorld* world)
 	: WorldDecorator(world)
 {	
+}
+
+void Province::Create()
+{
+	this->Init();
+	WorldDecorator::Create();
 }
 
 void Province::Init()

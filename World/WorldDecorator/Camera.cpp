@@ -1,6 +1,6 @@
 #include "Camera.h"
 
-Camera::Camera(World* world)
+Camera::Camera(IWorld* world)
 	: 
 	WorldDecorator(world),
 	mPosition(glm::vec3(0.0f, 0.0f, 0.0f)),
@@ -13,6 +13,12 @@ Camera::Camera(World* world)
 	mZoom(45.)
 {
 	this->updateCameraVectors();
+}
+
+void Camera::Create()
+{
+	WorldDecorator::Create();
+	// TODO: Init
 }
 
 const glm::vec3 Camera::getPosition()

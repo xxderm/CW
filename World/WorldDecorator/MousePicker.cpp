@@ -1,9 +1,15 @@
 #include "MousePicker.h"
 
-MousePicker::MousePicker(World* world)
+MousePicker::MousePicker(IWorld* world)
 	: WorldDecorator(world)
 {
 
+}
+
+void MousePicker::Create()
+{
+	WorldDecorator::Create();
+	// TODO: Init
 }
 
 void MousePicker::setCamera(Camera* camera)

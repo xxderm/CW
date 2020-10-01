@@ -13,8 +13,10 @@ enum Camera_Movement {
 class Camera final : public WorldDecorator
 {
 public:
-	Camera(World* world);
+	Camera(IWorld* world);
+    void Create();
     const glm::vec3 getPosition();
+private:
     const glm::mat4 getViewMatrix();
     void ProcessKeyboard(Camera_Movement direction, float deltaTime);
     void ProcessMouseMovement(float xoffset, float yoffset, bool constrainPitch = true);

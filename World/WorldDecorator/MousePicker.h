@@ -9,7 +9,9 @@
 class MousePicker final : public WorldDecorator
 {
 public:
-    MousePicker(World* world);
+    MousePicker(IWorld* world);
+    void Create() override;
+private:
     void setCamera(Camera* camera);
     void setProjection(glm::mat4 projection);
     const glm::vec3 getCurrentTerrainPoint();

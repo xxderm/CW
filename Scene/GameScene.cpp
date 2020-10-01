@@ -2,8 +2,16 @@
 
 GameScene GameScene::mGameScene;
 
+GameScene::~GameScene()
+{
+}
+
+GameScene::GameScene()
+{
+}
+
 void GameScene::Init(Scene* scene)
-{	
+{		
 }
 
 void GameScene::Clean()
@@ -28,9 +36,7 @@ void GameScene::Update(Scene* scene)
 
 void GameScene::Draw(Scene* scene)
 {
+
 	SDL_GL_SwapWindow(scene->getWindow());
 }
 
-GameScene::GameScene()
-{
-}

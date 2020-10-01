@@ -8,6 +8,8 @@ class Texture final : public RendererDecorator
 {
 public:
 	Texture(Renderer* renderer);
+	void Init() override;
+private:
 	void AddTexture(std::string path, int format = GL_RGBA,int activeTexture = -1);
 	const glm::vec2 getSize(unsigned int id);
 private:

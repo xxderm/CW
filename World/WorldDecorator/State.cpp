@@ -1,9 +1,18 @@
 #include "State.h"
 
-State::State(World* world)
+State::State(Province* Provinces, IWorld* world)
 	: WorldDecorator(world)
 {
+	mProvinces = Provinces;
 }
+
+void State::Create()
+{
+	WorldDecorator::Create();
+	this->Init(mProvinces);
+}
+
+
 
 void State::Init(Province* Provinces)
 {

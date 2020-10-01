@@ -5,6 +5,12 @@ BufferObject::BufferObject(Renderer* renderer)
 {
 }
 
+void BufferObject::Init()
+{
+	RendererDecorator::Init();
+	// TODO: Add buffers from file
+}
+
 void BufferObject::Create(const char* fboName)
 {
 	mBufferObj.try_emplace(fboName);

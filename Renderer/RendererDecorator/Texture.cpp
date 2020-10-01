@@ -5,6 +5,12 @@ Texture::Texture(Renderer* renderer)
 {
 }
 
+void Texture::Init()
+{
+	RendererDecorator::Init();
+	// TODO: Add textures from file
+}
+
 void Texture::AddTexture(std::string path, int format, int activeTexture)
 {
 	glm::vec2 size;

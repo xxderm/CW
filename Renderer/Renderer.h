@@ -10,10 +10,11 @@
 #include <glm/vec4.hpp>
 #include <glm/mat2x2.hpp>
 
-class Renderer
+class Renderer abstract
 {
 public:
-
+	virtual void Init() = 0;
+	virtual void Render() = 0;
 };
 
 #endif // !RENDERER_HEADER

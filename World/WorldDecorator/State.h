@@ -16,15 +16,15 @@ struct StateFormat
 class State final : public WorldDecorator
 {
 public:
-	State(Province* Province, IWorld* world);
+	State(std::unique_ptr<IWorld> world);
 	void Create() override;
-private:
-	void Init(Province* Provinces);
 	const StateFormat& getState(int Id);
 	void setState(int Id, StateFormat state);
 private:
+	void Init();
+private:
 	std::vector<StateFormat> mStates;
-	Province* mProvinces;
+	std::unique_ptr<IWorld> mProvinces;
 };
 
 #endif // !STATE_HEADER

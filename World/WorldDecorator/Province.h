@@ -22,7 +22,7 @@ struct ProvinceFormat
 class Province final : public WorldDecorator
 {
 public:
-	Province(IWorld* world);
+	Province(std::unique_ptr<IWorld> world);
 	void Create() override;
 	const ProvinceFormat& getProvince(int Id);
 	const ProvinceFormat& getProvince(glm::vec3 Color);

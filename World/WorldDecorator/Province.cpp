@@ -9,8 +9,8 @@ namespace glm
 	}
 }
 
-Province::Province(IWorld* world)
-	: WorldDecorator(world)
+Province::Province(std::unique_ptr<IWorld> world)
+	: WorldDecorator{ std::move(world) }
 {	
 }
 

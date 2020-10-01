@@ -1,7 +1,7 @@
 #include "Country.h"
 
-Country::Country(IWorld* world)
-	: WorldDecorator(world)
+Country::Country(std::unique_ptr<IWorld> world)
+	: WorldDecorator{ std::move(world) }
 {
 }
 

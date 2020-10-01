@@ -1,8 +1,8 @@
 #include "Camera.h"
 
-Camera::Camera(IWorld* world)
+Camera::Camera(std::unique_ptr<IWorld> world)
 	: 
-	WorldDecorator(world),
+	WorldDecorator{ std::move(world) },
 	mPosition(glm::vec3(0.0f, 0.0f, 0.0f)),
 	mUp(glm::vec3(0.0f, 1.0f, 0.0f)),
 	mYaw(-90.),

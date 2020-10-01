@@ -7,10 +7,10 @@
 class WorldDecorator abstract : public IWorld
 {
 public:
-	WorldDecorator(IWorld* world);
+	WorldDecorator(std::unique_ptr<IWorld> world);
 	void Create() override;
 protected:
-	IWorld* mWorld;
+	std::unique_ptr<IWorld> mWorld;
 };
 
 #endif // !WORLDDECORATOR_HEADER

@@ -16,9 +16,9 @@ public:
 
 int main(int argc, char** argv)
 {	
-	IWorld* world = new World();
-	world = new Province(world);
-	world = new State((Province*)world, world);
+	std::unique_ptr<IWorld> world = std::make_unique<World>();
+	world = std::make_unique<Province>(std::move(world));
+	world = std::make_unique<State>(std::move(world));
 	world->Create();
 
 	Scene* ApplicationScene = new Scene();

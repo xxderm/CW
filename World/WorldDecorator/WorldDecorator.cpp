@@ -1,7 +1,7 @@
 #include "WorldDecorator.h"
 
-WorldDecorator::WorldDecorator(IWorld* world)
-	: mWorld(world)
+WorldDecorator::WorldDecorator(std::unique_ptr<IWorld> world)
+	: mWorld{ std::move(world) }
 {
 }
 

@@ -1,20 +1,17 @@
 #include "State.h"
 
-State::State(Province* Provinces, IWorld* world)
-	: WorldDecorator(world)
+State::State(std::unique_ptr<IWorld> world)
+	: WorldDecorator{ std::move(world) }
 {
-	mProvinces = Provinces;
 }
 
 void State::Create()
 {
 	WorldDecorator::Create();
-	this->Init(mProvinces);
+	this->Init();
 }
 
-
-
-void State::Init(Province* Provinces)
+void State::Init()
 {
 	std::vector<std::string> stateFiles;
 	Reader::getInstance()->getFiles("Resources/states/*", stateFiles);
@@ -29,10 +26,10 @@ void State::Init(Province* Provinces)
 		state.Provinces = Reader::getInstance()->getArray("Resources/states/" + stateFiles.at(i), "provinces");
 		state.CountryTag = Reader::getInstance()->getValue("Resources/states/" + stateFiles.at(i), "owner");
 		for (size_t j = 0; j < state.Provinces.size(); j++)
-		{
-			auto currentProvince = Provinces->getProvince(std::stoi(state.Provinces.at(j)));
+		{			
+			auto currentProvince = static_cast<Province*>(this->mWorld.get())->getProvince(std::stoi(state.Provinces.at(j)));
 			currentProvince.StateId = state.Id;
-			Provinces->setProvince(std::stoi(state.Provinces.at(j)), currentProvince);
+			static_cast<Province*>(this->mWorld.get())->setProvince(std::stoi(state.Provinces.at(j)), currentProvince);
 		}
 		mStates.push_back(state);
 	}

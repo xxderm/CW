@@ -11,7 +11,7 @@ struct CountryFormat
 class Country final : public WorldDecorator
 {
 public:
-	Country(IWorld* world);
+	Country(std::unique_ptr<IWorld> world);
 	void Create() override;
 private:
 	void Init();

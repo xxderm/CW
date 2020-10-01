@@ -1,7 +1,7 @@
 #include "MousePicker.h"
 
-MousePicker::MousePicker(IWorld* world)
-	: WorldDecorator(world)
+MousePicker::MousePicker(std::unique_ptr<IWorld> world)
+	: WorldDecorator{ std::move(world) }
 {
 
 }

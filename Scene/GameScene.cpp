@@ -8,6 +8,20 @@ GameScene::~GameScene()
 
 GameScene::GameScene()
 {
+	mWorldRenderer = std::make_unique<WorldRenderer>();
+	mGuiRenderer = std::make_unique<GUIRenderer>();
+
+	mWorldRenderer = std::make_unique<Texture>(std::move(mWorldRenderer));
+	mWorldRenderer = std::make_unique<Shader>(std::move(mWorldRenderer));
+	mWorldRenderer = std::make_unique<BufferObject>(std::move(mWorldRenderer));
+	mWorldRenderer = std::make_unique<FrameBuffer>(std::move(mWorldRenderer));
+
+	mGuiRenderer = std::make_unique<Texture>(std::move(mGuiRenderer));
+	mGuiRenderer = std::make_unique<Shader>(std::move(mGuiRenderer));
+	mGuiRenderer = std::make_unique<BufferObject>(std::move(mGuiRenderer));
+	mGuiRenderer = std::make_unique<FrameBuffer>(std::move(mGuiRenderer));
+	mGuiRenderer = std::make_unique<GUITexture>(std::move(mGuiRenderer));
+	
 }
 
 void GameScene::Init(Scene* scene)

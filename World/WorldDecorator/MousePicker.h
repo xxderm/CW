@@ -16,15 +16,15 @@ public:
     const glm::vec3 getCurrentTerrainPoint();
     const glm::vec3 getCurrentRay();
     const glm::vec3 getPointOnRay(glm::vec3 ray, float distance);
-    const glm::vec3 binarySearch(int count, float start, float finish, glm::vec3 ray);
     const static glm::vec2 getNormalizedDeviceCoords(int mouseX, int mouseY, glm::vec2 ScrSize);
+    const glm::vec3 calculateMouseRay();
     void Update(glm::mat4 view, Camera* camera);
 private:
+    const glm::vec3 binarySearch(int count, float start, float finish, glm::vec3 ray);
     const bool intersectionInRange(float start, float finish, glm::vec3 ray);
     const bool isUnderGround(glm::vec3 testPoint);
     const bool getTerrain(float worldX, float worldZ);
     const float getHeightOfTerrain(float x, float z);
-    const glm::vec3 calculateMouseRay();
     const glm::vec3 toWorldCoords(glm::vec4 eyeCoords);
     const glm::vec4 toEyeCoords(glm::vec4 clipCoords);
 

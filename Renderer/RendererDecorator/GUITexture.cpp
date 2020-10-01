@@ -1,13 +1,18 @@
 #include "GUITexture.h"
 
-GUITexture::GUITexture(std::unique_ptr<IGUIRenderer> guiRenderer)
-	: GUIDecorator{ std::move(guiRenderer) }
+GUITexture::GUITexture(std::unique_ptr<Renderer> renderer)
+	: RendererDecorator{ std::move(renderer) }
 {
 }
 
-void GUITexture::Create()
+void GUITexture::Init()
 {
-	GUIDecorator::Create();
+	RendererDecorator::Init();
+}
+
+void GUITexture::Render()
+{
+	RendererDecorator::Render();
 }
 
 void GUITexture::Add(int texId, glm::vec2 pos, glm::vec2 scale)

@@ -1,7 +1,7 @@
 #pragma once
 #ifndef GUI_TEXTURE_HEADER
 #define GUI_TEXTURE_HEADER
-#include "GUIDecorator.h"
+#include "RendererDecorator.h"
 
 struct GuiFormat
 {
@@ -12,11 +12,12 @@ struct GuiFormat
 	glm::vec4 Box;
 };
 
-class GUITexture final : public GUIDecorator
+class GUITexture final : public RendererDecorator
 {
 public:	
-	GUITexture(std::unique_ptr<IGUIRenderer> guiRenderer);
-	void Create() override;
+	GUITexture(std::unique_ptr<Renderer> renderer);
+	void Init() override;
+	void Render() override;
 	void Add(int texId, glm::vec2 pos, glm::vec2 scale);
 	const std::list<GuiFormat*> getGui();
 	~GUITexture();

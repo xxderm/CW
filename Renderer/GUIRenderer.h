@@ -1,13 +1,12 @@
 #pragma once
 #ifndef GUI_RENDERER_HEADER
 #define GUI_RENDERER_HEADER
-#include "IGUIRenderer.h"
+#include "Renderer.h"
 
-class GUIRenderer : public Renderer, public IGUIRenderer
+class GUIRenderer : public Renderer
 {
 public:
 	void Render() override;
-	void Create() override;
 	void Init() override;
 private:
 };

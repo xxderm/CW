@@ -5,6 +5,11 @@
 #include "../Renderer/Renderer.h"
 #include "../Renderer/GUIRenderer.h"
 #include "../Renderer/WorldRenderer.h"
+#include "../Renderer/RendererDecorator/FrameBuffer.h"
+#include "../Renderer/RendererDecorator/BufferObject.h"
+#include "../Renderer/RendererDecorator/Shader.h"
+#include "../Renderer/RendererDecorator/Texture.h"
+#include "../Renderer/RendererDecorator/GUITexture.h"
 
 class GameScene : public SceneMachine
 {
@@ -25,6 +30,8 @@ protected:
 	GameScene();
 private:
 	static GameScene mGameScene;
+	std::unique_ptr<Renderer> mGuiRenderer;
+	std::unique_ptr<Renderer> mWorldRenderer;
 };
 
 #endif // !GAMESCENE_HEADER

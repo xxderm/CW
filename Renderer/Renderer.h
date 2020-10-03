@@ -15,6 +15,9 @@ class Renderer abstract
 public:
 	virtual void Init() = 0;
 	virtual void Render() = 0;
+	virtual void Update() = 0;
+	virtual void Use(const char* Name) = 0;
+protected:	
 };
 
 #endif // !RENDERER_HEADER

@@ -9,23 +9,20 @@ GameScene::~GameScene()
 GameScene::GameScene()
 {
 	mWorldRenderer = std::make_unique<WorldRenderer>();
+	mWorldRenderer->Init();
 	mGuiRenderer = std::make_unique<GUIRenderer>();
-
-	mWorldRenderer = std::make_unique<Texture>(std::move(mWorldRenderer));
-	mWorldRenderer = std::make_unique<Shader>(std::move(mWorldRenderer));
-	mWorldRenderer = std::make_unique<BufferObject>(std::move(mWorldRenderer));
-	mWorldRenderer = std::make_unique<FrameBuffer>(std::move(mWorldRenderer));
-
-	mGuiRenderer = std::make_unique<Texture>(std::move(mGuiRenderer));
-	mGuiRenderer = std::make_unique<Shader>(std::move(mGuiRenderer));
-	mGuiRenderer = std::make_unique<BufferObject>(std::move(mGuiRenderer));
-	mGuiRenderer = std::make_unique<FrameBuffer>(std::move(mGuiRenderer));
-	mGuiRenderer = std::make_unique<GUITexture>(std::move(mGuiRenderer));
-	
+	mGuiRenderer->Init();
 }
 
 void GameScene::Init(Scene* scene)
 {		
+	mWorldRenderer = std::make_unique<Shader>(std::move(mWorldRenderer));
+	mWorldRenderer = std::make_unique<BufferObject>(std::move(mWorldRenderer));
+	mGuiRenderer = std::make_unique<Shader>(std::move(mGuiRenderer));
+	mGuiRenderer = std::make_unique<BufferObject>(std::move(mGuiRenderer));
+
+	mWorldRenderer->Init();
+	mGuiRenderer->Init();
 }
 
 void GameScene::Clean()
@@ -46,11 +43,14 @@ void GameScene::HandleEvents(Scene* scene)
 
 void GameScene::Update(Scene* scene)
 {
+	mWorldRenderer->Update();
+	mGuiRenderer->Update();
 }
 
 void GameScene::Draw(Scene* scene)
 {
-
+	mWorldRenderer->Render();
+	mGuiRenderer->Render();
 	SDL_GL_SwapWindow(scene->getWindow());
 }
 

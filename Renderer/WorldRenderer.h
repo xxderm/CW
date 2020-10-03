@@ -8,7 +8,10 @@ class WorldRenderer final : public Renderer
 {
 public:
 	void Render() override;
+	void Update() override;
 	void Init() override;
+protected:
+	void Use(const char* Name) override;
 private:
 };
 

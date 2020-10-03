@@ -9,7 +9,9 @@ public:
 	RendererDecorator(std::unique_ptr<Renderer> renderer);
 	void Init() override;
 	void Render() override;
+	void Update() override;
 protected:
+	void Use(const char* Name) override;
 	std::unique_ptr<Renderer> mRenderer;
 };
 

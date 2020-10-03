@@ -3,16 +3,25 @@
 Shader::Shader(std::unique_ptr<Renderer> renderer)
     : RendererDecorator{ std::move(renderer) }
 {
+   
 }
 
 void Shader::Init()
 {
     RendererDecorator::Init();
+    this->PushShader("Terrain");
+    this->PushShader("Water");
+    this->PushShader("Province");
 }
 
 void Shader::Render()
 {
     RendererDecorator::Render();
+}
+
+void Shader::Update()
+{
+    RendererDecorator::Update();
 }
 
 const unsigned Shader::getId(const char* shaderName)
@@ -25,7 +34,7 @@ const unsigned Shader::getId(const char* shaderName)
 
 void Shader::AddShader(const char* shaderName, const char* vertexPath, const char* fragmentPath, const char* tcPath, const char* tePath, const char* geometryPath)
 {
-    unsigned int id;
+    int id;
     std::string vertexCode;
     std::string fragmentCode;
     std::string tcCode;
@@ -43,7 +52,6 @@ void Shader::AddShader(const char* shaderName, const char* vertexPath, const cha
     gShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
     try
     {
-        // open files
         vShaderFile.open(vertexPath);
         fShaderFile.open(fragmentPath);
         std::stringstream vShaderStream, fShaderStream;
@@ -147,6 +155,24 @@ void Shader::AddShader(const char* shaderName, const char* vertexPath, const cha
     mShader.try_emplace(shaderName, id);
 }
 
+void Shader::PushShader(std::string Name, bool tessShaders)
+{
+    if(tessShaders)
+        this->AddShader(
+            Name.c_str(),
+            std::string("Shaders/" + Name + "Vertex.glsl").c_str(),
+            std::string("Shaders/" + Name + "Fragment.glsl").c_str(),
+            std::string("Shaders/" + Name + "TessControl.glsl").c_str(),
+            std::string("Shaders/" + Name + "TessEval.glsl").c_str()
+        );
+    else
+        this->AddShader(
+            Name.c_str(),
+            std::string("Shaders/" + Name + "Vertex.glsl").c_str(),
+            std::string("Shaders/" + Name + "Fragment.glsl").c_str()
+        );
+}
+
 void Shader::checkCompileErrors(GLuint shader, std::string type)
 {
     GLint success;
@@ -174,6 +200,7 @@ void Shader::checkCompileErrors(GLuint shader, std::string type)
 void Shader::Use(const char* shaderName)
 {
     glUseProgram(getId(shaderName));
+    RendererDecorator::Use(shaderName);
 }
 
 void Shader::setBool(const char* shaderName, const std::string& name, bool value) const

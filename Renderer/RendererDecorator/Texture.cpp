@@ -7,12 +7,18 @@ Texture::Texture(std::unique_ptr<Renderer> renderer)
 
 void Texture::Init()
 {
+	
 	RendererDecorator::Init();
 }
 
 void Texture::Render()
 {
 	RendererDecorator::Render();
+}
+
+void Texture::Update()
+{
+	RendererDecorator::Update();
 }
 
 void Texture::AddTexture(std::string path, int format, int activeTexture)
@@ -39,4 +45,9 @@ const glm::vec2 Texture::getSize(unsigned int id)
 		return mTexture.at(id);
 	LOG(ERROR) << "Texture not found";
 	throw std::exception();
+}
+
+void Texture::Use(const char* Name)
+{
+	RendererDecorator::Use(Name);
 }

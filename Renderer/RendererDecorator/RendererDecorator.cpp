@@ -14,3 +14,13 @@ void RendererDecorator::Render()
 {
 	mRenderer->Render();
 }
+
+void RendererDecorator::Update()
+{
+	mRenderer->Update();
+}
+
+void RendererDecorator::Use(const char* Name)
+{
+	mRenderer->Use(Name);
+}

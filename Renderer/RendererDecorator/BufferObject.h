@@ -15,6 +15,7 @@ public:
 	BufferObject(std::unique_ptr<Renderer> renderer);
 	void Init() override;
 	void Render() override;
+	void Update() override;
 	void Create(const char* fboName) override;
 	void Bind(const char* fboName) override;
 	void UnBind(const char* fboName) override;
@@ -31,6 +32,8 @@ public:
 	void Draw(const char* fboName, GLuint type, GLsizei count);
 	const unsigned getVaoID(const char* fboName);
 	~BufferObject();
+protected:
+	void Use(const char* Name) override;
 private:
 	std::map<std::string, BufferObjectFormat> mBufferObj;
 };

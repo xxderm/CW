@@ -2,14 +2,6 @@
 #include "Scene.h"
 #ifndef GAME_SCENE_HEADER
 #define GAME_SCENE_HEADER
-#include "../Renderer/Renderer.h"
-#include "../Renderer/GUIRenderer.h"
-#include "../Renderer/WorldRenderer.h"
-#include "../Renderer/RendererDecorator/FrameBuffer.h"
-#include "../Renderer/RendererDecorator/BufferObject.h"
-#include "../Renderer/RendererDecorator/Shader.h"
-#include "../Renderer/RendererDecorator/Texture.h"
-#include "../Renderer/RendererDecorator/GUITexture.h"
 
 class GameScene : public SceneMachine
 {
@@ -29,9 +21,7 @@ public:
 protected:
 	GameScene();
 private:
-	static GameScene mGameScene;
-	std::unique_ptr<Renderer> mGuiRenderer;
-	std::unique_ptr<Renderer> mWorldRenderer;
+	static GameScene mGameScene;	
 };
 
 #endif // !GAMESCENE_HEADER

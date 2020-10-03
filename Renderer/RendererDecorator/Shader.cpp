@@ -1,27 +1,8 @@
 #include "Shader.h"
 
-Shader::Shader(std::unique_ptr<Renderer> renderer)
-    : RendererDecorator{ std::move(renderer) }
+Shader::Shader()
 {
    
-}
-
-void Shader::Init()
-{
-    RendererDecorator::Init();
-    this->PushShader("Terrain");
-    this->PushShader("Water");
-    this->PushShader("Province");
-}
-
-void Shader::Render()
-{
-    RendererDecorator::Render();
-}
-
-void Shader::Update()
-{
-    RendererDecorator::Update();
 }
 
 const unsigned Shader::getId(const char* shaderName)
@@ -197,10 +178,14 @@ void Shader::checkCompileErrors(GLuint shader, std::string type)
     }
 }
 
-void Shader::Use(const char* shaderName)
+void Shader::Bind(const char* shaderName)
 {
     glUseProgram(getId(shaderName));
-    RendererDecorator::Use(shaderName);
+}
+
+void Shader::UnBind(const char* shaderName)
+{
+    glUseProgram(0);
 }
 
 void Shader::setBool(const char* shaderName, const std::string& name, bool value) const

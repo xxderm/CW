@@ -33,8 +33,3 @@ void WorldRenderer::Init()
 		}
 	}*/
 }
-
-void WorldRenderer::Use(const char* Name)
-{
-}
-

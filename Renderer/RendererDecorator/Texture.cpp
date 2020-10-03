@@ -1,27 +1,16 @@
 #include "Texture.h"
 
-Texture::Texture(std::unique_ptr<Renderer> renderer)
-	: RendererDecorator{ std::move(renderer) }
+Texture::Texture(std::unique_ptr<IRenderExtension> rendExt)
+	: RendererExtensionDecorator{ std::move(rendExt) }
 {
 }
 
-void Texture::Init()
+void Texture::Create()
 {
-	
-	RendererDecorator::Init();
+	RendererExtensionDecorator::Create();
 }
 
-void Texture::Render()
-{
-	RendererDecorator::Render();
-}
-
-void Texture::Update()
-{
-	RendererDecorator::Update();
-}
-
-void Texture::AddTexture(std::string path, int format, int activeTexture)
+void Texture::Add(std::string path, int format, int activeTexture)
 {
 	glm::vec2 size;
 	int chnls;
@@ -45,9 +34,4 @@ const glm::vec2 Texture::getSize(unsigned int id)
 		return mTexture.at(id);
 	LOG(ERROR) << "Texture not found";
 	throw std::exception();
-}
-
-void Texture::Use(const char* Name)
-{
-	RendererDecorator::Use(Name);
 }

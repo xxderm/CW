@@ -12,7 +12,4 @@ void GUIRenderer::Update()
 {
 }
 
-void GUIRenderer::Use(const char* Name)
-{
-}
 

@@ -1,7 +1,16 @@
 #pragma once
 #ifndef BUFFER_OBJECT_HEADER
 #define BUFFER_OBJECT_HEADER
-#include "Buffer.h"
+#include <string>
+#include <GL/glew.h>
+#include "GL/GL/GL.H"
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
+#include <glm/vec4.hpp>
+#include <glm/mat2x2.hpp>
+#include <map>
+#include <fstream>
+#include "easylogging++.h"
 
 struct BufferObjectFormat
 {
@@ -9,16 +18,13 @@ struct BufferObjectFormat
 	unsigned int VaoID;
 };
 
-class BufferObject final : public RendererDecorator, public Buffer
+class BufferObject final
 {
 public:
-	BufferObject(std::unique_ptr<Renderer> renderer);
-	void Init() override;
-	void Render() override;
-	void Update() override;
-	void Create(const char* fboName) override;
-	void Bind(const char* fboName) override;
-	void UnBind(const char* fboName) override;
+	BufferObject();
+	void Create(const char* fboName);
+	void Bind(const char* fboName);
+	void UnBind(const char* fboName);
 	void Set(
 		const char* fboName,
 		void* vertices,
@@ -32,8 +38,6 @@ public:
 	void Draw(const char* fboName, GLuint type, GLsizei count);
 	const unsigned getVaoID(const char* fboName);
 	~BufferObject();
-protected:
-	void Use(const char* Name) override;
 private:
 	std::map<std::string, BufferObjectFormat> mBufferObj;
 };

@@ -1,36 +1,7 @@
 #include "BufferObject.h"
 
-BufferObject::BufferObject(std::unique_ptr<Renderer> renderer)
-	: RendererDecorator{ std::move(renderer) }
+BufferObject::BufferObject()
 {
-}
-
-void BufferObject::Init()
-{
-	RendererDecorator::Init();	
-	this->Create("Object");
-	/*this->Set(
-		"Object",
-		mObject->Terrain.data(),
-		mObject->TexCoord.data(),
-		mObject->Indices.data(),
-		GL_STATIC_DRAW,
-		sizeof(glm::vec3) * mObject->Terrain.size(),
-		sizeof(glm::vec2) * mObject->TexCoord.size(),
-		sizeof(GLuint) * mObject->Indices.size()
-	);*/
-}
-
-void BufferObject::Render()
-{
-	RendererDecorator::Render();
-	glPatchParameteri(GL_PATCH_VERTICES, 4);
-	//this->Draw("Object", GL_PATCHES, mObject->Indices.size());
-}
-
-void BufferObject::Update()
-{
-	RendererDecorator::Update();
 }
 
 void BufferObject::Create(const char* fboName)
@@ -93,9 +64,4 @@ BufferObject::~BufferObject()
 		glDeleteBuffers(3, i.second.VboID);
 		glDeleteVertexArrays(1, &i.second.VaoID);
 	}
-}
-
-void BufferObject::Use(const char* Name)
-{
-	RendererDecorator::Use(Name);
 }

@@ -1,15 +1,21 @@
 #pragma once
 #ifndef SHADER_HEADER
 #define SHADER_HEADER
-#include "RendererDecorator.h"
+#include <string>
+#include <GL/glew.h>
+#include "GL/GL/GL.H"
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
+#include <glm/vec4.hpp>
+#include <glm/mat2x2.hpp>
+#include <map>
+#include <fstream>
+#include "easylogging++.h"
 
-class Shader final : public RendererDecorator
+class Shader final
 {
 public:
-	Shader(std::unique_ptr<Renderer> renderer);
-	void Init() override;
-	void Render() override;
-	void Update() override;
+	Shader();
 	const unsigned int getId(const char* shaderName);
 	void setBool(const char* shaderName, const std::string& name, bool value) const;
 	void setInt(const char* shaderName, const std::string& name, int value) const;
@@ -23,9 +29,8 @@ public:
 	void setMat2(const char* shaderName, const std::string& name, const glm::mat2& mat) const;
 	void setMat3(const char* shaderName, const std::string& name, const glm::mat3& mat) const;
 	void setMat4(const char* shaderName, const std::string& name, const glm::mat4& mat) const;
-protected:
-	void Use(const char* shaderName) override;
-private:
+	void Bind(const char* shaderName);
+	void UnBind(const char* shaderName);
 	void AddShader(const char* shaderName, const char* vertexPath,
 		const char* fragmentPath,
 		const char* tcPath = nullptr,

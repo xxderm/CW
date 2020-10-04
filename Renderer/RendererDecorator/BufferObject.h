@@ -16,7 +16,7 @@ public:
 	void Init() override;
 	void Bind(const char* fboName) override;
 	void UnBind(const char* fboName) override;
-	void setMesh(std::vector<Mesh> mesh);
+	void setMesh(std::vector<Mesh>* mesh);
 	void Set(
 		const char* fboName,
 		void* vertices,
@@ -32,7 +32,7 @@ public:
 	~BufferObject();
 private:
 	std::map<std::string, BufferObjectFormat> mBufferObj;
-	std::vector<Mesh> mMesh;
+	std::vector<Mesh>* mMesh = nullptr;
 };
 
 #endif // !BUFFEROBJECT_HEADER

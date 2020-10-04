@@ -45,10 +45,12 @@ void WorldRenderer::Init()
 	//mRenderExtension = std::make_unique<DrawableAdapter<BufferObject>>(std::move(mRenderExtension));
 	//mRenderExtension = std::make_unique<BindingAdapter<FrameBuffer>>(std::move(mRenderExtension));
 	mRenderExtension = std::make_unique<RenderExtension>();
+	mRenderExtension = std::make_unique<BindingAdapter<BufferObject>>(std::move(mRenderExtension));	
 	mRenderExtension = std::make_unique<Texture>(std::move(mRenderExtension));
 	mRenderExtension = std::make_unique<BindingAdapter<Shader>>(std::move(mRenderExtension));
-	static_cast<BindingAdapter<Shader>*>(mRenderExtension.get())->setShaderNames(mShaders);
-	mRenderExtension = std::make_unique<BindingAdapter<BufferObject>>(std::move(mRenderExtension));	
-	static_cast<BindingAdapter<BufferObject>*>(mRenderExtension.get())->setMesh(mMesh);
+	static_cast<BindingAdapter<Shader>*>(mRenderExtension.get())->setShaderNames(&mShaders);
+	static_cast<BindingAdapter<BufferObject>*>(mRenderExtension.get())->setMesh(&mMesh);
 	mRenderExtension->Create();
+	std::cout << static_cast<BindingAdapter<Shader>*>(mRenderExtension.get())->getId("GUI");
+
 }

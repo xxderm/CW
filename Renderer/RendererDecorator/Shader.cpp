@@ -188,8 +188,9 @@ void Shader::UnBind(const char* shaderName)
     glUseProgram(0);
 }
 
-void Shader::setShaderNames(std::initializer_list<std::pair<char*, bool>> Names)
+void Shader::setShaderNames(std::initializer_list<std::pair<char*, bool>>* Names)
 {
+    mShaderNames = nullptr;
     this->mShaderNames = Names;
 }
 
@@ -255,8 +256,9 @@ void Shader::setMat4(const char* shaderName, const std::string& name, const glm:
 
 void Shader::Init()
 {
-    for (auto& shader : mShaderNames)
-    {
-        this->PushShader(shader.first, shader.second);
-    }
+    if(mShaderNames)
+        for (auto& shader : *mShaderNames)
+        {
+            this->PushShader(shader.first, shader.second);
+        }
 }

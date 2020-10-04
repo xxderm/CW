@@ -6,13 +6,14 @@ BufferObject::BufferObject()
 
 void BufferObject::Init()
 {
-	for (auto& mesh : mMesh)
-	{
-		mBufferObj.try_emplace(mesh.Name);
-		glGenVertexArrays(1, &mBufferObj.at(mesh.Name).VaoID);
-		Bind(mesh.Name.c_str());
-		Set(mesh.Name.c_str(), mesh.Vertices.data(), mesh.TexCoord.data(), mesh.Indices.data(), mesh.DrawType, sizeof(glm::vec3) * mesh.Vertices.size(), sizeof(glm::vec2) * mesh.TexCoord.size(), sizeof(GLuint) * mesh.Indices.size());
-	}
+	if(mMesh)
+		for (auto& mesh : *mMesh)
+		{
+			mBufferObj.try_emplace(mesh.Name);
+			glGenVertexArrays(1, &mBufferObj.at(mesh.Name).VaoID);
+			Bind(mesh.Name.c_str());
+			Set(mesh.Name.c_str(), mesh.Vertices.data(), mesh.TexCoord.data(), mesh.Indices.data(), mesh.DrawType, sizeof(glm::vec3) * mesh.Vertices.size(), sizeof(glm::vec2) * mesh.TexCoord.size(), sizeof(GLuint) * mesh.Indices.size());
+		}
 }
 
 void BufferObject::Bind(const char* fboName)
@@ -25,8 +26,9 @@ void BufferObject::UnBind(const char* fboName)
 	glBindVertexArray(0);
 }
 
-void BufferObject::setMesh(std::vector<Mesh> mesh)
+void BufferObject::setMesh(std::vector<Mesh>* mesh)
 {
+	mMesh = nullptr;
 	mMesh = mesh;
 }
 

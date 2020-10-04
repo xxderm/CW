@@ -9,6 +9,7 @@ class DrawableAdapter : public RendererExtensionDecorator, public Decoration
 public:
 	DrawableAdapter(std::unique_ptr<IRenderExtension> rendExt);
 	void Create() override;
+	void Use(char* Name) override;
 };
 
 #endif // !DRAWABLE_ADAPTER_HEADER
@@ -24,4 +25,10 @@ void DrawableAdapter<Decoration>::Create()
 {
 	RendererExtensionDecorator::Create();
 	Decoration::Draw();
+}
+
+template<class Decoration>
+inline void DrawableAdapter<Decoration>::Use(char* Name)
+{
+	RendererExtensionDecorator::Use(Name);
 }

@@ -10,6 +10,11 @@ void Texture::Create()
 	RendererExtensionDecorator::Create();
 }
 
+void Texture::Use(char* Name)
+{
+	RendererExtensionDecorator::Use(Name);
+}
+
 void Texture::Add(std::string path, int format, int activeTexture)
 {
 	glm::vec2 size;

@@ -3,3 +3,7 @@
 void RenderExtension::Create()
 {
 }
+
+void RenderExtension::Use(char* Name)
+{
+}

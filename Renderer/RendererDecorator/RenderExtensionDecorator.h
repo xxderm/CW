@@ -8,6 +8,7 @@ class RendererExtensionDecorator : public IRenderExtension
 public:
 	RendererExtensionDecorator(std::unique_ptr<IRenderExtension> renderer);
 	void Create() override;
+	void Use(char* Name) override;
 protected:
 	std::unique_ptr<IRenderExtension> mRenderer;
 };

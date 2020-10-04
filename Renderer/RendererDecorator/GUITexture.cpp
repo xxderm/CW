@@ -11,6 +11,11 @@ void GUITexture::Create()
 	RendererExtensionDecorator::Create();
 }
 
+void GUITexture::Use(char* Name)
+{
+	RendererExtensionDecorator::Use(Name);
+}
+
 void GUITexture::Add(int texId, glm::vec2 pos, glm::vec2 scale)
 {
 	GuiFormat*tmp = new GuiFormat();

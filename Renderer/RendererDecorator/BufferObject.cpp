@@ -6,6 +6,7 @@ BufferObject::BufferObject()
 
 void BufferObject::Init()
 {
+	mBufferObj = std::map<std::string, BufferObjectFormat>();
 	if(mMesh)
 		for (auto& mesh : *mMesh)
 		{
@@ -18,7 +19,8 @@ void BufferObject::Init()
 
 void BufferObject::Bind(const char* fboName)
 {
-	glBindVertexArray(mBufferObj.at(fboName).VaoID);
+	if(mBufferObj.count(fboName) > 0)
+		glBindVertexArray(mBufferObj.at(fboName).VaoID);
 }
 
 void BufferObject::UnBind(const char* fboName)

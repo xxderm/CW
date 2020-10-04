@@ -9,6 +9,7 @@ class BindingAdapter : public RendererExtensionDecorator, public Decoration
 public:
 	BindingAdapter(std::unique_ptr<IRenderExtension> rendExt);
 	void Create() override;
+	void Use(char* Name) override;
 };
 
 #endif // !BINDING_ADAPTER_HEADER
@@ -24,4 +25,11 @@ void BindingAdapter<Decoration>::Create()
 {
 	RendererExtensionDecorator::Create();
 	Decoration::Init();
+}
+
+template<class Decoration>
+inline void BindingAdapter<Decoration>::Use(char* Name)
+{
+	RendererExtensionDecorator::Use(Name);
+	Decoration::Bind(Name);
 }

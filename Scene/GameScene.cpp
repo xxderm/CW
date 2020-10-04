@@ -39,6 +39,7 @@ void GameScene::Update(Scene* scene)
 
 void GameScene::Draw(Scene* scene)
 {	
+	mWorldRenderer->Render();
 	SDL_GL_SwapWindow(scene->getWindow());
 }
 

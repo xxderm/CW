@@ -9,3 +9,8 @@ void RendererExtensionDecorator::Create()
 {
 	mRenderer->Create();
 }
+
+void RendererExtensionDecorator::Use(char* Name)
+{
+	mRenderer->Use(Name);
+}

@@ -2,6 +2,9 @@
 
 void WorldRenderer::Render()
 {
+	mRenderExtension->Use((char*)"Terrain");
+	glPatchParameteri(GL_PATCH_VERTICES, 4);
+	static_cast<BindingAdapter<BufferObject>*>(mRenderExtension.get())->Draw("Terrain", GL_PATCHES, TerrainMesh.Indices.size());
 }
 
 void WorldRenderer::Update()
@@ -16,7 +19,6 @@ void WorldRenderer::Init()
 		std::pair<char*, bool>((char*)"Terrain", true),
 		std::pair<char*, bool>((char*)"Water", true)
 	};
-	Mesh TerrainMesh;
 	TerrainMesh.Name = "Terrain";
 	for (size_t y = 0; y < 50; y++)
 	{
@@ -45,12 +47,13 @@ void WorldRenderer::Init()
 	//mRenderExtension = std::make_unique<DrawableAdapter<BufferObject>>(std::move(mRenderExtension));
 	//mRenderExtension = std::make_unique<BindingAdapter<FrameBuffer>>(std::move(mRenderExtension));
 	mRenderExtension = std::make_unique<RenderExtension>();
-	mRenderExtension = std::make_unique<BindingAdapter<BufferObject>>(std::move(mRenderExtension));	
 	mRenderExtension = std::make_unique<Texture>(std::move(mRenderExtension));
+	mRenderExtension = std::make_unique<BindingAdapter<BufferObject>>(std::move(mRenderExtension));	
 	mRenderExtension = std::make_unique<BindingAdapter<Shader>>(std::move(mRenderExtension));
-	static_cast<BindingAdapter<Shader>*>(mRenderExtension.get())->setShaderNames(&mShaders);
 	static_cast<BindingAdapter<BufferObject>*>(mRenderExtension.get())->setMesh(&mMesh);
 	mRenderExtension->Create();
-	std::cout << static_cast<BindingAdapter<Shader>*>(mRenderExtension.get())->getId("GUI");
+	static_cast<BindingAdapter<Shader>*>(mRenderExtension.get())->setShaderNames(&mShaders);
+	mRenderExtension->Create();
+	//std::cout << static_cast<BindingAdapter<Shader>*>(mRenderExtension.get())->getId("GUI");
 
 }

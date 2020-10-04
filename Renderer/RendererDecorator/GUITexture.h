@@ -17,6 +17,7 @@ class GUITexture final : public RendererExtensionDecorator
 public:	
 	GUITexture(std::unique_ptr<IRenderExtension> rendExt);
 	void Create() override;
+	void Use(char* Name) override;
 private:
 	void Add(int texId, glm::vec2 pos, glm::vec2 scale);
 	const std::list<GuiFormat*> getGui();

@@ -15,6 +15,7 @@ class IRenderExtension abstract
 {
 public:
 	virtual void Create() = 0;
+	virtual void Use(char* Name) = 0;
 };
 
 #endif // !IRENDERER_EXTENSION_HEADER

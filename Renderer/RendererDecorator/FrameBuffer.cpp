@@ -22,7 +22,8 @@ void FrameBuffer::setFbos(std::vector<FrameBufferFormat> Fbos)
 
 void FrameBuffer::Bind(const char* fboName)
 {
-	glBindFramebuffer(GL_FRAMEBUFFER, mFboID.at(fboName));
+    if (mFboID.count(fboName) > 0)
+	    glBindFramebuffer(GL_FRAMEBUFFER, mFboID.at(fboName));
 }
 
 void FrameBuffer::UnBind(const char* fboName)

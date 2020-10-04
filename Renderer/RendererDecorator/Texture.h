@@ -9,6 +9,7 @@ class Texture final : public RendererExtensionDecorator
 public:
 	Texture(std::unique_ptr<IRenderExtension> rendExt);
 	void Create() override;
+	void Use(char* Name) override;
 private:
 	void Add(std::string path, int format = GL_RGBA,int activeTexture = -1);
 	const glm::vec2 getSize(unsigned int id);

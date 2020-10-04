@@ -18,6 +18,7 @@ public:
 private:
 	std::initializer_list<std::pair<char*, bool>> mShaders;
 	std::vector<Mesh> mMesh;
+	Mesh TerrainMesh;
 };
 
 #endif // !WORLDRENDERER_HEADER

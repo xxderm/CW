@@ -180,7 +180,8 @@ void Shader::checkCompileErrors(GLuint shader, std::string type)
 
 void Shader::Bind(const char* shaderName)
 {
-    glUseProgram(getId(shaderName));
+    if(mShader.count(shaderName) > 0)
+        glUseProgram(getId(shaderName));
 }
 
 void Shader::UnBind(const char* shaderName)

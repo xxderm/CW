@@ -7,6 +7,7 @@ class RenderExtension final : public IRenderExtension
 {
 public:
 	void Create() override;
+	void Use(char* Name) override;
 };
 
 #endif // !RENDERER_EXTENSION_HEADER

@@ -8,21 +8,12 @@ GameScene::~GameScene()
 
 GameScene::GameScene()
 {
-	//mWorldRenderer = std::make_unique<WorldRenderer>();
-	//mWorldRenderer->Init();
-	//mGuiRenderer = std::make_unique<GUIRenderer>();
-	//mGuiRenderer->Init();
 }
 
 void GameScene::Init(Scene* scene)
 {		
-	/*mWorldRenderer = std::make_unique<Shader>(std::move(mWorldRenderer));
-	mWorldRenderer = std::make_unique<BufferObject>(std::move(mWorldRenderer));
-	mGuiRenderer = std::make_unique<Shader>(std::move(mGuiRenderer));
-	mGuiRenderer = std::make_unique<BufferObject>(std::move(mGuiRenderer));
-
-	mWorldRenderer->Init();
-	mGuiRenderer->Init();*/
+	mWorldRenderer = new WorldRenderer();
+	mWorldRenderer->Init();	
 }
 
 void GameScene::Clean()

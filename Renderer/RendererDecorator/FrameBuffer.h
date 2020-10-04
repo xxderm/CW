@@ -1,27 +1,29 @@
 #pragma once
 #ifndef FRAME_BUFFER_HEADER
 #define FRAME_BUFFER_HEADER
-#include <string>
-#include <GL/glew.h>
-#include "GL/GL/GL.H"
-#include <glm/vec2.hpp>
-#include <glm/vec3.hpp>
-#include <glm/vec4.hpp>
-#include <glm/mat2x2.hpp>
-#include <map>
-#include <fstream>
-#include "easylogging++.h"
+#include "Buffer.h"
 
-class FrameBuffer final
+struct FrameBufferFormat
+{
+	std::string Name;
+	int AttachmentId;
+	glm::vec2 Scr;
+	int TexActiveId = -1;
+	bool Blend = 0;
+};
+
+class FrameBuffer : public Buffer
 {
 public:
 	FrameBuffer();
-	void Create(const char* fboName);
-	void Bind(const char* fboName);
-	void UnBind(const char* fboName);
+	void Init() override;
+	void setFbos(std::vector<FrameBufferFormat> Fbos);
+	void Bind(const char* fboName) override;
+	void UnBind(const char* fboName) override;
 	void Set(const char* fboName, int attachment_id, glm::vec2 scr, int texActiveId = -1, bool blend = 0);
 private:
 	std::map<std::string, GLuint> mFboID;
+	std::vector<FrameBufferFormat> mFbos;
 	GLuint mTextureID;
 	GLuint mRboID;
 };

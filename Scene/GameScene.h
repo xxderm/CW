@@ -2,6 +2,7 @@
 #include "Scene.h"
 #ifndef GAME_SCENE_HEADER
 #define GAME_SCENE_HEADER
+#include "../Renderer/WorldRenderer.h"
 
 class GameScene : public SceneMachine
 {
@@ -22,6 +23,7 @@ protected:
 	GameScene();
 private:
 	static GameScene mGameScene;	
+	IRenderer* mWorldRenderer;
 };
 
 #endif // !GAMESCENE_HEADER

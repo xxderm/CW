@@ -4,11 +4,15 @@ BufferObject::BufferObject()
 {
 }
 
-void BufferObject::Create(const char* fboName)
+void BufferObject::Init()
 {
-	mBufferObj.try_emplace(fboName);
-	glGenVertexArrays(1, &mBufferObj.at(fboName).VaoID);
-	Bind(fboName);
+	for (auto& mesh : mMesh)
+	{
+		mBufferObj.try_emplace(mesh.Name);
+		glGenVertexArrays(1, &mBufferObj.at(mesh.Name).VaoID);
+		Bind(mesh.Name.c_str());
+		Set(mesh.Name.c_str(), mesh.Vertices.data(), mesh.TexCoord.data(), mesh.Indices.data(), mesh.DrawType, sizeof(glm::vec3) * mesh.Vertices.size(), sizeof(glm::vec2) * mesh.TexCoord.size(), sizeof(GLuint) * mesh.Indices.size());
+	}
 }
 
 void BufferObject::Bind(const char* fboName)
@@ -19,6 +23,11 @@ void BufferObject::Bind(const char* fboName)
 void BufferObject::UnBind(const char* fboName)
 {
 	glBindVertexArray(0);
+}
+
+void BufferObject::setMesh(std::vector<Mesh> mesh)
+{
+	mMesh = mesh;
 }
 
 void BufferObject::Set(const char* fboName, void* vertices, void* texCoord, void* indices, GLuint draw_type, GLuint vert_size, GLuint texCoordSize, GLuint ind_size, int d)

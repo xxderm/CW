@@ -1,16 +1,7 @@
 #pragma once
 #ifndef BUFFER_OBJECT_HEADER
 #define BUFFER_OBJECT_HEADER
-#include <string>
-#include <GL/glew.h>
-#include "GL/GL/GL.H"
-#include <glm/vec2.hpp>
-#include <glm/vec3.hpp>
-#include <glm/vec4.hpp>
-#include <glm/mat2x2.hpp>
-#include <map>
-#include <fstream>
-#include "easylogging++.h"
+#include "Buffer.h"
 
 struct BufferObjectFormat
 {
@@ -18,13 +9,14 @@ struct BufferObjectFormat
 	unsigned int VaoID;
 };
 
-class BufferObject final
+class BufferObject : public Buffer
 {
 public:
 	BufferObject();
-	void Create(const char* fboName);
-	void Bind(const char* fboName);
-	void UnBind(const char* fboName);
+	void Init() override;
+	void Bind(const char* fboName) override;
+	void UnBind(const char* fboName) override;
+	void setMesh(std::vector<Mesh> mesh);
 	void Set(
 		const char* fboName,
 		void* vertices,
@@ -40,6 +32,7 @@ public:
 	~BufferObject();
 private:
 	std::map<std::string, BufferObjectFormat> mBufferObj;
+	std::vector<Mesh> mMesh;
 };
 
 #endif // !BUFFEROBJECT_HEADER

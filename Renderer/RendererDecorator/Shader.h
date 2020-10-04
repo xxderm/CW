@@ -12,7 +12,7 @@
 #include <fstream>
 #include "easylogging++.h"
 
-class Shader final
+class Shader
 {
 public:
 	Shader();
@@ -29,8 +29,10 @@ public:
 	void setMat2(const char* shaderName, const std::string& name, const glm::mat2& mat) const;
 	void setMat3(const char* shaderName, const std::string& name, const glm::mat3& mat) const;
 	void setMat4(const char* shaderName, const std::string& name, const glm::mat4& mat) const;
+	void Init();
 	void Bind(const char* shaderName);
 	void UnBind(const char* shaderName);
+	void setShaderNames(std::initializer_list<std::pair<char*, bool>> Names);
 	void AddShader(const char* shaderName, const char* vertexPath,
 		const char* fragmentPath,
 		const char* tcPath = nullptr,
@@ -41,6 +43,7 @@ private:
 	void checkCompileErrors(GLuint shader, std::string type);
 private:
 	std::map<std::string, int> mShader;
+	std::initializer_list<std::pair<char*, bool>> mShaderNames;
 };
 
 #endif // !SHADER_HEADER

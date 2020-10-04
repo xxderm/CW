@@ -4,10 +4,20 @@ FrameBuffer::FrameBuffer()
 {
 }
 
-void FrameBuffer::Create(const char* fboName)
+void FrameBuffer::Init()
 {
-    mFboID.try_emplace(fboName);
-	glGenFramebuffers(1, &mFboID.at(fboName));
+    for (auto& fbo : mFbos)
+    {
+        mFboID.try_emplace(fbo.Name);
+	    glGenFramebuffers(1, &mFboID.at(fbo.Name));
+        this->Bind(fbo.Name.c_str());
+        this->Set(fbo.Name.c_str(), fbo.AttachmentId, fbo.Scr, fbo.TexActiveId, fbo.Blend);
+    }
+}
+
+void FrameBuffer::setFbos(std::vector<FrameBufferFormat> Fbos)
+{
+    mFbos = Fbos;
 }
 
 void FrameBuffer::Bind(const char* fboName)

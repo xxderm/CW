@@ -188,6 +188,11 @@ void Shader::UnBind(const char* shaderName)
     glUseProgram(0);
 }
 
+void Shader::setShaderNames(std::initializer_list<std::pair<char*, bool>> Names)
+{
+    this->mShaderNames = Names;
+}
+
 void Shader::setBool(const char* shaderName, const std::string& name, bool value) const
 {
    glUniform1i(glGetUniformLocation(mShader.at(shaderName), name.c_str()), (int)value);
@@ -246,4 +251,12 @@ void Shader::setMat3(const char* shaderName, const std::string& name, const glm:
 void Shader::setMat4(const char* shaderName, const std::string& name, const glm::mat4& mat) const
 {
     glUniformMatrix4fv(glGetUniformLocation(mShader.at(shaderName), name.c_str()), 1, GL_FALSE, &mat[0][0]);
+}
+
+void Shader::Init()
+{
+    for (auto& shader : mShaderNames)
+    {
+        this->PushShader(shader.first, shader.second);
+    }
 }

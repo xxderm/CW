@@ -44,16 +44,12 @@ void WorldRenderer::Init()
 	}
 	mMesh.push_back(TerrainMesh);
 
-	//mRenderExtension = std::make_unique<DrawableAdapter<BufferObject>>(std::move(mRenderExtension));
-	//mRenderExtension = std::make_unique<BindingAdapter<FrameBuffer>>(std::move(mRenderExtension));
 	mRenderExtension = std::make_unique<RenderExtension>();
-	mRenderExtension = std::make_unique<Texture>(std::move(mRenderExtension));
-	mRenderExtension = std::make_unique<BindingAdapter<BufferObject>>(std::move(mRenderExtension));	
-	mRenderExtension = std::make_unique<BindingAdapter<Shader>>(std::move(mRenderExtension));
-	static_cast<BindingAdapter<BufferObject>*>(mRenderExtension.get())->setMesh(&mMesh);
-	mRenderExtension->Create();
-	static_cast<BindingAdapter<Shader>*>(mRenderExtension.get())->setShaderNames(&mShaders);
-	mRenderExtension->Create();
-	//std::cout << static_cast<BindingAdapter<Shader>*>(mRenderExtension.get())->getId("GUI");
+	auto mShaderExtension = std::make_unique<BindingAdapter<Shader>>(std::move(mRenderExtension));
+	mShaderExtension->setShaderNames(&mShaders);
+	auto mBufferExtension = std::make_unique<BindingAdapter<BufferObject>>(std::move(mShaderExtension));
+	mBufferExtension->setMesh(&mMesh);
+	mBufferExtension->Create();	
+	mRenderExtension = std::move(mBufferExtension);
 
 }

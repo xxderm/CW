@@ -2,38 +2,22 @@
 
 FrameBuffer::FrameBuffer()
 {
+    glGenFramebuffers(1, &mFboID);
 }
 
-void FrameBuffer::Init()
+void FrameBuffer::Bind()
 {
-    for (auto& fbo : mFbos)
-    {
-        mFboID.try_emplace(fbo.Name);
-	    glGenFramebuffers(1, &mFboID.at(fbo.Name));
-        this->Bind(fbo.Name.c_str());
-        this->Set(fbo.Name.c_str(), fbo.AttachmentId, fbo.Scr, fbo.TexActiveId, fbo.Blend);
-    }
+    glBindFramebuffer(GL_FRAMEBUFFER, mFboID);
 }
 
-void FrameBuffer::setFbos(std::vector<FrameBufferFormat> Fbos)
-{
-    mFbos = Fbos;
-}
-
-void FrameBuffer::Bind(const char* fboName)
-{
-    if (mFboID.count(fboName) > 0)
-	    glBindFramebuffer(GL_FRAMEBUFFER, mFboID.at(fboName));
-}
-
-void FrameBuffer::UnBind(const char* fboName)
+void FrameBuffer::UnBind()
 {
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void FrameBuffer::Set(const char* fboName, int attachment_id, glm::vec2 scr, int texActiveId, bool blend)
+void FrameBuffer::Set(int attachment_id, glm::vec2 scr, int texActiveId, bool blend)
 {
-    this->Bind(fboName);
+    this->Bind();
     if (texActiveId != -1)
         glActiveTexture(texActiveId);
     glGenTextures(1, &mTextureID);
@@ -53,5 +37,5 @@ void FrameBuffer::Set(const char* fboName, int attachment_id, glm::vec2 scr, int
     glDrawBuffers(1, DrawBuffers);
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
         LOG(ERROR) << "Frame buffer status not complete";
-    this->UnBind(fboName);
+    this->UnBind();
 }

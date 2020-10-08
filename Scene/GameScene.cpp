@@ -30,6 +30,9 @@ void GameScene::Resume()
 
 void GameScene::HandleEvents(Scene* scene)
 {
+	while (SDL_PollEvent(&scene->getEvent()))
+	{
+	}
 }
 
 void GameScene::Update(Scene* scene)
@@ -38,8 +41,8 @@ void GameScene::Update(Scene* scene)
 }
 
 void GameScene::Draw(Scene* scene)
-{	
-	mWorldRenderer->Render();
+{		
+	mWorldRenderer->Render();		
 	SDL_GL_SwapWindow(scene->getWindow());
 }
 

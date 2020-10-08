@@ -1,7 +1,16 @@
 #pragma once
 #ifndef GUI_TEXTURE_HEADER
 #define GUI_TEXTURE_HEADER
-#include "RenderExtensionDecorator.h"
+#include <string>
+#include <GL/glew.h>
+#include "GL/GL/GL.H"
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
+#include <glm/vec4.hpp>
+#include <glm/mat2x2.hpp>
+#include <map>
+#include <fstream>
+#include "easylogging++.h"
 
 struct GuiFormat
 {
@@ -12,13 +21,10 @@ struct GuiFormat
 	glm::vec4 Box;
 };
 
-class GUITexture final : public RendererExtensionDecorator
+class GUITexture final
 {
 public:	
-	GUITexture(std::unique_ptr<IRenderExtension> rendExt);
-	void Create() override;
-	void Use(char* Name) override;
-private:
+	GUITexture();
 	void Add(int texId, glm::vec2 pos, glm::vec2 scale);
 	const std::list<GuiFormat*> getGui();
 	~GUITexture();

@@ -26,14 +26,14 @@ public:
 	void Clean();
 	void Quit();
 	SDL_Window* getWindow();
-	const SDL_GLContext getContext();
-	const SDL_Event* getEvent();
+	SDL_GLContext getContext();
+	SDL_Event getEvent();
 	bool isRunning();
 private:
 	std::list<SceneMachine*> mScenes;
 	SDL_Window* mWindow;
 	SDL_GLContext mContext;
-	SDL_Event* mEvent;
+	SDL_Event mEvent;
 	bool mRunning;
 };
 

@@ -9,6 +9,8 @@ public:
 	void Render() override;
 	void Init() override;
 	void Update() override;
+	void setCamera(Camera* camera);
+	void setMousePicker(MousePicker* mp); 
 private:
 };
 

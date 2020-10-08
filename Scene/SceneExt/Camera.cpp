@@ -26,6 +26,16 @@ const glm::vec3 Camera::getPosition()
 	return mPosition;
 }
 
+const glm::vec3 Camera::getFront()
+{
+	return mFront;
+}
+
+const glm::vec3 Camera::getUp()
+{
+	return mUp;
+}
+
 const glm::mat4 Camera::getViewMatrix()
 {
 	return glm::lookAt(this->mPosition, this->mPosition + this->mFront, this->mUp);

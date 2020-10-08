@@ -16,6 +16,8 @@ public:
 	explicit Camera(std::unique_ptr<IWorld> world);
     void Create();
     const glm::vec3 getPosition();
+    const glm::vec3 getFront();
+    const glm::vec3 getUp();
     const glm::mat4 getViewMatrix();
     void ProcessKeyboard(Camera_Movement direction, float deltaTime);
     void ProcessMouseMovement(float xoffset, float yoffset, bool constrainPitch = true);

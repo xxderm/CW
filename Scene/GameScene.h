@@ -24,6 +24,8 @@ protected:
 private:
 	static GameScene mGameScene;	
 	IRenderer* mWorldRenderer;
+	Camera mCamera;
+	MousePicker mMousePicker;
 };
 
 #endif // !GAMESCENE_HEADER

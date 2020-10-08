@@ -87,9 +87,7 @@ void Scene::Update()
 }
 
 void Scene::Draw()
-{
-	glClearColor(0, 0, 0, 1);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+{	
 	mScenes.back()->Draw(this);
 }
 
@@ -112,12 +110,12 @@ SDL_Window* Scene::getWindow()
 	return mWindow;
 }
 
-const SDL_GLContext Scene::getContext()
+SDL_GLContext Scene::getContext()
 {
 	return mContext;
 }
 
-const SDL_Event* Scene::getEvent()
+SDL_Event Scene::getEvent()
 {
 	return mEvent;
 }

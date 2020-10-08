@@ -1,7 +1,8 @@
 #pragma once	
 #ifndef IRENDERER_HEADER
 #define IRENDERER_HEADER
-#include "RenderExtension.h"
+#include "../Scene/SceneExt/Camera.h"
+#include "../Scene/SceneExt/MousePicker.h"
 
 class IRenderer abstract
 {
@@ -9,8 +10,8 @@ public:
 	virtual void Init() = 0;
 	virtual void Render() = 0;
 	virtual void Update() = 0;
-protected:	
-	std::unique_ptr<IRenderExtension> mRenderExtension;
+	virtual void setCamera(Camera* camera) = 0;
+	virtual void setMousePicker(MousePicker* mp) = 0;
 };
 
 #endif // !IRENDERER_HEADER

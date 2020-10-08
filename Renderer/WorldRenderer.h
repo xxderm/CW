@@ -2,12 +2,14 @@
 #ifndef WORLD_RENDERER_HEADER
 #define WORLD_RENDERER_HEADER
 #include "IRenderer.h"
-#include "RendererDecorator/Texture.h"
-#include "RendererDecorator/Shader.h"
-#include "RendererDecorator/DrawableAdapter.h"
-#include "RendererDecorator/BindingAdapter.h"
-#include "RendererDecorator/FrameBuffer.h"
-#include "RendererDecorator/BufferObject.h"
+#include "RenderExt/Texture.h"
+#include "RenderExt/Shader.h"
+#include "RenderExt/FrameBuffer.h"
+#include "RenderExt/BufferObject.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/mat4x4.hpp>
 
 class WorldRenderer final : public IRenderer
 {
@@ -15,10 +17,16 @@ public:
 	void Render() override;
 	void Update() override;
 	void Init() override;
+	void setCamera(Camera* camera);
+	void setMousePicker(MousePicker* mp);
 private:
-	std::initializer_list<std::pair<char*, bool>> mShaders;
-	std::vector<Mesh> mMesh;
-	Mesh TerrainMesh;
+	Shader* mProgram;
+	Texture* mTexture;
+	BufferObject* mBuffer;
+	Camera* mCamera;
+	std::vector<glm::vec3> Vertices;
+	std::vector<glm::vec2> TexCoord;
+	std::vector<GLuint> Indices;
 };
 
 #endif // !WORLDRENDERER_HEADER

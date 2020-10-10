@@ -1,14 +1,7 @@
 #include "Country.h"
 
-Country::Country(std::unique_ptr<IWorld> world)
-	: WorldDecorator{ std::move(world) }
+Country::Country()
 {
-}
-
-void Country::Create()
-{
-	WorldDecorator::Create();
-	// TODO: Add provinces
 }
 
 void Country::Init()
@@ -18,6 +11,7 @@ void Country::Init()
 
 	for (std::string& FileName : TagFiles)
 	{ 
+		std::cout << "Country Init\n";
 		std::string TAG = {FileName[0] , FileName[1] , FileName[2]};
 		CountryFormat country;
 		country.Tag = TAG;

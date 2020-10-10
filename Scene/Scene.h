@@ -1,14 +1,9 @@
 #pragma once
 #ifndef SCENE_HEADER
 #define SCENE_HEADER
-#include <list>
-#include <SDL.h>
-#include <GL/glew.h>
-#include "GL/GL/GL.H"
-#include "GL/GL/GLU.H"
+#include "SceneExt/MousePicker.h"
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
-#include "easylogging++.h"
 
 class SceneMachine;
 
@@ -27,7 +22,7 @@ public:
 	void Quit();
 	SDL_Window* getWindow();
 	SDL_GLContext getContext();
-	SDL_Event getEvent();
+	SDL_Event *getEvent();
 	bool isRunning();
 private:
 	std::list<SceneMachine*> mScenes;

@@ -1,10 +1,9 @@
 #include "Camera.h"
 
-Camera::Camera(std::unique_ptr<IWorld> world)
+Camera::Camera(glm::vec3 position)
 	: 
-	WorldDecorator{ std::move(world) },
-	mPosition(glm::vec3(0.0f, 0.0f, 0.0f)),
-	mUp(glm::vec3(0.0f, 1.0f, 0.0f)),
+	mPosition(position),
+	mWorldUp(glm::vec3(0.0f, 1.0f, 0.0f)),
 	mYaw(-90.),
 	mPitch(0.),
 	mFront(glm::vec3(0.0f, 0.0f, -1.0f)),
@@ -13,12 +12,6 @@ Camera::Camera(std::unique_ptr<IWorld> world)
 	mZoom(45.)
 {
 	this->updateCameraVectors();
-}
-
-void Camera::Create()
-{
-	WorldDecorator::Create();
-	// TODO: Init
 }
 
 const glm::vec3 Camera::getPosition()

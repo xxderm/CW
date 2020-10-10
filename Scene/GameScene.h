@@ -24,8 +24,12 @@ protected:
 private:
 	static GameScene mGameScene;	
 	IRenderer* mWorldRenderer;
-	Camera mCamera;
-	MousePicker mMousePicker;
+	Camera* mCamera;
+	MousePicker* mMousePicker;
+
+	GLfloat lastX;
+	GLfloat lastY;
+	int mWndWidth, mWndHeight;
 };
 
 #endif // !GAMESCENE_HEADER

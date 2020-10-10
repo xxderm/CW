@@ -1,16 +1,14 @@
 #pragma once
 #ifndef MOUSE_PICKER_HEADER
 #define MOUSE_PICKER_HEADER
-#include "WorldDecorator.h"
 #include "Camera.h"
 #include <SDL.h>
 #include <vector>
 
-class MousePicker final : public WorldDecorator
+class MousePicker final
 {
 public:
-    MousePicker(std::unique_ptr<IWorld> world);
-    void Create() override;
+    MousePicker(glm::vec2 mapSize, glm::vec2 scrSize);
     void setCamera(Camera* camera);
     void setProjection(glm::mat4 projection);
     const glm::vec3 getCurrentTerrainPoint();
@@ -37,6 +35,9 @@ private:
     glm::vec3 mCurrentTerrainPoint;
     int mRecCount = 200;
     float mRayRange = 600;
+
+    glm::vec2 mMapSize = glm::vec2(128, 50);
+    glm::vec2 mScrSize = glm::vec2(1270, 720);
 };
 
 #endif // !MOUSE_PICKER_HEADER

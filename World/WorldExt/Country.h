@@ -1,19 +1,20 @@
 #pragma once
 #ifndef COUNTRY_HEADER
 #define COUNTRY_HEADER
-#include "WorldDecorator.h"
+#include <vector>
+#include <string>
+#include <map>
+#include "../../Reader.h"
 
 struct CountryFormat
 {
 	std::string Tag;
 };
 
-class Country final : public WorldDecorator
+class Country final 
 {
 public:
-	Country(std::unique_ptr<IWorld> world);
-	void Create() override;
-private:
+	Country();
 	void Init();
 private:
 	std::map<std::string, CountryFormat> mCountries;

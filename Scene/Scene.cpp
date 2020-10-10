@@ -115,9 +115,9 @@ SDL_GLContext Scene::getContext()
 	return mContext;
 }
 
-SDL_Event Scene::getEvent()
+SDL_Event* Scene::getEvent()
 {
-	return mEvent;
+	return &mEvent;
 }
 
 bool Scene::isRunning()

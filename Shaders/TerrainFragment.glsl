@@ -300,6 +300,5 @@ void main()
 	vec3 specular=vec3(.2)*spec;// assuming bright white light color
 	
 	fColor=vec4(ambient+diffuse+specular,1);
-	fColor = vec4(0.5, 0.5, 0.5, 1.);
 	//fColor = terratexture;
 }

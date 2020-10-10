@@ -9,15 +9,8 @@ namespace glm
 	}
 }
 
-Province::Province(std::unique_ptr<IWorld> world)
-	: WorldDecorator{ std::move(world) }
+Province::Province()
 {	
-}
-
-void Province::Create()
-{
-	this->Init();
-	WorldDecorator::Create();
 }
 
 void Province::Init()
@@ -31,6 +24,7 @@ void Province::Init()
 	std::string line;
 	for (int i = 0; std::getline(provStream, line); i++)
 	{
+		std::cout << "Province Init\n";
 		typedef std::vector<std::string> spt;
 		spt split_vec;
 		boost::split(split_vec, line, boost::is_any_of(";"));

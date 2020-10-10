@@ -1,8 +1,8 @@
 #pragma once
 #ifndef STATE_HEADER
 #define STATE_HEADER
-#include "WorldDecorator.h"
 #include "Province.h"
+#include "../../Reader.h"
 
 struct StateFormat
 {
@@ -13,18 +13,15 @@ struct StateFormat
 };
 
 
-class State final : public WorldDecorator
+class State final 
 {
 public:
-	State(std::unique_ptr<IWorld> world);
-	void Create() override;
+	State();
 	const StateFormat& getState(int Id);
 	void setState(int Id, StateFormat state);
-private:
-	void Init();
+	void Init(Province* province);
 private:
 	std::vector<StateFormat> mStates;
-	std::unique_ptr<IWorld> mProvinces;
 };
 
 #endif // !STATE_HEADER

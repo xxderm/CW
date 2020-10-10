@@ -13,11 +13,19 @@
 #include <fstream>
 #include "easylogging++.h"
 
+enum class Parameter
+{
+	NONE,
+	CTG,
+	NEAREST_CTG,
+	LINEAR
+};
+
 class Texture final 
 {
 public:
 	Texture();
-	void Add(std::string path, int format = GL_RGBA,int activeTexture = -1);
+	void Add(std::string path, int format = GL_RGBA,int activeTexture = -1, Parameter param = Parameter::NONE);
 	const glm::vec2 getSize(unsigned int id);
 private:
 	std::map<unsigned int, glm::vec2>* mTexture = nullptr;

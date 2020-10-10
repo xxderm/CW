@@ -27,6 +27,7 @@ private:
 	std::vector<glm::vec3> Vertices;
 	std::vector<glm::vec2> TexCoord;
 	std::vector<GLuint> Indices;
+	glm::mat4x4 projection;
 };
 
 #endif // !WORLDRENDERER_HEADER

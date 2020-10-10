@@ -1,15 +1,9 @@
 #include "MousePicker.h"
 
-MousePicker::MousePicker(std::unique_ptr<IWorld> world)
-	: WorldDecorator{ std::move(world) }
+MousePicker::MousePicker(glm::vec2 mapSize, glm::vec2 scrSize)
+	: mMapSize(mapSize), mScrSize(scrSize)
 {
 
-}
-
-void MousePicker::Create()
-{
-	WorldDecorator::Create();
-	// TODO: Init
 }
 
 void MousePicker::setCamera(Camera* camera)

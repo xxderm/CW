@@ -83,10 +83,10 @@ void main(){
     
     vec3 T=normalize(vec3(model*vec4(tangent1,0.)));
     vec3 B=normalize(vec3(model*vec4(bitangent1,0.)));
-    vec3 N=normalize(vec3(model*vec4(texture(watnorm,heightMapUV ).rgb,0.)));
+    vec3 N=normalize(vec3(model*vec4(texture2D(watnorm,heightMapUV ).rgb,0.)));
     TBN=mat3(T,B,N);
     TBN=transpose(TBN);
-    normal=texture(watnorm,heightMapUV).rgb;
+    normal=texture2D(watnorm,heightMapUV).rgb;
     normal=normalize(normal*2.-1.);
     normal=normalize(TBN*normal);
     vec3 lightPos=vec3(MAP_SIZE_X+MAP_SIZE_X*10,5,MAP_SIZE_Y);

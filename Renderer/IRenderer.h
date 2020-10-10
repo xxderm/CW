@@ -12,6 +12,7 @@ public:
 	virtual void Update() = 0;
 	virtual void setCamera(Camera* camera) = 0;
 	virtual void setMousePicker(MousePicker* mp) = 0;
+	virtual void HandleEvent(SDL_Event* e) = 0;
 };
 
 #endif // !IRENDERER_HEADER

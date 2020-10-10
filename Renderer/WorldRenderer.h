@@ -17,13 +17,23 @@ public:
 	void Render() override;
 	void Update() override;
 	void Init() override;
-	void setCamera(Camera* camera);
-	void setMousePicker(MousePicker* mp);
+	void setCamera(Camera* camera) override;
+	void setMousePicker(MousePicker* mp) override;
+	void HandleEvent(SDL_Event* e) override;
 private:
-	Shader* mProgram;
-	Texture* mTexture;
-	BufferObject* mBuffer;
+	void TerrainInit();
+	void WaterInit();
+private:
+	std::unique_ptr<Shader> mProgram[2];
+	std::unique_ptr<Texture> mTexture;
+	std::unique_ptr<BufferObject> mBuffer;
 	Camera* mCamera;
+
+private:
+	GLdouble modelview[16];
+
+
+private:
 	std::vector<glm::vec3> Vertices;
 	std::vector<glm::vec2> TexCoord;
 	std::vector<GLuint> Indices;

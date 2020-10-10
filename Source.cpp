@@ -3,6 +3,10 @@
 
 int main(int argc, char** argv)
 {		
+	#ifdef _WIN32
+	remove("myeasylog.log");
+	#endif
+
 	Scene* ApplicationScene = new Scene();
 	ApplicationScene->Init();
 	ApplicationScene->ChangeScene(GameScene::getInstance());

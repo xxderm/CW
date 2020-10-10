@@ -87,7 +87,7 @@ void GameScene::HandleEvents(Scene* scene)
 
 void GameScene::Update(Scene* scene)
 {
-
+	mWorldRenderer->Update();
 }
 
 void GameScene::Draw(Scene* scene)

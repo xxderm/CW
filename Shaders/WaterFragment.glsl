@@ -68,7 +68,7 @@ void main()
 	vec3 diffuse2=diff*color;
 	vec3 halfwayDir=normalize(lightDir);
 	float spec=(max(dot(normal,halfwayDir),0.));
-	vec3 specular=vec3(.2)*spec;// assuming bright white light color
+	vec3 specular=vec3(.2)*spec;
 	
 	FragColor.xyz = vec3(ambient+diffuse2+specular);
 }

@@ -19,3 +19,7 @@ void GUIRenderer::setCamera(Camera* camera)
 void GUIRenderer::setMousePicker(MousePicker* mp)
 {
 }
+
+void GUIRenderer::HandleEvent(SDL_Event* e)
+{
+}

@@ -5,7 +5,7 @@ Texture::Texture()
 	mTexture = new std::map<unsigned int, glm::vec2>();
 }
 
-void Texture::Add(std::string path, int format, int activeTexture, Parameter param)
+void Texture::Add(std::string path, int format, int activeTexture, Parameter param, bool mipmaps)
 {
 	glm::vec2 size;
 	int x, y;
@@ -42,9 +42,43 @@ void Texture::Add(std::string path, int format, int activeTexture, Parameter par
 	default:
 		break;
 	}
-	glGenerateMipmap(GL_TEXTURE_2D);
+	if(mipmaps)
+		glGenerateMipmap(GL_TEXTURE_2D);
 	stbi_image_free(textureData);
 	mTexture->emplace(textureId, size);
+}
+
+void Texture::LoadCubemap(std::initializer_list<std::string> faces, int activeTexture)
+{
+	glActiveTexture(activeTexture);
+	unsigned int textureID;
+	glGenTextures(1, &textureID);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
+
+	int width, height, nrChannels;
+	int index = 0;
+	for (auto i : faces)
+	{
+		unsigned char* data = stbi_load(i.c_str(), &width, &height, &nrChannels, 0);
+		if (data)
+		{
+			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + index, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+			stbi_image_free(data);
+		}
+		else
+		{
+			LOG(ERROR) << "Cubemap texture failed to load at path: " << i;
+			stbi_image_free(data);
+			exit(1);
+		}
+		index++;
+	}
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+	mTexture->emplace(textureID, glm::vec2(0, 0));
 }
 
 const glm::vec2 Texture::getSize(unsigned int id)
@@ -53,4 +87,10 @@ const glm::vec2 Texture::getSize(unsigned int id)
 		return mTexture->at(id);
 	LOG(ERROR) << "Texture not found";
 	throw std::exception();
+}
+
+Texture::~Texture()
+{
+	for (auto& i : *mTexture)
+		glDeleteTextures(1, &i.first);
 }

@@ -9,8 +9,9 @@ public:
 	void Render() override;
 	void Init() override;
 	void Update() override;
-	void setCamera(Camera* camera);
-	void setMousePicker(MousePicker* mp); 
+	void setCamera(Camera* camera) override;
+	void setMousePicker(MousePicker* mp) override; 
+	void HandleEvent(SDL_Event* e) override;
 private:
 };
 

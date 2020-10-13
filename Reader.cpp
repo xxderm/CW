@@ -66,6 +66,66 @@ std::string Reader::getValue(std::string Path, std::string Keyword, int seek)
     return Result;
 }
 
+void Reader::getUI(GUITexture* guis, std::string path, bool update)
+{
+    auto f = getStream(path);
+
+    if (update)
+        guis->Clear();
+
+    GuiFormat* format = new GuiFormat();
+    while (!f.eof())
+    {
+        std::string var;
+        std::string lit;
+        f >> var;
+        if (var == "Name")
+        {
+            f >> lit;
+            format->Name = lit;
+        }
+        if (var == "Texture")
+        {
+            f >> lit;
+            format->TextureId = std::stoi(lit);
+        }
+        if (var == "CenterPoint")
+        {
+            std::string lit[2];
+            f >> lit[0];
+            f >> lit[1];
+            format->Position = glm::vec2(std::stof(lit[0]), std::stof(lit[1]));
+        }
+        if (var == "Scale")
+        {
+            std::string lit[2];
+            f >> lit[0];
+            f >> lit[1];
+            format->Scale = glm::vec2(std::stof(lit[0]), std::stof(lit[1]));
+        }
+        if (var == "Color")
+        {
+            std::string lit[4];
+            f >> lit[0];
+            f >> lit[1];
+            f >> lit[2];
+            f >> lit[3];
+            format->Color = glm::vec4(std::stof(lit[0]), std::stof(lit[1]), std::stof(lit[2]), std::stof(lit[3]));
+        }
+        if (var == "PUSH")
+        {
+            guis->Add(format);
+            format = new GuiFormat();
+        }
+        if (var == "PUSH_EUI")
+        {
+            guis->Add(format);
+        }
+    }
+
+    f.close();
+}
+
 #ifdef _WIN32
 void Reader::getFiles(std::string Path, std::vector<std::string>& Src)
 {

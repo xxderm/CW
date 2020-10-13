@@ -5,29 +5,27 @@ GUITexture::GUITexture()
 
 }
 
-void GUITexture::Add(int texId, glm::vec2 pos, glm::vec2 scale)
-{
-	GuiFormat*tmp = new GuiFormat();
-	tmp->TextureId = texId;
-	tmp->Position = pos;
-	tmp->Scale = scale;
-	tmp->Box.x = pos.x - scale.x;
-	tmp->Box.w = pos.x + scale.x;
-	tmp->Box.y = pos.y + scale.y;
-	tmp->Box.z = pos.y - scale.y;
-	mGuis.push_back(tmp);
+void GUITexture::Add(GuiFormat* format)
+{	
+	mGuis.push_back(format);
 }
 
-const std::list<GuiFormat*> GUITexture::getGui()
+std::list<GuiFormat*> GUITexture::getGui()
 {
 	return mGuis;
 }
 
-GUITexture::~GUITexture()
+void GUITexture::Clear()
 {
 	for (auto& gui : mGuis)
 	{
 		delete gui;
 		gui = nullptr;
 	}
+	mGuis.clear();
+}
+
+GUITexture::~GUITexture()
+{
+	Clear();
 }

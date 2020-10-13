@@ -14,22 +14,25 @@
 
 struct GuiFormat
 {
-	unsigned int TextureId;
+	int TextureId = -1;
 	glm::vec2 Position;
 	glm::vec2 Scale;
 	std::string Name;
 	glm::vec4 Box;
+	glm::vec4 Color = glm::vec4(1, 1, 1, 0.5);
 };
 
 class GUITexture final
 {
 public:	
 	GUITexture();
-	void Add(int texId, glm::vec2 pos, glm::vec2 scale);
-	const std::list<GuiFormat*> getGui();
+	void Add(GuiFormat *format);
+	std::list<GuiFormat*> getGui();
+	void Clear();
 	~GUITexture();
 private:
 	std::list<GuiFormat*> mGuis;
 };
+
 
 #endif // !GUITEXTURE_HEADER

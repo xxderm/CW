@@ -22,6 +22,11 @@ void GameScene::Init(Scene* scene)
 	mWorldRenderer->Init();	
 	mWorldRenderer->setCamera(mCamera);
 	mWorldRenderer->setMousePicker(mMousePicker);
+
+	mGUIRenderer = new GUIRenderer();
+	mGUIRenderer->Init();
+	mGUIRenderer->setCamera(mCamera);
+	mGUIRenderer->setMousePicker(mMousePicker);
 }
 
 void GameScene::Clean()
@@ -88,11 +93,13 @@ void GameScene::HandleEvents(Scene* scene)
 void GameScene::Update(Scene* scene)
 {
 	mWorldRenderer->Update();
+	mGUIRenderer->Update();
 }
 
 void GameScene::Draw(Scene* scene)
 {		
 	mWorldRenderer->Render();		
+	mGUIRenderer->Render();
 	SDL_GL_SwapWindow(scene->getWindow());
 }
 

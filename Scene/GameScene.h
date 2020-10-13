@@ -3,6 +3,7 @@
 #ifndef GAME_SCENE_HEADER
 #define GAME_SCENE_HEADER
 #include "../Renderer/WorldRenderer.h"
+#include "../Renderer/GUIRenderer.h"
 
 class GameScene : public SceneMachine
 {
@@ -24,6 +25,7 @@ protected:
 private:
 	static GameScene mGameScene;	
 	IRenderer* mWorldRenderer;
+	IRenderer* mGUIRenderer;
 	Camera* mCamera;
 	MousePicker* mMousePicker;
 

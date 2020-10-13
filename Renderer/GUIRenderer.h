@@ -2,7 +2,7 @@
 #ifndef GUI_RENDERER_HEADER
 #define GUI_RENDERER_HEADER
 #include "IRenderer.h"
-#include "RenderExt/GUITexture.h"
+#include "../Reader.h"
 
 class GUIRenderer : public IRenderer
 {
@@ -13,10 +13,16 @@ public:
 	void setCamera(Camera* camera) override;
 	void setMousePicker(MousePicker* mp) override; 
 	void HandleEvent(SDL_Event* e) override;
+
+private:
+	glm::mat4 CreateTransformationMatrix(glm::vec2 translation, glm::vec2 scale);
 private:
 	std::unique_ptr<BufferObject> mQuad;
 	std::unique_ptr<Shader> mProgram;
 	std::unique_ptr<GUITexture> mGuis;
+
+	std::vector<int> Vertices = { -1, 1, -1, -1, 1, 1, 1, -1 };
+	std::vector<GLuint> Indices = { 0, 1, 2, 3, 4, 5, 6, 7 };
 };
 
 #endif // !GUIRENDERER_HEADER

@@ -3,7 +3,6 @@
 #define WORLD_RENDERER_HEADER
 #include "IRenderer.h"
 #include "RenderExt/Texture.h"
-
 #include "RenderExt/FrameBuffer.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>

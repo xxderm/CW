@@ -3,9 +3,8 @@
 #define WORLD_RENDERER_HEADER
 #include "IRenderer.h"
 #include "RenderExt/Texture.h"
-#include "RenderExt/Shader.h"
+
 #include "RenderExt/FrameBuffer.h"
-#include "RenderExt/BufferObject.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -23,15 +22,16 @@ public:
 private:
 	void TerrainInit();
 	void WaterInit();
+	void CloudsInit();
 private:
-	std::unique_ptr<Shader> mProgram[2];
+	std::unique_ptr<Shader> mProgram[3];
 	std::unique_ptr<Texture> mTexture;
 	std::unique_ptr<BufferObject> mBuffer;
 	Camera* mCamera;
 
 private:
 	GLdouble modelview[16];
-
+	GLuint mTexId = 0;
 
 private:
 	std::vector<glm::vec3> Vertices;

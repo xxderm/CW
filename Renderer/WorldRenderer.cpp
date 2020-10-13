@@ -14,6 +14,11 @@ void WorldRenderer::Render()
 	glPatchParameteri(GL_PATCH_VERTICES, 4);
 	mBuffer->Draw(GL_PATCHES, Indices.size());	
 	mProgram[0]->UnBind();		
+
+	//mProgram[2]->Bind();
+	//glPatchParameteri(GL_PATCH_VERTICES, 4);
+	//mBuffer->Draw(GL_PATCHES, Indices.size());
+	//mProgram[2]->UnBind();
 }
 
 void WorldRenderer::Update()
@@ -24,20 +29,26 @@ void WorldRenderer::Update()
 	glm::mat4x4 mvp = projection * mCamera->getViewMatrix();
 	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);
 	mProgram[1]->Bind();
-	mBuffer->Bind();
 	mProgram[1]->setMat4("model", glm::make_mat4(modelview));
 	mProgram[1]->setMat4("mvp", mvp);
 	mProgram[1]->setFloat("time", dudv);
 	mProgram[1]->setFloat("moveFactor", dudv);
 	mProgram[1]->setVec3("cameraPos", mCamera->getPosition());
 	mProgram[1]->UnBind();
+
 	mProgram[0]->Bind();
-	mBuffer->Bind();
 	mProgram[0]->setMat4("model", glm::make_mat4(modelview));
 	mProgram[0]->setMat4("mvp", mvp);
 	mProgram[0]->setVec3("campos", mCamera->getPosition());
 	mProgram[0]->setFloat("time", dudv);
 	mProgram[0]->UnBind();
+
+	mProgram[2]->Bind();
+	mProgram[2]->setMat4("model", glm::make_mat4(modelview));
+	mProgram[2]->setMat4("mvp", mvp);
+	mProgram[2]->setFloat("time", dudv * 5.8);
+	mProgram[2]->setVec3("campos", mCamera->getPosition());
+	mProgram[2]->UnBind();
 }
 
 void WorldRenderer::Init()
@@ -45,6 +56,7 @@ void WorldRenderer::Init()
 	projection = glm::perspective<float>(45.f, float((float)1280 / (float)720), 0.01, 100.f);
 	this->TerrainInit();
 	this->WaterInit();
+	this->CloudsInit();
 }
 
 void WorldRenderer::setCamera(Camera* camera)
@@ -221,4 +233,26 @@ void WorldRenderer::WaterInit()
 	mBuffer->UnBind();
 
 	mProgram[1]->UnBind();
+}
+
+void WorldRenderer::CloudsInit()
+{
+	mProgram[2] = std::make_unique<Shader>(
+		"Shaders/CloudsVertex.glsl",
+		"Shaders/CloudsFragment.glsl",
+		"Shaders/CloudsTessControl.glsl",
+		"Shaders/CloudsTessEval.glsl");
+	mProgram[2]->Bind();
+	mBuffer->Bind();
+
+	mTexture->Add(
+		"Resources/terrain/clouds.png",
+		GL_RGBA,
+		GL_TEXTURE16,
+		Parameter::LINEAR
+	);
+	mProgram[2]->setInt("clouds", 16);
+
+	mBuffer->UnBind();
+	mProgram[2]->UnBind();
 }

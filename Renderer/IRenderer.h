@@ -3,6 +3,8 @@
 #define IRENDERER_HEADER
 #include "../Scene/SceneExt/Camera.h"
 #include "../Scene/SceneExt/MousePicker.h"
+#include "RenderExt/Shader.h"
+#include "RenderExt/BufferObject.h"
 
 class IRenderer abstract
 {

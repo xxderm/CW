@@ -98,6 +98,8 @@ void GameScene::Update(Scene* scene)
 
 void GameScene::Draw(Scene* scene)
 {		
+	SDL_GetWindowSize(scene->getWindow(), &mWndWidth, &mWndHeight);
+	glViewport(0, 0, mWndWidth, mWndHeight);
 	mWorldRenderer->Render();		
 	mGUIRenderer->Render();
 	SDL_GL_SwapWindow(scene->getWindow());

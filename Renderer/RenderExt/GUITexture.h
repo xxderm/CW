@@ -34,5 +34,4 @@ private:
 	std::list<GuiFormat*> mGuis;
 };
 
-
 #endif // !GUITEXTURE_HEADER

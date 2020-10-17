@@ -8,7 +8,8 @@ uniform sampler2D guiTexture;
 uniform vec4 guiColor;
 uniform bool TextureMode;
 
-void main(void){
+void main()
+{
 	if(TextureMode)
 		out_Color = texture(guiTexture,textureCoords);	
 	else

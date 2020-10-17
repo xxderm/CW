@@ -3,6 +3,7 @@
 #define GUI_RENDERER_HEADER
 #include "IRenderer.h"
 #include "../Reader.h"
+#include <FTGL/ftgl.h>
 
 class GUIRenderer : public IRenderer
 {
@@ -21,8 +22,8 @@ private:
 	std::unique_ptr<Shader> mProgram;
 	std::unique_ptr<GUITexture> mGuis;
 
-	std::vector<int> Vertices = { -1, 1, -1, -1, 1, 1, 1, -1 };
-	std::vector<GLuint> Indices = { 0, 1, 2, 3, 4, 5, 6, 7 };
+	
+	FTGLPixmapFont *font;
 };
 
 #endif // !GUIRENDERER_HEADER

@@ -1,23 +1,24 @@
 #include "GUIRenderer.h"
 
 void GUIRenderer::Render()
-{
+{		
 	mProgram->Bind();
 	for (auto& gui : mGuis->getGui())
 	{
-		mProgram->setMat4("transformationMatrix", 
-			CreateTransformationMatrix(gui->Position, gui->Scale));
-		mProgram->setInt("guiTexture", gui->TextureId);
-		mProgram->setVec4("guiColor", gui->Color);
-		if (gui->TextureId == -1)
-			mProgram->setBool("TextureMode", 0);
-		else
-			mProgram->setBool("TextureMode", 1);
-		mQuad->Draw(GL_TRIANGLE_STRIP, 8);		
+		if (gui->Visible)
+		{
+			mProgram->setMat4("transformationMatrix",
+				CreateTransformationMatrix(gui->Position, gui->Scale));
+			mProgram->setInt("guiTexture", gui->TextureId);
+			mProgram->setVec4("guiColor", gui->Color);
+			if (gui->TextureId == -1)
+				mProgram->setBool("TextureMode", 0);
+			else
+				mProgram->setBool("TextureMode", 1);
+			mQuad->Draw(GL_TRIANGLE_STRIP, 8);
+		}
 	}
 	mProgram->UnBind();	
-	float m1 = 0, m2 = 0, m3 = 0, m4 = 10, m5 = 01, m6 = 10, m7, m8;
-	font->BBox("teststromg", m1, m2, m3, m4, m5, m6);
 }
 
 void GUIRenderer::Init()
@@ -32,10 +33,6 @@ void GUIRenderer::Init()
 	mProgram->UnBind();
 
 	mGuis = std::make_unique<GUITexture>();
-	font = new FTGLPixmapFont("Resources/font/arial.ttf");
-	if (font->Error())
-		LOG(ERROR) << "Failed to load font";
-	font->FaceSize(24);
 }
 
 void GUIRenderer::Update()

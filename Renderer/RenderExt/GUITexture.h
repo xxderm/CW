@@ -20,6 +20,7 @@ struct GuiFormat
 	std::string Name;
 	glm::vec4 Box;
 	glm::vec4 Color = glm::vec4(1, 1, 1, 0.5);
+	bool Visible = true;
 };
 
 class GUITexture final

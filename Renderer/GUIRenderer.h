@@ -3,7 +3,6 @@
 #define GUI_RENDERER_HEADER
 #include "IRenderer.h"
 #include "../Reader.h"
-#include <FTGL/ftgl.h>
 
 class GUIRenderer : public IRenderer
 {
@@ -21,9 +20,6 @@ private:
 	std::unique_ptr<BufferObject> mQuad;
 	std::unique_ptr<Shader> mProgram;
 	std::unique_ptr<GUITexture> mGuis;
-
-	
-	FTGLPixmapFont *font;
 };
 
 #endif // !GUIRENDERER_HEADER

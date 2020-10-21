@@ -29,9 +29,11 @@ public:
 		GLuint vert_size,
 		GLuint texCoordSize,
 		GLuint ind_size,
-		int d = 3);
-private:
+		int d = 3,
+		int ap = 0);
+	void Update(void* vertices, GLuint size);
 	unsigned int VboID[3];
+private:
 	unsigned int VaoID;
 };
 

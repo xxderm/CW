@@ -3,6 +3,16 @@
 #define GUI_RENDERER_HEADER
 #include "IRenderer.h"
 #include "../Reader.h"
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
+struct Character 
+{
+	GLuint     TextureID; 
+	glm::ivec2 Size;    
+	glm::ivec2 Bearing; 
+	GLuint     Advance; 
+};
 
 class GUIRenderer : public IRenderer
 {
@@ -20,6 +30,12 @@ private:
 	std::unique_ptr<BufferObject> mQuad;
 	std::unique_ptr<Shader> mProgram;
 	std::unique_ptr<GUITexture> mGuis;
+	
+	std::map<GLchar, Character> mCharacters;
+	Shader* fontProgram;
+	BufferObject* fontObj;	
+	GLuint VAO, VBO;
+	
 };
 
 #endif // !GUIRENDERER_HEADER

@@ -16,14 +16,14 @@ void BufferObject::UnBind()
 	glBindVertexArray(0);
 }
 
-void BufferObject::Set(void* vertices, void* texCoord, void* indices, GLuint draw_type, GLuint vert_size, GLuint texCoordSize, GLuint ind_size, int d)
+void BufferObject::Set(void* vertices, void* texCoord, void* indices, GLuint draw_type, GLuint vert_size, GLuint texCoordSize, GLuint ind_size, int d, int ap)
 {
 	glGenBuffers(3, VboID);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VboID[0]);
 	glBufferData(GL_ARRAY_BUFFER, vert_size, vertices, draw_type);
 	{
-		glVertexAttribPointer(0, d, GL_FLOAT, GL_FALSE, 0, (void*)0);
+		glVertexAttribPointer(0, d, GL_FLOAT, GL_FALSE, ap, (void*)0);
 		glEnableVertexAttribArray(0);
 	}
 
@@ -36,6 +36,13 @@ void BufferObject::Set(void* vertices, void* texCoord, void* indices, GLuint dra
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, VboID[2]);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, ind_size, indices, draw_type);
+}
+
+void BufferObject::Update(void* vertices, GLuint size)
+{
+	glBindBuffer(GL_ARRAY_BUFFER, VboID[0]);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, size, vertices);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void BufferObject::Draw(GLuint type, GLsizei count)

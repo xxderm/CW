@@ -19,6 +19,7 @@ struct GuiFormat
 	glm::vec2 Scale;
 	std::string Name;
 	glm::vec4 Box;
+	std::unordered_map<std::string, std::pair<glm::vec2, glm::vec4>> Text;
 	glm::vec4 Color = glm::vec4(1, 1, 1, 0.5);
 	bool Visible = true;
 };

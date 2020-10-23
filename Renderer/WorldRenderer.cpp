@@ -2,8 +2,7 @@
 
 void WorldRenderer::Render()
 {
-	glClearColor(0.1, 0.1, 0.1, 1);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
 
 	mProgram[1]->Bind();
 	glPatchParameteri(GL_PATCH_VERTICES, 4);
@@ -51,7 +50,7 @@ void WorldRenderer::Update()
 	mProgram[2]->UnBind();
 }
 
-void WorldRenderer::Init()
+void WorldRenderer::Init(SDL_Window* wnd)
 {	
 	projection = glm::perspective<float>(45.f, float((float)1280 / (float)720), 0.01, 100.f);
 	this->TerrainInit();
@@ -68,7 +67,7 @@ void WorldRenderer::setMousePicker(MousePicker* mp)
 {
 }
 
-void WorldRenderer::HandleEvent(SDL_Event* e)
+void WorldRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 {
 }
 

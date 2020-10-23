@@ -19,12 +19,12 @@ void GameScene::Init(Scene* scene)
 	mMousePicker = new MousePicker(glm::vec2(128, 50), glm::vec2(mWndWidth, mWndHeight));
 	
 	mWorldRenderer = new WorldRenderer();
-	mWorldRenderer->Init();	
+	mWorldRenderer->Init(scene->getWindow());	
 	mWorldRenderer->setCamera(mCamera);
 	mWorldRenderer->setMousePicker(mMousePicker);
 
 	mGUIRenderer = new GUIRenderer();
-	mGUIRenderer->Init();
+	mGUIRenderer->Init(scene->getWindow());
 	mGUIRenderer->setCamera(mCamera);
 	mGUIRenderer->setMousePicker(mMousePicker);
 }
@@ -98,6 +98,8 @@ void GameScene::Update(Scene* scene)
 
 void GameScene::Draw(Scene* scene)
 {		
+	glClearColor(0.1, 0.1, 0.1, 1);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	SDL_GetWindowSize(scene->getWindow(), &mWndWidth, &mWndHeight);
 	glViewport(0, 0, mWndWidth, mWndHeight);
 	mWorldRenderer->Render();		

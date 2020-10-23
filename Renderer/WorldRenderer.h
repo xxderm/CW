@@ -14,10 +14,10 @@ class WorldRenderer final : public IRenderer
 public:
 	void Render() override;
 	void Update() override;
-	void Init() override;
+	void Init(SDL_Window* wnd) override;
 	void setCamera(Camera* camera) override;
 	void setMousePicker(MousePicker* mp) override;
-	void HandleEvent(SDL_Event* e) override;
+	void HandleEvent(SDL_Event* e, SDL_Window* wnd) override;
 private:
 	void TerrainInit();
 	void WaterInit();

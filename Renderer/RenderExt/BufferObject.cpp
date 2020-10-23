@@ -38,6 +38,18 @@ void BufferObject::Set(void* vertices, void* texCoord, void* indices, GLuint dra
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, ind_size, indices, draw_type);
 }
 
+void BufferObject::Set(GLuint size, GLuint stride)
+{
+	glGenBuffers(1, &VboID[0]);
+	glBindVertexArray(VaoID);
+	glBindBuffer(GL_ARRAY_BUFFER, VboID[0]);
+	glBufferData(GL_ARRAY_BUFFER, size, NULL, GL_DYNAMIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, stride, 0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+}
+
 void BufferObject::Update(void* vertices, GLuint size)
 {
 	glBindBuffer(GL_ARRAY_BUFFER, VboID[0]);

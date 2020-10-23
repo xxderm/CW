@@ -69,57 +69,62 @@ std::string Reader::getValue(std::string Path, std::string Keyword, int seek)
 void Reader::getUI(GUITexture* guis, std::string path, bool update)
 {
     auto f = getStream(path);
-
+    f.imbue(std::locale(std::locale(), new std::codecvt_utf8<wchar_t, 0x10ffffUL, std::codecvt_mode::consume_header>));
     if (update)
         guis->Clear();
 
     GuiFormat* format = new GuiFormat();
-    while (!f.eof())
+    std::string line;
+    while (std::getline(f, line))
     {
-        std::string var;
-        std::string lit;
-        f >> var;
-        if (var == "Name")
+        auto lit = split(line, " ");
+        if (lit.size() > 0)
         {
-            f >> lit;
-            format->Name = lit;
-        }
-        if (var == "Texture")
-        {
-            f >> lit;
-            format->TextureId = std::stoi(lit);
-        }
-        if (var == "CenterPoint")
-        {
-            std::string lit[2];
-            f >> lit[0];
-            f >> lit[1];
-            format->Position = glm::vec2(std::stof(lit[0]), std::stof(lit[1]));
-        }
-        if (var == "Scale")
-        {
-            std::string lit[2];
-            f >> lit[0];
-            f >> lit[1];
-            format->Scale = glm::vec2(std::stof(lit[0]), std::stof(lit[1]));
-        }
-        if (var == "Color")
-        {
-            std::string lit[4];
-            f >> lit[0];
-            f >> lit[1];
-            f >> lit[2];
-            f >> lit[3];
-            format->Color = glm::vec4(std::stof(lit[0]), std::stof(lit[1]), std::stof(lit[2]), std::stof(lit[3]));
-        }
-        if (var == "PUSH")
-        {
-            guis->Add(format);
-            format = new GuiFormat();
-        }
-        if (var == "PUSH_EUI")
-        {
-            guis->Add(format);
+            if (lit[0] == "Name")
+                format->Name = lit[1];
+            if (lit[0] == "Texture")
+                format->TextureId = std::stoi(lit[1]);
+            if (lit[0] == "CenterPoint")
+                format->Position = glm::vec2(std::stof(lit[1]), std::stof(lit[2]));
+            if (lit[0] == "Scale")
+                format->Scale = glm::vec2(std::stof(lit[1]), std::stof(lit[2]));
+            if (lit[0] == "Color")
+                format->Color = glm::vec4(std::stof(lit[1]), std::stof(lit[2]), std::stof(lit[3]), std::stof(lit[4]));
+            if (lit[0] == "Text")
+            {
+                std::string result_text = "";
+
+                int index = 1;
+                while (true)
+                {
+                    index++;
+                    if (lit[index] == "]")
+                        break;
+                    result_text += " " + lit[index];
+                }
+                auto p1 = lit[++index];
+                auto p2 = lit[++index];
+                auto p3 = lit[++index];
+                auto p4 = lit[++index];
+                auto p5 = lit[++index];
+                auto p6 = lit[++index];
+
+                format->Text.emplace(
+                    result_text,
+                    std::pair<glm::vec2, glm::vec4>
+                    (
+                        glm::vec2(std::stof(p1), std::stof(p2)),
+                        glm::vec4(std::stof(p3), std::stof(p4), std::stof(p5), std::stof(p6))
+                        )
+                );
+            }
+            if (lit[0] == "PUSH")
+            {
+                guis->Add(format);
+                format = new GuiFormat();
+            }
+            if (lit[0] == "PUSH_EUI")
+                guis->Add(format);
         }
     }
 
@@ -153,4 +158,19 @@ void Reader::Clean()
     this->mCheck = false;
     this->mCurrentLine.clear();
     this->mLiteral.clear();
+}
+
+std::vector<std::string> Reader::split(const std::string& str, const std::string& delim)
+{
+    std::vector<std::string> tokens;
+    size_t prev = 0, pos = 0;
+    do
+    {
+        pos = str.find(delim, prev);
+        if (pos == std::string::npos) pos = str.length();
+        std::string token = str.substr(prev, pos - prev);
+        if (!token.empty()) tokens.push_back(token);
+        prev = pos + delim.length();
+    } while (pos < str.length() && prev < str.length());
+    return tokens;
 }

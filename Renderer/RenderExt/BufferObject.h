@@ -19,6 +19,7 @@ public:
 	void Bind();
 	void UnBind();
 	void Draw(GLuint type, GLsizei count);
+
 	const unsigned getVaoID();
 	~BufferObject();
 	void Set(
@@ -31,9 +32,9 @@ public:
 		GLuint ind_size,
 		int d = 3,
 		int ap = 0);
+	void Set(GLuint size, GLuint stride);
 	void Update(void* vertices, GLuint size);
 	unsigned int VboID[3];
-private:
 	unsigned int VaoID;
 };
 

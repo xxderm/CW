@@ -9,7 +9,28 @@ struct StateFormat
 	std::string Name;
 	std::string CountryTag;
 	std::vector<std::string> Provinces;
-	int Id;
+	int Id;	
+
+	enum TYPE
+	{
+		CHURCH,
+		CATHEDRAL,
+		UNIVERSITY,
+		SHIPYARD,
+		BARRACKS,
+		MILITARY_FACTORY,
+		CIVILIAN_FACTORY,
+		MARKET,
+		WORKSHOP,
+		TOWN_HALL,
+		MANPOWER,
+		RESISTANCE,
+		MAX
+	};
+	int Buildings[MAX]{ 0 };
+	float ManpowerIncrease;
+	float ResistanceIncrease;
+
 };
 
 

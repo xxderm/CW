@@ -1,4 +1,5 @@
 #version 450 compatibility
+#define GLSLIFY 1
 out vec4 fColor;
 
 in vec2 TexCoordTE;
@@ -91,7 +92,6 @@ float remap(vec3 vminval, vec3 vmaxval, vec3 vcurval)
 {
 	vec4 res = vec4((vcurval - vminval) / (vmaxval - vminval), 1.);
 	//return res;
-
 
 	float r = smoothstep(vminval.r, vmaxval.r, vcurval.r);
 	float g = smoothstep(vminval.g, vmaxval.g, vcurval.g);
@@ -241,7 +241,6 @@ void main()
 	// ((moun3texture) * defWeight(vec3(134,84,30), terratexture) ) +
 	// ((for2texture) * defWeight(vec3(255,0,127), terratexture) ) 
 	// );
-
 
 	// currentNormal = (
 	// (grassnormal * defWeight(vec3(86,124,27), terratexture) ) +

@@ -45,7 +45,7 @@ std::string Reader::getValue(std::string Path, std::string Keyword, int seek)
     GET_IFSTREAM_CHAR(        
         if (mCheck)
         {   
-            if (c == '\n' or c == '\t')
+            if (c == '\n' or c == '\t' or c == '#')
             {
                 return mLiteral;
                 mCheck = false;

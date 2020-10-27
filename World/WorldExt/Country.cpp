@@ -11,7 +11,6 @@ void Country::Init()
 
 	for (std::string& FileName : TagFiles)
 	{ 
-		std::cout << "Country Init\n";
 		std::string TAG = {FileName[0] , FileName[1] , FileName[2]};
 		CountryFormat country;
 		country.Tag = TAG;

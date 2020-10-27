@@ -69,6 +69,27 @@ void WorldRenderer::setMousePicker(MousePicker* mp)
 
 void WorldRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 {
+	if (e->type == SDL_KEYDOWN)
+	{
+		if (e->key.keysym.sym == SDLK_F1)
+		{
+			mProgram[0]->Bind();
+			mProgram[0]->setInt("currentDraw", 0);
+			mProgram[0]->UnBind();
+		}
+		if (e->key.keysym.sym == SDLK_F2)
+		{
+			mProgram[0]->Bind();
+			mProgram[0]->setInt("currentDraw", 1);
+			mProgram[0]->UnBind();
+		}
+		if (e->key.keysym.sym == SDLK_F3)
+		{
+			mProgram[0]->Bind();
+			mProgram[0]->setInt("currentDraw", 2);
+			mProgram[0]->UnBind();
+		}
+	}
 }
 
 void WorldRenderer::TerrainInit()
@@ -159,7 +180,7 @@ void WorldRenderer::TerrainInit()
 		GL_RGB, GL_TEXTURE9,
 		Parameter::NEAREST_CTG);
 	mProgram[0]->setInt("provinces", 9);
-
+	
 	mBuffer->UnBind();
 
 	mProgram[0]->UnBind();

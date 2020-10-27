@@ -87,6 +87,7 @@ void GameScene::HandleEvents(Scene* scene)
 			lastY = ypos;
 			mCamera->ProcessMouseMovement(xoffset, yoffset);
 		}
+		mWorldRenderer->HandleEvent(scene->getEvent(), scene->getWindow());
 	}
 }
 

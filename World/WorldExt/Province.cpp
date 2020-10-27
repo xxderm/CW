@@ -24,7 +24,6 @@ void Province::Init()
 	std::string line;
 	for (int i = 0; std::getline(provStream, line); i++)
 	{
-		std::cout << "Province Init\n";
 		typedef std::vector<std::string> spt;
 		spt split_vec;
 		boost::split(split_vec, line, boost::is_any_of(";"));

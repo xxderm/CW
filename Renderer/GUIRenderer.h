@@ -21,6 +21,8 @@ private:
 	std::unique_ptr<Shader> mProgram;
 	std::unique_ptr<GUITexture> mGuis;
 	Text mText;
+	int mWinX, mWinY;
+
 };
 
 #endif // !GUIRENDERER_HEADER

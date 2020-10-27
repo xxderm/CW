@@ -14,6 +14,7 @@
 
 struct GuiFormat
 {
+	const bool isHovered(glm::vec2 mouse);
 	int TextureId = -1;
 	glm::vec2 Position;
 	glm::vec2 Scale;
@@ -21,6 +22,7 @@ struct GuiFormat
 	glm::vec4 Box;
 	std::unordered_map<std::string, std::pair<glm::vec2, glm::vec4>> Text;
 	glm::vec4 Color = glm::vec4(1, 1, 1, 0.5);
+	glm::vec4 hoverColor = glm::vec4(1, 1, 1, 0.5);
 	bool Visible = true;
 };
 
@@ -28,12 +30,12 @@ class GUITexture final
 {
 public:	
 	GUITexture();
-	void Add(GuiFormat *format);
-	std::list<GuiFormat*> getGui();
+	void Add(std::string Name, GuiFormat *format);
+	std::unordered_map<std::string, GuiFormat*> getGui();
 	void Clear();
 	~GUITexture();
 private:
-	std::list<GuiFormat*> mGuis;
+	std::unordered_map<std::string, GuiFormat*> mGuis;
 };
 
 #endif // !GUITEXTURE_HEADER

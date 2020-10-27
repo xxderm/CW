@@ -118,13 +118,15 @@ void Reader::getUI(GUITexture* guis, std::string path, bool update)
                         )
                 );
             }
+            if (lit[0] == "Hover")
+                format->hoverColor = glm::vec4(std::stof(lit[1]), std::stof(lit[2]), std::stof(lit[3]), std::stof(lit[4]));
             if (lit[0] == "PUSH")
             {
-                guis->Add(format);
+                guis->Add(format->Name, format);
                 format = new GuiFormat();
             }
             if (lit[0] == "PUSH_EUI")
-                guis->Add(format);
+                guis->Add(format->Name, format);
         }
     }
 

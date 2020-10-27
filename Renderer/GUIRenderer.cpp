@@ -4,14 +4,14 @@ void GUIRenderer::Render()
 {		
 	for (auto& gui : mGuis->getGui())
 	{
-		if (gui->Visible)
+		if (gui.second->Visible)
 		{
 			mProgram->Bind();
 			mProgram->setMat4("transformationMatrix",
-				CreateTransformationMatrix(gui->Position, gui->Scale));
-			mProgram->setInt("guiTexture", gui->TextureId);
-			mProgram->setVec4("guiColor", gui->Color);
-			if (gui->TextureId == -1)
+				CreateTransformationMatrix(gui.second->Position, gui.second->Scale));
+			mProgram->setInt("guiTexture", gui.second->TextureId);
+			mProgram->setVec4("guiColor", gui.second->Color);
+			if (gui.second->TextureId == -1)
 				mProgram->setBool("TextureMode", 0);
 			else
 				mProgram->setBool("TextureMode", 1);
@@ -19,7 +19,7 @@ void GUIRenderer::Render()
 			mProgram->UnBind();	
 
 			glDisable(GL_DEPTH_TEST);
-			for (auto& text : gui->Text)
+			for (auto& text : gui.second->Text)
 				mText.RenderText(
 					text.first,
 					text.second.first.x,
@@ -45,14 +45,17 @@ void GUIRenderer::Init(SDL_Window* wnd)
 	mGuis = std::make_unique<GUITexture>();
 
 	
-	int wx, wy;
-	SDL_GetWindowSize(wnd, &wx, &wy);
-	mText.Init("Resources/font/17541.ttf", glm::vec2(wx, wy), 24);	
+	SDL_GetWindowSize(wnd, &mWinX, &mWinY);
+	mText.Init("Resources/font/17541.ttf", glm::vec2(mWinX, mWinY), 24);
 }
 
 void GUIRenderer::Update()
 {
 	Reader::getInstance()->getUI(mGuis.get(), "Resources/UI/Main.ui");
+
+	int mouseX, mouseY; 
+	SDL_GetMouseState(&mouseX, &mouseY);	
+	std::cout << mGuis->getGui().at("Test5")->isHovered(MousePicker::getNormalizedDeviceCoords(mouseX, mouseY, glm::vec2(mWinX, mWinY))) << std::endl;
 }
 
 void GUIRenderer::setCamera(Camera* camera)

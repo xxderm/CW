@@ -52,10 +52,6 @@ void GUIRenderer::Init(SDL_Window* wnd)
 void GUIRenderer::Update()
 {
 	Reader::getInstance()->getUI(mGuis.get(), "Resources/UI/Main.ui");
-
-	int mouseX, mouseY; 
-	SDL_GetMouseState(&mouseX, &mouseY);	
-	std::cout << mGuis->getGui().at("Test5")->isHovered(MousePicker::getNormalizedDeviceCoords(mouseX, mouseY, glm::vec2(mWinX, mWinY))) << std::endl;
 }
 
 void GUIRenderer::setCamera(Camera* camera)

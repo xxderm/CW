@@ -12,15 +12,6 @@
 #include <fstream>
 #include "easylogging++.h"
 
-struct FrameBufferFormat
-{
-	std::string Name;
-	int AttachmentId;
-	glm::vec2 Scr;
-	int TexActiveId = -1;
-	bool Blend = 0;
-};
-
 class FrameBuffer final
 {
 public:

@@ -2,7 +2,36 @@
 
 void WorldRenderer::Render()
 {
-	
+	mFbo->Bind();
+	glClearColor(0, 0, 0, 1);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	mProgram[3]->Bind();
+	glBindTexture(GL_TEXTURE_2D, 18);
+	mProgram[3]->setMat4("mvp", mvp);
+	//mProgram[3]->setInt("currentDraw", 0);
+	glPatchParameteri(GL_PATCH_VERTICES, 4);
+	mBuffer->Draw(GL_PATCHES, Indices.size());
+	{
+		unsigned char mouse_color_data[3];
+		int mx, my; float zf;
+		SDL_GetMouseState(&mx, &my);
+		GLint vp[4];
+		GLdouble mv[16];
+		GLdouble pr[16];
+		glGetIntegerv(GL_VIEWPORT, vp);
+		glGetDoublev(GL_MODELVIEW_MATRIX, mv);
+		glGetDoublev(GL_PROJECTION_MATRIX, pr);
+		GLfloat zc;
+		GLfloat wy = (float)vp[3] - float(my);
+		glReadBuffer(GL_COLOR_ATTACHMENT0);
+		glReadPixels(mx, wy, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &mouse_color_data);
+		printf("province: %i, %i, %i\n", (int)mouse_color_data[0], (int)mouse_color_data[1], (int)mouse_color_data[2]);
+	}
+	mProgram[3]->UnBind();
+	mFbo->UnBind();
+	glClearColor(0, 0, 0, 1);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 
 	mProgram[1]->Bind();
 	glPatchParameteri(GL_PATCH_VERTICES, 4);
@@ -25,7 +54,7 @@ void WorldRenderer::Update()
 	static float dudv = 0;
 	dudv += 0.00015f;
 	dudv = fmod(dudv, 1.0f);
-	glm::mat4x4 mvp = projection * mCamera->getViewMatrix();
+	mvp = projection * mCamera->getViewMatrix();
 	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);
 	mProgram[1]->Bind();
 	mProgram[1]->setMat4("model", glm::make_mat4(modelview));
@@ -52,10 +81,24 @@ void WorldRenderer::Update()
 
 void WorldRenderer::Init(SDL_Window* wnd)
 {	
-	projection = glm::perspective<float>(45.f, float((float)1280 / (float)720), 0.01, 100.f);
+	int w, h;
+	SDL_GetWindowSize(wnd, &w, &h);
+	projection = glm::perspective<float>(45.f, float((float)w / (float)h), 0.01, 100.f);
 	this->TerrainInit();
 	this->WaterInit();
 	this->CloudsInit();
+
+
+	mFbo = std::make_unique<FrameBuffer>();
+	mFbo->Set(GL_COLOR_ATTACHMENT0, glm::vec2(w, h), GL_TEXTURE17);
+	mProgram[3] = std::make_unique<Shader>("Shaders/ProvinceVertex.glsl", "Shaders/ProvinceFragment.glsl", "Shaders/ProvinceTessControl.glsl", "Shaders/ProvinceTessEval.glsl");
+	mProgram[3]->Bind();
+	mBuffer->Bind();
+	mProgram[3]->setInt("prov", 9);
+	mProgram[3]->setInt("terrain", 0);
+	mProgram[3]->setInt("Countries", 2);
+	mBuffer->UnBind();
+	mProgram[3]->UnBind();
 }
 
 void WorldRenderer::setCamera(Camera* camera)

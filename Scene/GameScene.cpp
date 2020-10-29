@@ -73,11 +73,6 @@ void GameScene::Update(Scene* scene)
 		mCamera->ProcessKeyboard(Camera_Movement::ZTOP, 0.10);
 
 	
-
-	printf("FRONT: %f %f %f\nUP: %f %f %f\nR: %f %f %f", 
-		mCamera->getFront().x, mCamera->getFront().y, mCamera->getFront().z, 
-		mCamera->getUp().x, mCamera->getUp().y, mCamera->getUp().z,
-		mCamera->getRight().x, mCamera->getRight().y, mCamera->getRight().z);
 	mWorldRenderer->Update();
 	mGUIRenderer->Update();
 }

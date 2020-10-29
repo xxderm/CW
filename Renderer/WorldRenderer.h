@@ -23,15 +23,16 @@ private:
 	void WaterInit();
 	void CloudsInit();
 private:
-	std::unique_ptr<Shader> mProgram[3];
+	std::unique_ptr<Shader> mProgram[4];
 	std::unique_ptr<Texture> mTexture;
 	std::unique_ptr<BufferObject> mBuffer;
+	std::unique_ptr<FrameBuffer> mFbo;
 	Camera* mCamera;
 
 private:
 	GLdouble modelview[16];
 	GLuint mTexId = 0;
-
+	glm::mat4x4 mvp;
 private:
 	std::vector<glm::vec3> Vertices;
 	std::vector<glm::vec2> TexCoord;

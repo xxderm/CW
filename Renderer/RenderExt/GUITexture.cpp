@@ -15,6 +15,16 @@ std::unordered_map<std::string, GuiFormat*> GUITexture::getGui()
 	return mGuis;
 }
 
+GuiFormat* GUITexture::Get(std::string Name)
+{
+	return mGuis.at(Name);
+}
+
+void GUITexture::SetVisible(std::string Name, bool v)
+{
+	this->mGuis.at(Name)->Visible = v;
+}
+
 void GUITexture::Clear()
 {
 	for (auto& gui : mGuis)

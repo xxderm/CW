@@ -21,11 +21,11 @@ void GUIRenderer::Render()
 			glDisable(GL_DEPTH_TEST);
 			for (auto& text : gui.second->Text)
 				mText.RenderText(
-					text.first,
-					text.second.first.x,
-					text.second.first.y,
+					text.second.Text,
+					text.second.Position.x,
+					text.second.Position.y,
 					1,
-					glm::vec4(text.second.second));
+					glm::vec4(text.second.Color));
 			glEnable(GL_DEPTH_TEST);
 		}
 	}
@@ -47,11 +47,12 @@ void GUIRenderer::Init(SDL_Window* wnd)
 	
 	SDL_GetWindowSize(wnd, &mWinX, &mWinY);
 	mText.Init("Resources/font/17541.ttf", glm::vec2(mWinX, mWinY), 24);
+	Reader::getInstance()->getUI(mGuis.get(), "Resources/UI/Main.ui");
 }
 
 void GUIRenderer::Update()
 {
-	Reader::getInstance()->getUI(mGuis.get(), "Resources/UI/Main.ui");
+	//Reader::getInstance()->getUI(mGuis.get(), "Resources/UI/Main.ui");
 }
 
 void GUIRenderer::setCamera(Camera* camera)
@@ -64,6 +65,26 @@ void GUIRenderer::setMousePicker(MousePicker* mp)
 
 void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 {
+	if (e->type == SDL_KEYDOWN)
+	{
+		if (mGuis->Get("ConsoleInput")->Visible
+			&& (e->key.keysym.sym != SDLK_LSHIFT && e->key.keysym.sym != SDLK_LALT && e->key.keysym.sym != SDLK_BACKQUOTE) )
+		{
+			// erase last sym
+			if (e->key.keysym.sym == SDLK_BACKSPACE && mGuis->Get("ConsoleInput")->Text.at("Input").Text.size() > 0)
+				mGuis->Get("ConsoleInput")->Text.at("Input").Text
+				.erase(mGuis->Get("ConsoleInput")->Text.at("Input").Text.end() - 1);
+			// add sym
+			else 
+				mGuis->Get("ConsoleInput")->Text.at("Input").Text += e->key.keysym.sym;
+		}
+		if (e->key.keysym.sym == SDLK_BACKQUOTE)
+		{
+			mGuis->SetVisible("ConsoleInput", !mGuis->Get("ConsoleInput")->Visible);
+			mGuis->SetVisible("ConsoleForm", !mGuis->Get("ConsoleForm")->Visible);
+			mGuis->Get("ConsoleInput")->Text.at("Input").Text.clear();
+		}
+	}
 }
 
 glm::mat4 GUIRenderer::CreateTransformationMatrix(glm::vec2 translation, glm::vec2 scale)

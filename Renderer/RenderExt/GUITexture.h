@@ -11,6 +11,7 @@
 #include <map>
 #include <fstream>
 #include "easylogging++.h"
+#include "Text.h"
 
 struct GuiFormat
 {
@@ -20,7 +21,7 @@ struct GuiFormat
 	glm::vec2 Scale;
 	std::string Name;
 	glm::vec4 Box;
-	std::unordered_map<std::string, std::pair<glm::vec2, glm::vec4>> Text;
+	std::unordered_map<std::string, Str> Text;
 	glm::vec4 Color = glm::vec4(1, 1, 1, 0.5);
 	glm::vec4 hoverColor = glm::vec4(1, 1, 1, 0.5);
 	bool Visible = true;
@@ -32,6 +33,8 @@ public:
 	GUITexture();
 	void Add(std::string Name, GuiFormat *format);
 	std::unordered_map<std::string, GuiFormat*> getGui();
+	GuiFormat* Get(std::string Name);
+	void SetVisible(std::string Name, bool v);
 	void Clear();
 	~GUITexture();
 private:

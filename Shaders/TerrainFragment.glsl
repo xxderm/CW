@@ -34,7 +34,7 @@ uniform sampler2D province_border;
 
 in float depth;
 
-uniform int currentDraw=0;// 0 - Draw countries (politic map)
+uniform int currentDraw=2;// 0 - Draw countries (politic map)
 // 1 - Draw provinces
 // 2 - Draw terrain
 

@@ -77,56 +77,65 @@ void Reader::getUI(GUITexture* guis, std::string path, bool update)
     std::string line;
     while (std::getline(f, line))
     {
-        auto lit = split(line, " ");
-        if (lit.size() > 0)
+        try
         {
-            if (lit[0] == "Name")
-                format->Name = lit[1];
-            if (lit[0] == "Texture")
-                format->TextureId = std::stoi(lit[1]);
-            if (lit[0] == "CenterPoint")
-                format->Position = glm::vec2(std::stof(lit[1]), std::stof(lit[2]));
-            if (lit[0] == "Scale")
-                format->Scale = glm::vec2(std::stof(lit[1]), std::stof(lit[2]));
-            if (lit[0] == "Color")
-                format->Color = glm::vec4(std::stof(lit[1]), std::stof(lit[2]), std::stof(lit[3]), std::stof(lit[4]));
-            if (lit[0] == "Text")
+            auto lit = split(line, " ");
+            if (lit.size() > 0)
             {
-                std::string result_text = "";
-
-                int index = 1;
-                while (true)
+                if (lit[0] == "Name")
+                    format->Name = lit[1];
+                if (lit[0] == "Texture")
+                    format->TextureId = std::stoi(lit[1]);
+                if (lit[0] == "CenterPoint")
+                    format->Position = glm::vec2(std::stof(lit[1]), std::stof(lit[2]));
+                if (lit[0] == "Scale")
+                    format->Scale = glm::vec2(std::stof(lit[1]), std::stof(lit[2]));
+                if (lit[0] == "Color")
+                    format->Color = glm::vec4(std::stof(lit[1]), std::stof(lit[2]), std::stof(lit[3]), std::stof(lit[4]));
+                if (lit[0] == "Text")
                 {
-                    index++;
-                    if (lit[index] == "]")
-                        break;
-                    result_text += " " + lit[index];
-                }
-                auto p1 = lit[++index];
-                auto p2 = lit[++index];
-                auto p3 = lit[++index];
-                auto p4 = lit[++index];
-                auto p5 = lit[++index];
-                auto p6 = lit[++index];
+                    std::string result_text = "";
 
-                format->Text.emplace(
-                    result_text,
-                    std::pair<glm::vec2, glm::vec4>
-                    (
-                        glm::vec2(std::stof(p1), std::stof(p2)),
-                        glm::vec4(std::stof(p3), std::stof(p4), std::stof(p5), std::stof(p6))
-                        )
-                );
+                    int index = 1;
+                    while (true)
+                    {
+                        index++;
+                        if (lit[index] == "]")
+                            break;
+                        result_text += " " + lit[index];
+                    }
+                    auto p1 = lit[++index];
+                    auto p2 = lit[++index];
+                    auto p3 = lit[++index];
+                    auto p4 = lit[++index];
+                    auto p5 = lit[++index];
+                    auto p6 = lit[++index];
+                    auto p7 = lit[++index];
+                    Str str;
+                    str.Text = result_text;
+                    str.Position = glm::vec2(std::stof(p1), std::stof(p2));
+                    str.Color = glm::vec4(std::stof(p3), std::stof(p4), std::stof(p5), std::stof(p6));
+                    format->Text.emplace(
+                        p7,
+                        str
+                    );
+                }
+                if (lit[0] == "Hover")
+                    format->hoverColor = glm::vec4(std::stof(lit[1]), std::stof(lit[2]), std::stof(lit[3]), std::stof(lit[4]));
+                if (lit[0] == "Visible")
+                    format->Visible = std::stoi(lit[1]);
+                if (lit[0] == "PUSH")
+                {
+                    guis->Add(format->Name, format);
+                    format = new GuiFormat();
+                }
+                if (lit[0] == "PUSH_EUI")
+                    guis->Add(format->Name, format);
             }
-            if (lit[0] == "Hover")
-                format->hoverColor = glm::vec4(std::stof(lit[1]), std::stof(lit[2]), std::stof(lit[3]), std::stof(lit[4]));
-            if (lit[0] == "PUSH")
-            {
-                guis->Add(format->Name, format);
-                format = new GuiFormat();
-            }
-            if (lit[0] == "PUSH_EUI")
-                guis->Add(format->Name, format);
+        }
+        catch (std::exception& ex)
+        {
+            LOG(ERROR) << "UI: [" << path << "] - " << ex.what();
         }
     }
 

@@ -32,6 +32,7 @@ private:
 	GLfloat lastX;
 	GLfloat lastY;
 	int mWndWidth, mWndHeight;
+	int mMouseX, mMouseY;
 };
 
 #endif // !GAMESCENE_HEADER

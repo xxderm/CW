@@ -27,17 +27,24 @@ enum Camera_Movement {
     CFORWARD,
     CBACKWARD,
     CLEFT,
-    CRIGHT
+    CRIGHT,
+    ZTOP,
+    ZBOTTOM
 };
 
 class Camera final 
 {
 public:
-	Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f));
+	Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 mwu = glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3 mf = glm::vec3(0.0f, 0.0f, -1.0f));
     const glm::vec3 getPosition();
     const glm::vec3 getFront();
     const glm::vec3 getUp();
     const glm::mat4 getViewMatrix();
+    const glm::vec3 getWorldUp();
+    const glm::vec3 getRight();
+    void setUp(glm::vec3 up);
+    void setRight(glm::vec3 r);
+    void setFront(glm::vec3 f);
     void ProcessKeyboard(Camera_Movement direction, float deltaTime);
     void ProcessMouseMovement(float xoffset, float yoffset, bool constrainPitch = true);
     void ProcessMouseScroll(float yoffset);

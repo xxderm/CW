@@ -1,12 +1,12 @@
 #include "Camera.h"
 
-Camera::Camera(glm::vec3 position)
+Camera::Camera(glm::vec3 position, glm::vec3 mwu, glm::vec3 mf)
 	: 
 	mPosition(position),
-	mWorldUp(glm::vec3(0.0f, 1.0f, 0.0f)),
+	mWorldUp(mwu),
 	mYaw(-90.),
 	mPitch(0.),
-	mFront(glm::vec3(0.0f, 0.0f, -1.0f)),
+	mFront(mf),
 	mMovementSpeed(2.5),
 	mMouseSensitivity(0.36),
 	mZoom(45.)
@@ -34,6 +34,31 @@ const glm::mat4 Camera::getViewMatrix()
 	return glm::lookAt(this->mPosition, this->mPosition + this->mFront, this->mUp);
 }
 
+const glm::vec3 Camera::getWorldUp()
+{
+	return mWorldUp;
+}
+
+const glm::vec3 Camera::getRight()
+{
+	return mRight;
+}
+
+void Camera::setUp(glm::vec3 up)
+{
+	this->mUp = up;
+}
+
+void Camera::setRight(glm::vec3 r)
+{
+	mRight = r;
+}
+
+void Camera::setFront(glm::vec3 f)
+{
+	this->mFront = f;
+}
+
 void Camera::ProcessKeyboard(Camera_Movement direction, float deltaTime)
 {
 	float velocity = this->mMovementSpeed * deltaTime;
@@ -45,6 +70,10 @@ void Camera::ProcessKeyboard(Camera_Movement direction, float deltaTime)
 		this->mPosition -= this->mRight * velocity;
 	if (direction == CRIGHT)
 		this->mPosition += this->mRight * velocity;
+	if (direction == ZTOP)
+		this->mPosition.z -= 1 * velocity;
+	if (direction == ZBOTTOM)
+		this->mPosition.z += 1 * velocity;
 }
 
 void Camera::ProcessMouseMovement(float xoffset, float yoffset, bool constrainPitch)

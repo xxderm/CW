@@ -15,7 +15,10 @@ void GameScene::Init(Scene* scene)
 	SDL_GetWindowSize(scene->getWindow(), &mWndWidth, &mWndHeight);
 	lastX = mWndWidth / 2;
 	lastY = mWndHeight / 2;
-	mCamera = new Camera(glm::vec3(0.f, 0.f, 3.f));
+	mCamera = new Camera(glm::vec3(68.72f, 10.83f, 18.34f));
+	mCamera->setUp(glm::vec3(-0.0, 0.344642, -0.938734));
+	mCamera->setRight(glm::vec3(1.0, 0.0, -0.00));
+	mCamera->setFront(glm::vec3(-0.0, -0.938734, -0.344642));
 	mMousePicker = new MousePicker(glm::vec2(128, 50), glm::vec2(mWndWidth, mWndHeight));
 	
 	mWorldRenderer = new WorldRenderer();
@@ -45,54 +48,36 @@ void GameScene::HandleEvents(Scene* scene)
 {
 	while (SDL_PollEvent(scene->getEvent()))
 	{
-		if (scene->getEvent()->key.keysym.sym == SDLK_w)
+		if (scene->getEvent()->type == SDL_MOUSEWHEEL)
 		{
-			mCamera->ProcessKeyboard(CFORWARD, 0.16f);
+			if (scene->getEvent()->wheel.y > 0)
+				mCamera->ProcessKeyboard(Camera_Movement::CFORWARD, 0.15);
+			if (scene->getEvent()->wheel.y < 0)
+				mCamera->ProcessKeyboard(Camera_Movement::CBACKWARD, 0.15);
 		}
-		if (scene->getEvent()->key.keysym.sym == SDLK_s)
-		{
-			mCamera->ProcessKeyboard(CBACKWARD, 0.16f);
-		}
-		if (scene->getEvent()->key.keysym.sym == SDLK_a)
-		{
-			mCamera->ProcessKeyboard(CLEFT, 0.16f);
-		}
-		if (scene->getEvent()->key.keysym.sym == SDLK_d)
-		{
-			mCamera->ProcessKeyboard(CRIGHT, 0.16f);
-		}
-
-		static bool buttonPressed = false;
-		static bool firstMouse = true;
-		if (scene->getEvent()->type == SDL_MOUSEBUTTONDOWN)
-			buttonPressed = true;
-		if (scene->getEvent()->type == SDL_MOUSEBUTTONUP)
-		{
-			buttonPressed = false;
-			firstMouse = true;
-		}
-		if (buttonPressed)
-		{
-			int xpos, ypos;
-			SDL_GetMouseState(&xpos, &ypos);
-			if (firstMouse)
-			{
-				lastX = xpos;
-				lastY = ypos;
-				firstMouse = false;
-			}
-			GLfloat xoffset = xpos - lastX;
-			GLfloat yoffset = lastY - ypos;
-			lastX = xpos;
-			lastY = ypos;
-			mCamera->ProcessMouseMovement(xoffset, yoffset);
-		}
+		mGUIRenderer->HandleEvent(scene->getEvent(), scene->getWindow());
 		mWorldRenderer->HandleEvent(scene->getEvent(), scene->getWindow());
 	}
 }
 
 void GameScene::Update(Scene* scene)
 {
+	SDL_GetMouseState(&mMouseX, &mMouseY);
+	if (mMouseX >= mWndWidth - 10 && mMouseX <= mWndWidth - 1)
+		mCamera->ProcessKeyboard(Camera_Movement::CRIGHT, 0.08);
+	if (mMouseX <= 10 && mMouseX >= 1)
+		mCamera->ProcessKeyboard(Camera_Movement::CLEFT, 0.08);
+	if (mMouseY >= mWndHeight - 10 && mMouseY <= mWndHeight - 1)
+		mCamera->ProcessKeyboard(Camera_Movement::ZBOTTOM, 0.08);
+	if (mMouseY <= 10 && mMouseY >= 1)
+		mCamera->ProcessKeyboard(Camera_Movement::ZTOP, 0.10);
+
+	
+
+	printf("FRONT: %f %f %f\nUP: %f %f %f\nR: %f %f %f", 
+		mCamera->getFront().x, mCamera->getFront().y, mCamera->getFront().z, 
+		mCamera->getUp().x, mCamera->getUp().y, mCamera->getUp().z,
+		mCamera->getRight().x, mCamera->getRight().y, mCamera->getRight().z);
 	mWorldRenderer->Update();
 	mGUIRenderer->Update();
 }

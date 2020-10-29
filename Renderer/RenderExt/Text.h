@@ -26,6 +26,13 @@ struct Character final
 	GLuint     Advance;
 };
 
+struct Str final
+{
+	std::string Text;
+	glm::vec2 Position;
+	glm::vec4 Color;
+};
+
 class Text final
 {
 public:

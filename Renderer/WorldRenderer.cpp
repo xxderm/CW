@@ -177,9 +177,9 @@ void WorldRenderer::TerrainInit()
 	mProgram[0]->setInt("terrain", 0);
 
 	mTexture->Add(
-		"Resources/terrain/terrain24.bmp",
-		GL_RGB, GL_TEXTURE1,
-		Parameter::NEAREST_CTG);
+		"Resources/terrain/bm1.png",
+		GL_RGBA, GL_TEXTURE1,
+		Parameter::LINEAR);
 	mProgram[0]->setInt("terrain_map", 1);
 
 	mTexture->Add(
@@ -195,10 +195,10 @@ void WorldRenderer::TerrainInit()
 	mProgram[0]->setInt("TerrainTextureID", 3);
 
 	mTexture->Add(
-		"Resources/terrain/countryborder.png",
+		"Resources/terrain/bm3.png",
 		GL_RGBA, GL_TEXTURE4,
-		Parameter::CTG);
-	mProgram[0]->setInt("countryborder", 4);
+		Parameter::LINEAR);
+	mProgram[0]->setInt("bm3", 4);
 
 	mTexture->Add(
 		"Resources/terrain/Blank_province_map.png",
@@ -207,9 +207,9 @@ void WorldRenderer::TerrainInit()
 	mProgram[0]->setInt("province_border", 5);
 
 	mTexture->Add(
-		"Resources/terrain/tb24.bmp",
-		GL_RGB, GL_TEXTURE6,
-		Parameter::NEAREST_CTG);
+		"Resources/terrain/bm2.png",
+		GL_RGBA, GL_TEXTURE6,
+		Parameter::LINEAR);
 	mProgram[0]->setInt("terra", 6);
 
 	mTexture->Add(

@@ -52,7 +52,7 @@ void GUIRenderer::Init(SDL_Window* wnd)
 
 void GUIRenderer::Update()
 {
-	Reader::getInstance()->getUI(mGuis.get(), "Resources/UI/Main.ui");
+	//Reader::getInstance()->getUI(mGuis.get(), "Resources/UI/Main.ui");
 }
 
 void GUIRenderer::setCamera(Camera* camera)

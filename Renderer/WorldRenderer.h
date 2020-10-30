@@ -33,6 +33,7 @@ private:
 	GLdouble modelview[16];
 	GLuint mTexId = 0;
 	glm::mat4x4 mvp;
+	unsigned char mouse_color_data[3];
 private:
 	std::vector<glm::vec3> Vertices;
 	std::vector<glm::vec2> TexCoord;

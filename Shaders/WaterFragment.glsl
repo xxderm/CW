@@ -49,7 +49,6 @@ void main()
 
 
 
-
     vec3 diffuse = vec3(-1.0, -1.0, -1.0);
     float attenuation =  dot(-normalize(cross(dFdx(vertexPos), dFdy(vertexPos))), diffuse);
     attenuation = max(attenuation, 0.0);

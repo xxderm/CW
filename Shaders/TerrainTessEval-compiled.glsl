@@ -1,4 +1,5 @@
 #version 450 core
+#define GLSLIFY 1
 
 layout(quads, fractional_odd_spacing, ccw) in;
 
@@ -22,7 +23,6 @@ uniform mat4 mvp;
 in vec2 TexCoordTC[];
 out vec2 TexCoordTE;
 
-
 uniform sampler2D terrain_map;
 uniform sampler2D Rivers;
 uniform sampler2D wn;
@@ -31,12 +31,8 @@ out vec3 terrain_color;
 out vec3 river_color;
 out vec3 fragmentPos;
 
-
-
-
 out vec2 uv;
 out vec2 uv2;
-
 
 void main(){
     float u = gl_TessCoord.x;

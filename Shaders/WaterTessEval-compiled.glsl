@@ -55,7 +55,7 @@ void main(){
     vec2 heightMapUV=vec2((mapPos.x)/MAP_SIZE_X,(mapPos.y)/MAP_SIZE_Y);
     //vec2((mapPos.x + 0.5f) / MAP_SIZE_X, (mapPos.y + 0.5f) / MAP_SIZE_Y);
     float y=0;
-    if(cameraPos.y<20)
+    if(cameraPos.y<3)
     y=sin(time*speed+(position.x*position.z*amount)+.5*cos(position.x*position.z*amount))*height;
     float hr=texture(wterrain,heightMapUV).r;
     // 0.365

@@ -17,6 +17,7 @@ void Scene::Init()
 		LOG(ERROR) << "Failed to init SDL";
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, pt.get<int>("CONTEXT_MAJOR_VERSION"));
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, pt.get<int>("CONTEXT_MINOR_VERSION"));
+
 	mWindow = SDL_CreateWindow(
 		"Course of War", 
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,

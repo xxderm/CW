@@ -1,5 +1,6 @@
 #version 450 compatibility
 #define GLSLIFY 1
+
 out vec4 fColor;
 
 in vec2 TexCoordTE;
@@ -33,6 +34,8 @@ uniform sampler2D countryborder;
 
 uniform sampler2D province_border;
 
+uniform vec3 hoverEffect;
+
 in float depth;
 
 uniform int currentDraw=2;// 0 - Draw countries (politic map)
@@ -49,6 +52,7 @@ in vec2 uv2;
 
 uniform vec3 campos;
 uniform vec3 terpoint;
+uniform float Tick;
 
 #define F2B(f)((f)>=1.?255:int(((f)*255.)))
 #define V3FB vec3(F2B(terrain_map_texture.r),F2B(terrain_map_texture.g),F2B(terrain_map_texture.b))
@@ -271,7 +275,7 @@ void main()
 
 	if(currentDraw==1)
 	{
-		fColor=mix(currentTexture,provincemap,.6);
+		fColor=mix(currentTexture,provincemap,.4);
 	}
 	else if(currentDraw==0)
 	{
@@ -281,10 +285,10 @@ void main()
 			C3FB(countriesmap).b == 0
 		)
 		{
-			fColor=countrybordertex;
+			fColor=vec4(0.0, 0.0, 0.0, 0.5);
 		}
 		else
-			fColor=mix(countriesmap,currentTexture,1/campos.y);
+			fColor=mix(countriesmap,currentTexture,0.1);
 	}
 	
 	currentNormal=normalize(currentNormal*2.-1.);
@@ -299,5 +303,9 @@ void main()
 	vec3 specular=vec3(.2)*spec;// assuming bright white light color
 	
 	fColor=vec4(ambient+diffuse+specular,1);
+
+	if(hoverEffect.x == C3FB(provincemap).x && hoverEffect.y == C3FB(provincemap).y && hoverEffect.z == C3FB(provincemap).z)
+		fColor.rgb *= (1 + abs(sin(Tick)));
+
 	//fColor = terratexture;
 }

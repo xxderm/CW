@@ -2,6 +2,9 @@
 
 void WorldRenderer::Render()
 {
+	
+
+
 	mFbo->Bind();
 	glClearColor(0, 0, 0, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -12,7 +15,6 @@ void WorldRenderer::Render()
 	glPatchParameteri(GL_PATCH_VERTICES, 4);
 	mBuffer->Draw(GL_PATCHES, Indices.size());
 	{
-		unsigned char mouse_color_data[3];
 		int mx, my; float zf;
 		SDL_GetMouseState(&mx, &my);
 		GLint vp[4];
@@ -25,8 +27,8 @@ void WorldRenderer::Render()
 		GLfloat wy = (float)vp[3] - float(my);
 		glReadBuffer(GL_COLOR_ATTACHMENT0);
 		glReadPixels(mx, wy, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &mouse_color_data);
-		printf("province: %i, %i, %i\n", (int)mouse_color_data[0], (int)mouse_color_data[1], (int)mouse_color_data[2]);
 	}
+	
 	mProgram[3]->UnBind();
 	mFbo->UnBind();
 	glClearColor(0, 0, 0, 1);
@@ -69,6 +71,10 @@ void WorldRenderer::Update()
 	mProgram[0]->setMat4("mvp", mvp);
 	mProgram[0]->setVec3("campos", mCamera->getPosition());
 	mProgram[0]->setFloat("time", dudv);
+	static float Time = 0.0;
+	Time += 0.05;
+	mProgram[0]->setFloat("Tick", Time);
+	mProgram[0]->setVec3("hoverEffect", glm::vec3(mouse_color_data[0], mouse_color_data[1], mouse_color_data[2]));
 	mProgram[0]->UnBind();
 
 	mProgram[2]->Bind();
@@ -83,7 +89,7 @@ void WorldRenderer::Init(SDL_Window* wnd)
 {	
 	int w, h;
 	SDL_GetWindowSize(wnd, &w, &h);
-	projection = glm::perspective<float>(45.f, float((float)w / (float)h), 0.01, 100.f);
+	projection = glm::perspective<float>(45.f, float((float)w / (float)h), 0.1, 100.f);
 	this->TerrainInit();
 	this->WaterInit();
 	this->CloudsInit();

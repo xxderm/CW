@@ -17,6 +17,7 @@ void FrameBuffer::UnBind()
 
 void FrameBuffer::Set(int attachment_id, glm::vec2 scr, int texActiveId, bool blend)
 {
+    
     this->Bind();
     if (texActiveId != -1)
         glActiveTexture(texActiveId);

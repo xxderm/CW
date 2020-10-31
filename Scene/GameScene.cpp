@@ -51,9 +51,9 @@ void GameScene::HandleEvents(Scene* scene)
 		if (scene->getEvent()->type == SDL_MOUSEWHEEL)
 		{
 			if (scene->getEvent()->wheel.y > 0)
-				mCamera->ProcessKeyboard(Camera_Movement::CFORWARD, 0.15);
+				mCamera->ProcessKeyboard(Camera_Movement::CFORWARD, 0.35);
 			if (scene->getEvent()->wheel.y < 0)
-				mCamera->ProcessKeyboard(Camera_Movement::CBACKWARD, 0.15);
+				mCamera->ProcessKeyboard(Camera_Movement::CBACKWARD, 0.35);
 		}
 		mGUIRenderer->HandleEvent(scene->getEvent(), scene->getWindow());
 		mWorldRenderer->HandleEvent(scene->getEvent(), scene->getWindow());
@@ -64,13 +64,13 @@ void GameScene::Update(Scene* scene)
 {
 	SDL_GetMouseState(&mMouseX, &mMouseY);
 	if (mMouseX >= mWndWidth - 10 && mMouseX <= mWndWidth - 1)
-		mCamera->ProcessKeyboard(Camera_Movement::CRIGHT, 0.08);
+		mCamera->ProcessKeyboard(Camera_Movement::CRIGHT, 0.28);
 	if (mMouseX <= 10 && mMouseX >= 1)
-		mCamera->ProcessKeyboard(Camera_Movement::CLEFT, 0.08);
+		mCamera->ProcessKeyboard(Camera_Movement::CLEFT, 0.28);
 	if (mMouseY >= mWndHeight - 10 && mMouseY <= mWndHeight - 1)
-		mCamera->ProcessKeyboard(Camera_Movement::ZBOTTOM, 0.08);
+		mCamera->ProcessKeyboard(Camera_Movement::ZBOTTOM, 0.28);
 	if (mMouseY <= 10 && mMouseY >= 1)
-		mCamera->ProcessKeyboard(Camera_Movement::ZTOP, 0.10);
+		mCamera->ProcessKeyboard(Camera_Movement::ZTOP, 0.20);
 
 	
 	mWorldRenderer->Update();

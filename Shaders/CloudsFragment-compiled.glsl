@@ -14,13 +14,13 @@ uniform float time;
 
 uniform sampler2D clouds;
 
-const float cloudscale = 0.5;
-const float speed = 0.03;
+const float cloudscale = 0.8;
+const float speed = 0.09;
 const float clouddark = 0.5;
 const float cloudlight = 0.3;
 const float cloudcover = 0.2;
-const float cloudalpha = 8.0;
-const float skytint = 3.5;
+const float cloudalpha = 7.5;
+const float skytint = 3.9;
 vec3 skycolour1 = vec3(0.2, 0.4, 0.6);
 vec3 skycolour2 = vec3(0.4, 0.7, 1.0);
 uniform sampler2D terrain;
@@ -131,5 +131,5 @@ void main()
     
     vec3 result = mix(skycolour, clamp(skytint * skycolour + cloudcolour, 0.0, 1.0), clamp(f + c, 0.0, 1.0));
     
-	fragColor = vec4( result, 1.0);
+	fragColor = vec4( result, 0.4);
 }

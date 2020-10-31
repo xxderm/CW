@@ -55,7 +55,7 @@ void main(){
     vec2 heightMapUV=vec2((mapPos.x)/MAP_SIZE_X,(mapPos.y)/MAP_SIZE_Y);
     //vec2((mapPos.x + 0.5f) / MAP_SIZE_X, (mapPos.y + 0.5f) / MAP_SIZE_Y);
     float y=0;
-    if(cameraPos.y<3)
+    if(cameraPos.y<2)
     y=sin(time*speed+(position.x*position.z*amount)+.5*cos(position.x*position.z*amount))*height;
     float hr=texture(wterrain,heightMapUV).r;
     // 0.365
@@ -81,15 +81,17 @@ void main(){
     bitangent1.z=f*(-deltaUV2.x*edge1.z+deltaUV1.x*edge2.z);
     bitangent1=normalize(bitangent1);
     
+    vec4 WaterNormal = texture2D(watnorm,heightMapUV );
+
     vec3 T=normalize(vec3(model*vec4(tangent1,0.)));
     vec3 B=normalize(vec3(model*vec4(bitangent1,0.)));
-    vec3 N=normalize(vec3(model*vec4(texture2D(watnorm,heightMapUV ).rgb,0.)));
+    vec3 N=normalize(vec3(model*vec4(WaterNormal.rgb,0.)));
     TBN=mat3(T,B,N);
     TBN=transpose(TBN);
-    normal=texture2D(watnorm,heightMapUV).rgb;
+    normal=WaterNormal.rgb;
     normal=normalize(normal*2.-1.);
     normal=normalize(TBN*normal);
-    vec3 lightPos=vec3(MAP_SIZE_X+MAP_SIZE_X*10,5,MAP_SIZE_Y);
+    vec3 lightPos=vec3(MAP_SIZE_X + MAP_SIZE_X * 10, 15, MAP_SIZE_Y);
     vec3 viewPos=cameraPos;
     lightDir=TBN*normalize(lightPos-gl_Position.xyz);
     viewDir=TBN*normalize(viewPos-gl_Position.xyz);

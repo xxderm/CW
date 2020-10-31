@@ -1,4 +1,4 @@
-#version 450 compatibility
+#version 450 core
 
 out vec4 fColor;
 
@@ -13,8 +13,6 @@ in vec3 TangentLightPos;
 in vec3 TangentViewPos;
 in vec3 TangentFragPos;
 
-in vec3 terrain_color;
-in vec3 river_color;
 
 #define numberOfRows 4
 #define atlasTex(index)(uv.xy/numberOfRows)+vec2(float(index%numberOfRows)/float(numberOfRows),float(index/numberOfRows)/float(numberOfRows))
@@ -170,7 +168,6 @@ void main()
 		FinalColor = mix(FinalColor, for1texture, terrain_map_texture.b);
 		currentNormal = mix(currentNormal, for1normal, terrain_map_texture.b).rgb;
 	}
-
 	if(terratexture.rgb != vec3(0, 0, 0))
 	{
 		FinalColor = mix(FinalColor, moun5texture, terratexture.r);
@@ -182,7 +179,6 @@ void main()
 		FinalColor = mix(FinalColor, mounsandtexture, terratexture.b);
 		currentNormal = mix(currentNormal, mounsandnormal, terratexture.b).rgb;
 	}
-
 	if(bm.rgb != vec3(0, 0, 0))
 	{
 		FinalColor = mix(FinalColor, mounsand1texture, bm.r);
@@ -219,7 +215,7 @@ void main()
 	}
 	
 	currentNormal=normalize(currentNormal*2.-1.);
-	currentNormal=normalize(TBN*currentNormal);
+	//currentNormal=normalize(TBN*currentNormal);
 	
 	vec3 color=fColor.rgb;
 	vec3 ambient=.041*color;

@@ -15,8 +15,13 @@ void Scene::Init()
 	boost::property_tree::read_json(Config, pt);
 	if(SDL_Init(SDL_INIT_EVERYTHING) == -1)
 		LOG(ERROR) << "Failed to init SDL";
+
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, pt.get<int>("CONTEXT_MAJOR_VERSION"));
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, pt.get<int>("CONTEXT_MINOR_VERSION"));
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 
 	mWindow = SDL_CreateWindow(
 		"Course of War", 
@@ -34,13 +39,13 @@ void Scene::Init()
 	Config.close();
 	mRunning = true;
 
-	glClearDepth(1.f);
+	/*glClearDepth(1.f);
 	glDepthFunc(GL_LESS);
 	glEnable(GL_DEPTH_TEST);
 	glShadeModel(GL_FLAT | GL_SMOOTH);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glMatrixMode(GL_MODELVIEW);
+	glMatrixMode(GL_MODELVIEW);*/
 
 
 	glEnable(GL_PRIMITIVE_RESTART);

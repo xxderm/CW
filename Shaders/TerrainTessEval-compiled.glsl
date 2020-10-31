@@ -27,8 +27,7 @@ uniform sampler2D terrain_map;
 uniform sampler2D Rivers;
 uniform sampler2D wn;
 uniform mat4 model;
-out vec3 terrain_color;
-out vec3 river_color;
+
 out vec3 fragmentPos;
 
 out vec2 uv;
@@ -57,8 +56,7 @@ void main(){
     vec2 heightMapUV = vec2((mapPos.x ) / MAP_SIZE_X, (mapPos.y ) / MAP_SIZE_Y);
     
     
-    terrain_color = texture(terrain_map, heightMapUV).rgb;
-    river_color = texture(Rivers, heightMapUV).rgb;    
+  
     fpos = heightMapUV;
 
     float height = texture(terrain, heightMapUV).x * heightScale;
@@ -90,12 +88,14 @@ void main(){
     bitangent1.z = f * (-deltaUV2.x * edge1.z + deltaUV1.x * edge2.z);
     bitangent1 = normalize(bitangent1); 
 
+    vec4 worldNormal = texture(wn, heightMapUV);
+
     vec3 T = normalize(vec3(model * vec4(tangent1,   0.0)));
     vec3 B = normalize(vec3(model * vec4(bitangent1, 0.0)));
-    vec3 N = normalize(vec3(model * vec4(texture(wn, heightMapUV).rgb,    0.0)));
+    vec3 N = normalize(vec3(model * vec4(worldNormal.rgb,    0.0)));
     TBN = mat3(T, B, N);
     TBN = transpose(TBN);
-    normal = texture(wn, heightMapUV).rgb;
+    normal = worldNormal.rgb;
     normal = normalize(normal * 2.0 - 1.0);
     normal = normalize(TBN * normal);
     vec3 lightPos = vec3(MAP_SIZE_X + MAP_SIZE_X * 10, 15, MAP_SIZE_Y);

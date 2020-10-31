@@ -1,4 +1,4 @@
-#version 450 compatibility
+#version 450 core
 #define GLSLIFY 1
 
 layout(vertices = 4) out;

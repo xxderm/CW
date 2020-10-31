@@ -21,8 +21,9 @@ const float cloudlight = 0.3;
 const float cloudcover = 0.2;
 const float cloudalpha = 8.0;
 const float skytint = 3.5;
-const vec3 skycolour1 = vec3(0.2, 0.4, 0.6);
-const vec3 skycolour2 = vec3(0.4, 0.7, 1.0);
+vec3 skycolour1 = vec3(0.2, 0.4, 0.6);
+vec3 skycolour2 = vec3(0.4, 0.7, 1.0);
+uniform sampler2D terrain;
 
 const mat2 m = mat2( 1.6,  1.2, -1.2,  1.6 );
 
@@ -61,6 +62,10 @@ float fbm(vec2 n) {
 
 void main()
 {
+    ivec2 tsize = textureSize(terrain, 0);
+    vec2 scrTc = gl_FragCoord.xy * (1.0 / vec2(tsize));
+    vec4 color = texture2D(terrain, scrTc);
+
 	vec2 p = fragCoord.xy / iResolution.xy;
 	vec2 uv = p*vec2(iResolution.x/iResolution.y,1.0);    
     float time = iTime * speed;
@@ -119,7 +124,7 @@ void main()
 	
     c += c1;
     
-    vec3 skycolour = mix(skycolour2, skycolour1, p.y);
+    vec3 skycolour = color.rgb;
     vec3 cloudcolour = vec3(1.1, 1.1, 0.9) * clamp((clouddark + cloudlight*c), 0.0, 1.0);
    
     f = cloudcover + cloudalpha*f*r;

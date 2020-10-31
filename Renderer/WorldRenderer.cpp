@@ -2,16 +2,13 @@
 
 void WorldRenderer::Render()
 {
-	
-
-
+	glBindTexture(GL_TEXTURE_2D, 18);
 	mFbo->Bind();
 	glClearColor(0, 0, 0, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	mProgram[3]->Bind();
-	glBindTexture(GL_TEXTURE_2D, 18);
 	mProgram[3]->setMat4("mvp", mvp);
-	//mProgram[3]->setInt("currentDraw", 0);
+	mProgram[3]->setInt("currentDraw", 0);
 	glPatchParameteri(GL_PATCH_VERTICES, 4);
 	mBuffer->Draw(GL_PATCHES, Indices.size());
 	{
@@ -30,7 +27,23 @@ void WorldRenderer::Render()
 	}
 	
 	mProgram[3]->UnBind();
+	
+
+
+
+	glClearColor(0, 0, 0, 1);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	mProgram[1]->Bind();
+	glPatchParameteri(GL_PATCH_VERTICES, 4);
+	mBuffer->Draw(GL_PATCHES, Indices.size());
+	mProgram[1]->UnBind();
+	mProgram[0]->Bind();
+	glPatchParameteri(GL_PATCH_VERTICES, 4);
+	mBuffer->Draw(GL_PATCHES, Indices.size());
+	mProgram[0]->UnBind();
 	mFbo->UnBind();
+
+
 	glClearColor(0, 0, 0, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -45,10 +58,10 @@ void WorldRenderer::Render()
 	mBuffer->Draw(GL_PATCHES, Indices.size());	
 	mProgram[0]->UnBind();		
 
-	//mProgram[2]->Bind();
-	//glPatchParameteri(GL_PATCH_VERTICES, 4);
-	//mBuffer->Draw(GL_PATCHES, Indices.size());
-	//mProgram[2]->UnBind();
+	mProgram[2]->Bind();
+	glPatchParameteri(GL_PATCH_VERTICES, 4);
+	mBuffer->Draw(GL_PATCHES, Indices.size());
+	mProgram[2]->UnBind();
 }
 
 void WorldRenderer::Update()
@@ -82,6 +95,7 @@ void WorldRenderer::Update()
 	mProgram[2]->setMat4("mvp", mvp);
 	mProgram[2]->setFloat("time", dudv * 5.8);
 	mProgram[2]->setVec3("campos", mCamera->getPosition());
+	mProgram[2]->setInt("terrain", 17);
 	mProgram[2]->UnBind();
 }
 

@@ -222,15 +222,16 @@ void main()
 	currentNormal=normalize(TBN*currentNormal);
 	
 	vec3 color=fColor.rgb;
-	vec3 ambient=.091*color;
+	vec3 ambient=.041*color;
 	float diff=max(dot(lightDir,normal+currentNormal),0.);
 	vec3 diffuse=diff*color;
 	vec3 halfwayDir=normalize(lightDir);
 	float spec=(max(dot(normal+currentNormal,halfwayDir),0.));
-	vec3 specular=vec3(.152)*spec;
+	vec3 specular=vec3(.122)*spec;
 	
 	fColor=vec4(ambient+diffuse+specular,1);
 
 	if(hoverEffect.x == C3FB(provincemap).x && hoverEffect.y == C3FB(provincemap).y && hoverEffect.z == C3FB(provincemap).z)
 		fColor.rgb *= (1 + abs(sin(Tick)));
+
 }

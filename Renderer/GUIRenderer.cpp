@@ -20,12 +20,16 @@ void GUIRenderer::Render()
 
 			glDisable(GL_DEPTH_TEST);
 			for (auto& text : gui.second->Text)
+			{
+				float x = (mWinX * text.second.Position.x) / 100;
+				float y = (mWinY * text.second.Position.y) / 100;
 				mText.RenderText(
 					text.second.Text,
-					text.second.Position.x,
-					text.second.Position.y,
+					x,
+					y,
 					1,
 					glm::vec4(text.second.Color));
+			}
 			glEnable(GL_DEPTH_TEST);
 		}
 	}

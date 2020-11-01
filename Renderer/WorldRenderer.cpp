@@ -196,11 +196,16 @@ void WorldRenderer::TerrainInit()
 		Parameter::LINEAR);
 	mProgram[0]->setInt("terrain_map", 1);
 
+	
+	
 	mTexture->Add(
 		"Resources/terrain/Countrymap.png",
 		GL_RGBA, GL_TEXTURE2,
 		Parameter::LINEAR);
 	mProgram[0]->setInt("Countries", 2);
+
+
+
 
 	mTexture->Add(
 		"Resources/terrain/atlas0.bmp",

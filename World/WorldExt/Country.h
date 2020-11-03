@@ -9,6 +9,8 @@
 struct CountryFormat
 {
 	std::string Tag;
+	glm::vec3 Color;
+	int Capital;
 };
 
 class Country final 

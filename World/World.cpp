@@ -16,4 +16,6 @@ void World::Create()
 	tg.add_thread(&countryThread);
 	tg.join_all();
 	mState->Init(mProvince.get());
+	tg.remove_thread(&countryThread);
+	tg.remove_thread(&provThread);
 }

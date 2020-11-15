@@ -7,6 +7,7 @@
 class GUIRenderer : public IRenderer
 {
 public:
+	GUIRenderer(std::string uiPath, int fontSize = 24);
 	void Render() override;
 	void Init(SDL_Window* wnd) override;
 	void Update() override;
@@ -22,7 +23,10 @@ private:
 	std::unique_ptr<GUITexture> mGuis;
 	Text mText;
 	int mWinX, mWinY;
+	int mMouseX, mMouseY;
 
+	std::string mUiPath;
+	int mFontSize = 24;
 };
 
 #endif // !GUIRENDERER_HEADER

@@ -10,6 +10,11 @@ GameScene::GameScene()
 {
 }
 
+GameScene::GameScene(IRenderer* Render)
+{
+
+}
+
 void GameScene::Init(Scene* scene)
 {		
 	SDL_GetWindowSize(scene->getWindow(), &mWndWidth, &mWndHeight);
@@ -21,12 +26,15 @@ void GameScene::Init(Scene* scene)
 	mCamera->setFront(glm::vec3(-0.0, -0.938734, -0.344642));
 	mMousePicker = new MousePicker(glm::vec2(128, 50), glm::vec2(mWndWidth, mWndHeight));
 	
-	mWorldRenderer = new WorldRenderer();
-	mWorldRenderer->Init(scene->getWindow());	
-	mWorldRenderer->setCamera(mCamera);
-	mWorldRenderer->setMousePicker(mMousePicker);
+	if (!mWorldRenderer)
+	{
+		mWorldRenderer = new WorldRenderer();
+		mWorldRenderer->Init(scene->getWindow());
+		mWorldRenderer->setCamera(mCamera);
+		mWorldRenderer->setMousePicker(mMousePicker);
+	}
 
-	mGUIRenderer = new GUIRenderer();
+	mGUIRenderer = new GUIRenderer("Resources/UI/Main.ui");
 	mGUIRenderer->Init(scene->getWindow());
 	mGUIRenderer->setCamera(mCamera);
 	mGUIRenderer->setMousePicker(mMousePicker);

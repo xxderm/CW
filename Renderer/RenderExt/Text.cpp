@@ -5,8 +5,8 @@ void Text::Init(const char* font, glm::vec2 scrSize, GLuint fontSize)
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	FT_Library ft;
 	FT_Face face;
+	FT_Library ft;
 	if (FT_Init_FreeType(&ft))
 		LOG(ERROR) << "ERROR::FREETYPE: Could not init FreeType Library";
 	if (FT_New_Face(ft, font, 0, &face))
@@ -68,7 +68,6 @@ void Text::RenderText(std::string text, int x, int y, float scale, glm::vec4 col
 	int stride = 0;
 	register std::string::const_iterator c;
 	int start = x;
-
 	for (c = text.begin(); c != text.end(); ++c)
 	{
 		Character ch = mCharacters[*c];

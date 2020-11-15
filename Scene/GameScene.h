@@ -1,13 +1,14 @@
 #pragma once
-#include "Scene.h"
 #ifndef GAME_SCENE_HEADER
 #define GAME_SCENE_HEADER
+#include "Scene.h"
 #include "../Renderer/WorldRenderer.h"
 #include "../Renderer/GUIRenderer.h"
 
-class GameScene : public SceneMachine
+class GameScene final : public SceneMachine
 {
 public:
+	GameScene(IRenderer* Render);
 	void Init(Scene* scene) override;
 	void Clean() override;
 	void Pause() override;
@@ -24,8 +25,8 @@ protected:
 	GameScene();
 private:
 	static GameScene mGameScene;	
-	IRenderer* mWorldRenderer;
-	IRenderer* mGUIRenderer;
+	IRenderer* mWorldRenderer = nullptr;
+	IRenderer* mGUIRenderer = nullptr;
 	Camera* mCamera;
 	MousePicker* mMousePicker;
 

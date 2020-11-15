@@ -36,25 +36,37 @@ std::vector<std::string> Reader::getArray(std::string Path, std::string Keyword)
     return Result;
 }
 
-std::string Reader::getValue(std::string Path, std::string Keyword, int seek)
+std::vector<std::string> Reader::getFileLines(std::string Path)
+{
+    std::vector<std::string> result;
+    std::string line;
+    auto f = getStream(Path);
+    while (std::getline(f, line))
+        result.push_back(line);
+    f.close();
+    return result;
+}
+
+std::string Reader::getValue(std::string Path, std::string Keyword, int seek, bool digit)
 {
     Clean();
     auto f = getStream(Path);
     f.seekg(seek, std::ios::beg);
     std::string Result;
-    GET_IFSTREAM_CHAR(        
+    GET_IFSTREAM_CHAR(
         if (mCheck)
         {   
             if (c == '\n' or c == '\t' or c == '#')
             {
-                return mLiteral;
                 mCheck = false;
-                break;
+                return mLiteral;
             }
             if (c == '=' || c == ' ')
             {
                 continue;
             }
+            if (!isdigit(c) && !mLiteral.empty() && digit)
+                return mLiteral;
             mLiteral += c;
         }
         if (tmp == Keyword)
@@ -91,7 +103,10 @@ void Reader::getUI(GUITexture* guis, std::string path, bool update)
                 if (lit[0] == "Scale")
                     format->Scale = glm::vec2(std::stof(lit[1]), std::stof(lit[2]));
                 if (lit[0] == "Color")
+                {
                     format->Color = glm::vec4(std::stof(lit[1]), std::stof(lit[2]), std::stof(lit[3]), std::stof(lit[4]));
+                    format->baseColor = format->Color;
+                }
                 if (lit[0] == "Text")
                 {
                     std::string result_text = "";
@@ -111,10 +126,12 @@ void Reader::getUI(GUITexture* guis, std::string path, bool update)
                     auto p5 = lit[++index];
                     auto p6 = lit[++index];
                     auto p7 = lit[++index];
+                    auto p8 = lit[++index];
                     Str str;
                     str.Text = result_text;
                     str.Position = glm::vec2(std::stof(p1), std::stof(p2));
                     str.Color = glm::vec4(std::stof(p3), std::stof(p4), std::stof(p5), std::stof(p6));
+                    str.Scale = std::stof(p8);
                     format->Text.emplace(
                         p7,
                         str
@@ -124,6 +141,15 @@ void Reader::getUI(GUITexture* guis, std::string path, bool update)
                     format->hoverColor = glm::vec4(std::stof(lit[1]), std::stof(lit[2]), std::stof(lit[3]), std::stof(lit[4]));
                 if (lit[0] == "Visible")
                     format->Visible = std::stoi(lit[1]);
+                if (lit[0] == "Type")
+                    format->Type = lit[1];
+                if (lit[0] == "For")
+                    format->For = lit[1];               
+                if (lit[0] == "ShowOnClickEvent")
+                {
+                    lit.erase(lit.begin());
+                    format->ShowToClick = lit;
+                }
                 if (lit[0] == "PUSH")
                 {
                     guis->Add(format->Name, format);

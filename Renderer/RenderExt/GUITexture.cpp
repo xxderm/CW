@@ -25,6 +25,11 @@ void GUITexture::SetVisible(std::string Name, bool v)
 	this->mGuis.at(Name)->Visible = v;
 }
 
+void GUITexture::SetColor(std::string Name, glm::vec4 Color)
+{
+	this->mGuis.at(Name)->Color = Color;
+}
+
 void GUITexture::Clear()
 {
 	for (auto& gui : mGuis)

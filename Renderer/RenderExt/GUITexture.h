@@ -25,6 +25,12 @@ struct GuiFormat
 	glm::vec4 Color = glm::vec4(1, 1, 1, 0.5);
 	glm::vec4 hoverColor = glm::vec4(1, 1, 1, 0.5);
 	bool Visible = true;
+	std::string Type;
+	std::string For;
+	std::vector<std::string> ShowToClick;
+
+	glm::vec4 baseColor = glm::vec4(1, 1, 1, 0.5);
+	bool Active = false;
 };
 
 class GUITexture final
@@ -35,6 +41,7 @@ public:
 	std::unordered_map<std::string, GuiFormat*> getGui();
 	GuiFormat* Get(std::string Name);
 	void SetVisible(std::string Name, bool v);
+	void SetColor(std::string Name, glm::vec4 Color);
 	void Clear();
 	~GUITexture();
 private:

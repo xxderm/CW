@@ -31,6 +31,7 @@ struct Str final
 	std::string Text;
 	glm::vec2 Position;
 	glm::vec4 Color;
+	float Scale = 1.0;
 };
 
 class Text final

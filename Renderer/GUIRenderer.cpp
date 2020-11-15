@@ -1,5 +1,11 @@
 #include "GUIRenderer.h"
 
+GUIRenderer::GUIRenderer(std::string uiPath, int fontSize)
+	: mUiPath(uiPath), mFontSize(fontSize)
+{
+
+}
+
 void GUIRenderer::Render()
 {		
 	for (auto& gui : mGuis->getGui())
@@ -27,7 +33,7 @@ void GUIRenderer::Render()
 					text.second.Text,
 					x,
 					y,
-					1,
+					text.second.Scale,
 					glm::vec4(text.second.Color));
 			}
 			glEnable(GL_DEPTH_TEST);
@@ -50,13 +56,13 @@ void GUIRenderer::Init(SDL_Window* wnd)
 
 	
 	SDL_GetWindowSize(wnd, &mWinX, &mWinY);
-	mText.Init("Resources/font/17541.ttf", glm::vec2(mWinX, mWinY), 24);
-	Reader::getInstance()->getUI(mGuis.get(), "Resources/UI/Main.ui");
+	mText.Init("Resources/font/17541.ttf", glm::vec2(mWinX, mWinY), this->mFontSize);
+	Reader::getInstance()->getUI(mGuis.get(), mUiPath);
 }
 
 void GUIRenderer::Update()
 {
-	Reader::getInstance()->getUI(mGuis.get(), "Resources/UI/Main.ui");
+	//Reader::getInstance()->getUI(mGuis.get(), mUiPath);
 }
 
 void GUIRenderer::setCamera(Camera* camera)
@@ -69,24 +75,70 @@ void GUIRenderer::setMousePicker(MousePicker* mp)
 
 void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 {
+	//Reader::getInstance()->getUI(mGuis.get(), mUiPath);
+
+	SDL_GetMouseState(&mMouseX, &mMouseY);
 	if (e->type == SDL_KEYDOWN)
 	{
-		if (mGuis->Get("ConsoleInput")->Visible
-			&& (e->key.keysym.sym != SDLK_LSHIFT && e->key.keysym.sym != SDLK_LALT && e->key.keysym.sym != SDLK_BACKQUOTE) )
+		for (auto& gui : this->mGuis->getGui())
 		{
-			// erase last sym
-			if (e->key.keysym.sym == SDLK_BACKSPACE && mGuis->Get("ConsoleInput")->Text.at("Input").Text.size() > 0)
-				mGuis->Get("ConsoleInput")->Text.at("Input").Text
-				.erase(mGuis->Get("ConsoleInput")->Text.at("Input").Text.end() - 1);
-			// add sym
-			else 
-				mGuis->Get("ConsoleInput")->Text.at("Input").Text += e->key.keysym.sym;
+			if (gui.second->Type == "Input")
+			{
+				try
+				{
+					if ((e->key.keysym.sym != SDLK_LSHIFT && e->key.keysym.sym != SDLK_LALT && e->key.keysym.sym != SDLK_BACKQUOTE) && gui.second->Active)
+					{
+						// erase last sym
+						if (e->key.keysym.sym == SDLK_BACKSPACE && mGuis->Get(gui.first)->Text.at("Input").Text.size() > 0)
+							mGuis->Get(gui.first)->Text.at("Input").Text
+							.erase(mGuis->Get(gui.first)->Text.at("Input").Text.end() - 1);
+						// add sym
+						else
+							mGuis->Get(gui.first)->Text.at("Input").Text += e->key.keysym.sym;
+					}
+					if (e->key.keysym.sym == SDLK_BACKQUOTE)
+					{
+						mGuis->SetVisible(gui.first, !mGuis->Get(gui.first)->Visible);
+						mGuis->SetVisible(gui.second->For, !mGuis->Get(gui.second->For)->Visible);
+						mGuis->Get(gui.first)->Text.at("Input").Text.clear();
+					}
+				}
+				catch (std::exception& ex)
+				{
+					LOG(ERROR) << ex.what();
+				}
+			}
 		}
-		if (e->key.keysym.sym == SDLK_BACKQUOTE)
+	}
+
+	for (auto& gui : this->mGuis->getGui())
+	{
+		if (gui.second->Visible)
 		{
-			mGuis->SetVisible("ConsoleInput", !mGuis->Get("ConsoleInput")->Visible);
-			mGuis->SetVisible("ConsoleForm", !mGuis->Get("ConsoleForm")->Visible);
-			mGuis->Get("ConsoleInput")->Text.at("Input").Text.clear();
+			if (gui.second->isHovered(MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY))))
+			{
+				mGuis->SetColor(gui.first, gui.second->hoverColor);
+				if (e->type == SDL_MOUSEBUTTONDOWN)
+				{
+					if (!gui.second->ShowToClick.empty())
+					{
+						for (auto& form : gui.second->ShowToClick)
+						{
+							mGuis->getGui().at(form)->Visible = true;
+						}
+					}
+					gui.second->Active = !gui.second->Active;
+				}
+			}
+			else
+			{
+				if (e->type == SDL_MOUSEBUTTONDOWN)
+				{
+					gui.second->Active = false;
+				}
+				mGuis->SetColor(gui.first, gui.second->baseColor);
+			}			
+			//gui.second->Active ? gui.second->Color *= 1.2 : gui.second->Color = gui.second->baseColor;
 		}
 	}
 }

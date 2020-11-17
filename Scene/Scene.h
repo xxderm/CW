@@ -24,6 +24,7 @@ public:
 	SDL_GLContext getContext();
 	SDL_Event *getEvent();
 	bool isRunning();
+	void Exit();
 private:
 	std::list<SceneMachine*> mScenes;
 	SDL_Window* mWindow;

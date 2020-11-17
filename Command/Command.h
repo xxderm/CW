@@ -1,6 +1,7 @@
 #pragma once
 #ifndef COMMAND_HEADER
 #define COMMAND_HEADER
+#include "../Scene/Scene.h"
 
 class Command abstract
 {

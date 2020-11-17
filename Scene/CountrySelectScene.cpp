@@ -6,7 +6,7 @@ void CountrySelectScene::Init(Scene* scene)
 {
 	SDL_GetWindowSize(scene->getWindow(), &mWndWidth, &mWndHeight);
 	mWorldRenderer = new WorldRenderer();
-	mGUIRenderer = new GUIRenderer("Resources/UI/CountrySelect.ui");
+	mGUIRenderer = new GUIRenderer("Resources/UI/CountrySelect.ui", 24, scene);
 
 	mWorldRenderer->Init(scene->getWindow());
 	mGUIRenderer->Init(scene->getWindow());

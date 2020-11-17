@@ -1,9 +1,10 @@
 #include "GUIRenderer.h"
 
-GUIRenderer::GUIRenderer(std::string uiPath, int fontSize)
-	: mUiPath(uiPath), mFontSize(fontSize)
+GUIRenderer::GUIRenderer(std::string uiPath, int fontSize, Scene* scene)
+	: mUiPath(uiPath), mFontSize(fontSize), mScene_ptr(scene)
 {
-
+	if (!scene)
+		LOG(WARNING) << "GUIRenderer: Scene is nullptr";
 }
 
 void GUIRenderer::Render()
@@ -58,6 +59,10 @@ void GUIRenderer::Init(SDL_Window* wnd)
 	SDL_GetWindowSize(wnd, &mWinX, &mWinY);
 	mText.Init("Resources/font/17541.ttf", glm::vec2(mWinX, mWinY), this->mFontSize);
 	Reader::getInstance()->getUI(mGuis.get(), mUiPath);
+
+
+	mCommand.emplace("Exit", new ExitCommand(mScene_ptr));
+	mCommand.emplace("Start", new ChangeSceneCommand(mScene_ptr, CountrySelectScene::getInstance()));
 }
 
 void GUIRenderer::Update()
@@ -80,34 +85,39 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 	SDL_GetMouseState(&mMouseX, &mMouseY);
 	if (e->type == SDL_KEYDOWN)
 	{
-		for (auto& gui : this->mGuis->getGui())
+		try
 		{
-			if (gui.second->Type == "Input")
+			for (auto& gui : this->mGuis->getGui())
 			{
-				try
+				if (gui.second->Type == "Input")
 				{
-					if ((e->key.keysym.sym != SDLK_LSHIFT && e->key.keysym.sym != SDLK_LALT && e->key.keysym.sym != SDLK_BACKQUOTE) && gui.second->Active)
-					{
-						// erase last sym
-						if (e->key.keysym.sym == SDLK_BACKSPACE && mGuis->Get(gui.first)->Text.at("Input").Text.size() > 0)
-							mGuis->Get(gui.first)->Text.at("Input").Text
-							.erase(mGuis->Get(gui.first)->Text.at("Input").Text.end() - 1);
-						// add sym
-						else
-							mGuis->Get(gui.first)->Text.at("Input").Text += e->key.keysym.sym;
-					}
-					if (e->key.keysym.sym == SDLK_BACKQUOTE)
-					{
-						mGuis->SetVisible(gui.first, !mGuis->Get(gui.first)->Visible);
-						mGuis->SetVisible(gui.second->For, !mGuis->Get(gui.second->For)->Visible);
-						mGuis->Get(gui.first)->Text.at("Input").Text.clear();
-					}
+						if ((e->key.keysym.sym != SDLK_LSHIFT && e->key.keysym.sym != SDLK_LALT && e->key.keysym.sym != SDLK_BACKQUOTE) && gui.second->Active)
+						{
+							// erase last sym
+							if (e->key.keysym.sym == SDLK_BACKSPACE && mGuis->Get(gui.first)->Text.at("Input").Text.size() > 0)
+								mGuis->Get(gui.first)->Text.at("Input").Text
+								.erase(mGuis->Get(gui.first)->Text.at("Input").Text.end() - 1);
+							// add sym
+							else
+								mGuis->Get(gui.first)->Text.at("Input").Text += e->key.keysym.sym;
+						}
+						if (e->key.keysym.sym == int(char(gui.second->Key.second)) && gui.second->Key.first)
+						{		
+							gui.second->Visible = !gui.second->Visible;
+							mGuis->SetVisible(gui.second->For, !mGuis->Get(gui.second->For)->Visible);
+							gui.second->Text.at("Input").Text.clear();
+						}
 				}
-				catch (std::exception& ex)
+				else if (e->key.keysym.sym == int(char(gui.second->Key.second)) && gui.second->Key.first)
 				{
-					LOG(ERROR) << ex.what();
+					if(mGuis->isAllInputHidden())
+						gui.second->Visible = !gui.second->Visible;
 				}
 			}
+		}
+		catch (std::exception& ex)
+		{
+			LOG(ERROR) << ex.what();
 		}
 	}
 
@@ -120,11 +130,22 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 				mGuis->SetColor(gui.first, gui.second->hoverColor);
 				if (e->type == SDL_MOUSEBUTTONDOWN)
 				{
+					if (!gui.second->CommandOnClick.first.empty())
+					{
+						mCommand.at(gui.second->CommandOnClick.first)->Execute();
+					}
 					if (!gui.second->ShowToClick.empty())
 					{
 						for (auto& form : gui.second->ShowToClick)
 						{
 							mGuis->getGui().at(form)->Visible = true;
+						}
+					}
+					if (!gui.second->HideToClick.empty())
+					{
+						for (auto& form : gui.second->HideToClick)
+						{
+							mGuis->getGui().at(form)->Visible = false;
 						}
 					}
 					gui.second->Active = !gui.second->Active;
@@ -138,7 +159,8 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 				}
 				mGuis->SetColor(gui.first, gui.second->baseColor);
 			}			
-			//gui.second->Active ? gui.second->Color *= 1.2 : gui.second->Color = gui.second->baseColor;
+
+			(gui.second->ActiveHighlight && gui.second->Active) ? gui.second->Color *= 1.8 : gui.second->Color;
 		}
 	}
 }

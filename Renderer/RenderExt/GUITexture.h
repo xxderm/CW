@@ -28,6 +28,10 @@ struct GuiFormat
 	std::string Type;
 	std::string For;
 	std::vector<std::string> ShowToClick;
+	std::vector<std::string> HideToClick;
+	std::pair<bool, SDL_Keycode> Key = std::make_pair<bool, SDL_Keycode>(false, ' ');	
+	std::pair<std::string, std::vector<std::string>> CommandOnClick;
+	bool ActiveHighlight = false;
 
 	glm::vec4 baseColor = glm::vec4(1, 1, 1, 0.5);
 	bool Active = false;
@@ -42,6 +46,7 @@ public:
 	GuiFormat* Get(std::string Name);
 	void SetVisible(std::string Name, bool v);
 	void SetColor(std::string Name, glm::vec4 Color);
+	bool isAllInputHidden();
 	void Clear();
 	~GUITexture();
 private:

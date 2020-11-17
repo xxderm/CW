@@ -94,6 +94,8 @@ void Reader::getUI(GUITexture* guis, std::string path, bool update)
             auto lit = split(line, " ");
             if (lit.size() > 0)
             {
+                if (lit[0] == "#import")
+                    this->getUI(guis, lit[1], false);
                 if (lit[0] == "Name")
                     format->Name = lit[1];
                 if (lit[0] == "Texture")
@@ -150,6 +152,23 @@ void Reader::getUI(GUITexture* guis, std::string path, bool update)
                     lit.erase(lit.begin());
                     format->ShowToClick = lit;
                 }
+                if (lit[0] == "HideOnClickEvent")
+                {
+                    lit.erase(lit.begin());
+                    format->HideToClick = lit;
+                }
+                if (lit[0] == "CommandOnClick")
+                {
+                    lit.erase(lit.begin());
+                    std::string Command = lit[0];
+                    if(lit.size() > 2)
+                        lit.erase(lit.begin());
+                    format->CommandOnClick = std::pair<std::string, std::vector<std::string>>(Command, lit);
+                }
+                if (lit[0] == "Key")
+                    format->Key = std::make_pair<bool, SDL_Keycode>(true, (SDL_Keycode)lit[1][0]);
+                if (lit[0] == "Highlight")
+                    format->ActiveHighlight = std::stoi(lit[1]);
                 if (lit[0] == "PUSH")
                 {
                     guis->Add(format->Name, format);

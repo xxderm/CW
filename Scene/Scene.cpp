@@ -130,6 +130,11 @@ bool Scene::isRunning()
 	return mRunning;
 }
 
+void Scene::Exit()
+{
+	this->mRunning = false;
+}
+
 SceneMachine::SceneMachine()
 {
 }

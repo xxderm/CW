@@ -5,7 +5,7 @@ MenuScene MenuScene::mMenuScene;
 void MenuScene::Init(Scene* scene)
 {
 	SDL_GetWindowSize(scene->getWindow(), &mWndWidth, &mWndHeight);
-	mGUIRenderer = new GUIRenderer("Resources/UI/Menu.ui", 30);
+	mGUIRenderer = new GUIRenderer("Resources/UI/Menu.ui", 30, scene);
 
 	mGUIRenderer->Init(scene->getWindow());
 
@@ -34,7 +34,7 @@ void MenuScene::Resume()
 void MenuScene::HandleEvents(Scene* scene)
 {
 	while (SDL_PollEvent(scene->getEvent()))
-	{
+	{		
 		mGUIRenderer->HandleEvent(scene->getEvent(), scene->getWindow());
 	}
 }

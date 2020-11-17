@@ -30,6 +30,16 @@ void GUITexture::SetColor(std::string Name, glm::vec4 Color)
 	this->mGuis.at(Name)->Color = Color;
 }
 
+bool GUITexture::isAllInputHidden()
+{
+	for (auto& i : mGuis)
+	{
+		if (i.second->Type == "Input" && (i.second->Visible && i.second->Active))
+			return false;
+	}
+	return true;
+}
+
 void GUITexture::Clear()
 {
 	for (auto& gui : mGuis)

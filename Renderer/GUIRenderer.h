@@ -3,11 +3,13 @@
 #define GUI_RENDERER_HEADER
 #include "IRenderer.h"
 #include "../Reader.h"
+#include "../Command/UICommand.h"
+#include "../Scene/CountrySelectScene.h"
 
 class GUIRenderer : public IRenderer
 {
 public:
-	GUIRenderer(std::string uiPath, int fontSize = 24);
+	GUIRenderer(std::string uiPath, int fontSize = 24, Scene* scene = nullptr);
 	void Render() override;
 	void Init(SDL_Window* wnd) override;
 	void Update() override;
@@ -27,6 +29,9 @@ private:
 
 	std::string mUiPath;
 	int mFontSize = 24;
+
+	Scene* mScene_ptr;
+	std::unordered_map<std::string, Command*> mCommand;
 };
 
 #endif // !GUIRENDERER_HEADER

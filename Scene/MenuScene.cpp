@@ -19,7 +19,11 @@ void MenuScene::Init(Scene* scene)
 	mGUIRenderer->setMousePicker(mMousePicker);
 
 
+
+	
 	auto ClientInput = "0 Player " + std::to_string(time(NULL));
+	scene->getPacket()->len = ClientInput.size() + 1;
+	memcpy(scene->getPacket()->data, (Uint8*)ClientInput.c_str(), scene->getPacket()->len);
 	SDLNet_UDP_Send(*scene->getSocket(), -1, scene->getPacket());
 }
 
@@ -69,6 +73,8 @@ void MenuScene::Listen(Scene* scene)
 void MenuScene::Response(Scene* scene)
 {
 	auto ClientInput = "2 " + std::to_string(time(NULL));
+	scene->getPacket()->len = ClientInput.size() + 1;
+	memcpy(scene->getPacket()->data, (Uint8*)ClientInput.c_str(), scene->getPacket()->len);
 	SDLNet_UDP_Send(*scene->getSocket(), -1, scene->getPacket());
 }
 

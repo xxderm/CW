@@ -39,6 +39,11 @@ void Scene::Init()
 	Config.close();
 	mRunning = true;
 
+
+	this->mIPv4 = pt.get<std::string>("SERVER IPv4");
+	this->mPort = pt.get<Uint16>("SERVER PORT");
+	this->Connect();
+
 	/*glClearDepth(1.f);
 	glDepthFunc(GL_LESS);
 	glEnable(GL_DEPTH_TEST);
@@ -94,6 +99,16 @@ void Scene::Update()
 void Scene::Draw()
 {	
 	mScenes.back()->Draw(this);
+}
+
+void Scene::Listen()
+{
+	mScenes.back()->Listen(this);
+}
+
+void Scene::Response()
+{
+	mScenes.back()->Response(this);
 }
 
 void Scene::Clean()

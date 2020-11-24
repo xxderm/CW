@@ -15,6 +15,8 @@ public:
 	void HandleEvents(Scene* scene) override;
 	void Update(Scene* scene) override;
 	void Draw(Scene* scene) override;
+	void Listen(Scene* scene) override;
+	void Response(Scene* scene) override;
 	static CountrySelectScene* getInstance()
 	{
 		return &mCountryScene;

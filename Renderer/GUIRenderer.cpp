@@ -160,7 +160,7 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 				mGuis->SetColor(gui.first, gui.second->baseColor);
 			}			
 
-			(gui.second->ActiveHighlight && gui.second->Active) ? gui.second->Color *= 1.8 : gui.second->Color;
+			(gui.second->ActiveHighlight && gui.second->Active) ? gui.second->Color *= gui.second->ActiveHighlightIntensity : gui.second->Color;
 		}
 	}
 }

@@ -13,7 +13,9 @@ public:
 	void Resume() override;
 	void HandleEvents(Scene* scene) override;
 	void Update(Scene* scene) override;
-	void Draw(Scene* scene) override;
+	void Draw(Scene* scene) override;	
+	void Listen(Scene* scene) override;
+	void Response(Scene* scene) override;
 	static MenuScene* getInstance()
 	{
 		return &mMenuScene;

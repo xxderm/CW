@@ -4,10 +4,11 @@
 #include "SceneExt/MousePicker.h"
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
+#include "../Connection/UDPConnection.h"
 
 class SceneMachine;
 
-class Scene
+class Scene : public ConnectedUDP
 {
 public:
 	Scene();
@@ -18,6 +19,8 @@ public:
 	void HandleEvents();
 	void Update();
 	void Draw();
+	void Listen() override;
+	void Response() override;
 	void Clean();
 	void Quit();
 	SDL_Window* getWindow();
@@ -44,6 +47,8 @@ public:
 	virtual void HandleEvents(Scene* scene) = 0;
 	virtual void Update(Scene* scene) = 0;
 	virtual void Draw(Scene* scene) = 0;
+	virtual void Listen(Scene* scene) = 0;
+	virtual void Response(Scene* scene) = 0;
 	void ChangeScene(Scene* scene, SceneMachine* sceneMachine);
 	virtual ~SceneMachine();
 };

@@ -169,6 +169,8 @@ void Reader::getUI(GUITexture* guis, std::string path, bool update)
                     format->Key = std::make_pair<bool, SDL_Keycode>(true, (SDL_Keycode)lit[1][0]);
                 if (lit[0] == "Highlight")
                     format->ActiveHighlight = std::stoi(lit[1]);
+                if (lit[0] == "HighlightIntensity")
+                    format->ActiveHighlightIntensity = std::stof(lit[1]);
                 if (lit[0] == "PUSH")
                 {
                     guis->Add(format->Name, format);

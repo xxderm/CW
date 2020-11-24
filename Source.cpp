@@ -12,6 +12,8 @@ int main(int argc, char** argv)
 	{
 		while (ApplicationScene->isRunning())
 		{
+			ApplicationScene->Response();
+			ApplicationScene->Listen();
 			ApplicationScene->HandleEvents();
 			ApplicationScene->Update();
 			ApplicationScene->Draw();

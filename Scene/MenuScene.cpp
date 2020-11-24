@@ -17,6 +17,10 @@ void MenuScene::Init(Scene* scene)
 
 	mGUIRenderer->setCamera(mCamera);
 	mGUIRenderer->setMousePicker(mMousePicker);
+
+
+	auto ClientInput = "0 Player " + std::to_string(time(NULL));
+	SDLNet_UDP_Send(*scene->getSocket(), -1, scene->getPacket());
 }
 
 void MenuScene::Clean()
@@ -52,6 +56,20 @@ void MenuScene::Draw(Scene* scene)
 	glViewport(0, 0, mWndWidth, mWndHeight);
 	mGUIRenderer->Render();
 	SDL_GL_SwapWindow(scene->getWindow());
+}
+
+void MenuScene::Listen(Scene* scene)
+{
+	if (SDLNet_UDP_Recv(*scene->getSocket(), scene->getPacket()))
+	{
+		std::cout << "Got: " << scene->getPacket()->data << std::endl;
+	}
+}
+
+void MenuScene::Response(Scene* scene)
+{
+	auto ClientInput = "2 " + std::to_string(time(NULL));
+	SDLNet_UDP_Send(*scene->getSocket(), -1, scene->getPacket());
 }
 
 MenuScene::~MenuScene()

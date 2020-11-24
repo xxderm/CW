@@ -32,6 +32,7 @@ struct GuiFormat
 	std::pair<bool, SDL_Keycode> Key = std::make_pair<bool, SDL_Keycode>(false, ' ');	
 	std::pair<std::string, std::vector<std::string>> CommandOnClick;
 	bool ActiveHighlight = false;
+	float ActiveHighlightIntensity = 1.0;
 
 	glm::vec4 baseColor = glm::vec4(1, 1, 1, 0.5);
 	bool Active = false;

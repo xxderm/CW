@@ -96,3 +96,12 @@ void GameScene::Draw(Scene* scene)
 	SDL_GL_SwapWindow(scene->getWindow());
 }
 
+void GameScene::Listen(Scene* scene)
+{
+}
+
+void GameScene::Response(Scene* scene)
+{
+	
+}
+

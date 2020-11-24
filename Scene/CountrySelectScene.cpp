@@ -79,6 +79,14 @@ void CountrySelectScene::Draw(Scene* scene)
 	SDL_GL_SwapWindow(scene->getWindow());
 }
 
+void CountrySelectScene::Listen(Scene* scene)
+{
+}
+
+void CountrySelectScene::Response(Scene* scene)
+{
+}
+
 CountrySelectScene::~CountrySelectScene()
 {
 }

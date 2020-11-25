@@ -2,7 +2,7 @@
 
 Reader Reader::mReader;
 
-std::vector<std::string> Reader::getArray(std::string Path, std::string Keyword)
+std::vector<std::string> Reader::getArray(std::string Path, std::string Keyword, bool isDigit)
 {    
     Clean();
     auto f = getStream(Path);
@@ -15,7 +15,7 @@ std::vector<std::string> Reader::getArray(std::string Path, std::string Keyword)
                 mCheck = false;
                 break;
             }
-            if (c == ' ' or c == '=' or c == '{' or c == '\t' or c == '\n')
+            if ((c == ' ' or c == '=' or c == '{' or c == '\t' or c == '\n'))
             {
                 if (not mLiteral.empty())
                 {
@@ -23,8 +23,11 @@ std::vector<std::string> Reader::getArray(std::string Path, std::string Keyword)
                     mLiteral.clear();
                 }
                 continue;
-            }
-            mLiteral += c;
+            }       
+            if (!isDigit)
+                mLiteral += c;
+            else if (isdigit(c))
+                mLiteral += c;
         }
         if (tmp == Keyword)
         {

@@ -192,6 +192,9 @@ void main()
 		
 
 	fColor = FinalColor;
+
+	// Gamma correction
+	fColor.rgb = pow(fColor.rgb, vec3(2.2));
 	
 
 	if(currentDraw==1)
@@ -200,32 +203,34 @@ void main()
 	}
 	else if(currentDraw==0)
 	{
-		if(
-			C3FB(countriesmap).r == 0 &&
-			C3FB(countriesmap).g == 0 &&
-			C3FB(countriesmap).b == 0
-		)
-		{
-			fColor=vec4(0.0, 0.0, 0.0, 0.5);
-		}
-		else
-			fColor=mix(countriesmap,currentTexture,0.1);
+		fColor=mix(countriesmap,currentTexture,0.1);
 	}
-	
-	currentNormal=normalize(currentNormal*2.-1.);
-	//currentNormal=normalize(TBN*currentNormal);
-	
-	vec3 color=fColor.rgb;
-	vec3 ambient=.041*color;
-	float diff=max(dot(lightDir,normal+currentNormal),0.);
-	vec3 diffuse=diff*color;
-	vec3 halfwayDir=normalize(lightDir);
-	float spec=(max(dot(normal+currentNormal,halfwayDir),0.));
-	vec3 specular=vec3(.122)*spec;
-	
-	fColor=vec4(ambient+diffuse+specular,1);
+	else {
+		currentNormal=normalize(currentNormal*2.-1.);
+		//currentNormal=normalize(TBN*currentNormal);
+		
+		vec3 color=fColor.rgb;
+		vec3 ambient=.041*color;
+		float diff=max(dot(lightDir,normal+currentNormal),0.);
+		vec3 diffuse=diff*color;
+		vec3 halfwayDir=normalize(lightDir);
+		float spec=(max(dot(normal+currentNormal,halfwayDir),0.));
+		vec3 specular=vec3(.122)*spec;
+
+		// rim light
+		vec3 rimLight = vec3(0.0, 0.0, 0.0);
+		vec3 eye = normalize(-fragmentPos.xyz);
+		float rimLightIntensity = dot(eye, normal);
+		rimLightIntensity = 1.0 - rimLightIntensity;
+		rimLightIntensity = max(0.0, rimLightIntensity);
+		rimLightIntensity = pow(rimLightIntensity, 1.2);
+		rimLightIntensity = smoothstep(0.3, 0.4, rimLightIntensity);
+		rimLight   = (diffuse * rimLightIntensity);
+		
+		
+		fColor=vec4(ambient+diffuse+specular+rimLight.rgb,1);
+	}
 
 	if(hoverEffect.x == C3FB(provincemap).x && hoverEffect.y == C3FB(provincemap).y && hoverEffect.z == C3FB(provincemap).z)
-		fColor.rgb *= (1 + abs(sin(Tick)));
-
+		fColor.rgb *= (1 + abs(sin(Tick)));	
 }

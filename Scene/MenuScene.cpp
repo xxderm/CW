@@ -72,7 +72,10 @@ void MenuScene::Listen(Scene* scene)
 
 void MenuScene::Response(Scene* scene)
 {
-	auto ClientInput = "2 " + std::to_string(time(NULL));
+	auto chrono_clock_now = std::chrono::system_clock::now().time_since_epoch();
+	std::chrono::milliseconds chrono_time_ms = std::chrono::duration_cast<std::chrono::milliseconds>(chrono_clock_now);
+	auto time_sent = chrono_time_ms.count();
+	auto ClientInput = "2 " + std::to_string(time_sent);
 	scene->getPacket()->len = ClientInput.size() + 1;
 	memcpy(scene->getPacket()->data, (Uint8*)ClientInput.c_str(), scene->getPacket()->len);
 	SDLNet_UDP_Send(*scene->getSocket(), -1, scene->getPacket());

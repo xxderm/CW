@@ -19,3 +19,14 @@ void ChangeSceneCommand::Execute()
 {
 	mScene_ptr->ChangeScene(mSceneMachine_ptr);
 }
+
+ClearLobbyListCommand::ClearLobbyListCommand(std::vector<Lobby>* lobbies)
+	: mLobbies(lobbies)
+{
+
+}
+
+void ClearLobbyListCommand::Execute()
+{
+	mLobbies->clear();
+}

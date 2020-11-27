@@ -26,6 +26,7 @@ protected:
 private:
 	static MenuScene mMenuScene;
 
+
 	IRenderer* mGUIRenderer = nullptr;
 
 	MousePicker* mMousePicker = nullptr;

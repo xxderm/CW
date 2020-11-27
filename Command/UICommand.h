@@ -22,4 +22,13 @@ private:
 	SceneMachine* mSceneMachine_ptr;
 };
 
+class ClearLobbyListCommand final : public Command
+{
+public:
+	ClearLobbyListCommand(std::vector<Lobby>* lobbies);
+	void Execute() override;
+private:
+	std::vector<Lobby>* mLobbies;
+};
+
 #endif // !UI_COMMAND_HEADER

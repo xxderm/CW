@@ -18,6 +18,7 @@ in vec3 TangentFragPos;
 #define atlasTex(index)(uv.xy/numberOfRows)+vec2(float(index%numberOfRows)/float(numberOfRows),float(index/numberOfRows)/float(numberOfRows))
 
 uniform sampler2D provinces;
+uniform sampler2D provincesBlend;
 uniform sampler2D states;
 uniform sampler2D terrain_map;
 uniform sampler2D terra;
@@ -112,6 +113,7 @@ float remap(vec3 vminval, vec3 vmaxval, vec3 vcurval)
 void main()
 {
 	vec4 provincemap=texture(provinces,fpos);
+	vec4 provinceBlendMap = texture(provincesBlend, fpos);
 	vec4 countriesmap=texture(Countries,fpos);
 	
 	terrain_map_texture=texture(terrain_map,fpos);
@@ -235,5 +237,7 @@ void main()
 	}
 
 	if(hoverEffect.x == C3FB(provincemap).x && hoverEffect.y == C3FB(provincemap).y && hoverEffect.z == C3FB(provincemap).z)
-		fColor.rgb *= (1 + abs(sin(Tick)));	
+	{			
+		//fColor.rgb *= (1 + abs(sin(Tick)));
+	}	
 }

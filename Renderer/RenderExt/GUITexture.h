@@ -33,6 +33,7 @@ struct GuiFormat
 	std::pair<std::string, std::vector<std::string>> CommandOnClick;
 	bool ActiveHighlight = false;
 	float ActiveHighlightIntensity = 1.0;
+	int LobbyIndex = -1;
 
 	glm::vec4 baseColor = glm::vec4(1, 1, 1, 0.5);
 	bool Active = false;

@@ -22,4 +22,12 @@ public:
 	virtual void Connect() = 0;
 };
 
+typedef struct Lobby
+{
+	std::string Name;
+	std::string Version;
+	int Capacity;
+	int Clients;
+};
+
 #endif // !CONNECTION_HEADER

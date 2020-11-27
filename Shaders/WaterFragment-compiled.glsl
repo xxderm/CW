@@ -3,6 +3,7 @@
 out vec4 FragColor;
 
 in vec3 vertexPos;
+in vec4 clipSpace;
 in vec2 TexCoord;
 in float h;
 in vec2 fpos;
@@ -27,7 +28,8 @@ void main()
     vec2 distortion2 = (texture(dudv, vec2(-TexCoord.x + moveFactor, TexCoord.y + moveFactor)).rg * 2.0 - 1.0) * 0.12;
     vec2 distortion = distortion1 + distortion2;
 
-    vec4 tmp = mix(texture(cm, fpos),texture(TexWater, TexCoord), 0.5);
+  
+    vec4 tmp = mix(texture(cm, fpos),texture(TexWater, fpos), 0.5);
     FragColor = vec4(tmp.rgb, 0.9f);
 
     vec3 Normals = normalize(cross(dFdx(vertexPos), dFdy(vertexPos))) ;
@@ -38,6 +40,7 @@ void main()
     refraction += vec3(distortion, ratio);
     refraction = clamp(refraction, 0.001, 0.999);
 
+ 
     FragColor *= vec4(texture(skybox, refraction).rgb, 1.0);
 
     vec3 reflection = reflect(I, normalize(-Normals));  
@@ -65,5 +68,6 @@ void main()
 	float spec=(max(dot(normal,halfwayDir),0.));
 	vec3 specular=vec3(.2)*spec;
 	
+    
 	FragColor.xyz = vec3(ambient+diffuse2+specular);
 }

@@ -5,6 +5,7 @@
 #include "../Reader.h"
 #include "../Command/UICommand.h"
 #include "../Scene/CountrySelectScene.h"
+#include "../Command/ServerCommand.h"
 
 class GUIRenderer : public IRenderer
 {
@@ -19,6 +20,7 @@ public:
 
 private:
 	glm::mat4 CreateTransformationMatrix(glm::vec2 translation, glm::vec2 scale);
+	void Listen();
 private:
 	std::unique_ptr<BufferObject> mQuad;
 	std::unique_ptr<Shader> mProgram;
@@ -32,6 +34,8 @@ private:
 
 	Scene* mScene_ptr;
 	std::unordered_map<std::string, Command*> mCommand;
+
+	std::vector<Lobby> mLobbies;
 };
 
 #endif // !GUIRENDERER_HEADER

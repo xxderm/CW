@@ -148,6 +148,8 @@ void Reader::getUI(GUITexture* guis, std::string path, bool update)
                     format->Visible = std::stoi(lit[1]);
                 if (lit[0] == "Type")
                     format->Type = lit[1];
+                if (lit[0] == "Lobby")
+                    format->LobbyIndex = std::stoi(lit[1]);
                 if (lit[0] == "For")
                     format->For = lit[1];               
                 if (lit[0] == "ShowOnClickEvent")

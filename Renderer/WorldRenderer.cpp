@@ -47,16 +47,16 @@ void WorldRenderer::Render()
 	glClearColor(0, 0, 0, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
 	mProgram[1]->Bind();
 	glPatchParameteri(GL_PATCH_VERTICES, 4);
 	mBuffer->Draw(GL_PATCHES, Indices.size());
 	mProgram[1]->UnBind();
 
+
 	mProgram[0]->Bind();	
 	glPatchParameteri(GL_PATCH_VERTICES, 4);
 	mBuffer->Draw(GL_PATCHES, Indices.size());	
-	mProgram[0]->UnBind();		
+	mProgram[0]->UnBind();	
 
 	/*mProgram[2]->Bind();
 	glPatchParameteri(GL_PATCH_VERTICES, 4);
@@ -248,6 +248,12 @@ void WorldRenderer::TerrainInit()
 		GL_RGB, GL_TEXTURE9,
 		Parameter::NEAREST_CTG);
 	mProgram[0]->setInt("provinces", 9);
+
+	mTexture->Add(
+		"Resources/terrain/provinces.bmp",
+		GL_RGB, GL_TEXTURE18,
+		Parameter::LINEAR);
+	mProgram[0]->setInt("provincesBlend", 18);
 	
 	mBuffer->UnBind();
 

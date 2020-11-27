@@ -63,10 +63,13 @@ void GUIRenderer::Init(SDL_Window* wnd)
 
 	mCommand.emplace("Exit", new ExitCommand(mScene_ptr));
 	mCommand.emplace("Start", new ChangeSceneCommand(mScene_ptr, CountrySelectScene::getInstance()));
+	mCommand.emplace("GetLobbies", new GetLobbyListCommand(mScene_ptr->getPacket(), mScene_ptr->getSocket()));
+	mCommand.emplace("ClearLobbies", new ClearLobbyListCommand(&mLobbies));
 }
 
 void GUIRenderer::Update()
 {
+	this->Listen();
 	//Reader::getInstance()->getUI(mGuis.get(), mUiPath);
 }
 
@@ -122,9 +125,28 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 	}
 
 	for (auto& gui : this->mGuis->getGui())
-	{
-		if (gui.second->Visible)
+	{		
+		if (gui.second->LobbyIndex != -1)
 		{
+			if (mLobbies.size() >= gui.second->LobbyIndex)
+			{
+				gui.second->Visible = true;
+				std::string IndexT = "L" + std::to_string(gui.second->LobbyIndex) + "T";
+				std::string IndexV = "L" + std::to_string(gui.second->LobbyIndex) + "V";
+				std::string IndexC = "L" + std::to_string(gui.second->LobbyIndex) + "C";
+				gui.second->Text
+					.at(IndexT)
+					.Text = std::to_string(gui.second->LobbyIndex) + " " + mLobbies.at(gui.second->LobbyIndex - 1).Name;
+				gui.second->Text
+					.at(IndexV)
+					.Text = mLobbies.at(gui.second->LobbyIndex - 1).Version;
+				gui.second->Text
+					.at(IndexC)
+					.Text = std::to_string(mLobbies.at(gui.second->LobbyIndex - 1).Clients) + "/" + std::to_string(32);
+			}
+		}
+		if (gui.second->Visible)
+		{				
 			if (gui.second->isHovered(MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY))))
 			{
 				mGuis->SetColor(gui.first, gui.second->hoverColor);
@@ -158,10 +180,10 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 					gui.second->Active = false;
 				}
 				mGuis->SetColor(gui.first, gui.second->baseColor);
-			}			
-
+			}
 			(gui.second->ActiveHighlight && gui.second->Active) ? gui.second->Color *= gui.second->ActiveHighlightIntensity : gui.second->Color;
-		}
+			
+		}		
 	}
 }
 
@@ -172,4 +194,45 @@ glm::mat4 GUIRenderer::CreateTransformationMatrix(glm::vec2 translation, glm::ve
 	matrix *= glm::translate(glm::vec3(translation.x, translation.y, 0));
 	matrix *= glm::scale(glm::vec3(scale.x, scale.y, 1.f));
 	return matrix;
+}
+
+void GUIRenderer::Listen()
+{
+	if (SDLNet_UDP_Recv(*mScene_ptr->getSocket(), mScene_ptr->getPacket()))
+	{
+		//std::cout << "Got: " << scene->getPacket()->data << std::endl;
+		if (mScene_ptr->getPacket()->data[0] == (Uint8)'5')
+		{
+			std::string message = std::string((char*)mScene_ptr->getPacket()->data);
+
+			bool state = false;
+			std::string line;
+			mLobbies.clear();
+
+			for (auto& i : message)
+			{				
+				if (i == '|' && state)
+				{
+					auto lobby = Reader::getInstance()->split(line, " ");
+					Lobby curr;
+					curr.Name = lobby[0];
+					curr.Capacity = std::stoi(lobby[1]);
+					curr.Version = lobby[2];
+					curr.Clients = std::stoi(lobby[3]);
+					mLobbies.push_back(curr);
+					state = false;
+					line.clear();
+				}	
+				else if (i == '|')
+				{
+					state = !state;
+				}
+				if (state && i != '|')
+				{
+					line += i;
+				}
+			}
+
+		}
+	}
 }

@@ -5,6 +5,7 @@ layout(quads,fractional_odd_spacing,ccw)in;
 
 out vec2 TexCoord;
 out vec3 vertexPos;
+out vec4 clipSpace;
 out float depth;
 out float h;
 
@@ -31,6 +32,7 @@ out vec3 TangentFragPos;
 
 in vec2 TexCoordTC[];
 out vec2 TexCoordTE;
+out vec3 fragmentPos;
 
 void main(){
     float u=gl_TessCoord.x;
@@ -46,6 +48,7 @@ void main(){
     vec4 a=mix(gl_in[1].gl_Position,gl_in[0].gl_Position,u);
     vec4 b=mix(gl_in[2].gl_Position,gl_in[3].gl_Position,u);
     vec4 position=mix(a,b,v);
+    clipSpace = position;
     vertexPos=position.xyz;
     TexCoord=position.xz;
     float MAP_SIZE_X=128;
@@ -54,17 +57,16 @@ void main(){
     float heightScale=1.f;
     vec2 heightMapUV=vec2((mapPos.x)/MAP_SIZE_X,(mapPos.y)/MAP_SIZE_Y);
     //vec2((mapPos.x + 0.5f) / MAP_SIZE_X, (mapPos.y + 0.5f) / MAP_SIZE_Y);
-    float y=0;
-    if(cameraPos.y<2)
-    y=sin(time*speed+(position.x*position.z*amount)+.5*cos(position.x*position.z*amount))*height;
+ 
+    
     float hr=texture(wterrain,heightMapUV).r;
     // 0.365
     
-    gl_Position=mvp*vec4(TexCoord.x,.3725490196078431+y,TexCoord.y,1.);
+    gl_Position=mvp*vec4(TexCoord.x,.3725490196078431,TexCoord.y,1.);
     depth=gl_Position.z;
-    h=hr;
+    h=hr;   
     fpos=heightMapUV;
-    
+    fragmentPos = position.xyz;
     vec3 edge1=gl_in[2].gl_Position.xyz-gl_in[1].gl_Position.xyz;
     vec3 edge2=gl_in[3].gl_Position.xyz-gl_in[1].gl_Position.xyz;
     vec2 deltaUV1=TexCoordTC[2]-TexCoordTC[1];

@@ -201,7 +201,7 @@ void WorldRenderer::TerrainInit()
 	mTexture->Add(
 		"Resources/terrain/Countrymap.png",
 		GL_RGBA, GL_TEXTURE2,
-		Parameter::LINEAR);
+		Parameter::NEAREST_CTG, false);
 	mProgram[0]->setInt("Countries", 2);
 
 

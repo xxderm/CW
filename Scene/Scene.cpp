@@ -44,14 +44,13 @@ void Scene::Init()
 	this->mPort = pt.get<Uint16>("SERVER PORT");
 	this->Connect();
 
-	/*glClearDepth(1.f);
+	/* glClearDepth(1.f);
 	glDepthFunc(GL_LESS);
 	glEnable(GL_DEPTH_TEST);
 	glShadeModel(GL_FLAT | GL_SMOOTH);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);*/
-
 
 	glEnable(GL_PRIMITIVE_RESTART);
 	glPrimitiveRestartIndex(0xFFFF);

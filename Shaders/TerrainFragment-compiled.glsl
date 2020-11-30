@@ -42,6 +42,7 @@ uniform int currentDraw=2;// 0 - Draw countries (politic map)
 
 in vec2 fpos;
 in vec3 fragmentPos;
+in vec4 vpos;
 
 vec4 terrain_map_texture;
 
@@ -112,8 +113,7 @@ float remap(vec3 vminval, vec3 vmaxval, vec3 vcurval)
 void main()
 {
 	vec4 provincemap=texture(provinces,fpos);
-	vec4 provinceBlendMap = texture(provincesBlend, fpos);
-	vec4 countriesmap=texture(Countries,fpos);
+	vec4 provinceBlendMap = texture(provincesBlend, fpos);	
 	
 	terrain_map_texture=texture(terrain_map,fpos);
 	vec4 grasstexture=texture2D(TerrainTextureID,atlasTex(1));
@@ -194,10 +194,16 @@ void main()
 		
 
 	fColor = FinalColor;
-
+	
 	// Gamma correction
 	fColor.rgb = pow(fColor.rgb, vec3(2.2));
 	
+
+	vec4 countriesmap=texture2D(Countries,fpos);
+	float step_u = 1.0 / 5632;
+	float step_v = 1.0 / 2048;
+	vec4 rightPixel = texture2D(Countries, fpos + vec2(step_u, 0.0));
+	vec4 bottomPixel = texture2D(Countries, fpos + vec2(0.0, step_v));
 
 	if(currentDraw==1)
 	{
@@ -205,36 +211,48 @@ void main()
 	}
 	else if(currentDraw==0)
 	{
-		fColor=mix(countriesmap,currentTexture,0.1);
-	}
-	else {
-		currentNormal=normalize(currentNormal*2.-1.);
-		//currentNormal=normalize(TBN*currentNormal);
-		
-		vec3 color=fColor.rgb;
-		vec3 ambient=.041*color;
-		float diff=max(dot(lightDir,normal+currentNormal),0.);
-		vec3 diffuse=diff*color;
-		vec3 halfwayDir=normalize(lightDir);
-		float spec=(max(dot(normal+currentNormal,halfwayDir),0.));
-		vec3 specular=vec3(.122)*spec;
+		fColor=mix(countriesmap,FinalColor,0.1);	
+		fColor *= 0.5;	
 
-		// rim light
-		vec3 rimLight = vec3(0.0, 0.0, 0.0);
-		vec3 eye = normalize(-fragmentPos.xyz);
-		float rimLightIntensity = dot(eye, normal);
-		rimLightIntensity = 1.0 - rimLightIntensity;
-		rimLightIntensity = max(0.0, rimLightIntensity);
-		rimLightIntensity = pow(rimLightIntensity, 1.2);
-		rimLightIntensity = smoothstep(0.3, 0.4, rimLightIntensity);
-		rimLight   = (diffuse * rimLightIntensity);
+		float _dFdX = length(rightPixel - countriesmap) / step_u;
+		float _dFdY = length(bottomPixel - countriesmap) / step_v;
 		
-		
-		fColor=vec4(ambient+diffuse+specular+rimLight.rgb,1);
+
+		if(_dFdX > 0.0 || _dFdY > 0.0) {
+		fColor.r = 0; //_dFdX
+		fColor.g = 0; // _dFdY
+		fColor.b = 0;
+		fColor.a = 0.5;
+		}
 	}
+	
+	currentNormal=normalize(currentNormal*2.-1.);
+	//currentNormal=normalize(TBN*currentNormal);
+	
+	vec3 color=fColor.rgb;
+	vec3 ambient=.041*color;
+	float diff=max(dot(lightDir,normal+currentNormal),0.);
+	vec3 diffuse=diff*color;
+	vec3 halfwayDir=normalize(lightDir);
+	float spec=(max(dot(normal+currentNormal,halfwayDir),0.));
+	vec3 specular=vec3(.122)*spec;
+
+	// rim light
+	vec3 rimLight = vec3(0.0, 0.0, 0.0);
+	vec3 eye = normalize(-fragmentPos.xyz);
+	float rimLightIntensity = dot(eye, normal);
+	rimLightIntensity = 1.0 - rimLightIntensity;
+	rimLightIntensity = max(0.0, rimLightIntensity);
+	rimLightIntensity = pow(rimLightIntensity, 1.2);
+	rimLightIntensity = smoothstep(0.3, 0.4, rimLightIntensity);
+	rimLight   = (diffuse * rimLightIntensity);
+	
+	
+	fColor=vec4(ambient+diffuse+specular+rimLight.rgb,1);
+	
 
 	if(hoverEffect.x == C3FB(provincemap).x && hoverEffect.y == C3FB(provincemap).y && hoverEffect.z == C3FB(provincemap).z)
 	{			
 		//fColor.rgb *= (1 + abs(sin(Tick)));
-	}	
+	}		
 }

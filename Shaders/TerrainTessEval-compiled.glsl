@@ -7,6 +7,7 @@ out vec2 texcoord;
 out float depth;
 out float h;
 out vec2 fpos;
+out vec4 vpos;
 
 out mat3 TBN;
 out vec3 normal;
@@ -48,6 +49,7 @@ void main(){
     vec4 b = mix(gl_in[2].gl_Position, gl_in[3].gl_Position, u);
     vec4 position = mix(a, b, v);
     texcoord = position.xz;
+    vpos = position;
 
     float MAP_SIZE_X = 128;
     float MAP_SIZE_Y = 50;

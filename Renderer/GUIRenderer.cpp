@@ -125,28 +125,28 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 	}
 
 	for (auto& gui : this->mGuis->getGui())
-	{		
-		if (gui.second->LobbyIndex != -1)
-		{
-			if (mLobbies.size() >= gui.second->LobbyIndex)
-			{
-				gui.second->Visible = true;
-				std::string IndexT = "L" + std::to_string(gui.second->LobbyIndex) + "T";
-				std::string IndexV = "L" + std::to_string(gui.second->LobbyIndex) + "V";
-				std::string IndexC = "L" + std::to_string(gui.second->LobbyIndex) + "C";
-				gui.second->Text
-					.at(IndexT)
-					.Text = std::to_string(gui.second->LobbyIndex) + " " + mLobbies.at(gui.second->LobbyIndex - 1).Name;
-				gui.second->Text
-					.at(IndexV)
-					.Text = mLobbies.at(gui.second->LobbyIndex - 1).Version;
-				gui.second->Text
-					.at(IndexC)
-					.Text = std::to_string(mLobbies.at(gui.second->LobbyIndex - 1).Clients) + "/" + std::to_string(32);
-			}
-		}
+	{			
 		if (gui.second->Visible)
-		{				
+		{		
+			if (gui.second->LobbyIndex != -1)
+			{
+				if (mLobbies.size() >= gui.second->LobbyIndex)
+				{
+					gui.second->Visible = true;
+					std::string IndexT = "L" + std::to_string(gui.second->LobbyIndex) + "T";
+					std::string IndexV = "L" + std::to_string(gui.second->LobbyIndex) + "V";
+					std::string IndexC = "L" + std::to_string(gui.second->LobbyIndex) + "C";
+					gui.second->Text
+						.at(IndexT)
+						.Text = std::to_string(gui.second->LobbyIndex) + " " + mLobbies.at(gui.second->LobbyIndex - 1).Name;
+					gui.second->Text
+						.at(IndexV)
+						.Text = mLobbies.at(gui.second->LobbyIndex - 1).Version;
+					gui.second->Text
+						.at(IndexC)
+						.Text = std::to_string(mLobbies.at(gui.second->LobbyIndex - 1).Clients) + "/" + std::to_string(32);
+				}
+			}
 			if (gui.second->isHovered(MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY))))
 			{
 				mGuis->SetColor(gui.first, gui.second->hoverColor);

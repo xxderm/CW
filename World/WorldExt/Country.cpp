@@ -13,9 +13,9 @@ void Country::Init()
 	{ 
 		std::string TAG = {FileName[0] , FileName[1] , FileName[2]};
 		auto Capital = (Reader::getInstance()->getValue("Resources/TAG/" + FileName, "capital", 3, true));
-		CountryFormat country;
-		country.Tag = TAG;
-		country.Capital = std::stoi(Capital);
+		CountryFormat* country = new CountryFormat();
+		country->Tag = TAG;
+		country->Capital = std::stoi(Capital);
 		mCountries.try_emplace(TAG, country);
 	}
 
@@ -28,6 +28,11 @@ void Country::Init()
 		FileStr.erase(std::remove(FileStr.begin(), FileStr.end(), '\"'));
 		FileStr.erase(std::remove(FileStr.begin(), FileStr.end(), '"'));
 		auto CountryColor = Reader::getInstance()->getArray("Resources/" + FileStr, "color", true);
-		mCountries.at(TAG).Color = glm::vec3(std::stoi(CountryColor[0]), std::stoi(CountryColor[1]), std::stoi(CountryColor[2]));
+		mCountries.at(TAG)->Color = glm::vec3(std::stoi(CountryColor[0]), std::stoi(CountryColor[1]), std::stoi(CountryColor[2]));
 	}
+}
+
+CountryFormat* Country::getCountryByTag(std::string Tag)
+{
+	return mCountries.at(Tag);
 }

@@ -8,6 +8,7 @@
 #include <glm/gtx/transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/mat4x4.hpp>
+#include "../World/World.h"
 
 class WorldRenderer final : public IRenderer
 {
@@ -39,6 +40,10 @@ private:
 	std::vector<glm::vec2> TexCoord;
 	std::vector<GLuint> Indices;
 	glm::mat4x4 projection;
+
+	stbi_uc* texData;
+	stbi_uc* provData;
+	World world;
 };
 
 #endif // !WORLDRENDERER_HEADER

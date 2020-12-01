@@ -12,31 +12,31 @@ void State::Init(Province* province)
 		
 	for (size_t i = 0; i < stateFiles.size(); i++)
 	{
-		StateFormat state;
-		state.Id = std::stoi(
+		StateFormat* state = new StateFormat();
+		state->Id = std::stoi(
 			Reader::getInstance()->getValue("Resources/states/" + stateFiles.at(i), "id")
 		);
-		state.Name = Reader::getInstance()->getValue("Resources/states/" + stateFiles.at(i), "name");
-		state.Provinces = Reader::getInstance()->getArray("Resources/states/" + stateFiles.at(i), "provinces");
-		state.CountryTag = Reader::getInstance()->getValue("Resources/states/" + stateFiles.at(i), "owner");
-		for (size_t j = 0; j < state.Provinces.size(); j++)
+		state->Name = Reader::getInstance()->getValue("Resources/states/" + stateFiles.at(i), "name");
+		state->Provinces = Reader::getInstance()->getArray("Resources/states/" + stateFiles.at(i), "provinces");
+		state->CountryTag = Reader::getInstance()->getValue("Resources/states/" + stateFiles.at(i), "owner");
+		for (size_t j = 0; j < state->Provinces.size(); j++)
 		{			
-			auto currentProvince = province->getProvince(std::stoi(state.Provinces.at(j)));
-			currentProvince.StateId = state.Id;
-			province->setProvince(std::stoi(state.Provinces.at(j)), currentProvince);
+			ProvinceFormat* currentProvince = province->getProvince(std::stoi(state->Provinces.at(j)));
+			currentProvince->StateId = state->Id;
+			//province->setProvince(std::stoi(state.Provinces.at(j)), currentProvince);
 		}
-		mStates.push_back(state);
+		mStates.emplace(state->Id, state);
 	}
 
 	stateFiles.clear();
 }
 
-const StateFormat& State::getState(int Id)
+StateFormat* State::getState(int Id)
 {
 	return mStates.at(Id);
 }
 
-void State::setState(int Id, StateFormat state)
+void State::setState(int Id, StateFormat* state)
 {
 	mStates.at(Id) = state;
 }

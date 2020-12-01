@@ -25,7 +25,7 @@ class Texture final
 {
 public:
 	Texture();
-	void Add(std::string path, int format = GL_RGBA, int activeTexture = -1, Parameter param = Parameter::NONE, bool mipmaps = true);
+	stbi_uc* Add(std::string path, int format = GL_RGBA, int activeTexture = -1, Parameter param = Parameter::NONE, bool mipmaps = true, bool mfree = true);
 	void LoadCubemap(std::initializer_list<std::string> faces, int activeTexture);
 	const glm::vec2 getSize(unsigned int id);
 	~Texture();

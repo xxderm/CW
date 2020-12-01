@@ -38,11 +38,11 @@ class State final
 {
 public:
 	State();
-	const StateFormat& getState(int Id);
-	void setState(int Id, StateFormat state);
+	StateFormat* getState(int Id);
+	void setState(int Id, StateFormat* state);
 	void Init(Province* province);
 private:
-	std::vector<StateFormat> mStates;
+	std::unordered_map<int, StateFormat*> mStates;
 };
 
 #endif // !STATE_HEADER

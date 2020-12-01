@@ -29,10 +29,13 @@ class World final
 public:
 	World();
 	void Create();
+	Country* getCountries();
+	Province* getProvinces();
+	State* getStates();
 private:
-	std::unique_ptr<Country> mCountry;
-	std::unique_ptr<Province> mProvince;
-	std::unique_ptr<State> mState;
+	Country* mCountry;
+	Province* mProvince;
+	State* mState;
 };
 
 #endif

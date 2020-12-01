@@ -1,10 +1,8 @@
 #include "Scene/MenuScene.h"
 #undef main
-#include "World/World.h"
+
 int main(int argc, char** argv)
 {	
-	//World* w = new World();
-	//w->Create();
 	Scene* ApplicationScene = new Scene();
 	ApplicationScene->Init();
 	ApplicationScene->ChangeScene(MenuScene::getInstance());

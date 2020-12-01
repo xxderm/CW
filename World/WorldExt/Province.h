@@ -38,13 +38,13 @@ class Province final
 {
 public:
 	Province();
-	const ProvinceFormat& getProvince(int Id);
-	const ProvinceFormat& getProvince(glm::vec3 Color);
-	void setProvince(int Id, ProvinceFormat provice);
+	ProvinceFormat* getProvince(int Id);
+	ProvinceFormat* getProvince(glm::vec3 Color);
+	void setProvince(int Id, ProvinceFormat* provice);
 	void Init();
 private:
-	std::vector<ProvinceFormat> mProvinces;
-	std::map<glm::vec3, ProvinceFormat> mProvinceColorMap;
+	std::vector<ProvinceFormat*> mProvinces;
+	std::map<glm::vec3, ProvinceFormat*> mProvinceColorMap;
 
 };
 

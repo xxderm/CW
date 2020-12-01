@@ -18,8 +18,9 @@ class Country final
 public:
 	Country();
 	void Init();
+	CountryFormat* getCountryByTag(std::string Tag);
 private:
-	std::map<std::string, CountryFormat> mCountries;
+	std::map<std::string, CountryFormat*> mCountries;
 };
 
 #endif // !COUNTRY_HEADER

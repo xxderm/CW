@@ -28,29 +28,29 @@ void Province::Init()
 		spt split_vec;
 		boost::split(split_vec, line, boost::is_any_of(";"));
 
-		ProvinceFormat province;
-		province.Color = glm::vec3(
+		ProvinceFormat* province = new ProvinceFormat();
+		province->Color = glm::vec3(
 			std::stoi(split_vec.at(1)),
 			std::stoi(split_vec.at(2)),
 			std::stoi(split_vec.at(3))
 		);
-		province.Id = std::stoi(split_vec.at(0));
-		province.Type = split_vec.at(4);
-		province.Coastal = split_vec.at(5);
-		province.Terrain = split_vec.at(6);
-		province.Continent = std::stoi(split_vec.at(7));
+		province->Id = std::stoi(split_vec.at(0));
+		province->Type = split_vec.at(4);
+		province->Coastal = split_vec.at(5);
+		province->Terrain = split_vec.at(6);
+		province->Continent = std::stoi(split_vec.at(7));
 		mProvinces.push_back(province);
-		mProvinceColorMap.try_emplace(province.Color, province);
+		mProvinceColorMap.try_emplace(province->Color, province);
 	}
 	provStream.close();
 }
 
-const ProvinceFormat& Province::getProvince(int Id)
+ProvinceFormat* Province::getProvince(int Id)
 {
 	return mProvinces.at(Id);
 }
 
-const ProvinceFormat& Province::getProvince(glm::vec3 Color)
+ProvinceFormat* Province::getProvince(glm::vec3 Color)
 {
 	if (mProvinceColorMap.count(Color) > 0)
 		return mProvinceColorMap.at(Color);
@@ -58,7 +58,7 @@ const ProvinceFormat& Province::getProvince(glm::vec3 Color)
 	throw std::exception();
 }
 
-void Province::setProvince(int Id, ProvinceFormat provice)
+void Province::setProvince(int Id, ProvinceFormat* provice)
 {
 	mProvinces.at(Id) = provice;
 }

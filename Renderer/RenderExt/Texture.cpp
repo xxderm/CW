@@ -5,7 +5,7 @@ Texture::Texture()
 	mTexture = new std::map<unsigned int, glm::vec2>();
 }
 
-void Texture::Add(std::string path, int format, int activeTexture, Parameter param, bool mipmaps)
+stbi_uc* Texture::Add(std::string path, int format, int activeTexture, Parameter param, bool mipmaps, bool mfree)
 {
 	glm::vec2 size;
 	int x, y;
@@ -44,8 +44,14 @@ void Texture::Add(std::string path, int format, int activeTexture, Parameter par
 	}
 	if(mipmaps)
 		glGenerateMipmap(GL_TEXTURE_2D);
-	stbi_image_free(textureData);
+	if(mfree)
+		stbi_image_free(textureData);
 	mTexture->emplace(textureId, size);
+
+	if (textureData)
+		return textureData;
+	else
+		return nullptr;
 }
 
 void Texture::LoadCubemap(std::initializer_list<std::string> faces, int activeTexture)

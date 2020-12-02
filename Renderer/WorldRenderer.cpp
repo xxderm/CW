@@ -97,11 +97,6 @@ void WorldRenderer::Update()
 	mProgram[2]->setVec3("campos", mCamera->getPosition());
 	//mProgram[2]->setInt("terrain", 17);
 	mProgram[2]->UnBind();
-
-
-	glBindTexture(GL_TEXTURE_2D, 522);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (int)5632, (int)2048, 0, GL_RGB, GL_UNSIGNED_BYTE, texData);
-	glBindTexture(GL_TEXTURE_2D, 0);	
 }
 
 void WorldRenderer::Init(SDL_Window* wnd)
@@ -238,57 +233,20 @@ void WorldRenderer::TerrainInit()
 	mProgram[0]->setInt("an", 8);
 
 
-
-	provData = mTexture->Add(
+	mTexture->Add(
 		"Resources/terrain/provinces.bmp",
 		GL_RGB, GL_TEXTURE9,
-		Parameter::NEAREST_CTG, true, false);
-	texData = mTexture->Add(
-		"Resources/terrain/map.bmp",
-		GL_RGB, GL_TEXTURE2,
-		Parameter::LINEAR, true, false);
-	/*std::thread th([this]() {
-	world.Create();
-
-		int dex = 0;
-		for (size_t i = 0; i < 5632 * 2048; ++i)
-		{
-			int RGB[3] = { provData[dex], provData[++dex], provData[++dex] };
-			++dex;
-			auto province = world.getProvinces()->getProvince(glm::vec3(RGB[0], RGB[1], RGB[2]));
-			if (province->Terrain == "ocean" || province->Type == "lake" || province->Type == "sea")
-				continue;
-			try
-			{
-
-				auto state = world.getStates()->getState(province->StateId);
-				auto country = world.getCountries()->getCountryByTag(state->CountryTag);
-				int _dex = dex - 1;
-				texData[_dex] = int(country->Color.b);
-				texData[_dex-1] = int(country->Color.g);
-				texData[_dex-2] = int(country->Color.r);
-			}
-			catch (...)
-			{
-				std::cout << "ERR\n";
-			}
-		}
-		}
-	);*/
-	//th.join();
-	/*std::ofstream save;
-	save.open("countries", std::ios::out || std::ios::binary);
-	save.write((char*)texData, 5632*2048*3);
-	save.close();*/
-
-	std::ifstream save;
-	save.open("Resources/cache/countries", std::ios::in || std::ios::binary);
-	save.read((char*)texData, 5632*2048*3);
-	save.close();
-
-
+		Parameter::NEAREST_CTG);
 	mProgram[0]->setInt("provinces", 9);
+
+
+	mTexture->AddCache(
+		glm::vec2(5632, 2048),
+		"Resources/cache/countries",
+		GL_RGB, GL_TEXTURE2,
+		Parameter::LINEAR);
 	mProgram[0]->setInt("Countries", 2);
+
 
 
 

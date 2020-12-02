@@ -54,6 +54,58 @@ stbi_uc* Texture::Add(std::string path, int format, int activeTexture, Parameter
 		return nullptr;
 }
 
+char* Texture::AddCache(glm::vec2 size, std::string path, int format, int activeTexture, Parameter param, bool mipmaps, bool mfree)
+{
+	int multiple = 3;
+	if (format == GL_RGBA)
+		multiple = 4;
+	char* texData = new char[int(size.x) * int(size.y) * multiple];
+	std::ifstream cache;
+	cache.open(path, std::ios::in || std::ios::binary);
+	cache.read((char*)texData, int(size.x) * int(size.y) * multiple);
+	cache.close();
+	unsigned int textureId;
+	if (activeTexture != -1)
+	{
+		glActiveTexture(activeTexture);
+		textureId = activeTexture;
+	}
+	glGenTextures(1, &textureId);
+	glBindTexture(GL_TEXTURE_2D, textureId);
+	glTexImage2D(GL_TEXTURE_2D, 0, format, (int)size.x, (int)size.y, 0, format, GL_UNSIGNED_BYTE, texData);
+	switch (param)
+	{
+	case Parameter::NONE:
+		break;
+	case Parameter::CTG:
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		break;
+	case Parameter::NEAREST_CTG:
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_WRAP_S), GL_CLAMP_TO_EDGE);
+		glTexParameteri(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_WRAP_T), GL_CLAMP_TO_EDGE);
+		break;
+	case Parameter::LINEAR:
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		break;
+	default:
+		break;
+	}
+	if (mipmaps)
+		glGenerateMipmap(GL_TEXTURE_2D);
+	if (mfree)
+		delete texData;
+	mTexture->emplace(textureId, size);
+
+	if (texData)
+		return texData;
+	else
+		return nullptr;
+}
+
 void Texture::LoadCubemap(std::initializer_list<std::string> faces, int activeTexture)
 {
 	glActiveTexture(activeTexture);

@@ -209,9 +209,9 @@ void WorldRenderer::TerrainInit()
 	mProgram[0]->setInt("bm3", 4);
 
 	mTexture->Add(
-		"Resources/terrain/Blank_province_map.png",
+		"Resources/terrain/8i1c3dnd28h51.png",
 		GL_RGBA, GL_TEXTURE5,
-		Parameter::NEAREST_CTG);
+		Parameter::LINEAR);
 	mProgram[0]->setInt("province_border", 5);
 
 	mTexture->Add(
@@ -247,7 +247,7 @@ void WorldRenderer::TerrainInit()
 		Parameter::LINEAR);
 	mProgram[0]->setInt("Countries", 2);
 
-
+	
 
 
 	mTexture->Add(
@@ -283,18 +283,18 @@ void WorldRenderer::WaterInit()
 	mProgram[1]->setInt("TexWater", 10);
 
 	mTexture->Add(
-		"Resources/terrain/water-normal.png",
-		GL_RGB,
+		"Resources/terrain/matchingNormalMap.png",
+		GL_RGBA,
 		GL_TEXTURE11,
-		Parameter::LINEAR
+		Parameter::NONE
 	);
 	mProgram[1]->setInt("watnorm", 11);
 
 	mTexture->Add(
-		"Resources/terrain/wdudv.png",
+		"Resources/terrain/waterDUDV.png",
 		GL_RGBA,
 		GL_TEXTURE12,
-		Parameter::LINEAR
+		Parameter::NONE
 	);
 	mProgram[1]->setInt("dudv", 12);
 

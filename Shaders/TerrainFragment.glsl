@@ -91,6 +91,27 @@ float defWeight(vec3 c,vec4 tt)
 	return 0;
 }
 
+float random (in vec2 st) {
+    return fract(sin(dot(st.xy,
+                         vec2(12.9898,78.233)))
+                 * 43758.5453123);
+}
+
+float noise (in vec2 st) {
+    vec2 i = floor(st);
+    vec2 f = fract(st);
+
+    float a = random(i);
+    float b = random(i + vec2(1.0, 0.0));
+    float c = random(i + vec2(0.0, 1.0));
+    float d = random(i + vec2(1.0, 1.0));
+
+    vec2 u = f*f*(3.0-2.0*f);
+    return mix(a, b, u.x) +
+            (c - a)* u.y * (1.0 - u.x) +
+            (d - b) * u.x * u.y;
+}
+
 float remap(vec3 vminval, vec3 vmaxval, vec3 vcurval)
 {
 	vec4 res = vec4((vcurval - vminval) / (vmaxval - vminval), 1.);
@@ -111,8 +132,56 @@ float remap(vec3 vminval, vec3 vmaxval, vec3 vcurval)
 	//return (res.r + res.g + res.b) / 3.5;
 }
 
+float threshold(in float thr1, in float thr2 , in float val) {
+	if (val < thr1) {return 0.0;}
+	if (val > thr2) {return 1.0;}
+	return val;
+}
+
+float avg_intensity(in vec4 pix, int mode) {
+	//return (pix.r + pix.g + pix.b)/3;
+	if(mode == 0)
+		return pix.r;
+	if(mode == 1)
+		return pix.g;
+	if(mode == 2)
+		return pix.b;
+	return (pix.r + pix.g + pix.b)/3;
+}
+
+vec4 get_pixel(in vec2 coords, in float dx, in float dy) {
+	return texture2D(Countries, coords + vec2(dx, dy));
+}
+
+float IsEdge(in vec2 coords, int mode){
+	float dxtex = 1.0 / 5632.0 /*image width*/;
+	float dytex = 1.0 / 2048.0 /*image height*/;
+	float pix[9];
+	int k = -1;
+	float delta;
+
+	// read neighboring pixel intensities
+	for (int i=-1; i<2; i++) {
+		for(int j=-1; j<2; j++) {
+			k++;
+			pix[k] = avg_intensity(get_pixel(coords,float(i)*dxtex, float(j)*dytex), mode);
+		}
+	}
+
+ 
+	delta = (abs(pix[1]-pix[7])+
+		abs(pix[5]-pix[3]) +
+		abs(pix[0]-pix[8])+
+		abs(pix[2]-pix[6])
+		)/4;
+
+	return threshold(0.25,0.4,clamp(1.8*delta,0.0,1.0));
+}
+
 void main()
 {
+	//vec4 colormap = texture(province_border, fpos);
+
 	vec4 provincemap=texture(provinces,fpos);
 	vec4 provinceBlendMap = texture(provincesBlend, fpos);	
 	
@@ -195,41 +264,39 @@ void main()
 
 		
 
-	fColor = FinalColor;
+	fColor = (FinalColor);
 	
 	// Gamma correction
 	fColor.rgb = pow(fColor.rgb, vec3(2.2));
+
+	vec4 countriesmap = texture2D(Countries, fpos);
 	
-
-	vec4 countriesmap=texture2D(Countries,fpos);
-	float step_u = 1.0 / 5632;
-	float step_v = 1.0 / 2048;
-	vec4 rightPixel = texture2D(Countries, fpos + vec2(step_u, 0.0));
-	vec4 bottomPixel = texture2D(Countries, fpos + vec2(0.0, step_v));
-
 	if(currentDraw==1)
 	{
-		fColor=mix(currentTexture,provincemap,.4);
+		fColor=mix(provincemap,FinalColor,.1);
+		fColor *= 0.5;	
+		if(IsEdge(fpos, 0) > 0.0)
+			fColor = vec4(0, 0, 0, 1.0);
+		if(IsEdge(fpos, 1) > 0.0)
+			fColor = vec4(0, 0, 0, 1.0);
+		if(IsEdge(fpos, 2) > 0.0)
+			fColor = vec4(0, 0, 0, 1.0);
 	}
 	else if(currentDraw==0)
-	{
+	{		
 		fColor=mix(countriesmap,FinalColor,0.1);	
 		fColor *= 0.5;	
-
-		float _dFdX = length(rightPixel - countriesmap) / step_u;
-		float _dFdY = length(bottomPixel - countriesmap) / step_v;
-		
-
-		if(_dFdX > 0.0 || _dFdY > 0.0) {
-		fColor.r = 0; //_dFdX
-		fColor.g = 0; // _dFdY
-		fColor.b = 0;
-		fColor.a = 0.5;
-		}
+		if(IsEdge(fpos, 0) > 0.0)
+			fColor = vec4(0, 0, 0, 1.0);
+		if(IsEdge(fpos, 1) > 0.0)
+			fColor = vec4(0, 0, 0, 1.0);
+		if(IsEdge(fpos, 2) > 0.0)
+			fColor = vec4(0, 0, 0, 1.0);
 	}
 	
 	currentNormal=normalize(currentNormal*2.-1.);
 	//currentNormal=normalize(TBN*currentNormal);
+	
 	
 	vec3 color=fColor.rgb;
 	vec3 ambient=.041*color;
@@ -257,5 +324,5 @@ void main()
 	if(hoverEffect.x == C3FB(provincemap).x && hoverEffect.y == C3FB(provincemap).y && hoverEffect.z == C3FB(provincemap).z)
 	{			
 		//fColor.rgb *= (1 + abs(sin(Tick)));
-	}		
+	}	
 }

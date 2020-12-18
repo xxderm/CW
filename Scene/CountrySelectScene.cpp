@@ -56,13 +56,13 @@ void CountrySelectScene::Update(Scene* scene)
 {
 	SDL_GetMouseState(&mMouseX, &mMouseY);
 	if (mMouseX >= mWndWidth - 10 && mMouseX <= mWndWidth - 1)
-		mCamera->ProcessKeyboard(Camera_Movement::CRIGHT, 0.28);
+		mCamera->ProcessKeyboard(Camera_Movement::CRIGHT, 0.08);
 	if (mMouseX <= 10 && mMouseX >= 1)
-		mCamera->ProcessKeyboard(Camera_Movement::CLEFT, 0.28);
+		mCamera->ProcessKeyboard(Camera_Movement::CLEFT, 0.08);
 	if (mMouseY >= mWndHeight - 10 && mMouseY <= mWndHeight - 1)
-		mCamera->ProcessKeyboard(Camera_Movement::ZBOTTOM, 0.28);
+		mCamera->ProcessKeyboard(Camera_Movement::ZBOTTOM, 0.08);
 	if (mMouseY <= 10 && mMouseY >= 1)
-		mCamera->ProcessKeyboard(Camera_Movement::ZTOP, 0.20);
+		mCamera->ProcessKeyboard(Camera_Movement::ZTOP, 0.01);
 
 	mWorldRenderer->Update();
 	mGUIRenderer->Update();

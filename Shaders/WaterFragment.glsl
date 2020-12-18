@@ -1,4 +1,5 @@
 #version 330 core
+#extension GL_NV_shadow_samplers_cube : enable
 out vec4 FragColor;
 
 in vec3 vertexPos;
@@ -23,12 +24,16 @@ uniform float moveFactor;
 
 void main()
 {
-    vec2 distortion1 = (texture(dudv, vec2(TexCoord.x + moveFactor, TexCoord.y)).rg * 2.0 - 1.0) * 0.12;
-    vec2 distortion2 = (texture(dudv, vec2(-TexCoord.x + moveFactor, TexCoord.y + moveFactor)).rg * 2.0 - 1.0) * 0.12;
-    vec2 distortion = distortion1 + distortion2;
+    float waveStrength = 0.10;
+    //vec2 distortion1 = (texture(dudv, vec2(TexCoord.x + moveFactor, TexCoord.y)).rg * 2.0 - 1.0) * 0.12;
+    //vec2 distortion2 = (texture(dudv, vec2(-TexCoord.x + moveFactor, TexCoord.y + moveFactor)).rg * 2.0 - 1.0) * 0.12;
+    //vec2 distortion = distortion1 + distortion2;
+    vec2 distortedTexCoords = texture2D(dudv, vec2(TexCoord.x + moveFactor, TexCoord.y)).rg*0.1;
+	distortedTexCoords = TexCoord + vec2(distortedTexCoords.x, distortedTexCoords.y+moveFactor);
+	vec2 distortion = (texture2D(dudv, distortedTexCoords).rg * 2.0 - 1.0) * waveStrength;
 
   
-    vec4 tmp = mix(texture(cm, fpos),texture(TexWater, fpos), 0.5);
+    vec4 tmp = mix(texture2D(cm, fpos),texture2D(TexWater, fpos), 0.5);
     FragColor = vec4(tmp.rgb, 0.9f);
 
     vec3 Normals = normalize(cross(dFdx(vertexPos), dFdy(vertexPos))) ;
@@ -40,14 +45,14 @@ void main()
     refraction = clamp(refraction, 0.001, 0.999);
 
  
-    FragColor *= vec4(texture(skybox, refraction).rgb, 1.0);
+    FragColor.rgb *= (textureCube(skybox, refraction).rgb);
 
     vec3 reflection = reflect(I, normalize(-Normals));  
     reflection += vec3(distortion, ratio);
     reflection.x = clamp(reflection.x, 0.001, 0.999);
     reflection.z = clamp(reflection.z, -0.999, -0.001);
 
-    FragColor *= vec4(texture(skybox, reflection).rgb, 1.0);
+    FragColor.rgb *= (textureCube(skybox, reflection).rgb);
 
 
 
@@ -69,8 +74,7 @@ void main()
 	vec3 diffuse2=diff*color;
 	vec3 halfwayDir=normalize(lightDir);
 	float spec=(max(dot(normal,halfwayDir),0.));
-	vec3 specular=vec3(.2)*spec;
-	
+	vec3 specular=vec3(.1)*spec;
     
 	FragColor.xyz = vec3(ambient+diffuse2+specular);
 }

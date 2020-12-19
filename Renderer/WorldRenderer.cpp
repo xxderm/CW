@@ -206,9 +206,12 @@ void WorldRenderer::TerrainInit()
 	mBuffer->Set(Vertices.data(), TexCoord.data(), Indices.data(), GL_STATIC_DRAW, sizeof(glm::vec3) * Vertices.size(), sizeof(glm::vec2) * TexCoord.size(), sizeof(GLuint) * Indices.size());
 	mTexture = std::make_unique<Texture>();
 
-	mTexture->Add(
-		"Resources/terrain/ht.bmp",
-		GL_RGB, GL_TEXTURE0);
+
+	mTexture->AddCache(
+		glm::vec2(5632,2048),
+		"Resources/cache/ht",
+		GL_RGB, GL_TEXTURE0, Parameter::NONE, true, true,
+		"Resources/terrain/ht.bmp");
 	mProgram[0]->setInt("terrain", 0);
 
 	mTexture->Add(
@@ -316,12 +319,14 @@ void WorldRenderer::TerrainInit()
 
 
 
-
 	mTexture->Add(
 		"Resources/terrain/provinces.bmp",
 		GL_RGB, GL_TEXTURE18,
 		Parameter::LINEAR);
 	mProgram[0]->setInt("provincesBlend", 18);
+
+
+
 	
 	mBuffer->UnBind();
 

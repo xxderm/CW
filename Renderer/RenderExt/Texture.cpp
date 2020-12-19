@@ -54,7 +54,7 @@ stbi_uc* Texture::Add(std::string path, int format, int activeTexture, Parameter
 		return nullptr;
 }
 
-char* Texture::AddCache(glm::vec2 size, std::string path, int format, int activeTexture, Parameter param, bool mipmaps, bool mfree)
+char* Texture::AddCache(glm::vec2 size, std::string path, int format, int activeTexture, Parameter param, bool mipmaps, bool mfree, std::string srcPath)
 {
 	int multiple = 3;
 	if (format == GL_RGBA)
@@ -62,8 +62,24 @@ char* Texture::AddCache(glm::vec2 size, std::string path, int format, int active
 	char* texData = new char[int(size.x) * int(size.y) * multiple];
 	std::ifstream cache;
 	cache.open(path, std::ios::in || std::ios::binary);
+	if (!cache.is_open())
+	{
+		cache.close();
+
+		int x, y, chnls;
+		auto tdata = stbi_load(srcPath.c_str(), &x, &y, &chnls, 0);	
+		std::ofstream save;
+		save.open(path, std::ios::binary);
+		save.write((char*)tdata, x * y * multiple);
+		save.close();
+		stbi_image_free(tdata);
+
+		cache.open(path, std::ios::in || std::ios::binary);
+	}
 	cache.read((char*)texData, int(size.x) * int(size.y) * multiple);
 	cache.close();
+
+
 	unsigned int textureId;
 	if (activeTexture != -1)
 	{
@@ -97,7 +113,7 @@ char* Texture::AddCache(glm::vec2 size, std::string path, int format, int active
 	if (mipmaps)
 		glGenerateMipmap(GL_TEXTURE_2D);
 	if (mfree)
-		delete texData;
+		delete[] texData;
 	mTexture->emplace(textureId, size);
 
 	if (texData)

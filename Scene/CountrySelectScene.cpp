@@ -4,6 +4,10 @@ CountrySelectScene CountrySelectScene::mCountryScene;
 
 void CountrySelectScene::Init(Scene* scene)
 {
+	mWorld = new World();
+	std::thread th(&World::Create, mWorld);
+	th.detach();
+
 	SDL_GetWindowSize(scene->getWindow(), &mWndWidth, &mWndHeight);
 	mWorldRenderer = new WorldRenderer();
 	mGUIRenderer = new GUIRenderer("Resources/UI/CountrySelect.ui", 24, scene);
@@ -22,9 +26,6 @@ void CountrySelectScene::Init(Scene* scene)
 
 	mGUIRenderer->setCamera(mCamera);
 	mGUIRenderer->setMousePicker(mMousePicker);
-
-	mWorld = new World();
-	mWorld->Create();
 }
 
 void CountrySelectScene::Clean()

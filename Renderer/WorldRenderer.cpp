@@ -93,7 +93,7 @@ void WorldRenderer::Update()
 	mProgram[2]->setVec3("campos", mCamera->getPosition());
 	//mProgram[2]->setInt("terrain", 17);
 	mProgram[2]->UnBind();
-	printf("%d, %d, %d\n", mouse_color_data[0], mouse_color_data[1], mouse_color_data[2]);
+	//printf("%d, %d, %d\n", mouse_color_data[0], mouse_color_data[1], mouse_color_data[2]);
 }
 
 void WorldRenderer::Init(SDL_Window* wnd)
@@ -154,28 +154,52 @@ void WorldRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 
 void WorldRenderer::TerrainInit()
 {
-	for (size_t y = 0; y < 50; y++)
+	Vertices.resize(25600);
+	TexCoord.resize(25600);
+	Indices.resize(32000);
+	std::ifstream data;
+	data.open("Resources/cache/vmapdata", std::ios::binary);
+	if (data.is_open())
 	{
-		for (size_t x = 0; x < 128; x++)
+		data.read((char*)Vertices.data(), 25600 * sizeof(glm::vec3));
+		data.close();
+		data.open("Resources/cache/tmapdata", std::ios::binary);
+		data.read((char*)TexCoord.data(), 25600 * sizeof(glm::vec2));
+		data.close();
+		data.open("Resources/cache/imapdata", std::ios::binary);
+		data.read((char*)Indices.data(), 32000 * sizeof(GLuint));
+		data.close();
+	}
+	else
+	{
+		Vertices.clear();
+		TexCoord.clear();
+		Indices.clear();
+		for (size_t y = 0; y < 50; y++)
 		{
-			Vertices.push_back(glm::vec3(x, 0, y));
-			TexCoord.push_back(glm::vec2(Vertices.back().x, Vertices.back().z));
-			Indices.push_back(Vertices.size() - 1);
+			for (size_t x = 0; x < 128; x++)
+			{
+				Vertices.push_back(glm::vec3(x, 0, y));
+				TexCoord.push_back(glm::vec2(Vertices.back().x, Vertices.back().z));
+				Indices.push_back(Vertices.size() - 1);
 
-			Vertices.push_back(glm::vec3(x + 1, 0, y));
-			TexCoord.push_back(glm::vec2(Vertices.back().x, Vertices.back().z));
-			Indices.push_back(Vertices.size() - 1);
+				Vertices.push_back(glm::vec3(x + 1, 0, y));
+				TexCoord.push_back(glm::vec2(Vertices.back().x, Vertices.back().z));
+				Indices.push_back(Vertices.size() - 1);
 
-			Vertices.push_back(glm::vec3(x + 1, 0, y + 1));
-			TexCoord.push_back(glm::vec2(Vertices.back().x, Vertices.back().z));
-			Indices.push_back(Vertices.size() - 1);
+				Vertices.push_back(glm::vec3(x + 1, 0, y + 1));
+				TexCoord.push_back(glm::vec2(Vertices.back().x, Vertices.back().z));
+				Indices.push_back(Vertices.size() - 1);
 
-			Vertices.push_back(glm::vec3(x, 0, y + 1));
-			Indices.push_back(Vertices.size() - 1);
-			TexCoord.push_back(glm::vec2(Vertices.back().x, Vertices.back().z));
-			Indices.push_back(0xFFFF);
+				Vertices.push_back(glm::vec3(x, 0, y + 1));
+				Indices.push_back(Vertices.size() - 1);
+				TexCoord.push_back(glm::vec2(Vertices.back().x, Vertices.back().z));
+				Indices.push_back(0xFFFF);
+			}
 		}
 	}
+
+
 	mProgram[0] = std::make_unique<Shader>("Shaders/TerrainVertex.glsl", "Shaders/TerrainFragment.glsl", "Shaders/TerrainTessControl.glsl", "Shaders/TerrainTessEval.glsl");
 	mProgram[0]->Bind();
 	mBuffer = std::make_unique<BufferObject>();

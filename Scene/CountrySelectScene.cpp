@@ -22,6 +22,9 @@ void CountrySelectScene::Init(Scene* scene)
 
 	mGUIRenderer->setCamera(mCamera);
 	mGUIRenderer->setMousePicker(mMousePicker);
+
+	mWorld = new World();
+	mWorld->Create();
 }
 
 void CountrySelectScene::Clean()

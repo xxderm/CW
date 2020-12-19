@@ -41,9 +41,9 @@ private:
 	std::vector<GLuint> Indices;
 	glm::mat4x4 projection;
 
-	stbi_uc* texData;
-	stbi_uc* provData;
-	World world;
+	//stbi_uc* texData;
+	//stbi_uc* provData;
+	//World world;
 };
 
 #endif // !WORLDRENDERER_HEADER

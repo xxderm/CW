@@ -27,6 +27,8 @@ protected:
 private:
 	static CountrySelectScene mCountryScene;
 
+	World* mWorld = nullptr;
+
 	IRenderer* mWorldRenderer = nullptr;
 	IRenderer* mGUIRenderer = nullptr;
 

@@ -2,6 +2,7 @@
 #ifndef SCENE_HEADER
 #define SCENE_HEADER
 #include "SceneExt/MousePicker.h"
+#include "SceneExt/User.h"
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include "../Connection/UDPConnection.h"
@@ -26,9 +27,11 @@ public:
 	SDL_Window* getWindow();
 	SDL_GLContext getContext();
 	SDL_Event *getEvent();
+	User* getUser();
 	bool isRunning();
 	void Exit();
 private:
+	User* mUser = nullptr;
 	std::list<SceneMachine*> mScenes;
 	SDL_Window* mWindow;
 	SDL_GLContext mContext;

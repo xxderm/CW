@@ -10,8 +10,11 @@ int main(int argc, char** argv)
 	{
 		while (ApplicationScene->isRunning())
 		{
+			// TODO: Add request/response interval
 			ApplicationScene->Response();
 			ApplicationScene->Listen();
+
+
 			ApplicationScene->HandleEvents();
 			ApplicationScene->Update();
 			ApplicationScene->Draw();

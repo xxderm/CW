@@ -54,6 +54,8 @@ void Scene::Init()
 
 	glEnable(GL_PRIMITIVE_RESTART);
 	glPrimitiveRestartIndex(0xFFFF);
+
+	mUser = new User();
 }
 
 void Scene::ChangeScene(SceneMachine* scene)
@@ -137,6 +139,11 @@ SDL_GLContext Scene::getContext()
 SDL_Event* Scene::getEvent()
 {
 	return &mEvent;
+}
+
+User* Scene::getUser()
+{
+	return mUser;
 }
 
 bool Scene::isRunning()

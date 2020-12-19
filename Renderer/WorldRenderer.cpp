@@ -7,8 +7,8 @@ void WorldRenderer::Render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	mProgram[3]->Bind();
 	mProgram[3]->setMat4("mvp", mvp);
-	mProgram[3]->setInt("currentDraw", 0);
-	glBindTexture(GL_TEXTURE_2D, 18);
+	mProgram[3]->setInt("currentDraw", 1);
+	glBindTexture(GL_TEXTURE_2D, 17);
 	glPatchParameteri(GL_PATCH_VERTICES, 4);
 	mBuffer->Draw(GL_PATCHES, Indices.size());
 	{
@@ -24,12 +24,8 @@ void WorldRenderer::Render()
 		GLfloat wy = (float)vp[3] - float(my);
 		glReadBuffer(GL_COLOR_ATTACHMENT0);
 		glReadPixels(mx, wy, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &mouse_color_data);
-	}
-	
+	}	
 	mProgram[3]->UnBind();
-	
-
-
 
 	/*glClearColor(0, 0, 0, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -97,6 +93,7 @@ void WorldRenderer::Update()
 	mProgram[2]->setVec3("campos", mCamera->getPosition());
 	//mProgram[2]->setInt("terrain", 17);
 	mProgram[2]->UnBind();
+	printf("%d, %d, %d\n", mouse_color_data[0], mouse_color_data[1], mouse_color_data[2]);
 }
 
 void WorldRenderer::Init(SDL_Window* wnd)
@@ -247,7 +244,53 @@ void WorldRenderer::TerrainInit()
 		Parameter::LINEAR);
 	mProgram[0]->setInt("Countries", 2);
 
-	
+
+
+
+	/*provData = mTexture->Add(
+		"Resources/terrain/provinces.bmp",
+		GL_RGB, GL_TEXTURE9,
+		Parameter::NEAREST_CTG, true, false);
+	texData = mTexture->Add(
+		"Resources/terrain/map.bmp",
+		GL_RGB, GL_TEXTURE2,
+		Parameter::LINEAR, true, false);
+		world.Create();
+
+		int dex = 0;
+		for (size_t i = 0; i < 5632 * 2048; ++i)
+		{
+			int RGB[3] = { provData[dex], provData[++dex], provData[++dex] };
+			++dex;
+			auto province = world.getProvinces()->getProvince(glm::vec3(RGB[0], RGB[1], RGB[2]));
+			if (province->Terrain == "ocean" || province->Type == "lake" || province->Type == "sea")
+				continue;
+			try
+			{
+
+				auto state = world.getStates()->getState(province->StateId);
+				auto country = world.getCountries()->getCountryByTag(state->CountryTag);
+				int _dex = dex - 1;
+				texData[_dex] = int(country->Color.b);
+				texData[_dex - 1] = int(country->Color.g);
+				texData[_dex - 2] = int(country->Color.r);
+			}
+			catch (...)
+			{
+				std::cout << "ERR\n";
+			}
+		}
+	std::ofstream save;
+	save.open("Resources/cache/countries", std::ios::binary);
+	save.write((char*)texData, 5632 * 2048 * 3);
+	save.close();*/
+
+	/*std::ifstream save;
+	save.open("Resources/cache/countries", std::ios::in || std::ios::binary);
+	save.read((char*)texData, 5632*2048*3);
+	save.close();*/
+
+
 
 
 	mTexture->Add(

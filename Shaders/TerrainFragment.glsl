@@ -146,7 +146,7 @@ float avg_intensity(in vec4 pix, int mode) {
 		return pix.g;
 	if(mode == 2)
 		return pix.b;
-	return (pix.r + pix.g + pix.b)/3;
+	return (pix.r + pix.g + pix.b)/3.;
 }
 
 vec4 get_pixel(in vec2 coords, in float dx, in float dy) {
@@ -175,7 +175,7 @@ float IsEdge(in vec2 coords, int mode){
 		abs(pix[2]-pix[6])
 		)/4;
 
-	return threshold(0.25,0.4,clamp(1.8*delta,0.0,1.0));
+	return threshold(0.25,0.4,clamp(1.99*delta,0.0,1.0));
 }
 
 void main()
@@ -264,34 +264,25 @@ void main()
 
 		
 
-	fColor = (FinalColor);
-	
+	fColor = (FinalColor);	
 	// Gamma correction
 	fColor.rgb = pow(fColor.rgb, vec3(2.2));
-
 	vec4 countriesmap = texture2D(Countries, fpos);
-	
+
 	if(currentDraw==1)
 	{
 		fColor=mix(provincemap,FinalColor,.1);
 		fColor *= 0.5;	
-		if(IsEdge(fpos, 0) > 0.0)
-			fColor = vec4(0, 0, 0, 1.0);
-		if(IsEdge(fpos, 1) > 0.0)
-			fColor = vec4(0, 0, 0, 1.0);
-		if(IsEdge(fpos, 2) > 0.0)
-			fColor = vec4(0, 0, 0, 1.0);
 	}
 	else if(currentDraw==0)
 	{		
 		fColor=mix(countriesmap,FinalColor,0.1);	
 		fColor *= 0.5;	
-		if(IsEdge(fpos, 0) > 0.0)
-			fColor = vec4(0, 0, 0, 1.0);
-		if(IsEdge(fpos, 1) > 0.0)
-			fColor = vec4(0, 0, 0, 1.0);
-		if(IsEdge(fpos, 2) > 0.0)
-			fColor = vec4(0, 0, 0, 1.0);
+		if(IsEdge(fpos, 0) > 0.0 || IsEdge(fpos, 1) > 0.0 || IsEdge(fpos, 2) > 0.0 || IsEdge(fpos, 3) > 0.0)
+		{
+			fColor.rgb = vec3(0., 0., 0.);
+		}
+
 	}
 	
 	currentNormal=normalize(currentNormal*2.-1.);
@@ -318,11 +309,5 @@ void main()
 	rimLight   = (diffuse * rimLightIntensity);
 	
 	
-	fColor=vec4(ambient+diffuse+specular+rimLight.rgb,1);
-	
-
-	if(hoverEffect.x == C3FB(provincemap).x && hoverEffect.y == C3FB(provincemap).y && hoverEffect.z == C3FB(provincemap).z)
-	{			
-		//fColor.rgb *= (1 + abs(sin(Tick)));
-	}	
+	fColor=vec4(ambient+diffuse+specular+rimLight.rgb,1);		
 }

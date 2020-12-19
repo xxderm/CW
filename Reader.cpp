@@ -39,6 +39,44 @@ std::vector<std::string> Reader::getArray(std::string Path, std::string Keyword,
     return Result;
 }
 
+std::vector<std::string> Reader::get2DArray(std::string Path, std::string Keyword, std::string key, std::string sep, bool isDigit)
+{
+    Clean();
+    auto f = getStream(Path);
+    std::vector<std::string> Result;
+    bool inSecondDim = false;
+    bool inKey = false;
+    GET_IFSTREAM_CHAR(
+        if (mCheck)
+        {
+            if (c == '}')
+            {
+                Result = split(mLiteral, sep);
+                mLiteral.clear();
+                inKey = false;
+                inSecondDim = false;
+                mCheck = false;
+            }
+            if (inKey)
+            {
+                mLiteral += c;
+            }
+            if (inSecondDim && c == '{')
+            {
+                inKey = true;
+            }
+            if (c == '{')
+                inSecondDim = true;
+        }
+        if (!inSecondDim && tmp == Keyword)
+        {
+            mCheck = true;
+        }
+    )
+    f.close();
+    return Result;
+}
+
 std::vector<std::string> Reader::getFileLines(std::string Path)
 {
     std::vector<std::string> result;

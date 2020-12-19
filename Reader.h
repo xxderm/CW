@@ -15,6 +15,7 @@ class Reader
 {
 public:
 	std::vector<std::string> getArray(std::string Path, std::string Keyword, bool isDigit = 0);
+	std::vector<std::string> get2DArray(std::string Path, std::string Keyword, std::string key, std::string sep = " ", bool isDigit = 0);
 	std::vector<std::string> getFileLines(std::string Path);
 	std::string getValue(std::string Path, std::string Keyword, int seek = 0, bool digit = 0);
 	void getUI(GUITexture* guis, std::string path, bool update = 1);

@@ -14,9 +14,11 @@ void Country::Init()
 	{ 
 		std::string TAG = {FileName[0] , FileName[1] , FileName[2]};
 		auto Capital = (Reader::getInstance()->getValue("Resources/TAG/" + FileName, "capital", 3, true));
+		auto RulingParty = (Reader::getInstance()->getValue("Resources/TAG/" + FileName, "ruling_party", 3));
 		CountryFormat* country = new CountryFormat();
 		country->Tag = TAG;
 		country->Capital = std::stoi(Capital);
+		country->RulingParty = RulingParty;
 
 		auto names = Reader::getInstance()->getLangLines("Resources/lang/countries_l_russian.yml", TAG);
 		for (auto& name : names)
@@ -79,17 +81,17 @@ CountryFormat* Country::getCountryByColor(std::string Color)
 	return nullptr;
 }
 
-const std::string CountryFormat::getName()
+std::string CountryFormat::getName()
 {
 	return Name.at(RulingParty);
 }
 
-const std::string CountryFormat::getNameDEF()
+std::string CountryFormat::getNameDEF()
 {
 	return NameDEF.at(RulingParty);
 }
 
-const std::string CountryFormat::getNameADJ()
+std::string CountryFormat::getNameADJ()
 {
 	return NameADJ.at(RulingParty);
 }

@@ -133,9 +133,16 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 				if (mScene_ptr->getUser()->getCountry())
 				{
 					gui.second->Text.count("CountryName") > 0 ?
-						gui.second->Text.at("CountryName").Text = mScene_ptr->getUser()->getCountry()->Tag
+						gui.second->Text.at("CountryName").Text =
+							mScene_ptr->getUser()->getCountry()->Name.at(mScene_ptr->getUser()->getCountry()->RulingParty)
 						:
 						0;
+					gui.second->Text.count("PartyName") > 0 ?
+						gui.second->Text.at("PartyName").Text =
+						mScene_ptr->getUser()->getCountry()->RulingParty
+						:
+						0;
+
 				}
 
 			}

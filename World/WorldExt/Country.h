@@ -8,9 +8,10 @@
 
 struct CountryFormat
 {
-	const std::string getName();
-	const std::string getNameDEF();
-	const std::string getNameADJ();
+public:
+	std::string getName();
+	std::string getNameDEF();
+	std::string getNameADJ();
 	std::string Tag;
 	std::string RulingParty;
 	glm::vec3 Color;

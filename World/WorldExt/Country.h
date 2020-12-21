@@ -8,9 +8,17 @@
 
 struct CountryFormat
 {
+	const std::string getName();
+	const std::string getNameDEF();
+	const std::string getNameADJ();
 	std::string Tag;
+	std::string RulingParty;
 	glm::vec3 Color;
 	int Capital;
+
+	std::unordered_map<std::string, std::string> Name;
+	std::unordered_map<std::string, std::string> NameDEF;
+	std::unordered_map<std::string, std::string> NameADJ;
 };
 
 class Country final 

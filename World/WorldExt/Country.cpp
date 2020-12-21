@@ -2,6 +2,7 @@
 
 Country::Country()
 {
+
 }
 
 void Country::Init()
@@ -16,6 +17,29 @@ void Country::Init()
 		CountryFormat* country = new CountryFormat();
 		country->Tag = TAG;
 		country->Capital = std::stoi(Capital);
+
+		auto names = Reader::getInstance()->getLangLines("Resources/lang/countries_l_russian.yml", TAG);
+		for (auto& name : names)
+		{
+			auto countryName = Reader::getInstance()->split(name, ":")[1];
+			countryName.erase(std::remove(countryName.begin(), countryName.end(), '0'));
+			countryName.erase(std::remove(countryName.begin(), countryName.end(), '\"'));
+			countryName.erase(std::remove(countryName.begin(), countryName.end(), '"'));
+			countryName.erase(countryName.begin());
+			auto countryLit = Reader::getInstance()->split(name, "_");
+			countryLit[0].erase(std::remove(countryLit[0].begin(), countryLit[0].end(), ' '));
+			countryLit[1] = Reader::getInstance()->split(countryLit[1], ":")[0];
+			if (countryLit.size() == 2)
+				country->Name.emplace(countryLit[1], countryName);
+			else
+			{
+				if (Reader::getInstance()->split(countryLit.at(2), ":")[0] == "DEF")
+					country->NameDEF.emplace(countryLit[1], countryName);
+				else
+					country->NameADJ.emplace(countryLit[1], countryName);
+			}
+		}
+
 		mCountries.try_emplace(TAG, country);
 	}
 
@@ -53,4 +77,19 @@ CountryFormat* Country::getCountryByColor(std::string Color)
 	if (mCountriesColor.count(Color) > 0)
 		return mCountriesColor.at(Color);
 	return nullptr;
+}
+
+const std::string CountryFormat::getName()
+{
+	return Name.at(RulingParty);
+}
+
+const std::string CountryFormat::getNameDEF()
+{
+	return NameDEF.at(RulingParty);
+}
+
+const std::string CountryFormat::getNameADJ()
+{
+	return NameADJ.at(RulingParty);
 }

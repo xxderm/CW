@@ -31,7 +31,7 @@ public:
 	CountryFormat* getCountryByTag(std::string Tag);
 	CountryFormat* getCountryByColor(std::string Color);
 	void Save(std::string Path);
-	bool Restore(std::string Path);
+	bool Load(std::string Path);
 private:
 	void LangFormatText(std::string& text);
 private:

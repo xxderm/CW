@@ -19,8 +19,10 @@ public:
 	Country();
 	void Init();
 	CountryFormat* getCountryByTag(std::string Tag);
+	CountryFormat* getCountryByColor(std::string Color);
 private:
-	std::map<std::string, CountryFormat*> mCountries;
+	std::map<std::string, CountryFormat*> mCountries;	
+	std::map<std::string, CountryFormat*> mCountriesColor;
 };
 
 #endif // !COUNTRY_HEADER

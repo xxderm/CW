@@ -1,5 +1,11 @@
 #include "WorldRenderer.h"
 
+WorldRenderer::WorldRenderer(unsigned char* colorDataPtr)
+{
+	mFocusRGB = new unsigned char[3];
+	mFocusRGB = colorDataPtr;
+}
+
 void WorldRenderer::Render()
 {
 	mFbo->Bind();
@@ -23,7 +29,7 @@ void WorldRenderer::Render()
 		GLfloat zc;
 		GLfloat wy = (float)vp[3] - float(my);
 		glReadBuffer(GL_COLOR_ATTACHMENT0);
-		glReadPixels(mx, wy, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &mouse_color_data);
+		glReadPixels(mx, wy, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, mFocusRGB);
 	}	
 	mProgram[3]->UnBind();
 
@@ -83,7 +89,7 @@ void WorldRenderer::Update()
 	static float Time = 0.0;
 	Time += 0.05;
 	mProgram[0]->setFloat("Tick", Time);
-	mProgram[0]->setVec3("hoverEffect", glm::vec3(mouse_color_data[0], mouse_color_data[1], mouse_color_data[2]));
+	//mProgram[0]->setVec3("hoverEffect", glm::vec3(mFocusRGB[0], mFocusRGB[1], mFocusRGB[2]));
 	mProgram[0]->UnBind();
 
 	mProgram[2]->Bind();
@@ -93,7 +99,7 @@ void WorldRenderer::Update()
 	mProgram[2]->setVec3("campos", mCamera->getPosition());
 	//mProgram[2]->setInt("terrain", 17);
 	mProgram[2]->UnBind();
-	//printf("%d, %d, %d\n", mouse_color_data[0], mouse_color_data[1], mouse_color_data[2]);
+	//printf("%d, %d, %d\n", mFocusRGB[0], mFocusRGB[1], mFocusRGB[2]);
 }
 
 void WorldRenderer::Init(SDL_Window* wnd)

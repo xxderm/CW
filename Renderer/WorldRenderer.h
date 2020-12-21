@@ -13,6 +13,7 @@
 class WorldRenderer final : public IRenderer
 {
 public:
+	WorldRenderer(unsigned char* colorDataPtr = nullptr);
 	void Render() override;
 	void Update() override;
 	void Init(SDL_Window* wnd) override;
@@ -34,7 +35,7 @@ private:
 	GLdouble modelview[16];
 	GLuint mTexId = 0;
 	glm::mat4x4 mvp;
-	unsigned char mouse_color_data[3];
+	unsigned char* mFocusRGB;
 private:
 	std::vector<glm::vec3> Vertices;
 	std::vector<glm::vec2> TexCoord;

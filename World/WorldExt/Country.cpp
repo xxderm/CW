@@ -33,10 +33,24 @@ void Country::Init()
 			color = Reader::getInstance()->getArray("Resources/" + FileStr, "color", true);
 		}
 		mCountries.at(TAG)->Color = glm::vec3(std::stoi(color[color.size() - 3]), std::stoi(color[color.size() - 2]), std::stoi(color[color.size() - 1]));
+
+		mCountriesColor.emplace(
+			std::to_string(int(mCountries.at(TAG)->Color.r)) + std::to_string(int(mCountries.at(TAG)->Color.g)) + std::to_string(int(mCountries.at(TAG)->Color.b))
+			, mCountries.at(TAG));
 	}
 }
 
 CountryFormat* Country::getCountryByTag(std::string Tag)
 {
 	return mCountries.at(Tag);
+}
+
+/*
+* Принимает строку в виде R + G + B
+*/
+CountryFormat* Country::getCountryByColor(std::string Color)
+{
+	if (mCountriesColor.count(Color) > 0)
+		return mCountriesColor.at(Color);
+	return nullptr;
 }

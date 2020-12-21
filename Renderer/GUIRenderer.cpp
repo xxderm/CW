@@ -128,6 +128,17 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 	{			
 		if (gui.second->Visible)
 		{		
+			if (gui.second->DynamicText)
+			{
+				if (mScene_ptr->getUser()->getCountry())
+				{
+					gui.second->Text.count("CountryName") > 0 ?
+						gui.second->Text.at("CountryName").Text = mScene_ptr->getUser()->getCountry()->Tag
+						:
+						0;
+				}
+
+			}
 			if (gui.second->LobbyIndex != -1)
 			{
 				if (mLobbies.size() >= gui.second->LobbyIndex)

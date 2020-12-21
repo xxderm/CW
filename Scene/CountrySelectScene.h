@@ -39,6 +39,9 @@ private:
 	int mWndHeight;
 	int mMouseX;
 	int mMouseY;
+
+private:
+	unsigned char* mFocusCountryPtr;
 };
 
 #endif // !COUNTRY_SELECT_SCENE

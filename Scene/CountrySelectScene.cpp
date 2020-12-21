@@ -9,7 +9,9 @@ void CountrySelectScene::Init(Scene* scene)
 	th.detach();
 
 	SDL_GetWindowSize(scene->getWindow(), &mWndWidth, &mWndHeight);
-	mWorldRenderer = new WorldRenderer();
+
+	mFocusCountryPtr = new unsigned char[3];
+	mWorldRenderer = new WorldRenderer(mFocusCountryPtr);
 	mGUIRenderer = new GUIRenderer("Resources/UI/CountrySelect.ui", 24, scene);
 
 	mWorldRenderer->Init(scene->getWindow());
@@ -53,6 +55,16 @@ void CountrySelectScene::HandleEvents(Scene* scene)
 		}
 		mGUIRenderer->HandleEvent(scene->getEvent(), scene->getWindow());
 		mWorldRenderer->HandleEvent(scene->getEvent(), scene->getWindow());
+
+		if (scene->getEvent()->type == SDL_MOUSEBUTTONDOWN)
+		{
+			auto selectedCountry = mWorld->getCountries()->getCountryByColor( 
+				std::to_string(int(mFocusCountryPtr[0])) +
+				std::to_string(int(mFocusCountryPtr[1])) +
+				std::to_string(int(mFocusCountryPtr[2])));
+			if (selectedCountry)
+				scene->getUser()->setCountry(selectedCountry);
+		}
 	}
 }
 

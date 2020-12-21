@@ -9,14 +9,14 @@ const std::string User::getName()
 	return mName;
 }
 
-const std::string User::getCountryTag()
-{
-	return mCountryTag;
-}
-
 const std::string User::getLobbyName()
 {
 	return mLobbyName;
+}
+
+const CountryFormat* User::getCountry()
+{
+	return mCountry;
 }
 
 const bool User::isConnected()
@@ -39,11 +39,6 @@ void User::setName(std::string Name)
 	this->mName = Name;
 }
 
-void User::setCountryTag(std::string Tag)
-{
-	this->mCountryTag = Tag;
-}
-
 void User::setPing(long Ping)
 {
 	this->mPing = Ping;
@@ -62,6 +57,11 @@ void User::setConnected(bool v)
 void User::setLobbyName(std::string name)
 {
 	this->mLobbyName = name;
+}
+
+void User::setCountry(CountryFormat* country)
+{
+	this->mCountry = country;
 }
 
 User::~User()

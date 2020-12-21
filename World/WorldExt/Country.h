@@ -14,6 +14,7 @@ public:
 	std::string getNameADJ();
 	std::string Tag;
 	std::string RulingParty;
+	std::string PartyName;
 	glm::vec3 Color;
 	int Capital;
 
@@ -29,6 +30,10 @@ public:
 	void Init();
 	CountryFormat* getCountryByTag(std::string Tag);
 	CountryFormat* getCountryByColor(std::string Color);
+	void Save(std::string Path);
+	bool Restore(std::string Path);
+private:
+	void LangFormatText(std::string& text);
 private:
 	std::map<std::string, CountryFormat*> mCountries;	
 	std::map<std::string, CountryFormat*> mCountriesColor;

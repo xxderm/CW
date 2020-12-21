@@ -88,19 +88,19 @@ std::vector<std::string> Reader::getFileLines(std::string Path)
     return result;
 }
 
-std::vector<std::string> Reader::getLangLines(std::string Path, std::string Keyword)
+std::vector<std::string> Reader::getLangLines(std::string Path, std::string Keyword, std::string sep)
 {
     std::vector<std::string> result;
     auto f = getStream(Path);
 
     while (getline(f, mCurrentLine))
-    { 
-        auto splitLine = split(mCurrentLine, "_");
+    {         
+        auto splitLine = split(mCurrentLine, sep);
         if (splitLine.size() > 0)
         {
-            if(splitLine[0] == " " + Keyword)
+            if (splitLine[0] == " " + Keyword)
                 result.push_back(mCurrentLine);
-        }
+        }        
     }
 
     f.close();

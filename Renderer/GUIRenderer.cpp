@@ -139,7 +139,7 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 						0;
 					gui.second->Text.count("PartyName") > 0 ?
 						gui.second->Text.at("PartyName").Text =
-						mScene_ptr->getUser()->getCountry()->RulingParty
+						mScene_ptr->getUser()->getCountry()->PartyName
 						:
 						0;
 

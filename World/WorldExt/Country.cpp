@@ -20,14 +20,13 @@ void Country::Init()
 		country->Capital = std::stoi(Capital);
 		country->RulingParty = RulingParty;
 
+
+
 		auto names = Reader::getInstance()->getLangLines("Resources/lang/countries_l_russian.yml", TAG);
 		for (auto& name : names)
 		{
 			auto countryName = Reader::getInstance()->split(name, ":")[1];
-			countryName.erase(std::remove(countryName.begin(), countryName.end(), '0'));
-			countryName.erase(std::remove(countryName.begin(), countryName.end(), '\"'));
-			countryName.erase(std::remove(countryName.begin(), countryName.end(), '"'));
-			countryName.erase(countryName.begin());
+			LangFormatText(countryName);
 			auto countryLit = Reader::getInstance()->split(name, "_");
 			countryLit[0].erase(std::remove(countryLit[0].begin(), countryLit[0].end(), ' '));
 			countryLit[1] = Reader::getInstance()->split(countryLit[1], ":")[0];
@@ -40,6 +39,25 @@ void Country::Init()
 				else
 					country->NameADJ.emplace(countryLit[1], countryName);
 			}
+		}
+
+		auto PartyNames = Reader::getInstance()
+			->getLangLines("Resources/lang/parties_l_russian.yml",
+				TAG + "_" + country->RulingParty + "_party", ":");
+		if (PartyNames.size() > 0 && country->RulingParty.size() > 0)
+		{
+			auto PartyName = Reader::getInstance()->split(PartyNames[0], ":")[1];
+			LangFormatText(PartyName);
+			country->PartyName = PartyName;
+		}
+		else if(country->RulingParty.size() > 0)
+		{
+			PartyNames = Reader::getInstance()
+				->getLangLines("Resources/lang/parties_l_russian.yml",
+					country->RulingParty, ":");			
+			auto PartyName = Reader::getInstance()->split(PartyNames[0], ":")[1];
+			LangFormatText(PartyName);
+			country->PartyName = PartyName;
 		}
 
 		mCountries.try_emplace(TAG, country);
@@ -79,6 +97,24 @@ CountryFormat* Country::getCountryByColor(std::string Color)
 	if (mCountriesColor.count(Color) > 0)
 		return mCountriesColor.at(Color);
 	return nullptr;
+}
+
+void Country::Save(std::string Path)
+{
+
+}
+
+bool Country::Restore(std::string Path)
+{
+	return false;
+}
+
+void Country::LangFormatText(std::string& text)
+{
+	text.erase(std::remove(text.begin(), text.end(), '0'));
+	text.erase(std::remove(text.begin(), text.end(), '\"'));
+	text.erase(std::remove(text.begin(), text.end(), '"'));
+	text.erase(text.begin());
 }
 
 std::string CountryFormat::getName()

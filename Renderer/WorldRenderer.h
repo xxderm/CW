@@ -9,6 +9,8 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/mat4x4.hpp>
 #include "../World/World.h"
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
 
 class WorldRenderer final : public IRenderer
 {
@@ -24,6 +26,7 @@ private:
 	void TerrainInit();
 	void WaterInit();
 	void CloudsInit();
+	void AsyncLoadTexture(std::string Path, std::string TextureName);
 private:
 	std::unique_ptr<Shader> mProgram[4];
 	std::unique_ptr<Texture> mTexture;
@@ -41,6 +44,13 @@ private:
 	std::vector<glm::vec2> TexCoord;
 	std::vector<GLuint> Indices;
 	glm::mat4x4 projection;
+
+	boost::mutex mThreadMutex;
+	int mTextureX, mTextureY, mTextureChanel;
+	boost::thread_group textureLoadThreads;
+	std::unordered_map<std::string, stbi_uc*> mTextureDatas;
+	std::vector<boost::thread*> mThreads;
+	std::vector<TextureFormat*> mTextures;
 
 	//stbi_uc* texData;
 	//stbi_uc* provData;

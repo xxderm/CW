@@ -5,13 +5,12 @@ Texture::Texture()
 	mTexture = new std::map<unsigned int, glm::vec2>();
 }
 
-stbi_uc* Texture::Add(std::string path, int format, int activeTexture, Parameter param, bool mipmaps, bool mfree)
+void Texture::Add(glm::vec2 size, stbi_uc* data, int format, int activeTexture, Parameter param, bool mipmaps, bool mfree)
 {
-	glm::vec2 size;
-	int x, y;
-	int chnls;
-	auto textureData = stbi_load(path.c_str(), &x, &y, &chnls, 0);
-	size = glm::vec2(x, y);
+	//glm::vec2 size;
+	//int x, y;
+	//int chnls;
+	//auto textureData = stbi_load(path.c_str(), &x, &y, &chnls, 0);	
 	unsigned int textureId;
 	if (activeTexture != -1)
 	{
@@ -20,7 +19,7 @@ stbi_uc* Texture::Add(std::string path, int format, int activeTexture, Parameter
 	}
 	glGenTextures(1, &textureId);
 	glBindTexture(GL_TEXTURE_2D, textureId);
-	glTexImage2D(GL_TEXTURE_2D, 0, format, (int)size.x, (int)size.y, 0, format, GL_UNSIGNED_BYTE, textureData);
+	glTexImage2D(GL_TEXTURE_2D, 0, format, (int)size.x, (int)size.y, 0, format, GL_UNSIGNED_BYTE, data);
 	switch (param)
 	{
 	case Parameter::NONE:
@@ -45,13 +44,8 @@ stbi_uc* Texture::Add(std::string path, int format, int activeTexture, Parameter
 	if(mipmaps)
 		glGenerateMipmap(GL_TEXTURE_2D);
 	if(mfree)
-		stbi_image_free(textureData);
+		stbi_image_free(data);
 	mTexture->emplace(textureId, size);
-
-	if (textureData)
-		return textureData;
-	else
-		return nullptr;
 }
 
 char* Texture::AddCache(glm::vec2 size, std::string path, int format, int activeTexture, Parameter param, bool mipmaps, bool mfree, std::string srcPath)

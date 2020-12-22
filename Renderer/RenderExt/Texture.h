@@ -21,11 +21,23 @@ enum class Parameter
 	LINEAR
 };
 
+struct TextureFormat
+{
+	std::string Name;
+	std::string Path;
+	std::string UniformName;
+	int ID;
+	int UniformID;
+	int Format;
+	Parameter Param;
+	glm::vec2 Size;
+};
+
 class Texture final 
 {
 public:
 	Texture();
-	stbi_uc* Add(std::string path, int format = GL_RGBA, int activeTexture = -1, Parameter param = Parameter::NONE, bool mipmaps = true, bool mfree = true);
+	void Add(glm::vec2 size, stbi_uc* data, int format = GL_RGBA, int activeTexture = -1, Parameter param = Parameter::NONE, bool mipmaps = true, bool mfree = true);
 	char* AddCache(glm::vec2 size, std::string path, int format = GL_RGBA, int activeTexture = -1, Parameter param = Parameter::NONE, bool mipmaps = true, bool mfree = true, std::string srcPath = "");
 	void LoadCubemap(std::initializer_list<std::string> faces, int activeTexture);
 	const glm::vec2 getSize(unsigned int id);

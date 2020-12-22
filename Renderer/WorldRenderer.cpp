@@ -213,62 +213,13 @@ void WorldRenderer::TerrainInit()
 	mTexture = std::make_unique<Texture>();
 
 
+
 	mTexture->AddCache(
 		glm::vec2(5632,2048),
 		"Resources/cache/ht",
 		GL_RGB, GL_TEXTURE0, Parameter::NONE, true, true,
 		"Resources/terrain/ht.bmp");
 	mProgram[0]->setInt("terrain", 0);
-
-	mTexture->Add(
-		"Resources/terrain/bm1.png",
-		GL_RGBA, GL_TEXTURE1,
-		Parameter::LINEAR);
-	mProgram[0]->setInt("terrain_map", 1);
-
-	mTexture->Add(
-		"Resources/terrain/atlas0.bmp",
-		GL_RGB, GL_TEXTURE3,
-		Parameter::CTG);
-	mProgram[0]->setInt("TerrainTextureID", 3);
-
-	mTexture->Add(
-		"Resources/terrain/bm3.png",
-		GL_RGBA, GL_TEXTURE4,
-		Parameter::LINEAR);
-	mProgram[0]->setInt("bm3", 4);
-
-	mTexture->Add(
-		"Resources/terrain/8i1c3dnd28h51.png",
-		GL_RGBA, GL_TEXTURE5,
-		Parameter::LINEAR);
-	mProgram[0]->setInt("province_border", 5);
-
-	mTexture->Add(
-		"Resources/terrain/bm2.png",
-		GL_RGBA, GL_TEXTURE6,
-		Parameter::LINEAR);
-	mProgram[0]->setInt("terra", 6);
-
-	mTexture->Add(
-		"Resources/terrain/World_normal.png",
-		GL_RGBA, GL_TEXTURE7,
-		Parameter::LINEAR);
-	mProgram[0]->setInt("wn", 7);
-
-	mTexture->Add(
-		"Resources/terrain/atlas_normal0.bmp",
-		GL_RGB, GL_TEXTURE8,
-		Parameter::LINEAR);
-	mProgram[0]->setInt("an", 8);
-
-
-	mTexture->Add(
-		"Resources/terrain/provinces.bmp",
-		GL_RGB, GL_TEXTURE9,
-		Parameter::NEAREST_CTG);
-	mProgram[0]->setInt("provinces", 9);
-
 
 	mTexture->AddCache(
 		glm::vec2(5632, 2048),
@@ -278,64 +229,129 @@ void WorldRenderer::TerrainInit()
 	mProgram[0]->setInt("Countries", 2);
 
 
+	// TODO: Загружать текстуры автоматически из файла
+	std::ifstream TextureConfig("Resources/texture.json");
+	boost::property_tree::ptree pt;
+	boost::property_tree::read_json(TextureConfig, pt);
+	for (auto& array_element : pt)
+	{
+		mTextures.push_back(new TextureFormat());
+		mTextures.back()->Name = array_element.first;
+		mTextures.back()->ID = GL_TEXTURE0 + array_element.second.get<int>("ID");
+		mTextures.back()->UniformID = array_element.second.get<int>("ID");
+		mTextures.back()->Path = array_element.second.get<std::string>("Path");
+		if (array_element.second.get<std::string>("Format") == "RGBA")
+			mTextures.back()->Format = GL_RGBA;
+		else
+			mTextures.back()->Format = GL_RGB;
+		if (array_element.second.get<std::string>("Parameter") == "LINEAR")
+			mTextures.back()->Param = Parameter::LINEAR;
+		else if(array_element.second.get<std::string>("Parameter") == "CTG")
+			mTextures.back()->Param = Parameter::CTG;
+		else if (array_element.second.get<std::string>("Parameter") == "NEAREST_CTG")
+			mTextures.back()->Param = Parameter::NEAREST_CTG;
+		else if (array_element.second.get<std::string>("Parameter") == "NONE")
+			mTextures.back()->Param = Parameter::NONE;
+		mTextures.back()->UniformName = array_element.second.get<std::string>("UniformName");
+		mTextures.back()->Size.x = array_element.second.get_child("Size").get<int>("x");
+		mTextures.back()->Size.y = array_element.second.get_child("Size").get<int>("y");		
+	}
 
 
-	/*provData = mTexture->Add(
-		"Resources/terrain/provinces.bmp",
-		GL_RGB, GL_TEXTURE9,
-		Parameter::NEAREST_CTG, true, false);
-	texData = mTexture->Add(
-		"Resources/terrain/map.bmp",
-		GL_RGB, GL_TEXTURE2,
-		Parameter::LINEAR, true, false);
-		world.Create();
-
-		int dex = 0;
-		for (size_t i = 0; i < 5632 * 2048; ++i)
-		{
-			int RGB[3] = { provData[dex], provData[++dex], provData[++dex] };
-			++dex;
-			auto province = world.getProvinces()->getProvince(glm::vec3(RGB[0], RGB[1], RGB[2]));
-			if (province->Terrain == "ocean" || province->Type == "lake" || province->Type == "sea")
-				continue;
-			try
-			{
-
-				auto state = world.getStates()->getState(province->StateId);
-				auto country = world.getCountries()->getCountryByTag(state->CountryTag);
-				int _dex = dex - 1;
-				texData[_dex] = int(country->Color.b);
-				texData[_dex - 1] = int(country->Color.g);
-				texData[_dex - 2] = int(country->Color.r);
-			}
-			catch (...)
-			{
-				std::cout << "ERR\n";
-			}
-		}
-	std::ofstream save;
-	save.open("Resources/cache/countries", std::ios::binary);
-	save.write((char*)texData, 5632 * 2048 * 3);
-	save.close();*/
-
-	/*std::ifstream save;
-	save.open("Resources/cache/countries", std::ios::in || std::ios::binary);
-	save.read((char*)texData, 5632*2048*3);
-	save.close();*/
+	for (auto& texture : mTextures)
+		this->AsyncLoadTexture(texture->Path, texture->Name);
+	
+	/*this->AsyncLoadTexture("Resources/terrain/bm1.png", "BlendMap1");
+	this->AsyncLoadTexture("Resources/terrain/atlas0.bmp", "Atlas");
+	this->AsyncLoadTexture("Resources/terrain/bm3.png", "BlendMap2");
+	this->AsyncLoadTexture("Resources/terrain/8i1c3dnd28h51.png", "ProvBorder");
+	this->AsyncLoadTexture("Resources/terrain/bm2.png", "BlendMap3");
+	this->AsyncLoadTexture("Resources/terrain/World_normal.png", "WorldNormal");
+	this->AsyncLoadTexture("Resources/terrain/atlas_normal0.bmp", "AtlasNormal");
+	this->AsyncLoadTexture("Resources/terrain/provinces.bmp", "Provinces");
+	this->AsyncLoadTexture("Resources/terrain/provinces.bmp", "ProvincesBlend");	*/
 
 
+	this->textureLoadThreads.join_all();
+	for (auto& thread : this->mThreads)
+		this->textureLoadThreads.remove_thread(thread);
+
+
+	for (auto& texture : mTextures)
+	{
+		mTexture->Add(
+			texture->Size,
+			mTextureDatas.at(texture->Name),
+			texture->Format, texture->ID,
+			texture->Param
+		);
+		mProgram[0]->setInt(texture->UniformName, texture->UniformID);
+	}
+
+	/*mTexture->Add(
+		glm::vec2(5632,2048),
+		mTextureDatas.at("BlendMap1"),
+		GL_RGBA, GL_TEXTURE1,
+		Parameter::LINEAR);
+	mProgram[0]->setInt("terrain_map", 1); 
 
 	mTexture->Add(
-		"Resources/terrain/provinces.bmp",
+		glm::vec2(2048, 2048),
+		mTextureDatas.at("Atlas"),
+		GL_RGB, GL_TEXTURE3,
+		Parameter::CTG);
+	mProgram[0]->setInt("TerrainTextureID", 3); 
+
+	mTexture->Add(
+		glm::vec2(5632, 2048),
+		mTextureDatas.at("BlendMap2"),
+		GL_RGBA, GL_TEXTURE4,
+		Parameter::LINEAR);
+	mProgram[0]->setInt("bm3", 4);	
+
+	mTexture->Add(
+		glm::vec2(2816, 1024),
+		mTextureDatas.at("ProvBorder"),
+		GL_RGBA, GL_TEXTURE5,
+		Parameter::LINEAR);
+	mProgram[0]->setInt("province_border", 5);	
+
+	mTexture->Add(
+		glm::vec2(5632, 2048),
+		mTextureDatas.at("BlendMap3"),
+		GL_RGBA, GL_TEXTURE6,
+		Parameter::LINEAR);
+	mProgram[0]->setInt("terra", 6);	
+
+	mTexture->Add(
+		glm::vec2(5632, 2048),
+		mTextureDatas.at("WorldNormal"),
+		GL_RGBA, GL_TEXTURE7,
+		Parameter::LINEAR);
+	mProgram[0]->setInt("wn", 7);	
+
+	mTexture->Add(
+		glm::vec2(2048, 2048),
+		mTextureDatas.at("AtlasNormal"),
+		GL_RGB, GL_TEXTURE8,
+		Parameter::LINEAR);
+	mProgram[0]->setInt("an", 8);	
+
+	mTexture->Add(
+		glm::vec2(5632, 2048),
+		mTextureDatas.at("Provinces"),
+		GL_RGB, GL_TEXTURE9,
+		Parameter::NEAREST_CTG);
+	mProgram[0]->setInt("provinces", 9);	
+
+	mTexture->Add(
+		glm::vec2(5632, 2048),
+		mTextureDatas.at("ProvincesBlend"),
 		GL_RGB, GL_TEXTURE18,
 		Parameter::LINEAR);
-	mProgram[0]->setInt("provincesBlend", 18);
-
-
-
+	mProgram[0]->setInt("provincesBlend", 18);	*/
 	
 	mBuffer->UnBind();
-
 	mProgram[0]->UnBind();
 }
 
@@ -352,7 +368,7 @@ void WorldRenderer::WaterInit()
 	mProgram[1]->setFloat("amount", 990.000101f);
 	mProgram[1]->setFloat("height", 0.001);
 
-	mTexture->Add(
+	/*mTexture->Add(
 		"Resources/terrain/underwater_terrain_0.png",
 		GL_RGBA,
 		GL_TEXTURE10,
@@ -390,7 +406,7 @@ void WorldRenderer::WaterInit()
 		GL_TEXTURE14,
 		Parameter::NEAREST_CTG
 	);
-	mProgram[1]->setInt("wterrain", 14);
+	mProgram[1]->setInt("wterrain", 14);*/
 
 	mTexture->LoadCubemap(
 		{ "Resources/terrain/cubemap/right.jpg",
@@ -418,14 +434,24 @@ void WorldRenderer::CloudsInit()
 	mProgram[2]->Bind();
 	mBuffer->Bind();
 
-	mTexture->Add(
+	/*mTexture->Add(
 		"Resources/terrain/clouds.png",
 		GL_RGBA,
 		GL_TEXTURE16,
 		Parameter::LINEAR
 	);
-	mProgram[2]->setInt("clouds", 16);
+	mProgram[2]->setInt("clouds", 16);*/
 
 	mBuffer->UnBind();
 	mProgram[2]->UnBind();
+}
+
+void WorldRenderer::AsyncLoadTexture(std::string Path, std::string TextureName)
+{
+	mThreads.push_back(new boost::thread([this](std::string path, std::string name)
+	{
+		//boost::lock_guard<boost::mutex> lg{mThreadMutex};
+		mTextureDatas.emplace(name, stbi_load(path.c_str(), &mTextureX, &mTextureY, &mTextureChanel, 0));
+	}, Path, TextureName));
+	textureLoadThreads.add_thread(mThreads.back());
 }

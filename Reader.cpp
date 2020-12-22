@@ -107,13 +107,17 @@ std::vector<std::string> Reader::getLangLines(std::string Path, std::string Keyw
     return result;
 }
 
-std::string Reader::getValue(std::string Path, std::string Keyword, int seek, bool digit)
+std::string Reader::getValue(std::string Path, std::string Keyword, int seek, bool digit, bool skipws)
 {
     Clean();
     auto f = getStream(Path);
     f.seekg(seek, std::ios::beg);
     std::string Result;
     GET_IFSTREAM_CHAR(
+        if (int(c) < 0)
+            continue;
+        if (int(c) > 255)
+            continue;
         if (mCheck)
         {   
             if (c == '\n' or c == '\t' or c == '#')
@@ -121,7 +125,7 @@ std::string Reader::getValue(std::string Path, std::string Keyword, int seek, bo
                 mCheck = false;
                 return mLiteral;
             }
-            if (c == '=' || c == ' ')
+            if (c == '=' || (c == ' ' && skipws))
             {
                 continue;
             }

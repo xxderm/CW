@@ -142,6 +142,11 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 						mScene_ptr->getUser()->getCountry()->PartyName
 						:
 						0;
+					gui.second->Text.count("PresidentName") > 0 ?
+						gui.second->Text.at("PresidentName").Text =
+						mScene_ptr->getUser()->getCountry()->LeaderName
+						:
+						0;
 
 				}
 

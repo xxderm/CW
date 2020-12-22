@@ -19,10 +19,22 @@ void Country::Init()
 			auto RulingParty = (Reader::getInstance()->getValue("Resources/TAG/" + FileName, "ruling_party", 3));
 			if (RulingParty.size() == 0)
 				RulingParty = "neutrality";
+			auto Leader = (Reader::getInstance()->getValue("Resources/TAG/" + FileName, "name", 3, false, false));
+			if (Leader.size() == 0)
+				Leader = "Arthur Gronz Heithz";
+			else
+			{
+				Leader.erase(std::remove(Leader.begin(), Leader.end(), '\"'));
+				Leader.erase(std::remove(Leader.begin(), Leader.end(), '"'));
+				Leader.erase(Leader.begin());
+				Leader.erase(Leader.begin());
+			}
+
 			CountryFormat* country = new CountryFormat();
 			country->Tag = TAG;
 			country->Capital = std::stoi(Capital);
 			country->RulingParty = RulingParty;
+			country->LeaderName = Leader;
 
 
 
@@ -115,6 +127,7 @@ void Country::Save(std::string Path)
 	{
 		save << country.first << std::endl;
 		save << country.second->Capital << std::endl;
+		save << country.second->LeaderName << std::endl;
 		save << country.second->Color.r << std::endl;
 		save << country.second->Color.g << std::endl;
 		save << country.second->Color.b << std::endl;
@@ -163,6 +176,8 @@ bool Country::Load(std::string Path)
 		load >> Tag;
 		CountryFormat* country = new CountryFormat();
 		load >> country->Capital;
+		std::getline(load, country->LeaderName);
+		std::getline(load, country->LeaderName);
 		load >> country->Color.r;
 		load >> country->Color.g;
 		load >> country->Color.b;

@@ -9,6 +9,7 @@ World::World()
 
 void World::Create()
 {
+	auto start = clock();
 	boost::thread provThread(&Province::Init, mProvince);
 	boost::thread countryThread(&Country::Init, mCountry);
 	boost::thread_group tg;

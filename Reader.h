@@ -18,7 +18,7 @@ public:
 	std::vector<std::string> get2DArray(std::string Path, std::string Keyword, std::string key, std::string sep = " ", bool isDigit = 0);
 	std::vector<std::string> getFileLines(std::string Path);
 	std::vector<std::string> getLangLines(std::string Path, std::string Keyword, std::string sep = "_");
-	std::string getValue(std::string Path, std::string Keyword, int seek = 0, bool digit = 0);
+	std::string getValue(std::string Path, std::string Keyword, int seek = 0, bool digit = 0, bool skipws = true);
 	void getUI(GUITexture* guis, std::string path, bool update = 1);
 #ifdef _WIN32
 	void getFiles(std::string Path, std::vector<std::string>& Src);

@@ -15,6 +15,7 @@ public:
 	std::string Tag;
 	std::string RulingParty;
 	std::string PartyName;
+	std::string LeaderName;
 	glm::vec3 Color;
 	int Capital;
 

@@ -23,7 +23,15 @@ stb_image.h
 mono_crash.*
 
 # Build results
-Resources
+Resources/countries
+Resources/cache
+Resources/cubemap
+Resources/TAG
+Resources/font
+Resources/states
+Resources/terrain
+Resources/definition.csv
+
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/

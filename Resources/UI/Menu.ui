@@ -1,0 +1,70 @@
+#import Resources/UI/MenuMP.ui
+
+Name MultiPlayerButton
+Highlight 1
+HighlightIntensity 1.2
+Visible 1
+Texture -1
+Scale 0.25 0.045
+CenterPoint 0.65 0.13
+Color 0.4 0.4 0.4 0.55
+Hover 0.8 0.8 0.8 0.65
+ShowOnClickEvent MPForm MPFormInner MPFormHeader MPFormLV1 MPFormLV2 MPFormLH1 ConnectButton MPExit InputPassword InputTitle PasswordForm TitleForm RefreshButton SearchServerButton CreateServerButton Lobby1 Lobby2 Lobby3 Lobby4 Lobby5 Lobby6 Lobby7 Lobby8 MPFormLV1Fix
+PUSH
+
+Name SettingsButton
+Visible 1
+Highlight 1
+HighlightIntensity 1.2
+Texture -1
+Scale 0.25 0.055
+CenterPoint 0.65 0.03
+Color 0.4 0.4 0.4 0.55
+Hover 0.8 0.8 0.8 0.65
+PUSH
+
+Name SinglePlayerButton
+Visible 1
+Highlight 1
+HighlightIntensity 1.2
+Texture -1
+Scale 0.25 0.055
+CenterPoint 0.65 0.23
+Color 0.4 0.4 0.4 0.55
+Hover 0.8 0.8 0.8 0.65
+CommandOnClick Start
+PUSH
+
+Name ExitButton
+Visible 1
+Highlight 1
+HighlightIntensity 1.2
+Texture -1
+Scale 0.25 0.045
+CenterPoint 0.65 -0.07
+Color 0.4 0.4 0.4 0.55
+Hover 0.8 0.8 0.8 0.65
+CommandOnClick Exit
+PUSH
+
+Name RightPanel
+Visible 1
+Texture -1
+CenterPoint 0.65 0.0
+Scale 0.25 1
+Color 0.4 0.4 0.4 0.55
+Hover 0.4 0.4 0.4 0.55
+Text [ Одиночная игра ] 74.8 60 1.0 1.0 1.0 1.0 SinglePlayer 1
+Text [ Сетевая игра ] 74.85 55 1.0 1.0 1.0 1.0 MultiPlayer 1
+Text [ Настройки ] 74.85 50 1.0 1.0 1.0 1.0 Settings 1
+Text [ Выход ] 74.85 45 1.0 1.0 1.0 1.0 Exit 1
+PUSH
+
+Name Background
+Visible 1
+Texture -1
+CenterPoint 0.0 0.0
+Scale 1 1
+Color 0.0 0.0 0.0 1.0
+Hover 0.0 0.0 0.0 1.0
+PUSH_EUI

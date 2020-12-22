@@ -1,0 +1,101 @@
+{
+	"BlendMap1": {
+		"ID": 1,
+		"Path": "Resources/terrain/bm1.png",
+		"Format": "RGBA",
+		"Parameter": "LINEAR",
+		"UniformName": "terrain_map",
+		"Size": {
+			"x": 5632,
+			"y": 2048
+		}
+	},
+	"Atlas": {
+		"ID": 3,
+		"Path": "Resources/terrain/atlas0.bmp",
+		"Format": "RGB",
+		"Parameter": "CTG",
+		"UniformName": "TerrainTextureID",
+		"Size": {
+			"x": 2048,
+			"y": 2048
+		}
+	},
+	"BlendMap2": {
+		"ID": 4,
+		"Path": "Resources/terrain/bm3.png",
+		"Format": "RGBA",
+		"Parameter": "LINEAR",
+		"UniformName": "bm3",
+		"Size": {
+			"x": 5632,
+			"y": 2048
+		}
+	},
+	"ProvBorder": {
+		"ID": 5,
+		"Path": "Resources/terrain/8i1c3dnd28h51.png",
+		"Format": "RGBA",
+		"Parameter": "LINEAR",
+		"UniformName": "province_border",
+		"Size": {
+			"x": 2816,
+			"y": 1024
+		}
+	},
+	"BlendMap3": {
+		"ID": 6,
+		"Path": "Resources/terrain/bm2.png",
+		"Format": "RGBA",
+		"Parameter": "LINEAR",
+		"UniformName": "terra",
+		"Size": {
+			"x": 5632,
+			"y": 2048
+		}
+	},
+	"WorldNormal": {
+		"ID": 7,
+		"Path": "Resources/terrain/World_normal.png",
+		"Format": "RGBA",
+		"Parameter": "LINEAR",
+		"UniformName": "wn",
+		"Size": {
+			"x": 5632,
+			"y": 2048
+		}
+	},
+	"AtlasNormal": {
+		"ID": 8,
+		"Path": "Resources/terrain/atlas_normal0.bmp",
+		"Format": "RGB",
+		"Parameter": "LINEAR",
+		"UniformName": "an",
+		"Size": {
+			"x": 2048,
+			"y": 2048
+		}
+	},
+	"Provinces": {
+		"ID": 9,
+		"Path": "Resources/terrain/provinces.bmp",
+		"Format": "RGB",
+		"Parameter": "NEAREST_CTG",
+		"UniformName": "provinces",
+		"Size": {
+			"x": 5632,
+			"y": 2048
+		}
+	},
+	"ProvincesBlend": {
+		"ID": 18,
+		"Path": "Resources/terrain/provinces.bmp",
+		"Format": "RGB",
+		"Parameter": "LINEAR",
+		"UniformName": "provincesBlend",
+		"Size": {
+			"x": 5632,
+			"y": 2048
+		}
+	}
+}

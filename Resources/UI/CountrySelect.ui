@@ -1,0 +1,137 @@
+#import Resources/UI/Console.ui
+
+Name ActionBegin
+Texture -1
+CenterPoint 0.85 -0.75
+Scale 0.14 0.05
+Color 0.2 0.2 0.2 1.0
+Hover 0.1 0.1 0.1 1.0
+Text [ Начать ] 85.5 11.5 1. 1. 1. 1.0 Begin 1
+PUSH
+
+Name ActionBack
+Texture -1
+CenterPoint 0.85 -0.87
+Scale 0.14 0.05
+Color 0.2 0.2 0.2 1.0
+Hover 0.1 0.1 0.1 1.0
+Text [ Назад ] 85.5 5 1. 1. 1. 1.0 Back 1
+PUSH
+
+Name ActionPanel
+Texture -1
+CenterPoint 0.85 -0.81
+Scale 0.15 0.15
+Color 0.1 0.1 0.1 1.0
+Hover 0.1 0.1 0.1 1.0
+PUSH
+
+Name CountryInfoFlag
+Texture -1
+Visible 0
+CenterPoint -0.89 0.65
+Scale 0.1 0.24
+Color 0.8 0.8 0.8 0.9
+Hover 0.8 0.8 0.8 0.9
+PUSH
+
+Name CountryInfoOpen
+Visible 1
+Texture -1
+CenterPoint -0.80 0.90
+Scale 0.20 0.10
+Color 0.2 0.2 0.2 0.9
+Hover 0.4 0.4 0.4 0.9
+HideOnClickEvent CountryInfoOpen
+ShowOnClickEvent CountryInfo CountryInfoFlag CountryInfoExit
+Text [ Информация о стране ] 1.7 94 1. 1. 1. 1.0 Title 1
+PUSH
+
+Name CountryInfoExit
+Visible 0
+Texture -1
+CenterPoint -0.55 0.95
+Scale 0.025 0.025
+Color 0.8 0.2 0.2 0.9
+Hover 1.0 0.2 0.2 0.9
+HideOnClickEvent CountryInfo CountryInfoFlag CountryInfoExit
+ShowOnClickEvent CountryInfoOpen
+PUSH
+
+Name CountryInfo
+Dynamic 1
+Visible 0
+Texture -1
+CenterPoint -0.75 0.67
+Scale 0.25 0.33
+Color 0.1 0.1 0.1 0.9
+Hover 0.1 0.1 0.1 0.9
+Text [ Третий рейх ] 0.5 96 1. 1. 1. 1.0 CountryName 1
+Text [ Правящая партия: ] 11 92 1. 1. 1. 1.0 PartyTitle 1
+Text [ - Нацизм ] 11.4 88 1. 1. 1. 1.0 PartyName 0.8
+Text [ Правитель: ] 11 84 1. 1. 1. 1.0 PresidentTitle 1
+Text [ - Адольф Гитлер ] 11.4 80 1. 1. 1. 1.0 PresidentName 0.8
+PUSH
+
+#FRA
+Name Country1
+Texture -1
+StaticCountryTag FRA
+CommandOnClick SelectCountry
+CenterPoint -0.3 -0.85
+Scale 0.07 0.13
+Color 0.9 0.4 0.4 0.9
+Hover 0.4 0.4 0.4 0.9
+PUSH
+
+#GER
+Name Country2
+Texture -1
+StaticCountryTag GER
+CommandOnClick SelectCountry
+CenterPoint -0.15 -0.85
+Scale 0.07 0.13
+Color 0.9 0.4 0.4 0.9
+Hover 0.4 0.4 0.4 0.9
+PUSH
+
+#SOV
+Name Country3
+Texture -1
+CenterPoint -0.0 -0.85
+StaticCountryTag SOV
+CommandOnClick SelectCountry
+Scale 0.07 0.13
+Color 0.9 0.4 0.4 0.9
+Hover 0.4 0.4 0.4 0.9
+PUSH
+
+#ENG
+Name Country4
+Texture -1
+StaticCountryTag ENG
+CommandOnClick SelectCountry
+CenterPoint 0.15 -0.85
+Scale 0.07 0.13
+Color 0.9 0.4 0.4 0.9
+Hover 0.4 0.4 0.4 0.9
+PUSH
+
+#ITA
+Name Country5
+Texture -1
+StaticCountryTag ITA
+CommandOnClick SelectCountry
+CenterPoint 0.3 -0.85
+Scale 0.07 0.13
+Color 0.9 0.4 0.4 0.9
+Hover 0.4 0.4 0.4 0.9
+PUSH
+
+Name Countries
+Texture -1
+CenterPoint 0.0 -0.85
+Scale 0.38 0.15
+Color 0.1 0.1 0.1 1.0
+Hover 0.1 0.1 0.1 1.0
+PUSH_EUI

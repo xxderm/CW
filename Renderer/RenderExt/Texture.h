@@ -29,6 +29,7 @@ struct TextureFormat
 	int ID;
 	int UniformID;
 	int Format;
+	int Program;
 	Parameter Param;
 	glm::vec2 Size;
 };

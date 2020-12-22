@@ -24,7 +24,6 @@ public:
 	void HandleEvent(SDL_Event* e, SDL_Window* wnd) override;
 private:
 	void TerrainInit();
-	void WaterInit();
 	void CloudsInit();
 	void AsyncLoadTexture(std::string Path, std::string TextureName);
 private:

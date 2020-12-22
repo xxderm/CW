@@ -1,6 +1,7 @@
 {
 	"BlendMap1": {
 		"ID": 1,
+		"Program": 0,
 		"Path": "Resources/terrain/bm1.png",
 		"Format": "RGBA",
 		"Parameter": "LINEAR",
@@ -12,6 +13,7 @@
 	},
 	"Atlas": {
 		"ID": 3,
+		"Program": 0,
 		"Path": "Resources/terrain/atlas0.bmp",
 		"Format": "RGB",
 		"Parameter": "CTG",
@@ -23,6 +25,7 @@
 	},
 	"BlendMap2": {
 		"ID": 4,
+		"Program": 0,
 		"Path": "Resources/terrain/bm3.png",
 		"Format": "RGBA",
 		"Parameter": "LINEAR",
@@ -34,6 +37,7 @@
 	},
 	"ProvBorder": {
 		"ID": 5,
+		"Program": 0,
 		"Path": "Resources/terrain/8i1c3dnd28h51.png",
 		"Format": "RGBA",
 		"Parameter": "LINEAR",
@@ -45,6 +49,7 @@
 	},
 	"BlendMap3": {
 		"ID": 6,
+		"Program": 0,
 		"Path": "Resources/terrain/bm2.png",
 		"Format": "RGBA",
 		"Parameter": "LINEAR",
@@ -56,6 +61,7 @@
 	},
 	"WorldNormal": {
 		"ID": 7,
+		"Program": 0,
 		"Path": "Resources/terrain/World_normal.png",
 		"Format": "RGBA",
 		"Parameter": "LINEAR",
@@ -67,6 +73,7 @@
 	},
 	"AtlasNormal": {
 		"ID": 8,
+		"Program": 0,
 		"Path": "Resources/terrain/atlas_normal0.bmp",
 		"Format": "RGB",
 		"Parameter": "LINEAR",
@@ -78,6 +85,7 @@
 	},
 	"Provinces": {
 		"ID": 9,
+		"Program": 0,
 		"Path": "Resources/terrain/provinces.bmp",
 		"Format": "RGB",
 		"Parameter": "NEAREST_CTG",
@@ -89,10 +97,71 @@
 	},
 	"ProvincesBlend": {
 		"ID": 18,
+		"Program": 0,
 		"Path": "Resources/terrain/provinces.bmp",
 		"Format": "RGB",
 		"Parameter": "LINEAR",
 		"UniformName": "provincesBlend",
+		"Size": {
+			"x": 5632,
+			"y": 2048
+		}
+	},
+	"WaterTexture": {
+		"ID": 10,
+		"Program": 1,
+		"Path": "Resources/terrain/underwater_terrain_0.png",
+		"Format": "RGBA",
+		"Parameter": "LINEAR",
+		"UniformName": "TexWater",
+		"Size": {
+			"x": 512,
+			"y": 512
+		}
+	},
+	"WaterNormal": {
+		"ID": 11,
+		"Program": 1,
+		"Path": "Resources/terrain/matchingNormalMap.png",
+		"Format": "RGBA",
+		"Parameter": "NONE",
+		"UniformName": "watnorm",
+		"Size": {
+			"x": 512,
+			"y": 512
+		}
+	},
+	"DUDV": {
+		"ID": 12,
+		"Program": 1,
+		"Path": "Resources/terrain/waterDUDV.png",
+		"Format": "RGBA",
+		"Parameter": "NONE",
+		"UniformName": "dudv",
+		"Size": {
+			"x": 512,
+			"y": 512
+		}
+	},
+	"ColorMap": {
+		"ID": 13,
+		"Program": 1,
+		"Path": "Resources/terrain/cm.png",
+		"Format": "RGBA",
+		"Parameter": "LINEAR",
+		"UniformName": "cm",
+		"Size": {
+			"x": 2816,
+			"y": 1024
+		}
+	},
+	"HTerrain": {
+		"ID": 14,
+		"Program": 1,
+		"Path": "Resources/terrain/heightmap.bmp",
+		"Format": "RGB",
+		"Parameter": "NEAREST_CTG",
+		"UniformName": "wterrain",
 		"Size": {
 			"x": 5632,
 			"y": 2048

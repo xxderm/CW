@@ -108,7 +108,6 @@ void WorldRenderer::Init(SDL_Window* wnd)
 	SDL_GetWindowSize(wnd, &w, &h);
 	projection = glm::perspective<float>(45.f, float((float)w / (float)h), 0.1, 100.f);
 	this->TerrainInit();
-	this->WaterInit();
 	this->CloudsInit();
 
 
@@ -230,7 +229,7 @@ void WorldRenderer::TerrainInit()
 
 
 	// TODO: Загружать текстуры автоматически из файла
-	std::ifstream TextureConfig("Resources/texture.json");
+	std::ifstream TextureConfig("Resources/terrain texture.json");
 	boost::property_tree::ptree pt;
 	boost::property_tree::read_json(TextureConfig, pt);
 	for (auto& array_element : pt)
@@ -239,6 +238,7 @@ void WorldRenderer::TerrainInit()
 		mTextures.back()->Name = array_element.first;
 		mTextures.back()->ID = GL_TEXTURE0 + array_element.second.get<int>("ID");
 		mTextures.back()->UniformID = array_element.second.get<int>("ID");
+		mTextures.back()->Program = array_element.second.get<int>("Program");
 		mTextures.back()->Path = array_element.second.get<std::string>("Path");
 		if (array_element.second.get<std::string>("Format") == "RGBA")
 			mTextures.back()->Format = GL_RGBA;
@@ -260,103 +260,30 @@ void WorldRenderer::TerrainInit()
 
 	for (auto& texture : mTextures)
 		this->AsyncLoadTexture(texture->Path, texture->Name);
-	
-	/*this->AsyncLoadTexture("Resources/terrain/bm1.png", "BlendMap1");
-	this->AsyncLoadTexture("Resources/terrain/atlas0.bmp", "Atlas");
-	this->AsyncLoadTexture("Resources/terrain/bm3.png", "BlendMap2");
-	this->AsyncLoadTexture("Resources/terrain/8i1c3dnd28h51.png", "ProvBorder");
-	this->AsyncLoadTexture("Resources/terrain/bm2.png", "BlendMap3");
-	this->AsyncLoadTexture("Resources/terrain/World_normal.png", "WorldNormal");
-	this->AsyncLoadTexture("Resources/terrain/atlas_normal0.bmp", "AtlasNormal");
-	this->AsyncLoadTexture("Resources/terrain/provinces.bmp", "Provinces");
-	this->AsyncLoadTexture("Resources/terrain/provinces.bmp", "ProvincesBlend");	*/
-
-
 	this->textureLoadThreads.join_all();
+	
 	for (auto& thread : this->mThreads)
 		this->textureLoadThreads.remove_thread(thread);
 
 
 	for (auto& texture : mTextures)
 	{
-		mTexture->Add(
-			texture->Size,
-			mTextureDatas.at(texture->Name),
-			texture->Format, texture->ID,
-			texture->Param
-		);
-		mProgram[0]->setInt(texture->UniformName, texture->UniformID);
+		if (texture->Program == 0)
+		{
+			mTexture->Add(
+				texture->Size,
+				mTextureDatas.at(texture->Name),
+				texture->Format, texture->ID,
+				texture->Param
+			);
+			mProgram[0]->setInt(texture->UniformName, texture->UniformID);
+		}
 	}
-
-	/*mTexture->Add(
-		glm::vec2(5632,2048),
-		mTextureDatas.at("BlendMap1"),
-		GL_RGBA, GL_TEXTURE1,
-		Parameter::LINEAR);
-	mProgram[0]->setInt("terrain_map", 1); 
-
-	mTexture->Add(
-		glm::vec2(2048, 2048),
-		mTextureDatas.at("Atlas"),
-		GL_RGB, GL_TEXTURE3,
-		Parameter::CTG);
-	mProgram[0]->setInt("TerrainTextureID", 3); 
-
-	mTexture->Add(
-		glm::vec2(5632, 2048),
-		mTextureDatas.at("BlendMap2"),
-		GL_RGBA, GL_TEXTURE4,
-		Parameter::LINEAR);
-	mProgram[0]->setInt("bm3", 4);	
-
-	mTexture->Add(
-		glm::vec2(2816, 1024),
-		mTextureDatas.at("ProvBorder"),
-		GL_RGBA, GL_TEXTURE5,
-		Parameter::LINEAR);
-	mProgram[0]->setInt("province_border", 5);	
-
-	mTexture->Add(
-		glm::vec2(5632, 2048),
-		mTextureDatas.at("BlendMap3"),
-		GL_RGBA, GL_TEXTURE6,
-		Parameter::LINEAR);
-	mProgram[0]->setInt("terra", 6);	
-
-	mTexture->Add(
-		glm::vec2(5632, 2048),
-		mTextureDatas.at("WorldNormal"),
-		GL_RGBA, GL_TEXTURE7,
-		Parameter::LINEAR);
-	mProgram[0]->setInt("wn", 7);	
-
-	mTexture->Add(
-		glm::vec2(2048, 2048),
-		mTextureDatas.at("AtlasNormal"),
-		GL_RGB, GL_TEXTURE8,
-		Parameter::LINEAR);
-	mProgram[0]->setInt("an", 8);	
-
-	mTexture->Add(
-		glm::vec2(5632, 2048),
-		mTextureDatas.at("Provinces"),
-		GL_RGB, GL_TEXTURE9,
-		Parameter::NEAREST_CTG);
-	mProgram[0]->setInt("provinces", 9);	
-
-	mTexture->Add(
-		glm::vec2(5632, 2048),
-		mTextureDatas.at("ProvincesBlend"),
-		GL_RGB, GL_TEXTURE18,
-		Parameter::LINEAR);
-	mProgram[0]->setInt("provincesBlend", 18);	*/
 	
 	mBuffer->UnBind();
 	mProgram[0]->UnBind();
-}
 
-void WorldRenderer::WaterInit()
-{
+
 	mProgram[1] = std::make_unique<Shader>(
 		"Shaders/WaterVertex.glsl",
 		"Shaders/WaterFragment.glsl",
@@ -367,47 +294,6 @@ void WorldRenderer::WaterInit()
 	mProgram[1]->setFloat("speed", 0.14f);
 	mProgram[1]->setFloat("amount", 990.000101f);
 	mProgram[1]->setFloat("height", 0.001);
-
-	/*mTexture->Add(
-		"Resources/terrain/underwater_terrain_0.png",
-		GL_RGBA,
-		GL_TEXTURE10,
-		Parameter::LINEAR
-		);
-	mProgram[1]->setInt("TexWater", 10);
-
-	mTexture->Add(
-		"Resources/terrain/matchingNormalMap.png",
-		GL_RGBA,
-		GL_TEXTURE11,
-		Parameter::NONE
-	);
-	mProgram[1]->setInt("watnorm", 11);
-
-	mTexture->Add(
-		"Resources/terrain/waterDUDV.png",
-		GL_RGBA,
-		GL_TEXTURE12,
-		Parameter::NONE
-	);
-	mProgram[1]->setInt("dudv", 12);
-
-	mTexture->Add(
-		"Resources/terrain/cm.png",
-		GL_RGBA,
-		GL_TEXTURE13,
-		Parameter::LINEAR
-	);
-	mProgram[1]->setInt("cm", 13);
-
-	mTexture->Add(
-		"Resources/terrain/heightmap.bmp",
-		GL_RGB,
-		GL_TEXTURE14,
-		Parameter::NEAREST_CTG
-	);
-	mProgram[1]->setInt("wterrain", 14);*/
-
 	mTexture->LoadCubemap(
 		{ "Resources/terrain/cubemap/right.jpg",
 		"Resources/terrain/cubemap/left.jpg",
@@ -418,9 +304,20 @@ void WorldRenderer::WaterInit()
 		GL_TEXTURE15
 	);
 	mProgram[1]->setInt("skybox", 15);
-
+	for (auto& texture : mTextures)
+	{
+		if (texture->Program == 1)
+		{
+			mTexture->Add(
+				texture->Size,
+				mTextureDatas.at(texture->Name),
+				texture->Format, texture->ID,
+				texture->Param
+			);
+			mProgram[1]->setInt(texture->UniformName, texture->UniformID);
+		}
+	}
 	mBuffer->UnBind();
-
 	mProgram[1]->UnBind();
 }
 

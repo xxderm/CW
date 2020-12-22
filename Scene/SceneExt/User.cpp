@@ -34,6 +34,11 @@ const uint32_t User::getId()
 	return mId;
 }
 
+const UserState User::getStatus()
+{
+	return mStatus;
+}
+
 void User::setName(std::string Name)
 {
 	this->mName = Name;
@@ -62,6 +67,11 @@ void User::setLobbyName(std::string name)
 void User::setCountry(CountryFormat* country)
 {
 	this->mCountry = country;
+}
+
+void User::setStatus(UserState status)
+{
+	this->mStatus = status;
 }
 
 User::~User()

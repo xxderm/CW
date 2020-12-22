@@ -30,3 +30,14 @@ void ClearLobbyListCommand::Execute()
 {
 	mLobbies->clear();
 }
+
+SelectCountryCommand::SelectCountryCommand(Scene* scene, CountryFormat* country)
+	: mScene_ptr(scene), mCountry_ptr(country)
+{
+}
+
+void SelectCountryCommand::Execute()
+{
+	if(mScene_ptr->getUser()->getStatus() == UserState::COUNTRY_SELECT)
+		mScene_ptr->getUser()->setCountry(mCountry_ptr);
+}

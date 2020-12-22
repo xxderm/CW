@@ -35,6 +35,7 @@ struct GuiFormat
 	float ActiveHighlightIntensity = 1.0;
 	int LobbyIndex = -1;
 	bool DynamicText = false;
+	std::string SelectedCountryTag;
 
 	glm::vec4 baseColor = glm::vec4(1, 1, 1, 0.5);
 	bool Active = false;

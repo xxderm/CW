@@ -239,6 +239,8 @@ void Reader::getUI(GUITexture* guis, std::string path, bool update)
                     format->ActiveHighlightIntensity = std::stof(lit[1]);
                 if (lit[0] == "Dynamic")
                     format->DynamicText = std::stoi(lit[1]);
+                if (lit[0] == "StaticCountryTag")
+                    format->SelectedCountryTag = lit[1];
                 if (lit[0] == "PUSH")
                 {
                     guis->Add(format->Name, format);

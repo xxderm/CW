@@ -12,7 +12,7 @@ void CountrySelectScene::Init(Scene* scene)
 
 	mFocusCountryPtr = new unsigned char[3];
 	mWorldRenderer = new WorldRenderer(mFocusCountryPtr);
-	mGUIRenderer = new GUIRenderer("Resources/UI/CountrySelect.ui", 24, scene);
+	mGUIRenderer = new GUIRenderer("Resources/UI/CountrySelect.ui", 24, scene, mWorld);
 
 	mWorldRenderer->Init(scene->getWindow());
 	mGUIRenderer->Init(scene->getWindow());
@@ -28,6 +28,8 @@ void CountrySelectScene::Init(Scene* scene)
 
 	mGUIRenderer->setCamera(mCamera);
 	mGUIRenderer->setMousePicker(mMousePicker);
+
+	scene->getUser()->setStatus(UserState::COUNTRY_SELECT);
 }
 
 void CountrySelectScene::Clean()
@@ -53,7 +55,6 @@ void CountrySelectScene::HandleEvents(Scene* scene)
 			if (scene->getEvent()->wheel.y < 0)
 				mCamera->ProcessKeyboard(Camera_Movement::CBACKWARD, 0.35);
 		}
-		mGUIRenderer->HandleEvent(scene->getEvent(), scene->getWindow());
 		mWorldRenderer->HandleEvent(scene->getEvent(), scene->getWindow());
 
 		if (scene->getEvent()->type == SDL_MOUSEBUTTONDOWN)
@@ -65,6 +66,7 @@ void CountrySelectScene::HandleEvents(Scene* scene)
 			if (selectedCountry)
 				scene->getUser()->setCountry(selectedCountry);
 		}
+		mGUIRenderer->HandleEvent(scene->getEvent(), scene->getWindow());
 	}
 }
 

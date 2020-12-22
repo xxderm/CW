@@ -31,4 +31,14 @@ private:
 	std::vector<Lobby>* mLobbies;
 };
 
+class SelectCountryCommand final : public Command
+{
+public:
+	SelectCountryCommand(Scene* scene, CountryFormat* country);
+	void Execute() override;
+private:
+	Scene* mScene_ptr;
+	CountryFormat* mCountry_ptr;
+};
+
 #endif // !UI_COMMAND_HEADER

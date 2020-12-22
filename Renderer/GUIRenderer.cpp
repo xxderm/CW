@@ -1,7 +1,7 @@
 #include "GUIRenderer.h"
 
-GUIRenderer::GUIRenderer(std::string uiPath, int fontSize, Scene* scene)
-	: mUiPath(uiPath), mFontSize(fontSize), mScene_ptr(scene)
+GUIRenderer::GUIRenderer(std::string uiPath, int fontSize, Scene* scene, World* world)
+	: mUiPath(uiPath), mFontSize(fontSize), mScene_ptr(scene), mWorld_ptr(world)
 {
 	if (!scene)
 		LOG(WARNING) << "GUIRenderer: Scene is nullptr";
@@ -65,6 +65,7 @@ void GUIRenderer::Init(SDL_Window* wnd)
 	mCommand.emplace("Start", new ChangeSceneCommand(mScene_ptr, CountrySelectScene::getInstance()));
 	mCommand.emplace("GetLobbies", new GetLobbyListCommand(mScene_ptr->getPacket(), mScene_ptr->getSocket()));
 	mCommand.emplace("ClearLobbies", new ClearLobbyListCommand(&mLobbies));
+	mCommand.emplace("SelectCountry", new SelectCountryCommand(mScene_ptr, &mCountry_ptr));
 }
 
 void GUIRenderer::Update()
@@ -175,6 +176,10 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 				mGuis->SetColor(gui.first, gui.second->hoverColor);
 				if (e->type == SDL_MOUSEBUTTONDOWN)
 				{
+					if (!gui.second->SelectedCountryTag.empty())
+					{
+						mCountry_ptr = *mWorld_ptr->getCountries()->getCountryByTag(gui.second->SelectedCountryTag);
+					}
 					if (!gui.second->CommandOnClick.first.empty())
 					{
 						mCommand.at(gui.second->CommandOnClick.first)->Execute();

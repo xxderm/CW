@@ -10,7 +10,7 @@
 class GUIRenderer : public IRenderer
 {
 public:
-	GUIRenderer(std::string uiPath, int fontSize = 24, Scene* scene = nullptr);
+	GUIRenderer(std::string uiPath, int fontSize = 24, Scene* scene = nullptr, World* world = nullptr);
 	void Render() override;
 	void Init(SDL_Window* wnd) override;
 	void Update() override;
@@ -33,6 +33,8 @@ private:
 	int mFontSize = 24;
 
 	Scene* mScene_ptr;
+	World* mWorld_ptr = nullptr;
+	CountryFormat mCountry_ptr;
 	std::unordered_map<std::string, Command*> mCommand;
 
 	std::vector<Lobby> mLobbies;

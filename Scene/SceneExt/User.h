@@ -7,6 +7,16 @@
 #include "easylogging++.h"
 #include "../../World/WorldExt/Country.h"
 
+enum UserState
+{
+	MAIN_MENU,
+	COUNTRY_SELECT,
+	LOBBY,
+	PLAYING,
+	IDLE,
+	AFK
+};
+
 class User final
 {
 public:
@@ -17,12 +27,14 @@ public:
 	const bool isConnected();
 	const long getPing();
 	const uint32_t getId();
+	const UserState getStatus();
 	void setName(std::string Name);
 	void setPing(long Ping);
 	void setId(uint32_t Id);
 	void setConnected(bool v);
 	void setLobbyName(std::string name);
 	void setCountry(CountryFormat* country);
+	void setStatus(UserState status);
 	~User();
 private:
 	std::string mName;
@@ -31,6 +43,7 @@ private:
 	long mPing;
 	uint32_t mId;
 	bool mConnected = false;
+	UserState mStatus = UserState::MAIN_MENU;
 };
 
 #endif // !USER_HEADER

@@ -144,121 +144,121 @@ std::string Reader::getValue(std::string Path, std::string Keyword, int seek, bo
 
 void Reader::getUI(GUITexture* guis, std::string path, bool update)
 {
-    auto f = getStream(path);
-    f.imbue(std::locale(std::locale(), new std::codecvt_utf8<wchar_t, 0x10ffffUL, std::codecvt_mode::consume_header>));
     if (update)
         guis->Clear();
 
-    GuiFormat* format = new GuiFormat();
-    std::string line;
-    while (std::getline(f, line))
-    {
-        try
-        {
-            auto lit = split(line, " ");
-            if (lit.size() > 0)
-            {
-                if (lit[0] == "#import")
-                {
-                    this->getUI(guis, lit[1], false);
-                }
-                if (lit[0] == "Name")
-                    format->Name = lit[1];
-                if (lit[0] == "Texture")
-                    format->TextureId = std::stoi(lit[1]);
-                if (lit[0] == "CenterPoint")
-                    format->Position = glm::vec2(std::stof(lit[1]), std::stof(lit[2]));
-                if (lit[0] == "Scale")
-                    format->Scale = glm::vec2(std::stof(lit[1]), std::stof(lit[2]));
-                if (lit[0] == "Color")
-                {
-                    format->Color = glm::vec4(std::stof(lit[1]), std::stof(lit[2]), std::stof(lit[3]), std::stof(lit[4]));
-                    format->baseColor = format->Color;
-                }
-                if (lit[0] == "Text")
-                {
-                    std::string result_text = "";
+    boost::property_tree::ptree pt;
+    boost::property_tree::read_json(path.c_str(), pt);
 
-                    int index = 1;
-                    while (true)
-                    {
-                        index++;
-                        if (lit[index] == "]")
-                            break;
-                        result_text += " " + lit[index];
-                    }
-                    auto p1 = lit[++index];
-                    auto p2 = lit[++index];
-                    auto p3 = lit[++index];
-                    auto p4 = lit[++index];
-                    auto p5 = lit[++index];
-                    auto p6 = lit[++index];
-                    auto p7 = lit[++index];
-                    auto p8 = lit[++index];
-                    Str str;
-                    str.Text = result_text;
-                    str.Position = glm::vec2(std::stof(p1), std::stof(p2));
-                    str.Color = glm::vec4(std::stof(p3), std::stof(p4), std::stof(p5), std::stof(p6));
-                    str.Scale = std::stof(p8);
-                    format->Text.emplace(
-                        p7,
-                        str
-                    );
-                }
-                if (lit[0] == "Hover")
-                    format->hoverColor = glm::vec4(std::stof(lit[1]), std::stof(lit[2]), std::stof(lit[3]), std::stof(lit[4]));
-                if (lit[0] == "Visible")
-                    format->Visible = std::stoi(lit[1]);
-                if (lit[0] == "Type")
-                    format->Type = lit[1];
-                if (lit[0] == "Lobby")
-                    format->LobbyIndex = std::stoi(lit[1]);
-                if (lit[0] == "For")
-                    format->For = lit[1];               
-                if (lit[0] == "ShowOnClickEvent")
-                {
-                    lit.erase(lit.begin());
-                    format->ShowToClick = lit;
-                }
-                if (lit[0] == "HideOnClickEvent")
-                {
-                    lit.erase(lit.begin());
-                    format->HideToClick = lit;
-                }
-                if (lit[0] == "CommandOnClick")
-                {
-                    lit.erase(lit.begin());
-                    std::string Command = lit[0];
-                    if(lit.size() > 2)
-                        lit.erase(lit.begin());
-                    format->CommandOnClick = std::pair<std::string, std::vector<std::string>>(Command, lit);
-                }
-                if (lit[0] == "Key")
-                    format->Key = std::make_pair<bool, SDL_Keycode>(true, (SDL_Keycode)lit[1][0]);
-                if (lit[0] == "Highlight")
-                    format->ActiveHighlight = std::stoi(lit[1]);
-                if (lit[0] == "HighlightIntensity")
-                    format->ActiveHighlightIntensity = std::stof(lit[1]);
-                if (lit[0] == "Dynamic")
-                    format->DynamicText = std::stoi(lit[1]);
-                if (lit[0] == "StaticCountryTag")
-                    format->SelectedCountryTag = lit[1];
-                if (lit[0] == "PUSH")
-                {
-                    guis->Add(format->Name, format);
-                    format = new GuiFormat();
-                }
-                if (lit[0] == "PUSH_EUI")
-                    guis->Add(format->Name, format);
+    for (auto& gui_element : pt)
+    {
+        if (gui_element.first == "import")
+        {
+            this->getUI(guis, gui_element.second.get_value<std::string>(), false);
+            continue;
+        }
+        GuiFormat* gui = new GuiFormat();
+        gui->Name = gui_element.first;
+        if (gui_element.second.count("Texture") > 0)
+            gui->TextureId = gui_element.second.get<int>("Texture");
+        gui->Position.x = gui_element.second
+            .get_child("CenterPoint")
+            .get<float>("x");
+        gui->Position.y = gui_element.second
+            .get_child("CenterPoint")
+            .get<float>("y");
+        gui->Scale.x = gui_element.second
+            .get_child("Scale")
+            .get<float>("x");
+        gui->Scale.y = gui_element.second
+            .get_child("Scale")
+            .get<float>("y");
+        gui->Color.r = gui_element.second
+            .get_child("Color")
+            .get<float>("r");
+        gui->Color.g = gui_element.second
+            .get_child("Color")
+            .get<float>("g");
+        gui->Color.b = gui_element.second
+            .get_child("Color")
+            .get<float>("b");
+        gui->Color.a = gui_element.second
+            .get_child("Color")
+            .get<float>("a");
+        if (gui_element.second.count("Text") > 0)
+        {
+            for (auto& element : gui_element.second.get_child("Text"))
+            {
+                Str String;
+                String.Text = element.second.get<std::string>("String");
+                String.Text = boost::locale::conv::from_utf(String.Text, "windows-1251");
+                String.Position.x = element.second
+                    .get_child("Location")
+                    .get<float>("x");
+                String.Position.y = element.second
+                    .get_child("Location")
+                    .get<float>("y");
+                String.Color.r = element.second
+                    .get_child("Color")
+                    .get<float>("r");
+                String.Color.g = element.second
+                    .get_child("Color")
+                    .get<float>("g");
+                String.Color.b = element.second
+                    .get_child("Color")
+                    .get<float>("b");
+                String.Color.a = element.second
+                    .get_child("Color")
+                    .get<float>("a");
+                String.Scale = element.second.get<float>("Scale");
+                gui->Text.emplace(element.second.get<std::string>("Name"), String);
             }
         }
-        catch (std::exception& ex)
-        {
-            LOG(ERROR) << "UI: [" << path << "] - " << ex.what();
-        }
-    }
-
-    f.close();
+        if (gui_element.second.count("Hover") > 0)
+            gui->hoverColor = glm::vec4(
+                gui_element.second
+                .get_child("Hover")
+                .get<float>("r"),
+                gui_element.second
+                .get_child("Hover")
+                .get<float>("g"),
+                gui_element.second
+                .get_child("Hover")
+                .get<float>("b"),
+                gui_element.second
+                .get_child("Hover")
+                .get<float>("a")
+            );
+        if (gui_element.second.count("Visible") > 0) 
+            gui->Visible = gui_element.second.get<bool>("Visible");
+        if (gui_element.second.count("Type") > 0)
+            gui->Type = gui_element.second.get<std::string>("Type");
+        if (gui_element.second.count("Lobby") > 0)
+            gui->LobbyIndex = gui_element.second.get<int>("Lobby");
+        if (gui_element.second.count("For") > 0)
+            gui->For = gui_element.second.get<std::string>("For");
+        if (gui_element.second.count("ShowOnClickEvent") > 0)
+            for (auto& i : gui_element.second.get_child("ShowOnClickEvent"))
+                gui->ShowToClick.push_back(i.second.get_value<std::string>());
+        if (gui_element.second.count("HideOnClickEvent") > 0)
+            for (auto& i : gui_element.second.get_child("HideOnClickEvent"))
+                gui->HideToClick.push_back(i.second.get_value<std::string>());
+        if (gui_element.second.count("CommandOnClick") > 0)
+            gui->CommandOnClick = 
+                std::pair<std::string, std::vector<std::string>>
+                 (gui_element.second.get<std::string>("CommandOnClick"), std::vector<std::string>());
+        if (gui_element.second.count("Key") > 0)
+            gui->Key = std::make_pair<bool, SDL_Keycode>(true, (SDL_Keycode)gui_element.second.get<char>("Key"));
+        if (gui_element.second.count("Highlight") > 0)
+            gui->ActiveHighlight = gui_element.second.get<bool>("Highlight");
+        if (gui_element.second.count("HighlightIntensity") > 0)
+            gui->ActiveHighlightIntensity = gui_element.second.get<float>("HighlightIntensity");
+        if (gui_element.second.count("Dynamic") > 0)
+            gui->DynamicText = gui_element.second.get<bool>("Dynamic");
+        if (gui_element.second.count("StaticCountryTag") > 0)
+            gui->SelectedCountryTag = gui_element.second.get<std::string>("StaticCountryTag");
+        guis->Add(gui_element.first, gui);
+    } 
 }
 
 #ifdef _WIN32

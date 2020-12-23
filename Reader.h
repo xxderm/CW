@@ -8,6 +8,9 @@
 #include "Renderer/RenderExt/GUITexture.h"
 #include <locale>
 #include <codecvt>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+#include <boost/locale.hpp>
 
 #define GET_IFSTREAM_CHAR(code) while(getline(f, mCurrentLine)){std::string tmp;for (auto& c : mCurrentLine){tmp += c;		tmp.erase(std::remove(tmp.begin(), tmp.end(), '\t'), tmp.end()); code }}
 

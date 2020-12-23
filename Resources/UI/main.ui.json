@@ -1,0 +1,44 @@
+{
+  "import": "Resources/UI/console.ui.json",
+
+  "Test5": {
+    "Texture": -1,
+    "CenterPoint": {
+      "x": -0.5,
+      "y": 0.95
+    },
+    "Hover": {
+      "r": 1.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 0.7
+    },
+    "Scale": {
+      "x": 0.5,
+      "y": 0.05
+    },
+    "Color": {
+      "r": 1.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 0.7
+    },
+    "Text": {
+      "test": {
+        "String": "Панель ресурсов",
+        "Location": {
+          "x": 0.5,
+          "y": 96.6
+        },
+        "Color": {
+          "r": 0,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "test",
+        "Scale": 1
+      }
+    }
+  }
+}

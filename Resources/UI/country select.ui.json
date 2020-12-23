@@ -1,0 +1,486 @@
+{
+  "import": "Resources/UI/console.ui.json",
+
+  "ActionBegin": {
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.85,
+      "y": -0.75
+    },
+    "Hover": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 1.0
+    },
+    "Scale": {
+      "x": 0.14,
+      "y": 0.05
+    },
+    "Color": {
+      "r": 0.2,
+      "g": 0.2,
+      "b": 0.2,
+      "a": 1.0
+    },
+    "Text": {
+      "Begin": {
+        "String": "Начать",
+        "Location": {
+          "x": 85.5,
+          "y": 11.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Begin",
+        "Scale": 1
+      }
+    }
+  },
+
+  "ActionBack": {
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.85,
+      "y": -0.87
+    },
+    "Scale": {
+      "x": 0.14,
+      "y": 0.05
+    },
+    "Color": {
+      "r": 0.2,
+      "g": 0.2,
+      "b": 0.2,
+      "a": 1.0
+    },
+    "Hover": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 1.0
+    },
+    "Text": {
+      "Back": {
+        "String": "Назад",
+        "Location": {
+          "x": 85.5,
+          "y": 5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Back",
+        "Scale": 1
+      }
+    }
+  },
+
+  "ActionPanel": {
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.85,
+      "y": -0.81
+    },
+    "Scale": {
+      "x": 0.15,
+      "y": 0.15
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 1.0
+    },
+    "Hover": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 1.0
+    }
+  },
+
+  "CountryInfoFlag": {
+    "Texture": -1,
+    "Visible": false,
+    "CenterPoint": {
+      "x": -0.89,
+      "y": 0.65
+    },
+    "Scale": {
+      "x": 0.1,
+      "y": 0.24
+    },
+    "Color": {
+      "r": 0.8,
+      "g": 0.8,
+      "b": 0.8,
+      "a": 0.9
+    },
+    "Hover": {
+      "r": 0.8,
+      "g": 0.8,
+      "b": 0.8,
+      "a": 0.9
+    }
+  },
+
+  "CountryInfoOpen": {
+    "Texture": -1,
+    "Visible": true,
+    "CenterPoint": {
+      "x": -0.80,
+      "y": 0.90
+    },
+    "Scale": {
+      "x": 0.20,
+      "y": 0.10
+    },
+    "Color": {
+      "r": 0.2,
+      "g": 0.2,
+      "b": 0.2,
+      "a": 0.9
+    },
+    "Hover": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.9
+    },
+    "HideOnClickEvent": [
+      "CountryInfoOpen"
+    ],
+    "ShowOnClickEvent": [
+      "CountryInfo",
+      "CountryInfoFlag",
+      "CountryInfoExit"
+    ],
+    "Text": {
+      "Title": {
+        "String": "Информация о стране",
+        "Location": {
+          "x": 1.7,
+          "y": 94
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Title",
+        "Scale": 1
+      }
+    }
+  },
+
+  "CountryInfoExit": {
+    "Texture": -1,
+    "Visible": false,
+    "CenterPoint": {
+      "x": -0.55,
+      "y": 0.95
+    },
+    "Scale": {
+      "x": 0.025,
+      "y": 0.025
+    },
+    "Color": {
+      "r": 0.8,
+      "g": 0.2,
+      "b": 0.2,
+      "a": 0.9
+    },
+    "Hover": {
+      "r": 1.0,
+      "g": 0.2,
+      "b": 0.2,
+      "a": 0.9
+    },
+    "HideOnClickEvent": [
+      "CountryInfo",
+      "CountryInfoFlag",
+      "CountryInfoExit"
+    ],
+    "ShowOnClickEvent": [
+      "CountryInfoOpen"
+    ]
+  },
+
+  "CountryInfo": {
+    "Dynamic": true,
+    "Texture": -1,
+    "Visible": false,
+    "CenterPoint": {
+      "x": -0.75,
+      "y": 0.67
+    },
+    "Scale": {
+      "x": 0.25,
+      "y": 0.33
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.9
+    },
+    "Hover": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.9
+    },
+    "Text": {
+
+      "CountryName": {
+        "String": "Третий рейх",
+        "Location": {
+          "x": 0.5,
+          "y": 96
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "CountryName",
+        "Scale": 1
+      },
+
+      "PartyTitle": {
+        "String": "Правящая партия:",
+        "Location": {
+          "x": 11,
+          "y": 92
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "PartyTitle",
+        "Scale": 1
+      },
+
+      "PartyName": {
+        "String": "- Нацизм",
+        "Location": {
+          "x": 11.4,
+          "y": 88
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "PartyName",
+        "Scale": 0.8
+      },
+
+      "PresidentTitle": {
+        "String": "Правитель:",
+        "Location": {
+          "x": 11,
+          "y": 84
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "PresidentTitle",
+        "Scale": 1
+      },
+
+      "PresidentName": {
+        "String": "- Адольф Гитлер",
+        "Location": {
+          "x": 11.4,
+          "y": 80
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "PresidentName",
+        "Scale": 0.8
+      }
+
+    }
+  },
+
+  // FRA
+  "Country1": {
+    "Texture": -1,
+    "StaticCountryTag": "FRA",
+    "CommandOnClick": "SelectCountry",
+    "CenterPoint": {
+      "x": -0.3,
+      "y": -0.85
+    },
+    "Scale": {
+      "x": 0.07,
+      "y": 0.13
+    },
+    "Color": {
+      "r": 0.9,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.9
+    },
+    "Hover": {
+      "r": 0.9,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.9
+    }
+  },
+
+  // GER
+  "Country2": {
+    "Texture": -1,
+    "StaticCountryTag": "GER",
+    "CommandOnClick": "SelectCountry",
+    "CenterPoint": {
+      "x": -0.15,
+      "y": -0.85
+    },
+    "Scale": {
+      "x": 0.07,
+      "y": 0.13
+    },
+    "Color": {
+      "r": 0.9,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.9
+    },
+    "Hover": {
+      "r": 0.9,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.9
+    }
+  },
+
+  // SOV
+  "Country3": {
+    "Texture": -1,
+    "StaticCountryTag": "SOV",
+    "CommandOnClick": "SelectCountry",
+    "CenterPoint": {
+      "x": -0.0,
+      "y": -0.85
+    },
+    "Scale": {
+      "x": 0.07,
+      "y": 0.13
+    },
+    "Color": {
+      "r": 0.9,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.9
+    },
+    "Hover": {
+      "r": 0.9,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.9
+    }
+  },
+
+  // ENG
+  "Country4": {
+    "Texture": -1,
+    "StaticCountryTag": "ENG",
+    "CommandOnClick": "SelectCountry",
+    "CenterPoint": {
+      "x": 0.15,
+      "y": -0.85
+    },
+    "Scale": {
+      "x": 0.07,
+      "y": 0.13
+    },
+    "Color": {
+      "r": 0.9,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.9
+    },
+    "Hover": {
+      "r": 0.9,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.9
+    }
+  },
+
+  // ITA
+  "Country5": {
+    "Texture": -1,
+    "StaticCountryTag": "ITA",
+    "CommandOnClick": "SelectCountry",
+    "CenterPoint": {
+      "x": 0.3,
+      "y": -0.85
+    },
+    "Scale": {
+      "x": 0.07,
+      "y": 0.13
+    },
+    "Color": {
+      "r": 0.9,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.9
+    },
+    "Hover": {
+      "r": 0.9,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.9
+    }
+  },
+
+  "Countries": {
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.0,
+      "y": -0.85
+    },
+    "Scale": {
+      "x": 0.38,
+      "y": 0.15
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 1.0
+    },
+    "Hover": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 1.0
+    }
+  }
+
+}

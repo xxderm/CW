@@ -1,0 +1,255 @@
+{
+  "import": "Resources/UI/menu mp.ui.json",
+
+  "MultiPlayerButton": {
+    "Highlight": true,
+    "HighlightIntensity": 1.2,
+    "Visible": true,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": -0.5,
+      "y": 0.95
+    },
+    "Scale": {
+      "x": 0.25,
+      "y": 0.045
+    },
+    "Color": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Hover": {
+      "r": 0.8,
+      "g": 0.8,
+      "b": 0.8,
+      "a": 0.65
+    },
+    "ShowOnClickEvent": [
+      "MPForm",
+      "MPFormInner",
+      "MPFormHeader",
+      "MPFormLV1",
+      "MPFormLV2",
+      "MPFormLH1",
+      "ConnectButton",
+      "MPExit",
+      "InputPassword",
+      "InputTitle",
+      "PasswordForm",
+      "TitleForm",
+      "RefreshButton",
+      "SearchServerButton",
+      "CreateServerButton",
+      "Lobby1",
+      "Lobby2",
+      "Lobby3",
+      "Lobby4",
+      "Lobby5",
+      "Lobby6",
+      "Lobby7",
+      "Lobby8",
+      "MPFormLV1Fix"
+    ]
+  },
+
+  "SettingsButton": {
+    "Highlight": true,
+    "HighlightIntensity": 1.2,
+    "Visible": true,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.65,
+      "y": 0.03
+    },
+    "Scale": {
+      "x": 0.25,
+      "y": 0.055
+    },
+    "Color": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Hover": {
+      "r": 0.8,
+      "g": 0.8,
+      "b": 0.8,
+      "a": 0.65
+    }
+  },
+
+  "SinglePlayerButton": {
+    "Highlight": true,
+    "HighlightIntensity": 1.2,
+    "Visible": true,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.65,
+      "y": 0.23
+    },
+    "Scale": {
+      "x": 0.25,
+      "y": 0.055
+    },
+    "Color": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Hover": {
+      "r": 0.8,
+      "g": 0.8,
+      "b": 0.8,
+      "a": 0.65
+    },
+    "CommandOnClick": "Start"
+  },
+
+  "ExitButton": {
+    "Highlight": true,
+    "HighlightIntensity": 1.2,
+    "Visible": true,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.65,
+      "y": -0.07
+    },
+    "Scale": {
+      "x": 0.25,
+      "y": 0.045
+    },
+    "Color": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Hover": {
+      "r": 0.8,
+      "g": 0.8,
+      "b": 0.8,
+      "a": 0.65
+    },
+    "CommandOnClick": "Exit"
+  },
+
+  "RightPanel": {
+    "Visible": true,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.65,
+      "y": 0.0
+    },
+    "Scale": {
+      "x": 0.25,
+      "y": 1
+    },
+    "Color": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Hover": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Text": {
+      "SinglePlayer": {
+        "String": "Одиночная игра",
+        "Location": {
+          "x": 74.8,
+          "y": 60
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "SinglePlayer",
+        "Scale": 1
+      },
+
+      "MultiPlayer": {
+        "String": "Сетевая игра",
+        "Location": {
+          "x": 74.8,
+          "y": 55
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "MultiPlayer",
+        "Scale": 1
+      },
+
+      "Settings": {
+        "String": "Настройки",
+        "Location": {
+          "x": 74.8,
+          "y": 50
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Settings",
+        "Scale": 1
+      },
+
+      "Exit": {
+        "String": "Выход",
+        "Location": {
+          "x": 74.8,
+          "y": 45
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Exit",
+        "Scale": 1
+      }
+    }
+  },
+
+  "Background": {
+    "Visible": true,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0,
+      "y": 0
+    },
+    "Scale": {
+      "x": 1,
+      "y": 1
+    },
+    "Color": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 1.0
+    },
+    "Hover": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 1.0
+    }
+  }
+
+}

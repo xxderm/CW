@@ -1,0 +1,1246 @@
+{
+  "Lobby1": {
+    "Visible": false,
+    "Highlight": true,
+    "HighlightIntensity": 1.8,
+    "Lobby": 1,
+    "CenterPoint": {
+      "x": -0.30,
+      "y": 0.35
+    },
+    "Hover": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Scale": {
+      "x": 0.53,
+      "y": 0.04
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.55
+    },
+    "Text": {
+      "L1T": {
+        "String": "",
+        "Location": {
+          "x": 9,
+          "y": 66.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L1T",
+        "Scale": 0.7
+      },
+
+      "L1V": {
+        "String": "",
+        "Location": {
+          "x": 36,
+          "y": 66.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L1V",
+        "Scale": 0.7
+      },
+
+      "L1C": {
+        "String": "",
+        "Location": {
+          "x": 49,
+          "y": 66.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L1C",
+        "Scale": 0.7
+      }
+
+    }
+  },
+
+  "MPFormLV1Fix": {
+    "Visible": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": -0.3,
+      "y": 0.03
+    },
+    "Hover": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.8
+    },
+    "Scale": {
+      "x": 0.5,
+      "y": 0.05
+    },
+    "Color": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.8
+    }
+  },
+
+  "Lobby2": {
+    "Visible": false,
+    "Highlight": true,
+    "HighlightIntensity": 1.8,
+    "Lobby": 2,
+    "CenterPoint": {
+      "x": -0.30,
+      "y": 0.25
+    },
+    "Hover": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Scale": {
+      "x": 0.53,
+      "y": 0.04
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.55
+    },
+    "Text": {
+      "L2T": {
+        "String": "",
+        "Location": {
+          "x": 9,
+          "y": 61.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L2T",
+        "Scale": 0.7
+      },
+
+      "L2V": {
+        "String": "",
+        "Location": {
+          "x": 36,
+          "y": 61.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L2V",
+        "Scale": 0.7
+      },
+
+      "L2C": {
+        "String": "",
+        "Location": {
+          "x": 49,
+          "y": 61.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L2C",
+        "Scale": 0.7
+      }
+
+    }
+  },
+
+  "MPFormLV2": {
+    "Visible": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": -0.031,
+      "y": 0.03
+    },
+    "Hover": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.8
+    },
+    "Scale": {
+      "x": 0.002,
+      "y": 0.47
+    },
+    "Color": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.8
+    }
+  },
+
+  "MPFormLV1": {
+    "Visible": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": -0.30,
+      "y": 0.03
+    },
+    "Hover": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.8
+    },
+    "Scale": {
+      "x": 0.002,
+      "y": 0.47
+    },
+    "Color": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.8
+    }
+  },
+
+  "Lobby3": {
+    "Visible": false,
+    "Highlight": true,
+    "HighlightIntensity": 1.8,
+    "Lobby": 3,
+    "CenterPoint": {
+      "x": -0.30,
+      "y": 0.15
+    },
+    "Hover": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Scale": {
+      "x": 0.53,
+      "y": 0.04
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.55
+    },
+    "Text": {
+      "L3T": {
+        "String": "",
+        "Location": {
+          "x": 9,
+          "y": 56.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L3T",
+        "Scale": 0.7
+      },
+
+      "L3V": {
+        "String": "",
+        "Location": {
+          "x": 36,
+          "y": 56.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L3V",
+        "Scale": 0.7
+      },
+
+      "L3C": {
+        "String": "",
+        "Location": {
+          "x": 49,
+          "y": 56.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L3C",
+        "Scale": 0.7
+      }
+
+    }
+  },
+
+  "Lobby4": {
+    "Visible": false,
+    "Highlight": true,
+    "HighlightIntensity": 1.8,
+    "Lobby": 4,
+    "CenterPoint": {
+      "x": -0.30,
+      "y": 0.05
+    },
+    "Hover": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Scale": {
+      "x": 0.53,
+      "y": 0.04
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.55
+    },
+    "Text": {
+      "L4T": {
+        "String": "",
+        "Location": {
+          "x": 9,
+          "y": 51.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L4T",
+        "Scale": 0.7
+      },
+
+      "L4V": {
+        "String": "",
+        "Location": {
+          "x": 36,
+          "y": 51.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L4V",
+        "Scale": 0.7
+      },
+
+      "L4C": {
+        "String": "",
+        "Location": {
+          "x": 49,
+          "y": 51.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L4C",
+        "Scale": 0.7
+      }
+
+    }
+  },
+
+  "Lobby5": {
+    "Visible": false,
+    "Highlight": true,
+    "HighlightIntensity": 1.8,
+    "Lobby": 5,
+    "CenterPoint": {
+      "x": -0.30,
+      "y": -0.05
+    },
+    "Hover": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Scale": {
+      "x": 0.53,
+      "y": 0.04
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.55
+    },
+    "Text": {
+      "L5T": {
+        "String": "",
+        "Location": {
+          "x": 9,
+          "y": 46.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L5T",
+        "Scale": 0.7
+      },
+
+      "L5V": {
+        "String": "",
+        "Location": {
+          "x": 36,
+          "y": 46.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L5V",
+        "Scale": 0.7
+      },
+
+      "L5C": {
+        "String": "",
+        "Location": {
+          "x": 49,
+          "y": 46.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L5C",
+        "Scale": 0.7
+      }
+
+    }
+  },
+
+  "Lobby6": {
+    "Visible": false,
+    "Highlight": true,
+    "HighlightIntensity": 1.8,
+    "Lobby": 6,
+    "CenterPoint": {
+      "x": -0.30,
+      "y": -0.15
+    },
+    "Hover": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Scale": {
+      "x": 0.53,
+      "y": 0.04
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.55
+    },
+    "Text": {
+      "L6T": {
+        "String": "",
+        "Location": {
+          "x": 9,
+          "y": 41.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L6T",
+        "Scale": 0.7
+      },
+
+      "L6V": {
+        "String": "",
+        "Location": {
+          "x": 36,
+          "y": 41.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L6V",
+        "Scale": 0.7
+      },
+
+      "L6C": {
+        "String": "",
+        "Location": {
+          "x": 49,
+          "y": 41.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L6C",
+        "Scale": 0.7
+      }
+
+    }
+  },
+
+  "Lobby7": {
+    "Visible": false,
+    "Highlight": true,
+    "HighlightIntensity": 1.8,
+    "Lobby": 7,
+    "CenterPoint": {
+      "x": -0.30,
+      "y": -0.25
+    },
+    "Hover": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Scale": {
+      "x": 0.53,
+      "y": 0.04
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.55
+    },
+    "Text": {
+      "L7T": {
+        "String": "",
+        "Location": {
+          "x": 9,
+          "y": 36.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L7T",
+        "Scale": 0.7
+      },
+
+      "L7V": {
+        "String": "",
+        "Location": {
+          "x": 36,
+          "y": 36.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L7V",
+        "Scale": 0.7
+      },
+
+      "L7C": {
+        "String": "",
+        "Location": {
+          "x": 49,
+          "y": 36.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L7C",
+        "Scale": 0.7
+      }
+
+    }
+  },
+
+  "Lobby8": {
+    "Visible": false,
+    "Highlight": true,
+    "HighlightIntensity": 1.8,
+    "Lobby": 8,
+    "CenterPoint": {
+      "x": -0.30,
+      "y": -0.35
+    },
+    "Hover": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Scale": {
+      "x": 0.53,
+      "y": 0.04
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.55
+    },
+    "Text": {
+      "L8T": {
+        "String": "",
+        "Location": {
+          "x": 9,
+          "y": 31.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L8T",
+        "Scale": 0.7
+      },
+
+      "L8V": {
+        "String": "",
+        "Location": {
+          "x": 36,
+          "y": 31.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L8V",
+        "Scale": 0.7
+      },
+
+      "L8C": {
+        "String": "",
+        "Location": {
+          "x": 49,
+          "y": 31.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "L8C",
+        "Scale": 0.7
+      }
+
+    }
+  },
+
+  "MPExit": {
+    "Visible": false,
+    "CenterPoint": {
+      "x": 0.2,
+      "y": 0.59
+    },
+    "Hover": {
+      "r": 1.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 1.0
+    },
+    "Scale": {
+      "x": 0.02,
+      "y": 0.02
+    },
+    "Color": {
+      "r": 0.8,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 1.0
+    },
+    "HideOnClickEvent": [
+      "MPForm",
+      "MPFormInner",
+      "MPFormHeader",
+      "MPFormLV1",
+      "MPFormLV2",
+      "MPFormLH1",
+      "ConnectButton",
+      "MPExit",
+      "InputPassword",
+      "InputTitle",
+      "PasswordForm",
+      "TitleForm",
+      "RefreshButton",
+      "SearchServerButton",
+      "CreateServerButton",
+      "Lobby1",
+      "Lobby2",
+      "Lobby3",
+      "Lobby4",
+      "Lobby5",
+      "Lobby6",
+      "Lobby7",
+      "Lobby8",
+      "MPFormLV1Fix",
+      "LobbyButton"
+    ]
+  },
+
+  "InputPassword": {
+    "Visible": false,
+    "Type": "Input",
+    "For": "PasswordForm",
+    "Texture": -1,
+    "CenterPoint": {
+      "x": -0.29,
+      "y": -0.596
+    },
+    "Hover": {
+      "r": 0.8,
+      "g": 0.8,
+      "b": 0.8,
+      "a": 0.9
+    },
+    "Scale": {
+      "x": 0.09,
+      "y": 0.025
+    },
+    "Color": {
+      "r": 0.7,
+      "g": 0.7,
+      "b": 0.7,
+      "a": 0.9
+    },
+    "Text": {
+      "Input": {
+        "String": "пароль лобби",
+        "Location": {
+          "x": 31,
+          "y": 19.4
+        },
+        "Color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1.0
+        },
+        "Name": "Input",
+        "Scale": 0.55
+      }
+    }
+  },
+
+  "InputTitle": {
+    "Visible": false,
+    "Type": "Input",
+    "For": "TitleForm",
+    "Texture": -1,
+    "CenterPoint": {
+      "x": -0.57,
+      "y": -0.596
+    },
+    "Hover": {
+      "r": 0.8,
+      "g": 0.8,
+      "b": 0.8,
+      "a": 0.9
+    },
+    "Scale": {
+      "x": 0.09,
+      "y": 0.025
+    },
+    "Color": {
+      "r": 0.7,
+      "g": 0.7,
+      "b": 0.7,
+      "a": 0.9
+    },
+    "Text": {
+      "Input": {
+        "String": "название лобби",
+        "Location": {
+          "x": 17.2,
+          "y": 19.4
+        },
+        "Color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1.0
+        },
+        "Name": "Input",
+        "Scale": 0.55
+      }
+    }
+  },
+
+  "PasswordForm": {
+    "Visible": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": -0.435,
+      "y": -0.596
+    },
+    "Hover": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Scale": {
+      "x": 0.05,
+      "y": 0.035
+    },
+    "Color": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Text": {
+      "IPv4": {
+        "String": "Пароль:",
+        "Location": {
+          "x": 26.6,
+          "y": 19.4
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "IPv4",
+        "Scale": 0.65
+      }
+    }
+  },
+
+  "TitleForm": {
+    "Visible": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": -0.725,
+      "y": -0.596
+    },
+    "Hover": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Scale": {
+      "x": 0.06,
+      "y": 0.035
+    },
+    "Color": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Text": {
+      "Password": {
+        "String": "Название:",
+        "Location": {
+          "x": 11.3,
+          "y": 19.4
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Password",
+        "Scale": 0.65
+      }
+    }
+  },
+
+  "ConnectButton": {
+    "Visible": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.13,
+      "y": -0.596
+    },
+    "Hover": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.9
+    },
+    "Scale": {
+      "x": 0.1,
+      "y": 0.04
+    },
+    "Color": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 0.9
+    },
+    "Text": {
+      "Connect": {
+        "String": "Подключится:",
+        "Location": {
+          "x": 52,
+          "y": 19.4
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Connect",
+        "Scale": 0.7
+      }
+    }
+  },
+
+  "RefreshButton": {
+    "Visible": false,
+    "CommandOnClick": "GetLobbies",
+    "Texture": -1,
+    "CenterPoint": {
+      "x": -0.085,
+      "y": -0.596
+    },
+    "Hover": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.9
+    },
+    "Scale": {
+      "x": 0.1,
+      "y": 0.04
+    },
+    "Color": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 0.9
+    },
+    "Text": {
+      "Refresh": {
+        "String": "Обновить:",
+        "Location": {
+          "x": 41,
+          "y": 19.4
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Refresh",
+        "Scale": 0.7
+      }
+    }
+  },
+
+  "MPFormLH1": {
+    "Visible": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": -0.3,
+      "y": 0.42
+    },
+    "Hover": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.8
+    },
+    "Scale": {
+      "x": 0.53,
+      "y": 0.002
+    },
+    "Color": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.8
+    }
+  },
+
+  "SearchServerButton": {
+    "Visible": false,
+    "Highlight": true,
+    "HighlightIntensity": 1.8,
+    "ShowOnClickEvent": [
+      "Lobby1",
+      "MPFormLV1Fix",
+      "Lobby2",
+      "MPFormLV2",
+      "MPFormLV1",
+      "Lobby3",
+      "Lobby4",
+      "Lobby5",
+      "Lobby6",
+      "Lobby7",
+      "Lobby8",
+      "MPExit",
+      "InputPassword",
+      "InputTitle",
+      "PasswordForm",
+      "TitleForm",
+      "ConnectButton",
+      "RefreshButton",
+      "MPFormLH1",
+      "SearchServerButton",
+      "CreateServerButton",
+      "LobbyButton",
+      "MPFormInner"
+    ],
+    "Texture": -1,
+    "CenterPoint": {
+      "x": -0.78,
+      "y": 0.59
+    },
+    "Hover": {
+      "r": 0.3,
+      "g": 0.3,
+      "b": 0.3,
+      "a": 0.55
+    },
+    "Scale": {
+      "x": 0.07,
+      "y": 0.06
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.55
+    }
+  },
+
+  "CreateServerButton": {
+    "Visible": false,
+    "Highlight": true,
+    "HighlightIntensity": 1.8,
+    "ShowOnClickEvent": [
+      "MPCL_SearchServerButton",
+      "MPCL_CreateServerButton",
+      "MPCL_LobbyButton",
+      "MPCLTitle",
+      "MPCL_LobbyNameInput",
+      "MPCL_LobbyNameForm",
+      "MPCL_LobbyPasswordInput",
+      "MPCL_LobbyPasswordForm",
+      "MPCL_LobbyCreateButton",
+      "MPCLExit"
+    ],
+    "HideOnClickEvent": [
+      "Lobby1",
+      "MPFormLV1Fix",
+      "Lobby2",
+      "MPFormLV2",
+      "MPFormLV1",
+      "Lobby3",
+      "Lobby4",
+      "Lobby5",
+      "Lobby6",
+      "Lobby7",
+      "Lobby8",
+      "MPExit",
+      "InputPassword",
+      "InputTitle",
+      "PasswordForm",
+      "TitleForm",
+      "ConnectButton",
+      "RefreshButton",
+      "MPFormLH1",
+      "SearchServerButton",
+      "CreateServerButton",
+      "LobbyButton",
+      "MPFormInner"
+    ],
+    "Texture": -1,
+    "CenterPoint": {
+      "x": -0.629,
+      "y": 0.59
+    },
+    "Hover": {
+      "r": 0.3,
+      "g": 0.3,
+      "b": 0.3,
+      "a": 0.55
+    },
+    "Scale": {
+      "x": 0.08,
+      "y": 0.06
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.55
+    }
+  },
+
+  "LobbyButton": {
+    "Highlight": true,
+    "HighlightIntensity": 1.9,
+    "Visible": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": -0.468,
+      "y": 0.59
+    },
+    "Scale": {
+      "x": 0.08,
+      "y": 0.06
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.55
+    },
+    "Hover": {
+      "r": 0.3,
+      "g": 0.3,
+      "b": 0.3,
+      "a": 0.55
+    }
+  },
+
+  "import": "Resources/UI/menu create lobby.ui.json",
+
+  "MPFormHeader": {
+    "Visible": true,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": -0.3,
+      "y": 0.59
+    },
+    "Hover": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.55
+    },
+    "Scale": {
+      "x": 0.55,
+      "y": 0.06
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.55
+    },
+    "Text": {
+      "Search": {
+        "String": "Поиск",
+        "Location": {
+          "x": 8,
+          "y": 78
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Search",
+        "Scale": 1
+      },
+
+      "Create": {
+        "String": "Создать",
+        "Location": {
+          "x": 15,
+          "y": 78
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Create",
+        "Scale": 1
+      },
+
+      "Lobby": {
+        "String": "Лобби",
+        "Location": {
+          "x": 23,
+          "y": 78
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Lobby",
+        "Scale": 1
+      }
+
+    }
+  }
+
+}

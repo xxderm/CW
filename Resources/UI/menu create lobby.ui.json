@@ -1,0 +1,405 @@
+{
+  "MPCLExit": {
+    "Visible": true,
+    "CenterPoint": {
+      "x": 0.2,
+      "y": 0.59
+    },
+    "Scale": {
+      "x": 0.02,
+      "y": 0.02
+    },
+    "Color": {
+      "r": 0.8,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 1.0
+    },
+    "Hover": {
+      "r": 1.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 1.0
+    },
+    "HideOnClickEvent": [
+      "MPCL_SearchServerButton",
+      "MPCL_CreateServerButton",
+      "MPCL_LobbyButton",
+      "MPCLTitle",
+      "MPCL_LobbyNameInput",
+      "MPCL_LobbyNameForm",
+      "MPCL_LobbyPasswordInput",
+      "MPCL_LobbyPasswordForm",
+      "MPCL_LobbyCreateButton",
+      "MPCLExit",
+      "MPForm",
+      "MPFormHeader"
+    ]
+  },
+
+  "MPCL_SearchServerButton": {
+    "Highlight": true,
+    "HighlightIntensity": 1.8,
+    "Visible": true,
+    "CenterPoint": {
+      "x": -0.78,
+      "y": 0.59
+    },
+    "Scale": {
+      "x": 0.07,
+      "y": 0.06
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.55
+    },
+    "Hover": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.55
+    },
+    "HideOnClickEvent": [
+      "MPCL_SearchServerButton",
+      "MPCL_CreateServerButton",
+      "MPCL_LobbyButton",
+      "MPCLTitle",
+      "MPCL_LobbyNameInput",
+      "MPCL_LobbyNameForm",
+      "MPCL_LobbyPasswordInput",
+      "MPCL_LobbyPasswordForm",
+      "MPCL_LobbyCreateButton",
+      "MPCLExit"
+    ],
+    "ShowOnClickEvent": [
+      "Lobby1",
+      "MPFormLV1Fix",
+      "Lobby2",
+      "MPFormLV2",
+      "MPFormLV1",
+      "Lobby3",
+      "Lobby4",
+      "Lobby5",
+      "Lobby6",
+      "Lobby7",
+      "Lobby8",
+      "MPExit",
+      "InputPassword",
+      "InputTitle",
+      "PasswordForm",
+      "TitleForm",
+      "ConnectButton",
+      "RefreshButton",
+      "MPFormLH1",
+      "SearchServerButton",
+      "CreateServerButton",
+      "LobbyButton",
+      "MPFormInner"
+    ]
+  },
+
+  "MPCL_CreateServerButton": {
+    "Visible": true,
+    "HighlightIntensity": 1.8,
+    "Highlight": true,
+    "CenterPoint": {
+      "x": -0.629,
+      "y": 0.59
+    },
+    "Scale": {
+      "x": 0.08,
+      "y": 0.06
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.55
+    },
+    "Hover": {
+      "r": 0.3,
+      "g": 0.3,
+      "b": 0.3,
+      "a": 0.55
+    }
+  },
+
+  "MPCL_LobbyButton": {
+    "Visible": true,
+    "HighlightIntensity": 1.8,
+    "Highlight": true,
+    "CenterPoint": {
+      "x": -0.468,
+      "y": 0.59
+    },
+    "Scale": {
+      "x": 0.08,
+      "y": 0.06
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 0.55
+    },
+    "Hover": {
+      "r": 0.3,
+      "g": 0.3,
+      "b": 0.3,
+      "a": 0.55
+    }
+  },
+
+  "MPCLTitle": {
+    "Visible": true,
+    "CenterPoint": {
+      "x": -0.3,
+      "y": 0.3
+    },
+    "Scale": {
+      "x": 0.15,
+      "y": 0.05
+    },
+    "Color": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Hover": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 0.55
+    },
+    "Text": {
+      "Title": {
+        "String": "Создание лобби",
+        "Location": {
+          "x": 27.8,
+          "y": 64
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Title",
+        "Scale": 1
+      }
+    }
+  },
+
+  "MPCL_LobbyNameInput": {
+    "Type": "Input",
+    "For": "MPCL_LobbyNameForm",
+    "Visible": true,
+    "CenterPoint": {
+      "x": -0.3,
+      "y": 0.1
+    },
+    "Scale": {
+      "x": 0.15,
+      "y": 0.05
+    },
+    "Color": {
+      "r": 0.8,
+      "g": 0.8,
+      "b": 0.8,
+      "a": 0.9
+    },
+    "Hover": {
+      "r": 0.8,
+      "g": 0.8,
+      "b": 0.8,
+      "a": 0.9
+    },
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": 27.8,
+          "y": 54
+        },
+        "Color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1.0
+        },
+        "Name": "Input",
+        "Scale": 0.7
+      }
+    }
+  },
+
+  "MPCL_LobbyNameForm": {
+    "Visible": true,
+    "CenterPoint": {
+      "x": -0.3,
+      "y": 0.2
+    },
+    "Scale": {
+      "x": 0.15,
+      "y": 0.05
+    },
+    "Color": {
+      "r": 0.15,
+      "g": 0.15,
+      "b": 0.15,
+      "a": 0.5
+    },
+    "Hover": {
+      "r": 0.15,
+      "g": 0.15,
+      "b": 0.15,
+      "a": 0.5
+    },
+    "Text": {
+      "Title": {
+        "String": "Название:",
+        "Location": {
+          "x": 27.8,
+          "y": 59
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Title",
+        "Scale": 0.7
+      }
+    }
+  },
+
+  "MPCL_LobbyPasswordInput": {
+    "Type": "Input",
+    "For": "MPCL_LobbyPasswordForm",
+    "Visible": true,
+    "CenterPoint": {
+      "x": -0.3,
+      "y": -0.1
+    },
+    "Scale": {
+      "x": 0.15,
+      "y": 0.05
+    },
+    "Color": {
+      "r": 0.8,
+      "g": 0.8,
+      "b": 0.8,
+      "a": 0.9
+    },
+    "Hover": {
+      "r": 0.8,
+      "g": 0.8,
+      "b": 0.8,
+      "a": 0.9
+    },
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": 27.8,
+          "y": 44
+        },
+        "Color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1.0
+        },
+        "Name": "Input",
+        "Scale": 0.7
+      }
+    }
+  },
+
+  "MPCL_LobbyPasswordForm": {
+    "Visible": true,
+    "CenterPoint": {
+      "x": -0.3,
+      "y": 0.0
+    },
+    "Scale": {
+      "x": 0.15,
+      "y": 0.05
+    },
+    "Color": {
+      "r": 0.15,
+      "g": 0.15,
+      "b": 0.15,
+      "a": 0.5
+    },
+    "Hover": {
+      "r": 0.15,
+      "g": 0.15,
+      "b": 0.15,
+      "a": 0.5
+    },
+    "Text": {
+      "Title": {
+        "String": "Пароль:",
+        "Location": {
+          "x": 27.8,
+          "y": 49
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Title",
+        "Scale": 0.7
+      }
+    }
+  },
+
+  "MPCL_LobbyCreateButton": {
+    "Visible": true,
+    "CenterPoint": {
+      "x": -0.3,
+      "y": -0.25
+    },
+    "Scale": {
+      "x": 0.15,
+      "y": 0.05
+    },
+    "Color": {
+      "r": 0.15,
+      "g": 0.15,
+      "b": 0.15,
+      "a": 0.9
+    },
+    "Hover": {
+      "r": 0.2,
+      "g": 0.2,
+      "b": 0.2,
+      "a": 0.9
+    },
+    "Text": {
+      "Create": {
+        "String": "Создать",
+        "Location": {
+          "x": 27.8,
+          "y": 36.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Create",
+        "Scale": 0.7
+      }
+    }
+  }
+
+}

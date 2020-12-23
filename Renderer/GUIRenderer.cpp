@@ -71,7 +71,7 @@ void GUIRenderer::Init(SDL_Window* wnd)
 void GUIRenderer::Update()
 {
 	this->Listen();
-	//Reader::getInstance()->getUI(mGuis.get(), mUiPath);
+	//Reader::getInstance()->getUI(mGuis.get(), mUiPath, true);
 }
 
 void GUIRenderer::setCamera(Camera* camera)
@@ -89,6 +89,8 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 	SDL_GetMouseState(&mMouseX, &mMouseY);
 	if (e->type == SDL_KEYDOWN)
 	{
+		if(e->key.keysym.sym == SDLK_r)
+			Reader::getInstance()->getUI(mGuis.get(), mUiPath, true);
 		try
 		{
 			for (auto& gui : this->mGuis->getGui())
@@ -210,7 +212,6 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 				mGuis->SetColor(gui.first, gui.second->baseColor);
 			}
 			(gui.second->ActiveHighlight && gui.second->Active) ? gui.second->Color *= gui.second->ActiveHighlightIntensity : gui.second->Color;
-			
 		}		
 	}
 }

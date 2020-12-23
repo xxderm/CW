@@ -44,6 +44,11 @@ void GUITexture::Clear()
 {
 	for (auto& gui : mGuis)
 	{
+		gui.second->Text.clear();
+		gui.second->ShowToClick.clear();
+		gui.second->HideToClick.clear();
+		gui.second->CommandOnClick.second.clear();
+
 		delete gui.second;
 		gui.second = nullptr;
 	}

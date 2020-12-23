@@ -228,7 +228,7 @@ void WorldRenderer::TerrainInit()
 	mProgram[0]->setInt("Countries", 2);
 
 
-	// TODO: Загружать текстуры автоматически из файла
+	
 	std::ifstream TextureConfig("Resources/terrain texture.json");
 	boost::property_tree::ptree pt;
 	boost::property_tree::read_json(TextureConfig, pt);
@@ -257,14 +257,12 @@ void WorldRenderer::TerrainInit()
 		mTextures.back()->Size.y = array_element.second.get_child("Size").get<int>("y");		
 	}
 
-
 	for (auto& texture : mTextures)
 		this->AsyncLoadTexture(texture->Path, texture->Name);
 	this->textureLoadThreads.join_all();
 	
 	for (auto& thread : this->mThreads)
 		this->textureLoadThreads.remove_thread(thread);
-
 
 	for (auto& texture : mTextures)
 	{

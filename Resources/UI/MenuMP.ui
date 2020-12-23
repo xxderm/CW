@@ -1,5 +1,5 @@
 Name Lobby1
-Visible 1
+Visible 0
 Highlight 1
 HighlightIntensity 1.8
 Lobby 1
@@ -13,7 +13,7 @@ Text [  ] 49 66.5 1.0 1.0 1.0 1.0 L1C 0.7
 PUSH
 
 Name MPFormLV1Fix
-Visible 1
+Visible 0
 Texture -1
 CenterPoint -0.30 0.03
 Scale 0.002 0.47
@@ -22,7 +22,7 @@ Hover 1 1 1 0.8
 PUSH
 
 Name Lobby2
-Visible 1
+Visible 0
 Highlight 1
 HighlightIntensity 1.8
 Lobby 2
@@ -36,7 +36,7 @@ Text [  ] 49 61.5 1.0 1.0 1.0 1.0 L2C 0.7
 PUSH
 
 Name MPFormLV2
-Visible 1
+Visible 0
 Texture -1
 CenterPoint -0.031 0.03
 Scale 0.002 0.47
@@ -45,7 +45,7 @@ Hover 1 1 1 0.8
 PUSH
 
 Name MPFormLV1
-Visible 1
+Visible 0
 Texture -1
 CenterPoint -0.30 0.03
 Scale 0.002 0.47
@@ -54,7 +54,7 @@ Hover 1 1 1 0.8
 PUSH
 
 Name Lobby3
-Visible 1
+Visible 0
 Highlight 1
 HighlightIntensity 1.8
 Lobby 3
@@ -68,7 +68,7 @@ Text [  ] 49 56.5 1.0 1.0 1.0 1.0 L3C 0.7
 PUSH
 
 Name Lobby4
-Visible 1
+Visible 0
 Highlight 1
 HighlightIntensity 1.8
 Lobby 4
@@ -82,7 +82,7 @@ Text [  ] 49 51.5 1.0 1.0 1.0 1.0 L4C 0.7
 PUSH
 
 Name Lobby5
-Visible 1
+Visible 0
 Highlight 1
 HighlightIntensity 1.8
 Lobby 5
@@ -96,7 +96,7 @@ Text [  ] 49 46.5 1.0 1.0 1.0 1.0 L5C 0.7
 PUSH
 
 Name Lobby6
-Visible 1
+Visible 0
 Highlight 1
 HighlightIntensity 1.8
 Lobby 6
@@ -110,7 +110,7 @@ Text [  ] 49 41.5 1.0 1.0 1.0 1.0 L6C 0.7
 PUSH
 
 Name Lobby7
-Visible 1
+Visible 0
 Highlight 1
 HighlightIntensity 1.8
 Lobby 7
@@ -124,7 +124,7 @@ Text [  ] 49 36.5 1.0 1.0 1.0 1.0 L7C 0.7
 PUSH
 
 Name Lobby8
-Visible 1
+Visible 0
 Highlight 1
 HighlightIntensity 1.8
 Lobby 8
@@ -138,18 +138,18 @@ Text [  ] 49 31.5 1.0 1.0 1.0 1.0 L8C 0.7
 PUSH
 
 Name MPExit
-Visible 1
+Visible 0
 CenterPoint 0.20 0.59
 Scale 0.02 0.02
 Color 0.8 0 0 1
 Hover 1 0 0 1
-HideOnClickEvent MPForm MPFormInner MPFormHeader MPFormLV1 MPFormLV2 MPFormLH1 ConnectButton MPExit InputPassword InputTitle PasswordForm TitleForm RefreshButton SearchServerButton CreateServerButton Lobby1 Lobby2 Lobby3 Lobby4 Lobby5 Lobby6 Lobby7 Lobby8 MPFormLV1Fix
+HideOnClickEvent MPForm MPFormInner MPFormHeader MPFormLV1 MPFormLV2 MPFormLH1 ConnectButton MPExit InputPassword InputTitle PasswordForm TitleForm RefreshButton SearchServerButton CreateServerButton Lobby1 Lobby2 Lobby3 Lobby4 Lobby5 Lobby6 Lobby7 Lobby8 MPFormLV1Fix LobbyButton
 PUSH
 
 Name InputPassword
 Type Input
 For PasswordForm
-Visible 1
+Visible 0
 Texture -1
 CenterPoint -0.29 -0.596
 Scale 0.09 0.025
@@ -161,7 +161,7 @@ PUSH
 Name InputTitle
 Type Input
 For TitleForm
-Visible 1
+Visible 0
 Texture -1
 CenterPoint -0.57 -0.596
 Scale 0.09 0.025
@@ -171,7 +171,7 @@ Text [ название лобби ] 17.2 19.4 0.0 0.0 0.0 1.0 Input 0.55
 PUSH
 
 Name PasswordForm
-Visible 1
+Visible 0
 Texture -1
 CenterPoint -0.435 -0.596
 Scale 0.05 0.035
@@ -181,7 +181,7 @@ Text [ Пароль: ] 26.6 19.4 1.0 1.0 1.0 1.0 IPv4 0.65
 PUSH
 
 Name TitleForm
-Visible 1
+Visible 0
 Texture -1
 CenterPoint -0.725 -0.596
 Scale 0.06 0.035
@@ -191,7 +191,7 @@ Text [ Название: ] 11.3 19.4 1.0 1.0 1.0 1.0 Password 0.65
 PUSH
 
 Name ConnectButton
-Visible 1
+Visible 0
 Texture -1
 CenterPoint 0.13 -0.596
 Scale 0.1 0.04
@@ -201,7 +201,7 @@ Text [ Подключится ] 52 19.4 1.0 1.0 1.0 1.0 Connect 0.7
 PUSH
 
 Name RefreshButton
-Visible 1
+Visible 0
 CommandOnClick GetLobbies
 Texture -1
 CenterPoint -0.085 -0.596
@@ -212,7 +212,7 @@ Text [ Обновить ] 41 19.4 1.0 1.0 1.0 1.0 Refresh 0.7
 PUSH
 
 Name MPFormLH1
-Visible 1
+Visible 0
 Texture -1
 CenterPoint -0.3 0.42
 Scale 0.53 0.002
@@ -223,7 +223,8 @@ PUSH
 Name SearchServerButton
 Highlight 1
 HighlightIntensity 1.8
-Visible 1
+ShowOnClickEvent Lobby1 MPFormLV1Fix Lobby2 MPFormLV2 MPFormLV1 Lobby3 Lobby4 Lobby5 Lobby6 Lobby7 Lobby8 MPExit InputPassword InputTitle PasswordForm TitleForm ConnectButton RefreshButton MPFormLH1 SearchServerButton CreateServerButton LobbyButton MPFormInner
+Visible 0
 Texture -1
 CenterPoint -0.78 0.590
 Scale 0.07 0.06
@@ -234,13 +235,28 @@ PUSH
 Name CreateServerButton
 Highlight 1
 HighlightIntensity 1.8
-Visible 1
+ShowOnClickEvent MPCL_SearchServerButton MPCL_CreateServerButton MPCL_LobbyButton MPCLTitle MPCL_LobbyNameInput MPCL_LobbyNameForm MPCL_LobbyPasswordInput MPCL_LobbyPasswordForm MPCL_LobbyCreateButton MPCLExit
+HideOnClickEvent Lobby1 MPFormLV1Fix Lobby2 MPFormLV2 MPFormLV1 Lobby3 Lobby4 Lobby5 Lobby6 Lobby7 Lobby8 MPExit InputPassword InputTitle PasswordForm TitleForm ConnectButton RefreshButton MPFormLH1 SearchServerButton CreateServerButton LobbyButton MPFormInner
+Visible 0
 Texture -1
 CenterPoint -0.629 0.590
 Scale 0.08 0.06
 Color 0.1 0.1 0.1 0.55
 Hover 0.3 0.3 0.3 0.55
 PUSH
+
+Name LobbyButton
+Highlight 1
+HighlightIntensity 1.8
+Visible 0
+Texture -1
+CenterPoint -0.468 0.590
+Scale 0.08 0.06
+Color 0.1 0.1 0.1 0.55
+Hover 0.3 0.3 0.3 0.55
+PUSH
+
+#import Resources/UI/MenuCreateLobby.ui
 
 Name MPFormHeader
 Visible 1
@@ -251,10 +267,11 @@ Color 0.1 0.1 0.1 0.55
 Hover 0.1 0.1 0.1 0.55
 Text [ Поиск ] 8.0 78 1.0 1.0 1.0 1.0 Search 1
 Text [ Создать ] 15.0 78 1.0 1.0 1.0 1.0 Create 1
+Text [ Лобби ] 23.0 78 1.0 1.0 1.0 1.0 Lobby 1
 PUSH
 
 Name MPFormInner
-Visible 1
+Visible 0
 Texture -1
 CenterPoint -0.3 0.03
 Scale 0.53 0.47
@@ -272,4 +289,4 @@ CenterPoint -0.3 0.0
 Scale 0.55 0.65
 Color 0.4 0.4 0.4 0.55
 Hover 0.4 0.4 0.4 0.55
-PUSH
+PUSH_EUI

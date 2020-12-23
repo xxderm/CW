@@ -19,4 +19,4 @@ Scale 0.3 0.11
 Color 0.2 0.2 0.2 0.85
 Text [ Консоль ] 0.5 27 0.2 1.0 0.2 1.0 Title 1
 Hover 0.2 0.2 0.2 0.85
-PUSH
+PUSH_EUI

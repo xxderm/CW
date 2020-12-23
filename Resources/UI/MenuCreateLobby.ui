@@ -1,0 +1,109 @@
+Name MPCLExit
+Visible 1
+CenterPoint 0.20 0.59
+Scale 0.02 0.02
+Color 0.8 0 0 1
+Hover 1 0 0 1
+HideOnClickEvent MPCL_SearchServerButton MPCL_CreateServerButton MPCL_LobbyButton MPCLTitle MPCL_LobbyNameInput MPCL_LobbyNameForm MPCL_LobbyPasswordInput MPCL_LobbyPasswordForm MPCL_LobbyCreateButton MPCLExit MPForm MPFormHeader
+PUSH
+
+Name MPCL_SearchServerButton
+Highlight 1
+HighlightIntensity 1.8
+Visible 1
+Texture -1
+CenterPoint -0.78 0.590
+Scale 0.07 0.06
+Color 0.1 0.1 0.1 0.55
+Hover 0.3 0.3 0.3 0.55
+HideOnClickEvent MPCL_SearchServerButton MPCL_CreateServerButton MPCL_LobbyButton MPCLTitle MPCL_LobbyNameInput MPCL_LobbyNameForm MPCL_LobbyPasswordInput MPCL_LobbyPasswordForm MPCL_LobbyCreateButton MPCLExit
+ShowOnClickEvent Lobby1 MPFormLV1Fix Lobby2 MPFormLV2 MPFormLV1 Lobby3 Lobby4 Lobby5 Lobby6 Lobby7 Lobby8 MPExit InputPassword InputTitle PasswordForm TitleForm ConnectButton RefreshButton MPFormLH1 SearchServerButton CreateServerButton LobbyButton MPFormInner
+PUSH
+
+Name MPCL_CreateServerButton
+Highlight 1
+HighlightIntensity 1.8
+#ShowOnClickEvent 
+#HideOnClickEvent 
+Visible 1
+Texture -1
+CenterPoint -0.629 0.590
+Scale 0.08 0.06
+Color 0.1 0.1 0.1 0.55
+Hover 0.3 0.3 0.3 0.55
+PUSH
+
+Name MPCL_LobbyButton
+Highlight 1
+HighlightIntensity 1.8
+Visible 1
+Texture -1
+CenterPoint -0.468 0.590
+Scale 0.08 0.06
+Color 0.1 0.1 0.1 0.55
+Hover 0.3 0.3 0.3 0.55
+PUSH
+
+Name MPCLTitle
+Visible 1
+Texture -1
+CenterPoint -0.3 0.3
+Scale 0.15 0.05
+Color 0.4 0.4 0.4 0.55
+Text [ Создание лобби ] 27.8 64 1.0 1.0 1.0 1.0 Title 1
+Hover 0.4 0.4 0.4 0.55
+PUSH
+
+Name MPCL_LobbyNameInput
+Type Input
+For MPCL_LobbyNameForm
+Visible 1
+Texture -1
+CenterPoint -0.3 0.1
+Scale 0.15 0.05
+Color 0.8 0.8 0.8 0.9
+Hover 0.8 0.8 0.8 0.9
+Text [  ] 27.8 54 0.0 0.0 0.0 1.0 Input 0.7
+PUSH
+
+Name MPCL_LobbyNameForm
+Visible 1
+Texture -1
+CenterPoint -0.3 0.2
+Scale 0.15 0.05
+Color 0.15 0.15 0.15 0.5
+Text [ Название: ] 27.8 59 1.0 1.0 1.0 1.0 Title 0.7
+Hover 0.15 0.15 0.15 0.5
+PUSH
+
+Name MPCL_LobbyPasswordInput
+Type Input
+For MPCL_LobbyPasswordForm
+Visible 1
+Texture -1
+CenterPoint -0.3 -0.1
+Scale 0.15 0.05
+Color 0.8 0.8 0.8 0.9
+Hover 0.8 0.8 0.8 0.9
+Text [  ] 27.8 44 0.0 0.0 0.0 1.0 Input 0.7
+PUSH
+
+Name MPCL_LobbyPasswordForm
+Visible 1
+Texture -1
+CenterPoint -0.3 -0.00
+Scale 0.15 0.05
+Color 0.15 0.15 0.15 0.5
+Text [ Пароль: ] 27.8 49 1.0 1.0 1.0 1.0 Title 0.7
+Hover 0.15 0.15 0.15 0.5
+PUSH
+
+Name MPCL_LobbyCreateButton
+Visible 1
+Texture -1
+CenterPoint -0.3 -0.25
+Scale 0.15 0.05
+Color 0.15 0.15 0.15 0.9
+Hover 0.2 0.2 0.2 0.9
+Text [ Создать ] 27.8 36.5 1.0 1.0 1.0 1.0 Input 0.7
+PUSH_EUI

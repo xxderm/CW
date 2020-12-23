@@ -159,7 +159,9 @@ void Reader::getUI(GUITexture* guis, std::string path, bool update)
             if (lit.size() > 0)
             {
                 if (lit[0] == "#import")
+                {
                     this->getUI(guis, lit[1], false);
+                }
                 if (lit[0] == "Name")
                     format->Name = lit[1];
                 if (lit[0] == "Texture")

@@ -78,14 +78,8 @@ void GUIRenderer::Update()
 	{
 		if (gui.second->Moveable && gui.second->Active)
 		{
-			if (
-				gui.second->Moveable &&
-				gui.second->isHovered(MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY)))
-				)
-			{
-				glm::vec2 normalizedMouseCoords = MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY));
-				gui.second->Position = normalizedMouseCoords;
-			}
+			glm::vec2 normalizedMouseCoords = MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY));
+			gui.second->Position = normalizedMouseCoords;
 		}
 	}
 }

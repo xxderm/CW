@@ -212,6 +212,7 @@ void Reader::getUI(GUITexture* guis, std::string path, bool update)
                     .get_child("Color")
                     .get<float>("a");
                 String.Scale = element.second.get<float>("Scale");
+                String.BaseScale = String.Scale;
                 gui->Text.emplace(element.second.get<std::string>("Name"), String);
             }
         }

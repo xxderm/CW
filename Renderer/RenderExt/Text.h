@@ -32,6 +32,7 @@ struct Str final
 	glm::vec2 Position;
 	glm::vec4 Color;
 	float Scale = 1.0;
+	float BaseScale = 1.0;
 };
 
 class Text final

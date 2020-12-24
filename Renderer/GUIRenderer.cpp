@@ -31,8 +31,7 @@ void GUIRenderer::Render()
 				float x = (mWinX * text.second.Position.x) / 100;
 				float y = (mWinY * text.second.Position.y) / 100;
 
-				int PosX = 
-					mText.RenderText(
+				int PosX = mText.RenderText(
 						text.second.Text,
 						x,
 						y,
@@ -41,6 +40,8 @@ void GUIRenderer::Render()
 				auto normCoords = MousePicker::getNormalizedDeviceCoords(PosX, y, glm::vec2(mWinX, mWinY));
 				if (normCoords.x >= gui.second->Position.x + gui.second->Scale.x)
 					text.second.Scale -= 0.05;
+				if (normCoords.x + 0.05 < gui.second->Position.x + gui.second->Scale.x && text.second.Scale < text.second.BaseScale)
+					text.second.Scale = text.second.BaseScale;
 			}
 			glEnable(GL_DEPTH_TEST);
 		}

@@ -72,6 +72,22 @@ void GUIRenderer::Update()
 {
 	this->Listen();
 	//Reader::getInstance()->getUI(mGuis.get(), mUiPath, true);
+
+	SDL_GetMouseState(&mMouseX, &mMouseY);
+	for (auto& gui : mGuis->getGui())
+	{
+		if (gui.second->Moveable && gui.second->Active)
+		{
+			if (
+				gui.second->Moveable &&
+				gui.second->isHovered(MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY)))
+				)
+			{
+				glm::vec2 normalizedMouseCoords = MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY));
+				gui.second->Position = normalizedMouseCoords;
+			}
+		}
+	}
 }
 
 void GUIRenderer::setCamera(Camera* camera)
@@ -86,7 +102,7 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 {
 	//Reader::getInstance()->getUI(mGuis.get(), mUiPath);
 
-	SDL_GetMouseState(&mMouseX, &mMouseY);
+	//SDL_GetMouseState(&mMouseX, &mMouseY);
 	if (e->type == SDL_KEYDOWN)
 	{
 		if(e->key.keysym.sym == SDLK_r)
@@ -189,7 +205,7 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 			{
 				mGuis->SetColor(gui.first, gui.second->hoverColor);
 				if (e->type == SDL_MOUSEBUTTONDOWN)
-				{
+				{					
 					if (!gui.second->SelectedCountryTag.empty())
 					{
 						mCountry_ptr = *mWorld_ptr->getCountries()->getCountryByTag(gui.second->SelectedCountryTag);

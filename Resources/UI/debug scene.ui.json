@@ -1,0 +1,117 @@
+{
+  "import": "Resources/UI/console.ui.json",
+
+  "Test5": {
+    "Texture": -1,
+    "CenterPoint": {
+      "x": -0.5,
+      "y": 0.95
+    },
+    "Hover": {
+      "r": 1.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 0.7
+    },
+    "Scale": {
+      "x": 0.5,
+      "y": 0.05
+    },
+    "Color": {
+      "r": 1.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 0.7
+    },
+    "Text": {
+      "test": {
+        "String": "",
+        "Location": {
+          "x": 0.5,
+          "y": 96.6
+        },
+        "Color": {
+          "r": 0,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "test",
+        "Scale": 1
+      }
+    }
+  },
+
+  "ToolsForm": {
+    "Moveable": true,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.0,
+      "y": 0.0
+    },
+    "Hover": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+    },
+    "Scale": {
+      "x": 0.15,
+      "y": 0.35
+    },
+    "Color": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+    },
+    "Text": {
+      "AddFormTitle": {
+        "String": "Добавить форму",
+        "Location": {
+          "x": 43.0,
+          "y": 63.0
+        },
+        "Color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1.0
+        },
+        "Name": "AddFormTitle",
+        "Scale": 0.8
+      },
+      "SaveUITitle": {
+        "String": "Сохранить",
+        "Location": {
+          "x": 43.0,
+          "y": 58.0
+        },
+        "Color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1.0
+        },
+        "Name": "SaveUITitle",
+        "Scale": 0.8
+      },
+      "OpenUITitle": {
+        "String": "Открыть",
+        "Location": {
+          "x": 43.0,
+          "y": 53.0
+        },
+        "Color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1.0
+        },
+        "Name": "OpenUITitle",
+        "Scale": 0.8
+      }
+    }
+  }
+
+}

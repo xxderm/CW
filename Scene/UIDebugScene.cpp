@@ -5,7 +5,7 @@ UIDebugScene UIDebugScene::mDebugScene;
 void UIDebugScene::Init(Scene* scene)
 {
 	SDL_GetWindowSize(scene->getWindow(), &mWndWidth, &mWndHeight);
-	mGUIRenderer = new GUIRenderer("Resources/UI/menu.ui.json", 30, scene);
+	mGUIRenderer = new GUIRenderer("Resources/UI/debug scene.ui.json", 30, scene);
 
 	mGUIRenderer->Init(scene->getWindow());
 
@@ -70,6 +70,6 @@ UIDebugScene::~UIDebugScene()
 {
 }
 
-UIDebugScene::MenuScene()
+UIDebugScene::UIDebugScene()
 {
 }

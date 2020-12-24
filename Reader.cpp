@@ -236,6 +236,8 @@ void Reader::getUI(GUITexture* guis, std::string path, bool update)
             gui->Type = gui_element.second.get<std::string>("Type");
         if (gui_element.second.count("Lobby") > 0)
             gui->LobbyIndex = gui_element.second.get<int>("Lobby");
+        if (gui_element.second.count("Moveable") > 0)
+            gui->Moveable = gui_element.second.get<bool>("Moveable");
         if (gui_element.second.count("For") > 0)
             gui->For = gui_element.second.get<std::string>("For");
         if (gui_element.second.count("ShowOnClickEvent") > 0)

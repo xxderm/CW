@@ -36,6 +36,7 @@ struct GuiFormat
 	int LobbyIndex = -1;
 	bool DynamicText = false;
 	std::string SelectedCountryTag;
+	bool Moveable = false;
 
 	glm::vec4 baseColor = glm::vec4(1, 1, 1, 0.5);
 	bool Active = false;

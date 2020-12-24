@@ -1,11 +1,12 @@
 #include "Scene/MenuScene.h"
+#include "Scene/UIDebugScene.h"
 #undef main
 
 int main(int argc, char** argv)
 {	
 	Scene* ApplicationScene = new Scene();
 	ApplicationScene->Init();
-	ApplicationScene->ChangeScene(MenuScene::getInstance());
+	ApplicationScene->ChangeScene(UIDebugScene::getInstance());
 	try
 	{
 		while (ApplicationScene->isRunning())

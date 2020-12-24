@@ -1,4 +1,79 @@
 {
+  "MPFormLV2": {
+    "Visible": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": -0.031,
+      "y": 0.03
+    },
+    "Hover": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.8
+    },
+    "Scale": {
+      "x": 0.002,
+      "y": 0.47
+    },
+    "Color": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.8
+    }
+  },
+
+  "MPFormLV1": {
+    "Visible": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": -0.30,
+      "y": 0.03
+    },
+    "Hover": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.8
+    },
+    "Scale": {
+      "x": 0.002,
+      "y": 0.47
+    },
+    "Color": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.8
+    }
+  },
+
+  "MPFormLV1Fix": {
+    "Visible": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": -0.3,
+      "y": 0.03
+    },
+    "Hover": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.8
+    },
+    "Scale": {
+      "x": 0.002,
+      "y": 0.47
+    },
+    "Color": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.8
+    }
+  },
+
   "Lobby1": {
     "Visible": false,
     "Highlight": true,
@@ -76,31 +151,6 @@
     }
   },
 
-  "MPFormLV1Fix": {
-    "Visible": false,
-    "Texture": -1,
-    "CenterPoint": {
-      "x": -0.3,
-      "y": 0.03
-    },
-    "Hover": {
-      "r": 1.0,
-      "g": 1.0,
-      "b": 1.0,
-      "a": 0.8
-    },
-    "Scale": {
-      "x": 0.002,
-      "y": 0.47
-    },
-    "Color": {
-      "r": 1.0,
-      "g": 1.0,
-      "b": 1.0,
-      "a": 0.8
-    }
-  },
-
   "Lobby2": {
     "Visible": false,
     "Highlight": true,
@@ -175,56 +225,6 @@
         "Scale": 0.7
       }
 
-    }
-  },
-
-  "MPFormLV2": {
-    "Visible": false,
-    "Texture": -1,
-    "CenterPoint": {
-      "x": -0.031,
-      "y": 0.03
-    },
-    "Hover": {
-      "r": 1.0,
-      "g": 1.0,
-      "b": 1.0,
-      "a": 0.8
-    },
-    "Scale": {
-      "x": 0.002,
-      "y": 0.47
-    },
-    "Color": {
-      "r": 1.0,
-      "g": 1.0,
-      "b": 1.0,
-      "a": 0.8
-    }
-  },
-
-  "MPFormLV1": {
-    "Visible": false,
-    "Texture": -1,
-    "CenterPoint": {
-      "x": -0.30,
-      "y": 0.03
-    },
-    "Hover": {
-      "r": 1.0,
-      "g": 1.0,
-      "b": 1.0,
-      "a": 0.8
-    },
-    "Scale": {
-      "x": 0.002,
-      "y": 0.47
-    },
-    "Color": {
-      "r": 1.0,
-      "g": 1.0,
-      "b": 1.0,
-      "a": 0.8
     }
   },
 
@@ -1340,7 +1340,7 @@
       "g": 0.4,
       "b": 0.4,
       "a": 0.55
-    }   
+    }
   }
 
 }

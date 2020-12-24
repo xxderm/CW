@@ -28,6 +28,7 @@ private:
 	Text mText;
 	int mWinX, mWinY;
 	int mMouseX, mMouseY;
+	glm::vec2 mFormDistanceDifference = glm::vec2(-2);
 
 	std::string mUiPath;
 	int mFontSize = 24;

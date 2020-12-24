@@ -75,11 +75,16 @@ void GUIRenderer::Update()
 
 	SDL_GetMouseState(&mMouseX, &mMouseY);
 	for (auto& gui : mGuis->getGui())
-	{
+	{	
 		if (gui.second->Moveable && gui.second->Active)
 		{
-			glm::vec2 normalizedMouseCoords = MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY));
-			gui.second->Position = normalizedMouseCoords;
+			auto mouse = MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY));			
+			auto center = gui.second->Position;
+			// Если дистанция сброшена, то определить ее
+			if (mFormDistanceDifference.x == -2)
+				mFormDistanceDifference = center - mouse;
+			auto result = mouse + mFormDistanceDifference;			
+			gui.second->Position = result;
 		}
 	}
 }
@@ -223,6 +228,10 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 						}
 					}
 					gui.second->Active = !gui.second->Active;
+
+					// Если форма теперь не активна, то сбросить разницу в дистанции от центра формы
+					if (!gui.second->Active)
+						mFormDistanceDifference = glm::vec2(-2);
 				}
 			}
 			else

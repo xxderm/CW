@@ -42,6 +42,123 @@
     }
   },
 
+  "SaveUIButtonForm": {
+    "ShowOnClickEvent": [
+      "SaveUIInputButton",
+      "SaveUIInput"
+    ],
+    "Moveable": true,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.0,
+      "y": 0.18
+    },
+    "Hover": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 1.0
+    },
+    "Scale": {
+      "x": 0.15,
+      "y": 0.05
+    },
+    "Color": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+    }
+  },
+
+  "SaveUIInputButton": {
+    "Visible": false,
+    "Moveable": true,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.0,
+      "y": -0.5
+    },
+    "Hover": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 1.0
+    },
+    "Scale": {
+      "x": 0.15,
+      "y": 0.05
+    },
+    "Color": {
+      "r": 0.4,
+      "g": 0.4,
+      "b": 0.4,
+      "a": 1.0
+    },
+    "Text": {
+      "Save": {
+        "String": "Сохранить",
+        "Location": {
+          "x": 43,
+          "y": 24.2
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Save",
+        "Scale": 0.75
+      }
+    }
+  },
+
+  "SaveUIInput": {
+    "Visible": false,
+    "Moveable": true,
+    "For": "SaveUIInput",
+    "Type": "Input",
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.0,
+      "y": -0.40
+    },
+    "Hover": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 1.0
+    },
+    "Scale": {
+      "x": 0.15,
+      "y": 0.05
+    },
+    "Color": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 1.0
+    },
+    "Text": {
+      "Directory": {
+        "String": "Директория",
+        "Location": {
+          "x": 43,
+          "y": 29.1
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 0.4
+        },
+        "Name": "Input",
+        "Scale": 0.75
+      }
+    }
+  },
+
   "ToolsForm": {
     "Moveable": true,
     "Texture": -1,

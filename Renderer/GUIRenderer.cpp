@@ -30,12 +30,17 @@ void GUIRenderer::Render()
 			{
 				float x = (mWinX * text.second.Position.x) / 100;
 				float y = (mWinY * text.second.Position.y) / 100;
-				mText.RenderText(
-					text.second.Text,
-					x,
-					y,
-					text.second.Scale,
-					glm::vec4(text.second.Color));
+
+				int PosX = 
+					mText.RenderText(
+						text.second.Text,
+						x,
+						y,
+						text.second.Scale,
+						glm::vec4(text.second.Color));
+				auto normCoords = MousePicker::getNormalizedDeviceCoords(PosX, y, glm::vec2(mWinX, mWinY));
+				if (normCoords.x >= gui.second->Position.x + gui.second->Scale.x)
+					text.second.Scale -= 0.05;
 			}
 			glEnable(GL_DEPTH_TEST);
 		}
@@ -74,6 +79,12 @@ void GUIRenderer::Update()
 	//Reader::getInstance()->getUI(mGuis.get(), mUiPath, true);
 
 	SDL_GetMouseState(&mMouseX, &mMouseY);
+
+	printf("%f, %f\n",
+		MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY)).x,
+		MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY)).y
+	);
+
 	for (auto& gui : mGuis->getGui())
 	{	
 		if (gui.second->Moveable && gui.second->Active)

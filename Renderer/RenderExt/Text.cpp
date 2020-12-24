@@ -57,8 +57,9 @@ void Text::Init(const char* font, glm::vec2 scrSize, GLuint fontSize)
 	proj = glm::ortho(0.0f, static_cast<GLfloat>(scrSize.x), 0.0f, static_cast<GLfloat>(scrSize.y));
 }
 
-void Text::RenderText(std::string text, int x, int y, float scale, glm::vec4 color)
+int Text::RenderText(std::string text, int x, int y, float scale, glm::vec4 color)
 {
+	int xLastCoord = x;
 	mProgram->Bind();
 	mProgram->setVec4("textColor", color);
 	mProgram->setMat4("transform", proj);
@@ -99,11 +100,13 @@ void Text::RenderText(std::string text, int x, int y, float scale, glm::vec4 col
 
 		float next = (ch.Advance >> 6) * scale;
 		x += next;
+		xLastCoord = x;
 		stride += next;
 	}
 	glBindVertexArray(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 	mProgram->UnBind();
+	return xLastCoord;
 }
 
 void Text::Resize(glm::vec2 scrSize)

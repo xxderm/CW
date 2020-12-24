@@ -38,7 +38,8 @@ class Text final
 {
 public:
 	void Init(const char* font, glm::vec2 scrSize, GLuint fontSize = 12);
-	void RenderText(std::string text, int x, int y, float scale, glm::vec4 color);
+	// Возвращает координату `х` последнего символа
+	int RenderText(std::string text, int x, int y, float scale, glm::vec4 color);
 	void Resize(glm::vec2 scrSize);
 private:
 	std::map<char, Character> mCharacters;

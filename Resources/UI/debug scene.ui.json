@@ -25,9 +25,9 @@
     },
     "Text": {
       "test": {
-        "String": "",
+        "String": "123",
         "Location": {
-          "x": 0.5,
+          "x": 47.5,
           "y": 96.6
         },
         "Color": {

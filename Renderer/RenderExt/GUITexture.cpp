@@ -40,6 +40,15 @@ bool GUITexture::isAllInputHidden()
 	return true;
 }
 
+void GUITexture::DeactivateAll()
+{
+	for (auto& i : mGuis)
+	{
+		if (i.second->Active)
+			i.second->Active = false;
+	}
+}
+
 void GUITexture::Clear()
 {
 	for (auto& gui : mGuis)

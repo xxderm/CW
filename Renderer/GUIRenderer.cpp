@@ -28,16 +28,16 @@ void GUIRenderer::Render()
 			glDisable(GL_DEPTH_TEST);
 			for (auto& text : gui.second->Text)
 			{
-				float x = (mWinX * text.second.Position.x) / 100;
-				float y = (mWinY * text.second.Position.y) / 100;
+				//float x = (mWinX * text.second.Position.x) / 100;
+				//float y = (mWinY * text.second.Position.y) / 100;
 
 				auto guiWndCoords = MousePicker::NormalizedDevCoordsToWindowsCoords(
 					gui.second->Position.x - gui.second->Scale.x,
 					gui.second->Position.y + gui.second->Scale.y,
 					glm::vec2(mWinX, mWinY));
 
-				x += (guiWndCoords.x + 10);
-				y += (guiWndCoords.y - 17.5);
+				float x = (guiWndCoords.x + 10) + text.second.Position.x;
+				float y = (guiWndCoords.y - 17.5) - text.second.Position.y;
 
 				int PosX = mText.RenderText(
 						text.second.Text,
@@ -91,7 +91,7 @@ void GUIRenderer::Update()
 
 	for (auto& gui : mGuis->getGui())
 	{	
-		if (gui.second->Moveable && gui.second->Active)
+		if (gui.second->Moveable && gui.second->Active && mMouseButtonPressed)
 		{
 			auto mouse = MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY));			
 			auto center = gui.second->Position;
@@ -115,8 +115,18 @@ void GUIRenderer::setMousePicker(MousePicker* mp)
 void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 {
 	//Reader::getInstance()->getUI(mGuis.get(), mUiPath);
-
 	//SDL_GetMouseState(&mMouseX, &mMouseY);
+
+
+	if (e->type == SDL_MOUSEBUTTONDOWN)
+		mMouseButtonPressed = true;
+	// Если кнопка мыши поднята, то сбросить разницу в дистанции от центра формы
+	if (e->type == SDL_MOUSEBUTTONUP)
+	{
+		mMouseButtonPressed = false;
+		mFormDistanceDifference = glm::vec2(-2);
+	}
+
 	if (e->type == SDL_KEYDOWN)
 	{
 		if(e->key.keysym.sym == SDLK_r)
@@ -155,7 +165,7 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 		{
 			LOG(ERROR) << ex.what();
 		}
-	}
+	}	
 
 	for (auto& gui : this->mGuis->getGui())
 	{			
@@ -242,11 +252,10 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 							mGuis->getGui().at(form)->Visible = false;
 						}
 					}
-					gui.second->Active = !gui.second->Active;
-
-					// Если форма теперь не активна, то сбросить разницу в дистанции от центра формы
+					// Если форма активна, то деактивировать другие формы
 					if (!gui.second->Active)
-						mFormDistanceDifference = glm::vec2(-2);
+						mGuis->DeactivateAll();
+					gui.second->Active = !gui.second->Active;					
 				}
 			}
 			else

@@ -30,7 +30,6 @@
       "SaveUIInputButton",
       "SaveUIInput"
     ],
-    "Moveable": true,
     "Texture": -1,
     "CenterPoint": {
       "x": 0.0,
@@ -55,8 +54,7 @@
   },
 
   "SaveUIInputButton": {
-    "Visible": false,
-    "Moveable": true,
+    "Visible": false,  
     "Texture": -1,
     "CenterPoint": {
       "x": 0.0,
@@ -170,7 +168,7 @@
         "String": "Добавить форму",
         "Location": {
           "x": 0.0,
-          "y": 0.0
+          "y": 15.0
         },
         "Color": {
           "r": 0,
@@ -185,7 +183,7 @@
         "String": "Сохранить",
         "Location": {
           "x": 0.0,
-          "y": 0.0
+          "y": 50.0
         },
         "Color": {
           "r": 0,
@@ -200,7 +198,7 @@
         "String": "Открыть",
         "Location": {
           "x": 0.0,
-          "y": 0.0
+          "y": 85.0
         },
         "Color": {
           "r": 0,

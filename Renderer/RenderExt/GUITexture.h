@@ -52,6 +52,7 @@ public:
 	void SetVisible(std::string Name, bool v);
 	void SetColor(std::string Name, glm::vec4 Color);
 	bool isAllInputHidden();
+	void DeactivateAll();
 	void Clear();
 	~GUITexture();
 private:

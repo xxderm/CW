@@ -156,12 +156,12 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 			}
 			if (gui.second->LobbyIndex != -1)
 			{
+				std::string IndexT = "L" + std::to_string(gui.second->LobbyIndex) + "T";
+				std::string IndexV = "L" + std::to_string(gui.second->LobbyIndex) + "V";
+				std::string IndexC = "L" + std::to_string(gui.second->LobbyIndex) + "C";
 				if (mLobbies.size() >= gui.second->LobbyIndex)
 				{
 					gui.second->Visible = true;
-					std::string IndexT = "L" + std::to_string(gui.second->LobbyIndex) + "T";
-					std::string IndexV = "L" + std::to_string(gui.second->LobbyIndex) + "V";
-					std::string IndexC = "L" + std::to_string(gui.second->LobbyIndex) + "C";
 					gui.second->Text
 						.at(IndexT)
 						.Text = std::to_string(gui.second->LobbyIndex) + " " + mLobbies.at(gui.second->LobbyIndex - 1).Name;
@@ -171,6 +171,18 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 					gui.second->Text
 						.at(IndexC)
 						.Text = std::to_string(mLobbies.at(gui.second->LobbyIndex - 1).Clients) + "/" + std::to_string(32);
+				}
+				else
+				{
+					gui.second->Text
+						.at(IndexT)
+						.Text.clear();
+					gui.second->Text
+						.at(IndexV)
+						.Text.clear();
+					gui.second->Text
+						.at(IndexC)
+						.Text.clear();
 				}
 			}
 			if (gui.second->isHovered(MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY))))
@@ -230,38 +242,25 @@ void GUIRenderer::Listen()
 	if (SDLNet_UDP_Recv(*mScene_ptr->getSocket(), mScene_ptr->getPacket()))
 	{
 		//std::cout << "Got: " << scene->getPacket()->data << std::endl;
-		if (mScene_ptr->getPacket()->data[0] == (Uint8)'5')
-		{
-			std::string message = std::string((char*)mScene_ptr->getPacket()->data);
-
-			bool state = false;
-			std::string line;
+		std::stringstream jsonEncodedData((char*)mScene_ptr->getPacket()->data);
+		boost::property_tree::ptree response;
+		boost::property_tree::read_json(jsonEncodedData, response);
+		if (response.get<int>("Signal") == SIGNAL::GET_LOBBY_LIST)
+		{			
 			mLobbies.clear();
-
-			for (auto& i : message)
-			{				
-				if (i == '|' && state)
-				{
-					auto lobby = Reader::getInstance()->split(line, " ");
-					Lobby curr;
-					curr.Name = lobby[0];
-					curr.Capacity = std::stoi(lobby[1]);
-					curr.Version = lobby[2];
-					curr.Clients = std::stoi(lobby[3]);
-					mLobbies.push_back(curr);
-					state = false;
-					line.clear();
-				}	
-				else if (i == '|')
-				{
-					state = !state;
-				}
-				if (state && i != '|')
-				{
-					line += i;
-				}
+			for (auto& lobby : response)
+			{
+				if (lobby.second.count("Name") == 0)
+					mLobbies.clear();
+				if (lobby.first == "Signal")
+					continue;
+				Lobby currentLobby;
+				currentLobby.Name = lobby.second.get<std::string>("Name");
+				currentLobby.Capacity = lobby.second.get<int>("Capacity");
+				currentLobby.Version = lobby.second.get<std::string>("Version");
+				currentLobby.Clients = lobby.second.get<int>("Clients");
+				mLobbies.push_back(currentLobby);
 			}
-
 		}
 	}
 }

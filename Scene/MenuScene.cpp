@@ -20,8 +20,13 @@ void MenuScene::Init(Scene* scene)
 
 
 
-	
-	auto ClientInput = "0 Player " + std::to_string(time(NULL));
+	boost::property_tree::ptree pt;
+	pt.put("Signal", 0);
+	pt.put("User", "Player");
+	pt.put("Timestamp", time(NULL));
+	std::stringstream ss;
+	boost::property_tree::json_parser::write_json(ss, pt);
+	auto ClientInput = ss.str();
 	scene->getPacket()->len = ClientInput.size() + 1;
 	memcpy(scene->getPacket()->data, (Uint8*)ClientInput.c_str(), scene->getPacket()->len);
 	SDLNet_UDP_Send(*scene->getSocket(), -1, scene->getPacket());

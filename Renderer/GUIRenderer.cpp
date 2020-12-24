@@ -31,6 +31,14 @@ void GUIRenderer::Render()
 				float x = (mWinX * text.second.Position.x) / 100;
 				float y = (mWinY * text.second.Position.y) / 100;
 
+				auto guiWndCoords = MousePicker::NormalizedDevCoordsToWindowsCoords(
+					gui.second->Position.x - gui.second->Scale.x,
+					gui.second->Position.y + gui.second->Scale.y,
+					glm::vec2(mWinX, mWinY));
+
+				x += (guiWndCoords.x + 10);
+				y += (guiWndCoords.y - 17.5);
+
 				int PosX = mText.RenderText(
 						text.second.Text,
 						x,
@@ -80,11 +88,6 @@ void GUIRenderer::Update()
 	//Reader::getInstance()->getUI(mGuis.get(), mUiPath, true);
 
 	SDL_GetMouseState(&mMouseX, &mMouseY);
-
-	printf("%f, %f\n",
-		MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY)).x,
-		MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY)).y
-	);
 
 	for (auto& gui : mGuis->getGui())
 	{	

@@ -15,6 +15,7 @@ public:
     const glm::vec3 getCurrentRay();
     const glm::vec3 getPointOnRay(glm::vec3 ray, float distance);
     const static glm::vec2 getNormalizedDeviceCoords(int mouseX, int mouseY, glm::vec2 ScrSize);
+    const static glm::vec2 NormalizedDevCoordsToWindowsCoords(float x, float y, glm::vec2 SrcSize);
     const glm::vec3 calculateMouseRay();
     void Update(glm::mat4 view, Camera* camera);
 private:

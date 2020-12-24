@@ -22,24 +22,7 @@
       "g": 0.0,
       "b": 0.0,
       "a": 0.7
-    },
-    "Text": {
-      "test": {
-        "String": "123",
-        "Location": {
-          "x": 47.5,
-          "y": 96.6
-        },
-        "Color": {
-          "r": 0,
-          "g": 1,
-          "b": 1,
-          "a": 1.0
-        },
-        "Name": "test",
-        "Scale": 1
-      }
-    }
+    }   
   },
 
   "SaveUIButtonForm": {
@@ -99,8 +82,8 @@
       "Save": {
         "String": "Сохранить",
         "Location": {
-          "x": 43,
-          "y": 24.2
+          "x": 0,
+          "y": 0
         },
         "Color": {
           "r": 1,
@@ -144,8 +127,8 @@
       "Directory": {
         "String": "Директория",
         "Location": {
-          "x": 43,
-          "y": 29.1
+          "x": 0,
+          "y": 0
         },
         "Color": {
           "r": 1,
@@ -186,8 +169,8 @@
       "AddFormTitle": {
         "String": "Добавить форму",
         "Location": {
-          "x": 43.0,
-          "y": 63.0
+          "x": 0.0,
+          "y": 0.0
         },
         "Color": {
           "r": 0,
@@ -201,8 +184,8 @@
       "SaveUITitle": {
         "String": "Сохранить",
         "Location": {
-          "x": 43.0,
-          "y": 58.0
+          "x": 0.0,
+          "y": 0.0
         },
         "Color": {
           "r": 0,
@@ -216,8 +199,8 @@
       "OpenUITitle": {
         "String": "Открыть",
         "Location": {
-          "x": 43.0,
-          "y": 53.0
+          "x": 0.0,
+          "y": 0.0
         },
         "Color": {
           "r": 0,

@@ -22,7 +22,7 @@
       "g": 0.0,
       "b": 0.0,
       "a": 0.7
-    }   
+    }
   },
 
   "SaveUIButtonForm": {
@@ -34,7 +34,7 @@
     "Texture": -1,
     "CenterPoint": {
       "x": 0.0,
-      "y": 0.18
+      "y": 0.0
     },
     "Hover": {
       "r": 0.4,
@@ -54,8 +54,10 @@
     }
   },
 
+  
+
   "SaveUIInputButton": {
-    "Visible": false,  
+    "Visible": false,
     "Texture": -1,
     "CenterPoint": {
       "x": 0.0,

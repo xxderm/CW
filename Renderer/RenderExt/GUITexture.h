@@ -39,6 +39,8 @@ struct GuiFormat
 	bool Moveable = false;
 	std::string Parent;
 
+	glm::vec2 Padding;
+
 	glm::vec4 baseColor = glm::vec4(1, 1, 1, 0.5);
 	bool Active = false;
 };

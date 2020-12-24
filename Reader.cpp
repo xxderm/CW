@@ -167,6 +167,7 @@ void Reader::getUI(GUITexture* guis, std::string path, bool update)
         gui->Position.y = gui_element.second
             .get_child("CenterPoint")
             .get<float>("y");
+        gui->Padding = gui->Position;
         gui->Scale.x = gui_element.second
             .get_child("Scale")
             .get<float>("x");

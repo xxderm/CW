@@ -185,6 +185,7 @@ void Reader::getUI(GUITexture* guis, std::string path, bool update)
         gui->Color.a = gui_element.second
             .get_child("Color")
             .get<float>("a");
+        gui->baseColor = gui->Color;
         if (gui_element.second.count("Text") > 0)
         {
             for (auto& element : gui_element.second.get_child("Text"))

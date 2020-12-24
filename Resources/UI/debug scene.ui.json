@@ -30,6 +30,7 @@
       "SaveUIInputButton",
       "SaveUIInput"
     ],
+    "Parent": "ToolsForm",
     "Texture": -1,
     "CenterPoint": {
       "x": 0.0,
@@ -167,8 +168,8 @@
       "AddFormTitle": {
         "String": "Добавить форму",
         "Location": {
-          "x": 0.0,
-          "y": 15.0
+          "x": 16.0,
+          "y": 8.0
         },
         "Color": {
           "r": 0,

@@ -11,6 +11,15 @@ void GUIRenderer::Render()
 {		
 	for (auto& gui : mGuis->getGui())
 	{
+		// Передвигаться вместе с родительским элементом
+		if (!gui.second->Parent.empty())
+		{
+			auto parent = mGuis->getGui().at(gui.second->Parent);
+			auto xPos = parent->Position.x;
+			auto yPos = (parent->Position.y + parent->Scale.y) - gui.second->Scale.y;
+			gui.second->Position = glm::vec2(xPos, yPos);
+		}
+
 		if (gui.second->Visible)
 		{
 			mProgram->Bind();
@@ -28,9 +37,6 @@ void GUIRenderer::Render()
 			glDisable(GL_DEPTH_TEST);
 			for (auto& text : gui.second->Text)
 			{
-				//float x = (mWinX * text.second.Position.x) / 100;
-				//float y = (mWinY * text.second.Position.y) / 100;
-
 				auto guiWndCoords = MousePicker::NormalizedDevCoordsToWindowsCoords(
 					gui.second->Position.x - gui.second->Scale.x,
 					gui.second->Position.y + gui.second->Scale.y,
@@ -87,11 +93,15 @@ void GUIRenderer::Update()
 	this->Listen();
 	//Reader::getInstance()->getUI(mGuis.get(), mUiPath, true);
 
+
 	SDL_GetMouseState(&mMouseX, &mMouseY);
 
 	for (auto& gui : mGuis->getGui())
 	{	
-		if (gui.second->Moveable && gui.second->Active && mMouseButtonPressed)
+		if (gui.second->Moveable &&
+			(gui.second->Active ||
+			gui.second->isHovered(MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY)))) &&
+			mMouseButtonPressed)
 		{
 			auto mouse = MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY));			
 			auto center = gui.second->Position;
@@ -100,7 +110,7 @@ void GUIRenderer::Update()
 				mFormDistanceDifference = center - mouse;
 			auto result = mouse + mFormDistanceDifference;			
 			gui.second->Position = result;
-		}
+		}		
 	}
 }
 

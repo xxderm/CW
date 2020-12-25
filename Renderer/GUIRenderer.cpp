@@ -14,12 +14,14 @@ void GUIRenderer::Render()
 		// Передвигаться вместе с родительским элементом
 		if (!gui.second->Parent.empty())
 		{
-			auto parent = mGuis->getGui().at(gui.second->Parent);
+			auto parent = mGuis->Get(gui.second->Parent);;
 			auto xPos = parent->Position.x;
 			auto yPos = (parent->Position.y + parent->Scale.y) - gui.second->Scale.y;
 			gui.second->Position = glm::vec2(
 				xPos + gui.second->Padding.x,
 				yPos - gui.second->Padding.y);
+
+			gui.second->Visible = mGuis->Get(gui.second->Parent)->Visible;
 		}
 
 		if (gui.second->Visible)
@@ -260,20 +262,22 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 					{
 						for (auto& form : gui.second->ShowToClick)
 						{
-							mGuis->getGui().at(form)->Visible = true;
+							mGuis->Get(form)->Visible = true;
 						}
 					}
 					if (!gui.second->HideToClick.empty())
 					{
 						for (auto& form : gui.second->HideToClick)
 						{
-							mGuis->getGui().at(form)->Visible = false;
+							mGuis->Get(form)->Visible = false;
+
+
 						}
 					}
 					// Если форма активна, то деактивировать другие формы
 					//if (!gui.second->Active)
 						//mGuis->DeactivateAll();
-					gui.second->Active = !gui.second->Active;					
+					gui.second->Active = !gui.second->Active;	
 				}
 			}
 			else

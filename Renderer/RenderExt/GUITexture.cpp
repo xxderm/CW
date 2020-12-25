@@ -7,27 +7,49 @@ GUITexture::GUITexture()
 
 void GUITexture::Add(std::string Name, GuiFormat* format)
 {	
-	mGuis.emplace(Name, format);
+	mGuis.push_back({ Name, format });
 }
 
-std::unordered_map<std::string, GuiFormat*> GUITexture::getGui()
+std::vector < std::pair<std::string, GuiFormat*>> GUITexture::getGui()
 {
 	return mGuis;
 }
 
 GuiFormat* GUITexture::Get(std::string Name)
 {
-	return mGuis.at(Name);
+	for (auto& gui : mGuis)
+	{
+		if (gui.first == Name)
+			return gui.second;
+	}
 }
 
 void GUITexture::SetVisible(std::string Name, bool v)
 {
-	this->mGuis.at(Name)->Visible = v;
+	for (auto& gui : mGuis)
+	{
+		if (gui.first == Name)
+			gui.second->Visible = v;
+	}
 }
 
 void GUITexture::SetColor(std::string Name, glm::vec4 Color)
 {
-	this->mGuis.at(Name)->Color = Color;
+	for (auto& gui : mGuis)
+	{
+		if (gui.first == Name)
+			gui.second->Color = Color;
+	}
+}
+
+void GUITexture::ShareChildsVisible(std::string Parent, bool visible)
+{
+	for (auto& i : mGuis)
+	{
+		if (!i.second->Parent.empty())
+			if (i.second->Parent == Parent)
+				i.second->Visible = visible;
+	}
 }
 
 bool GUITexture::isAllInputHidden()

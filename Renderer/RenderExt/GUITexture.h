@@ -50,16 +50,17 @@ class GUITexture final
 public:	
 	GUITexture();
 	void Add(std::string Name, GuiFormat *format);
-	std::unordered_map<std::string, GuiFormat*> getGui();
+	std::vector < std::pair<std::string, GuiFormat*> > getGui();
 	GuiFormat* Get(std::string Name);
 	void SetVisible(std::string Name, bool v);
 	void SetColor(std::string Name, glm::vec4 Color);
+	void ShareChildsVisible(std::string Parent, bool visible);
 	bool isAllInputHidden();
 	void DeactivateAll();
 	void Clear();
 	~GUITexture();
 private:
-	std::unordered_map<std::string, GuiFormat*> mGuis;
+	std::vector<std::pair<std::string, GuiFormat*>> mGuis;
 };
 
 #endif // !GUITEXTURE_HEADER

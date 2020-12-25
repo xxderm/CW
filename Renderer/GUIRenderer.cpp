@@ -91,6 +91,7 @@ void GUIRenderer::Init(SDL_Window* wnd)
 	mCommand.emplace("ClearLobbies", new ClearLobbyListCommand(&mLobbies));
 	mCommand.emplace("SelectCountry", new SelectCountryCommand(mScene_ptr, &mCountry_ptr));
 	mCommand.emplace("AddForm", new AddFormCommand(mGuis.get()));
+	mCommand.emplace("GetForm", new GetFormCommand(mGuis.get(), &mFormNameTarget_ptr));
 }
 
 void GUIRenderer::Update()
@@ -158,22 +159,22 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 			{
 				if (gui.second->Type == "Input")
 				{
-						if ((e->key.keysym.sym != SDLK_LSHIFT && e->key.keysym.sym != SDLK_LALT && e->key.keysym.sym != SDLK_BACKQUOTE) && gui.second->Active)
-						{
-							// erase last sym
-							if (e->key.keysym.sym == SDLK_BACKSPACE && mGuis->Get(gui.first)->Text.at("Input").Text.size() > 0)
-								mGuis->Get(gui.first)->Text.at("Input").Text
-								.erase(mGuis->Get(gui.first)->Text.at("Input").Text.end() - 1);
-							// add sym
-							else
-								mGuis->Get(gui.first)->Text.at("Input").Text += e->key.keysym.sym;
-						}
-						if (e->key.keysym.sym == int(char(gui.second->Key.second)) && gui.second->Key.first)
-						{		
-							gui.second->Visible = !gui.second->Visible;
-							mGuis->SetVisible(gui.second->For, !mGuis->Get(gui.second->For)->Visible);
-							gui.second->Text.at("Input").Text.clear();
-						}
+					if ((e->key.keysym.sym != SDLK_LSHIFT && e->key.keysym.sym != SDLK_LALT && e->key.keysym.sym != SDLK_BACKQUOTE) && gui.second->Active)
+					{
+						// erase last sym
+						if (e->key.keysym.sym == SDLK_BACKSPACE && mGuis->Get(gui.first)->Text.at("Input").Text.size() > 0)
+							mGuis->Get(gui.first)->Text.at("Input").Text
+							.erase(mGuis->Get(gui.first)->Text.at("Input").Text.end() - 1);
+						// add sym
+						else
+							mGuis->Get(gui.first)->Text.at("Input").Text += e->key.keysym.sym;
+					}
+					if (e->key.keysym.sym == int(char(gui.second->Key.second)) && gui.second->Key.first)
+					{		
+						gui.second->Visible = !gui.second->Visible;
+						mGuis->SetVisible(gui.second->For, !mGuis->Get(gui.second->For)->Visible);
+						gui.second->Text.at("Input").Text.clear();
+					}
 				}
 				else if (e->key.keysym.sym == int(char(gui.second->Key.second)) && gui.second->Key.first)
 				{
@@ -257,6 +258,10 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 					}
 					if (!gui.second->CommandOnClick.first.empty())
 					{
+						if (gui.second->CommandOnClick.first == "GetForm")
+						{
+							mFormNameTarget_ptr = mGuis->Get("FormFindNameInput")->Text.at("Input").Text;
+						}
 						mCommand.at(gui.second->CommandOnClick.first)->Execute();
 					}
 					if (!gui.second->ShowToClick.empty())

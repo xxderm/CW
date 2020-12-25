@@ -50,4 +50,14 @@ private:
 	GUITexture* mGui_ptr;
 };
 
+class GetFormCommand final : public Command
+{
+public:
+	GetFormCommand(GUITexture* Gui_ptr, std::string* FormName);
+	void Execute() override;
+private:
+	GUITexture* mGui_ptr;
+	std::string* mFormName_ptr;
+};
+
 #endif // !UI_COMMAND_HEADER

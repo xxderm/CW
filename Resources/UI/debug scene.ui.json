@@ -30,7 +30,7 @@
     }
   },
 
-  "FormSettingsInputs": {
+  "FormFindNameInput": {
     "Parent": "FormSettings",
     "Type": "Input",
     "For": "FormSettings",
@@ -39,7 +39,7 @@
     "Texture": -1,
     "CenterPoint": {
       "x": 0.055,
-      "y": 0.092
+      "y": 0.098
     },
     "Hover": {
       "r": 0.5,
@@ -58,7 +58,7 @@
       "a": 1.0
     },
     "Text": {
-      "FormName": {
+      "Input": {
         "String": "",
         "Location": {
           "x": -3,
@@ -72,6 +72,509 @@
         },
         "Name": "Input",
         "Scale": 0.65
+      }
+    }
+  },
+
+  "FormFindNameButton": {
+    "CommandOnClick": "GetForm",
+    "Parent": "FormSettings",
+    "Visible": true,
+    "Moveable": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.08,
+      "y": 0.17
+    },
+    "Hover": {
+      "r": 0.2,
+      "g": 0.2,
+      "b": 0.2,
+      "a": 1.0
+    },
+    "Scale": {
+      "x": 0.105,
+      "y": 0.03
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 1.0
+    },
+    "Text": {
+      "FormName": {
+        "String": "Найти и применить",
+        "Location": {
+          "x": -3,
+          "y": -2.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "FormName",
+        "Scale": 0.6
+      }
+    }
+  },
+
+  "FormNameInput": {
+    "Parent": "FormSettings",
+    "Type": "Input",
+    "For": "FormSettings",
+    "Visible": true,
+    "Moveable": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.055,
+      "y": 0.265
+    },
+    "Hover": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5,
+      "a": 1.0
+    },
+    "Scale": {
+      "x": 0.13,
+      "y": 0.03
+    },
+    "Color": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5,
+      "a": 1.0
+    },
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": -3,
+          "y": -2.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Input",
+        "Scale": 0.65
+      }
+    }
+  },
+
+  "FormScaleInput": {
+    "Parent": "FormSettings",
+    "Type": "Input",
+    "For": "FormSettings",
+    "Visible": true,
+    "Moveable": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.055,
+      "y": 0.345
+    },
+    "Hover": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5,
+      "a": 1.0
+    },
+    "Scale": {
+      "x": 0.13,
+      "y": 0.03
+    },
+    "Color": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5,
+      "a": 1.0
+    },
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": -3,
+          "y": -2.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Input",
+        "Scale": 0.65
+      }
+    }
+  },
+
+  "FormPosInput": {
+    "Parent": "FormSettings",
+    "Type": "Input",
+    "For": "FormSettings",
+    "Visible": true,
+    "Moveable": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.055,
+      "y": 0.425
+    },
+    "Hover": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5,
+      "a": 1.0
+    },
+    "Scale": {
+      "x": 0.13,
+      "y": 0.03
+    },
+    "Color": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5,
+      "a": 1.0
+    },
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": -3,
+          "y": -2.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Input",
+        "Scale": 0.65
+      }
+    }
+  },
+
+  "FormColorInput": {
+    "Parent": "FormSettings",
+    "Type": "Input",
+    "For": "FormSettings",
+    "Visible": true,
+    "Moveable": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.055,
+      "y": 0.505
+    },
+    "Hover": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5,
+      "a": 1.0
+    },
+    "Scale": {
+      "x": 0.13,
+      "y": 0.03
+    },
+    "Color": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5,
+      "a": 1.0
+    },
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": -3,
+          "y": -2.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Input",
+        "Scale": 0.65
+      }
+    }
+  },
+
+  "FormHoverInput": {
+    "Parent": "FormSettings",
+    "Type": "Input",
+    "For": "FormSettings",
+    "Visible": true,
+    "Moveable": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.055,
+      "y": 0.585
+    },
+    "Hover": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5,
+      "a": 1.0
+    },
+    "Scale": {
+      "x": 0.13,
+      "y": 0.03
+    },
+    "Color": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5,
+      "a": 1.0
+    },
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": -3,
+          "y": -2.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Input",
+        "Scale": 0.65
+      }
+    }
+  },
+
+  "FormMoveableInput": {
+    "Parent": "FormSettings",
+    "Type": "Input",
+    "For": "FormSettings",
+    "Visible": true,
+    "Moveable": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.055,
+      "y": 0.665
+    },
+    "Hover": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5,
+      "a": 1.0
+    },
+    "Scale": {
+      "x": 0.13,
+      "y": 0.03
+    },
+    "Color": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5,
+      "a": 1.0
+    },
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": -3,
+          "y": -2.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Input",
+        "Scale": 0.65
+      }
+    }
+  },
+
+  "FormParentInput": {
+    "Parent": "FormSettings",
+    "Type": "Input",
+    "For": "FormSettings",
+    "Visible": true,
+    "Moveable": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.055,
+      "y": 0.745
+    },
+    "Hover": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5,
+      "a": 1.0
+    },
+    "Scale": {
+      "x": 0.13,
+      "y": 0.03
+    },
+    "Color": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5,
+      "a": 1.0
+    },
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": -3,
+          "y": -2.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Input",
+        "Scale": 0.65
+      }
+    }
+  },
+
+  "FormTypeInput": {
+    "Parent": "FormSettings",
+    "Type": "Input",
+    "For": "FormSettings",
+    "Visible": true,
+    "Moveable": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.055,
+      "y": 0.83
+    },
+    "Hover": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5,
+      "a": 1.0
+    },
+    "Scale": {
+      "x": 0.13,
+      "y": 0.03
+    },
+    "Color": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5,
+      "a": 1.0
+    },
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": -3,
+          "y": -2.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Input",
+        "Scale": 0.65
+      }
+    }
+  },
+
+  "FormForInput": {
+    "Parent": "FormSettings",
+    "Type": "Input",
+    "For": "FormSettings",
+    "Visible": true,
+    "Moveable": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.055,
+      "y": 0.915
+    },
+    "Hover": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5,
+      "a": 1.0
+    },
+    "Scale": {
+      "x": 0.13,
+      "y": 0.03
+    },
+    "Color": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5,
+      "a": 1.0
+    },
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": -3,
+          "y": -2.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "Input",
+        "Scale": 0.65
+      }
+    }
+  },
+
+  "FormApplyButton": {
+    "Parent": "FormSettings",
+    "Visible": true,
+    "Moveable": false,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.08,
+      "y": 1.02
+    },
+    "Hover": {
+      "r": 0.2,
+      "g": 0.2,
+      "b": 0.2,
+      "a": 1.0
+    },
+    "Scale": {
+      "x": 0.105,
+      "y": 0.03
+    },
+    "Color": {
+      "r": 0.1,
+      "g": 0.1,
+      "b": 0.1,
+      "a": 1.0
+    },
+    "Text": {
+      "FormName": {
+        "String": "Применить",
+        "Location": {
+          "x": -3,
+          "y": -2.5
+        },
+        "Color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1.0
+        },
+        "Name": "FormName",
+        "Scale": 0.6
       }
     }
   },
@@ -92,7 +595,7 @@
     },
     "Scale": {
       "x": 0.2,
-      "y": 0.5
+      "y": 0.55
     },
     "Color": {
       "r": 1.0,
@@ -102,7 +605,7 @@
     },
     "Text": {
       "Title": {
-        "String": "Параметры",
+        "String": "Основные свойства",
         "Location": {
           "x": 0,
           "y": 2
@@ -116,8 +619,8 @@
         "Name": "Title",
         "Scale": 0.65
       },
-      "TitleForm": {
-        "String": "Название:",
+      "FindFormNameTitle": {
+        "String": "Форма:",
         "Location": {
           "x": 0,
           "y": 30
@@ -128,7 +631,142 @@
           "b": 0,
           "a": 1.0
         },
+        "Name": "FindFormNameTitle",
+        "Scale": 0.65
+      },
+      "TitleForm": {
+        "String": "Название:",
+        "Location": {
+          "x": 0,
+          "y": 90
+        },
+        "Color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1.0
+        },
         "Name": "TitleForm",
+        "Scale": 0.65
+      },
+      "ScaleForm": {
+        "String": "Размер:",
+        "Location": {
+          "x": 0,
+          "y": 120
+        },
+        "Color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1.0
+        },
+        "Name": "ScaleForm",
+        "Scale": 0.65
+      },
+      "PosForm": {
+        "String": "Позиция:",
+        "Location": {
+          "x": 0,
+          "y": 150
+        },
+        "Color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1.0
+        },
+        "Name": "PosForm",
+        "Scale": 0.65
+      },
+      "ColorForm": {
+        "String": "Цвет:",
+        "Location": {
+          "x": 0,
+          "y": 180
+        },
+        "Color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1.0
+        },
+        "Name": "ColorForm",
+        "Scale": 0.65
+      },
+      "HoverForm": {
+        "String": "Покрытие:",
+        "Location": {
+          "x": 0,
+          "y": 210
+        },
+        "Color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1.0
+        },
+        "Name": "HoverForm",
+        "Scale": 0.65
+      },
+      "MoveableForm": {
+        "String": "Передв.:",
+        "Location": {
+          "x": 0,
+          "y": 240
+        },
+        "Color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1.0
+        },
+        "Name": "MoveableForm",
+        "Scale": 0.65
+      },
+      "ParentForm": {
+        "String": "Род.:",
+        "Location": {
+          "x": 0,
+          "y": 270
+        },
+        "Color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1.0
+        },
+        "Name": "ParentForm",
+        "Scale": 0.65
+      },
+      "TypeForm": {
+        "String": "Тип:",
+        "Location": {
+          "x": 0,
+          "y": 300
+        },
+        "Color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1.0
+        },
+        "Name": "TypeForm",
+        "Scale": 0.65
+      },
+      "ForForm": {
+        "String": "Для:",
+        "Location": {
+          "x": 0,
+          "y": 330
+        },
+        "Color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1.0
+        },
+        "Name": "ForForm",
         "Scale": 0.65
       }
     }

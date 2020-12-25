@@ -37,7 +37,7 @@ private:
 	Scene* mScene_ptr;
 	World* mWorld_ptr = nullptr;
 
-
+	std::string mFormNameTarget_ptr;
 	CountryFormat mCountry_ptr;
 	std::unordered_map<std::string, Command*> mCommand;
 

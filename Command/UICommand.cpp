@@ -50,7 +50,7 @@ AddFormCommand::AddFormCommand(GUITexture* Gui_ptr)
 void AddFormCommand::Execute()
 {
 	GuiFormat* format = new GuiFormat();
-	format->Name = "Form" + std::to_string(mGui_ptr->getGui().size());
+	format->Name = "element" + std::to_string(mGui_ptr->getGui().size());
 	format->Visible = true;
 	format->Moveable = true;
 	format->TextureId = -1;
@@ -59,4 +59,39 @@ void AddFormCommand::Execute()
 	format->hoverColor = format->Color;
 	format->Scale = glm::vec2(0.3, 0.6);
 	mGui_ptr->Add(format->Name, format, true);
+}
+
+GetFormCommand::GetFormCommand(GUITexture* Gui_ptr, std::string* FormName)
+	: mGui_ptr(Gui_ptr), mFormName_ptr(FormName)
+{
+}
+
+void GetFormCommand::Execute()
+{
+	mGui_ptr->Get("FormNameInput")->Text.at("Input").Text =
+		mGui_ptr->Get(*mFormName_ptr)->Name;
+	mGui_ptr->Get("FormScaleInput")->Text.at("Input").Text = 
+		std::to_string(mGui_ptr->Get(*mFormName_ptr)->Scale.x) + " " +
+		std::to_string(mGui_ptr->Get(*mFormName_ptr)->Scale.y);
+	mGui_ptr->Get("FormPosInput")->Text.at("Input").Text =
+		std::to_string(mGui_ptr->Get(*mFormName_ptr)->Position.x) + " " +
+		std::to_string(mGui_ptr->Get(*mFormName_ptr)->Position.y);
+	mGui_ptr->Get("FormColorInput")->Text.at("Input").Text =
+		std::to_string(mGui_ptr->Get(*mFormName_ptr)->Color.r) + " " +
+		std::to_string(mGui_ptr->Get(*mFormName_ptr)->Color.g) + " " + 
+		std::to_string(mGui_ptr->Get(*mFormName_ptr)->Color.b) + " " +
+		std::to_string(mGui_ptr->Get(*mFormName_ptr)->Color.a);
+	mGui_ptr->Get("FormHoverInput")->Text.at("Input").Text =
+		std::to_string(mGui_ptr->Get(*mFormName_ptr)->hoverColor.r) + " " +
+		std::to_string(mGui_ptr->Get(*mFormName_ptr)->hoverColor.g) + " " +
+		std::to_string(mGui_ptr->Get(*mFormName_ptr)->hoverColor.b) + " " +
+		std::to_string(mGui_ptr->Get(*mFormName_ptr)->hoverColor.a);
+	mGui_ptr->Get("FormMoveableInput")->Text.at("Input").Text =
+		std::to_string(mGui_ptr->Get(*mFormName_ptr)->Moveable);
+	mGui_ptr->Get("FormParentInput")->Text.at("Input").Text =
+		mGui_ptr->Get(*mFormName_ptr)->Parent;
+	mGui_ptr->Get("FormTypeInput")->Text.at("Input").Text =
+		mGui_ptr->Get(*mFormName_ptr)->Type;
+	mGui_ptr->Get("FormForInput")->Text.at("Input").Text =
+		mGui_ptr->Get(*mFormName_ptr)->For;
 }

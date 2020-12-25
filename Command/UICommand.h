@@ -41,4 +41,13 @@ private:
 	CountryFormat* mCountry_ptr;
 };
 
+class AddFormCommand final : public Command
+{
+public:
+	AddFormCommand(GUITexture* Gui_ptr);
+	void Execute() override;
+private:
+	GUITexture* mGui_ptr;
+};
+
 #endif // !UI_COMMAND_HEADER

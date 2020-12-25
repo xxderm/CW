@@ -36,6 +36,8 @@ private:
 
 	Scene* mScene_ptr;
 	World* mWorld_ptr = nullptr;
+
+
 	CountryFormat mCountry_ptr;
 	std::unordered_map<std::string, Command*> mCommand;
 

@@ -49,7 +49,7 @@ class GUITexture final
 {
 public:	
 	GUITexture();
-	void Add(std::string Name, GuiFormat *format);
+	void Add(std::string Name, GuiFormat *format, bool insertBegin = false);
 	std::vector < std::pair<std::string, GuiFormat*> > getGui();
 	GuiFormat* Get(std::string Name);
 	void SetVisible(std::string Name, bool v);

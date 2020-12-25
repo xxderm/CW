@@ -90,6 +90,7 @@ void GUIRenderer::Init(SDL_Window* wnd)
 	mCommand.emplace("GetLobbies", new GetLobbyListCommand(mScene_ptr->getPacket(), mScene_ptr->getSocket()));
 	mCommand.emplace("ClearLobbies", new ClearLobbyListCommand(&mLobbies));
 	mCommand.emplace("SelectCountry", new SelectCountryCommand(mScene_ptr, &mCountry_ptr));
+	mCommand.emplace("AddForm", new AddFormCommand(mGuis.get()));
 }
 
 void GUIRenderer::Update()
@@ -147,8 +148,8 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 		{
 			mGuis->Clear();
 			mGuis->getGui().clear();
-			mGuis.reset();
-			mGuis = std::make_unique<GUITexture>();
+			//mGuis.reset();
+			//mGuis = std::make_unique<GUITexture>();
 			Reader::getInstance()->getUI(mGuis.get(), mUiPath, true);
 		}
 		try

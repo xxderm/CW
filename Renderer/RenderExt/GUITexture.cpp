@@ -5,9 +5,12 @@ GUITexture::GUITexture()
 
 }
 
-void GUITexture::Add(std::string Name, GuiFormat* format)
+void GUITexture::Add(std::string Name, GuiFormat* format, bool insertBegin)
 {	
-	mGuis.push_back({ Name, format });
+	if(!insertBegin)
+		mGuis.push_back({ Name, format });
+	else 
+		mGuis.insert(mGuis.begin(), {Name, format});
 }
 
 std::vector < std::pair<std::string, GuiFormat*>> GUITexture::getGui()

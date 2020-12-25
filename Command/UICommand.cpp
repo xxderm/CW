@@ -41,3 +41,22 @@ void SelectCountryCommand::Execute()
 	if(mScene_ptr->getUser()->getStatus() == UserState::COUNTRY_SELECT)
 		mScene_ptr->getUser()->setCountry(mCountry_ptr);
 }
+
+AddFormCommand::AddFormCommand(GUITexture* Gui_ptr)
+	: mGui_ptr(Gui_ptr)
+{
+}
+
+void AddFormCommand::Execute()
+{
+	GuiFormat* format = new GuiFormat();
+	format->Name = "Form" + std::to_string(mGui_ptr->getGui().size());
+	format->Visible = true;
+	format->Moveable = true;
+	format->TextureId = -1;
+	format->Position = glm::vec2(0.0, 0.0);
+	format->Color = glm::vec4(1.0, 1.0, 1.0, 1.0);
+	format->hoverColor = format->Color;
+	format->Scale = glm::vec2(0.3, 0.6);
+	mGui_ptr->Add(format->Name, format, true);
+}

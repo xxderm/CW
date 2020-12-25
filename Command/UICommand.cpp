@@ -100,3 +100,100 @@ void GetFormCommand::Execute()
 			mGui_ptr->Get(*mFormName_ptr)->For;
 	}
 }
+
+SaveFormCommand::SaveFormCommand(GUITexture* Gui_ptr, std::string* GuiSavePath)
+	: mGui_ptr(Gui_ptr), mGuiSavePath(GuiSavePath)
+{
+}
+
+void SaveFormCommand::Execute()
+{
+	boost::property_tree::ptree pt;
+	boost::property_tree::ptree child;
+	boost::property_tree::ptree children;
+	for (auto& element : mGui_ptr->getGui())
+	{
+		pt.put(element.first + ".Texture", element.second->TextureId);
+		pt.put(element.first + ".CenterPoint.x", element.second->Position.x);
+		pt.put(element.first + ".CenterPoint.y", element.second->Position.y);
+		pt.put(element.first + ".Scale.x", element.second->Scale.x);
+		pt.put(element.first + ".Scale.y", element.second->Scale.y);
+
+		pt.put(element.first + ".Padding.x", element.second->Padding.x);
+		pt.put(element.first + ".Padding.y", element.second->Padding.y);
+
+		pt.put(element.first + ".DebugElement", element.second->DebugElement);
+
+		for (auto& text : element.second->Text)
+		{
+			pt.put(element.first + ".Text." + text.first + ".String", text.second.Text);
+			pt.put(element.first + ".Text." + text.first + ".Location.x", text.second.Position.x);
+			pt.put(element.first + ".Text." + text.first + ".Location.y", text.second.Position.y);
+			pt.put(element.first + ".Text." + text.first + ".Color.r", text.second.Color.r);
+			pt.put(element.first + ".Text." + text.first + ".Color.g", text.second.Color.g);
+			pt.put(element.first + ".Text." + text.first + ".Color.b", text.second.Color.b);
+			pt.put(element.first + ".Text." + text.first + ".Color.a", text.second.Color.a);
+			pt.put(element.first + ".Text." + text.first + ".Name", text.first);
+			pt.put(element.first + ".Text." + text.first + ".Scale", text.second.Scale);
+		}
+		pt.put(element.first + ".Color.r", element.second->baseColor.r);
+		pt.put(element.first + ".Color.g", element.second->baseColor.g);
+		pt.put(element.first + ".Color.b", element.second->baseColor.b);
+		pt.put(element.first + ".Color.a", element.second->baseColor.a);
+		pt.put(element.first + ".Hover.r", element.second->hoverColor.r);
+		pt.put(element.first + ".Hover.g", element.second->hoverColor.g);
+		pt.put(element.first + ".Hover.b", element.second->hoverColor.b);
+		pt.put(element.first + ".Hover.a", element.second->hoverColor.a);
+		pt.put(element.first + ".Visible", element.second->Visible);
+		pt.put(element.first + ".Type", element.second->Type);
+		pt.put(element.first + ".For", element.second->For);
+		pt.put(element.first + ".CommandOnClick", element.second->CommandOnClick.first);
+		
+		if (!element.second->ShowToClick.empty())
+		{
+			children.clear();
+			for (auto& name : element.second->ShowToClick)
+			{
+				child.clear();
+				child.put("", name);
+				children.push_back({"", child});
+			}
+
+			pt.add_child(element.first + ".ShowOnClickEvent", children);
+		}
+		if (!element.second->HideToClick.empty())
+		{
+			children.clear();
+			for (auto& name : element.second->HideToClick)
+			{
+				child.clear();
+				child.put("", name);
+				children.push_back({ "", child });
+			}
+			pt.add_child(element.first + ".HideOnClickEvent", children);
+		}
+
+		if(element.second->Key.first)
+			pt.put(element.first + ".Key", (char)element.second->Key.second);	
+
+		pt.put(element.first + ".Highlight", element.second->ActiveHighlight);
+		pt.put(element.first + ".HighlightIntensity", element.second->ActiveHighlightIntensity);
+		
+		if(element.second->LobbyIndex != -1)
+			pt.put(element.first + ".Lobby", element.second->LobbyIndex);
+
+		pt.put(element.first + ".Dynamic", element.second->DynamicText);
+
+		if(!element.second->SelectedCountryTag.empty())
+			pt.put(element.first + ".StaticCountryTag", element.second->SelectedCountryTag);
+
+		pt.put(element.first + ".Moveable", element.second->Moveable);
+		pt.put(element.first + ".Parent", element.second->Parent);
+	}
+
+	std::stringstream ss;
+	boost::property_tree::json_parser::write_json(ss, pt);
+	std::ofstream save(*this->mGuiSavePath + ".json");
+	save << ss.str();
+	save.close();
+}

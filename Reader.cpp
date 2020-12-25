@@ -161,13 +161,24 @@ void Reader::getUI(GUITexture* guis, std::string path, bool update)
         gui->Name = gui_element.first;
         if (gui_element.second.count("Texture") > 0)
             gui->TextureId = gui_element.second.get<int>("Texture");
+        if (gui_element.second.count("DebugElement") > 0)
+            gui->DebugElement = gui_element.second.get<bool>("DebugElement");
         gui->Position.x = gui_element.second
             .get_child("CenterPoint")
             .get<float>("x");
         gui->Position.y = gui_element.second
             .get_child("CenterPoint")
             .get<float>("y");
-        gui->Padding = gui->Position;
+
+        if (gui_element.second.count("Padding") > 0)
+        {
+            gui->Padding.x = gui_element.second.get_child("Padding").get<float>("x");
+            gui->Padding.y = gui_element.second.get_child("Padding").get<float>("y");
+        }
+        else
+            gui->Padding = gui->Position;
+
+
         gui->Scale.x = gui_element.second
             .get_child("Scale")
             .get<float>("x");

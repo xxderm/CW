@@ -92,6 +92,7 @@ void GUIRenderer::Init(SDL_Window* wnd)
 	mCommand.emplace("SelectCountry", new SelectCountryCommand(mScene_ptr, &mCountry_ptr));
 	mCommand.emplace("AddForm", new AddFormCommand(mGuis.get()));
 	mCommand.emplace("GetForm", new GetFormCommand(mGuis.get(), &mFormNameTarget_ptr));
+	mCommand.emplace("SaveForm", new SaveFormCommand(mGuis.get(), &mGuiPathTarget_ptr));
 }
 
 void GUIRenderer::Update()
@@ -266,10 +267,11 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 					}
 					if (!gui.second->CommandOnClick.first.empty())
 					{
-						if (gui.second->CommandOnClick.first == "GetForm")
-						{
+						if (gui.second->CommandOnClick.first == "GetForm")						
 							mFormNameTarget_ptr = mGuis->Get("FormFindNameInput")->Text.at("Input").Text;
-						}
+						if(gui.second->CommandOnClick.first == "SaveForm")
+							mGuiPathTarget_ptr = mGuis->Get("SaveUIInput")->Text.at("Input").Text;
+
 						mCommand.at(gui.second->CommandOnClick.first)->Execute();
 					}
 					if (!gui.second->ShowToClick.empty())

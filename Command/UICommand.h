@@ -60,4 +60,14 @@ private:
 	std::string* mFormName_ptr;
 };
 
+class SaveFormCommand final : public Command
+{
+public:
+	SaveFormCommand(GUITexture* Gui_ptr, std::string* GuiSavePath);
+	void Execute() override;
+private:
+	GUITexture* mGui_ptr;
+	std::string* mGuiSavePath;
+};
+
 #endif // !UI_COMMAND_HEADER

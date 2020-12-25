@@ -39,6 +39,7 @@ private:
 	World* mWorld_ptr = nullptr;
 
 	std::string mFormNameTarget_ptr;
+	std::string mGuiPathTarget_ptr;
 	CountryFormat mCountry_ptr;
 	std::unordered_map<std::string, Command*> mCommand;
 

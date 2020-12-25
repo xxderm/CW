@@ -19,7 +19,7 @@ void GUIRenderer::Render()
 			auto yPos = (parent->Position.y + parent->Scale.y) - gui.second->Scale.y;
 			gui.second->Position = glm::vec2(
 				xPos + gui.second->Padding.x,
-				yPos + gui.second->Padding.y);
+				yPos - gui.second->Padding.y);
 		}
 
 		if (gui.second->Visible)

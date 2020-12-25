@@ -142,10 +142,16 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 		mMouseButtonPressed = false;
 		mFormDistanceDifference = glm::vec2(-2);
 	}
-
+	if (e->type == SDL_KEYUP)
+	{
+		if (e->key.keysym.sym == SDLK_LSHIFT)
+			mShiftIsPressed = false;
+	}
 	if (e->type == SDL_KEYDOWN)
 	{
-		if (e->key.keysym.sym == SDLK_r)
+		if (e->key.keysym.sym == SDLK_LSHIFT)
+			mShiftIsPressed = true;
+		if (e->key.keysym.sym == SDLK_F1)
 		{
 			mGuis->Clear();
 			mGuis->getGui().clear();
@@ -166,9 +172,11 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 							mGuis->Get(gui.first)->Text.at("Input").Text
 							.erase(mGuis->Get(gui.first)->Text.at("Input").Text.end() - 1);
 						// add sym
-						else
+						else if(mShiftIsPressed)
+							mGuis->Get(gui.first)->Text.at("Input").Text += std::toupper(e->key.keysym.sym);
+						else 
 							mGuis->Get(gui.first)->Text.at("Input").Text += e->key.keysym.sym;
-					}
+					}					
 					if (e->key.keysym.sym == int(char(gui.second->Key.second)) && gui.second->Key.first)
 					{		
 						gui.second->Visible = !gui.second->Visible;

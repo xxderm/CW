@@ -25,6 +25,7 @@ GuiFormat* GUITexture::Get(std::string Name)
 		if (gui.first == Name)
 			return gui.second;
 	}
+	return nullptr;
 }
 
 void GUITexture::SetVisible(std::string Name, bool v)

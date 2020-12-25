@@ -141,8 +141,14 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 
 	if (e->type == SDL_KEYDOWN)
 	{
-		if(e->key.keysym.sym == SDLK_r)
+		if (e->key.keysym.sym == SDLK_r)
+		{
+			mGuis->Clear();
+			mGuis->getGui().clear();
+			mGuis.reset();
+			mGuis = std::make_unique<GUITexture>();
 			Reader::getInstance()->getUI(mGuis.get(), mUiPath, true);
+		}
 		try
 		{
 			for (auto& gui : this->mGuis->getGui())
@@ -265,8 +271,8 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 						}
 					}
 					// Если форма активна, то деактивировать другие формы
-					if (!gui.second->Active)
-						mGuis->DeactivateAll();
+					//if (!gui.second->Active)
+						//mGuis->DeactivateAll();
 					gui.second->Active = !gui.second->Active;					
 				}
 			}

@@ -265,7 +265,7 @@ void Reader::getUI(GUITexture* guis, std::string path, bool update)
         if (gui_element.second.count("StaticCountryTag") > 0)
             gui->SelectedCountryTag = gui_element.second.get<std::string>("StaticCountryTag");
         guis->Add(gui_element.first, gui);
-    } 
+    }  
 }
 
 #ifdef _WIN32

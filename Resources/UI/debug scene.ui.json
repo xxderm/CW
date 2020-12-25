@@ -43,7 +43,7 @@
       "a": 1.0
     },
     "Scale": {
-      "x": 0.15,
+      "x": 0.14,
       "y": 0.05
     },
     "Color": {
@@ -63,7 +63,7 @@
     "Texture": -1,
     "CenterPoint": {
       "x": 0.0,
-      "y": 0.0
+      "y": 0.20
     },
     "Hover": {
       "r": 0.4,
@@ -72,7 +72,7 @@
       "a": 1.0
     },
     "Scale": {
-      "x": 0.15,
+      "x": 0.14,
       "y": 0.05
     },
     "Color": {
@@ -86,13 +86,14 @@
   "SaveUIButtonForm": {
     "ShowOnClickEvent": [
       "SaveUIInputButton",
-      "SaveUIInput"
+      "SaveUIInput",
+      "SaveUIForm"
     ],
     "Parent": "ToolsForm",
     "Texture": -1,
     "CenterPoint": {
       "x": 0.0,
-      "y": 0.2
+      "y": 0.10
     },
     "Hover": {
       "r": 0.4,
@@ -101,7 +102,7 @@
       "a": 1.0
     },
     "Scale": {
-      "x": 0.15,
+      "x": 0.14,
       "y": 0.05
     },
     "Color": {
@@ -112,30 +113,74 @@
     }
   },
 
-
-
-  "SaveUIInputButton": {
-    "Visible": false,
+  "SaveUIInput": {
+    "Parent": "SaveUIForm",
+    "Visible": true,
+    "For": "SaveUIForm",
+    "Type": "Input",
     "Texture": -1,
     "CenterPoint": {
       "x": 0.0,
-      "y": -0.5
+      "y": 0.02
+    },
+    "Hover": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+    },
+    "Scale": {
+      "x": 0.13,
+      "y": 0.03
+    },
+    "Color": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+    },
+    "Text": {
+      "Directory": {
+        "String": "Директория",
+        "Location": {
+          "x": 0,
+          "y": -2
+        },
+        "Color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1.0
+        },
+        "Name": "Input",
+        "Scale": 0.65
+      }
+    }
+  },
+
+  "SaveUIInputButton": {
+    "Parent": "SaveUIForm",
+    "Visible": true,
+    "Texture": -1,
+    "CenterPoint": {
+      "x": 0.0,
+      "y": 0.15
     },
     "Hover": {
       "r": 0.4,
       "g": 0.4,
       "b": 0.4,
-      "a": 1.0
+      "a": 1
     },
     "Scale": {
-      "x": 0.15,
-      "y": 0.05
+      "x": 0.13,
+      "y": 0.03
     },
     "Color": {
-      "r": 0.4,
-      "g": 0.4,
-      "b": 0.4,
-      "a": 1.0
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 1
     },
     "Text": {
       "Save": {
@@ -148,7 +193,7 @@
           "r": 1,
           "g": 1,
           "b": 1,
-          "a": 1.0
+          "a": 1
         },
         "Name": "Save",
         "Scale": 0.75
@@ -156,48 +201,29 @@
     }
   },
 
-  "SaveUIInput": {
-    "Visible": false,
+  "SaveUIForm": {
+    "Visible": true,
     "Moveable": true,
-    "For": "SaveUIInput",
-    "Type": "Input",
     "Texture": -1,
     "CenterPoint": {
       "x": 0.0,
-      "y": -0.40
+      "y": -0.5
     },
     "Hover": {
-      "r": 0.0,
-      "g": 0.0,
-      "b": 0.0,
-      "a": 1.0
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.5
     },
     "Scale": {
       "x": 0.15,
-      "y": 0.05
+      "y": 0.12
     },
     "Color": {
-      "r": 0.0,
-      "g": 0.0,
-      "b": 0.0,
-      "a": 1.0
-    },
-    "Text": {
-      "Directory": {
-        "String": "Директория",
-        "Location": {
-          "x": 0,
-          "y": 0
-        },
-        "Color": {
-          "r": 1,
-          "g": 1,
-          "b": 1,
-          "a": 0.4
-        },
-        "Name": "Input",
-        "Scale": 0.75
-      }
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.5
     }
   },
 
@@ -215,7 +241,7 @@
       "a": 1.0
     },
     "Scale": {
-      "x": 0.15,
+      "x": 0.14,
       "y": 0.35
     },
     "Color": {
@@ -243,8 +269,8 @@
       "SaveUITitle": {
         "String": "Сохранить",
         "Location": {
-          "x": 0.0,
-          "y": 50.0
+          "x": 16.0,
+          "y": 42.0
         },
         "Color": {
           "r": 0,
@@ -258,8 +284,8 @@
       "OpenUITitle": {
         "String": "Открыть",
         "Location": {
-          "x": 0.0,
-          "y": 85.0
+          "x": 16.0,
+          "y": 76.0
         },
         "Color": {
           "r": 0,

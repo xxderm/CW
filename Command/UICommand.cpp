@@ -114,7 +114,7 @@ void SaveFormCommand::Execute()
 	for (auto& element : mGui_ptr->getGui())
 	{
 		if (element.second->DebugElement)
-			;// continue;
+			continue;
 		pt.put(element.first + ".Texture", element.second->TextureId);
 		pt.put(element.first + ".CenterPoint.x", element.second->Position.x);
 		pt.put(element.first + ".CenterPoint.y", element.second->Position.y);
@@ -198,4 +198,46 @@ void SaveFormCommand::Execute()
 	std::ofstream save(*this->mGuiSavePath + ".json");
 	save << ss.str();
 	save.close();
+}
+
+ApplyFormSettingsCommand::ApplyFormSettingsCommand(GUITexture* Gui_ptr, std::string* FormName)
+	: mGui_ptr(Gui_ptr), mFormName_ptr(FormName)
+{
+}
+
+void ApplyFormSettingsCommand::Execute()
+{	 
+	mGui_ptr->Get(*mFormName_ptr)->Name = mGui_ptr->Get("FormNameInput")->Text.at("Input").Text;
+
+	auto Scale = Reader::getInstance()->split(mGui_ptr->Get("FormScaleInput")->Text.at("Input").Text, " ");
+	mGui_ptr->Get(*mFormName_ptr)->Scale.x = std::stof(Scale[0]);
+	mGui_ptr->Get(*mFormName_ptr)->Scale.y = std::stof(Scale[1]);
+
+	auto Position = Reader::getInstance()->split(mGui_ptr->Get("FormPosInput")->Text.at("Input").Text, " ");
+	mGui_ptr->Get(*mFormName_ptr)->Position.x = std::stof(Position[0]);
+	mGui_ptr->Get(*mFormName_ptr)->Position.y = std::stof(Position[1]);
+
+
+	auto Color = Reader::getInstance()->split(mGui_ptr->Get("FormColorInput")->Text.at("Input").Text, " ");
+	mGui_ptr->Get(*mFormName_ptr)->Color.r = std::stof(Color[0]);
+	mGui_ptr->Get(*mFormName_ptr)->Color.g = std::stof(Color[1]);
+	mGui_ptr->Get(*mFormName_ptr)->Color.b = std::stof(Color[2]);
+	mGui_ptr->Get(*mFormName_ptr)->Color.a = std::stof(Color[3]);
+	mGui_ptr->Get(*mFormName_ptr)->baseColor = mGui_ptr->Get(*mFormName_ptr)->Color;
+
+
+	auto Hover = Reader::getInstance()->split(mGui_ptr->Get("FormHoverInput")->Text.at("Input").Text, " ");
+	
+	mGui_ptr->Get(*mFormName_ptr)->hoverColor.r = std::stof(Hover[0]);
+	mGui_ptr->Get(*mFormName_ptr)->hoverColor.g = std::stof(Hover[1]);
+	mGui_ptr->Get(*mFormName_ptr)->hoverColor.b = std::stof(Hover[2]);
+	mGui_ptr->Get(*mFormName_ptr)->hoverColor.a = std::stof(Hover[3]);
+
+
+
+	mGui_ptr->Get(*mFormName_ptr)->Moveable = std::stoi(mGui_ptr->Get("FormMoveableInput")->Text.at("Input").Text);
+
+	mGui_ptr->Get(*mFormName_ptr)->Parent = mGui_ptr->Get("FormParentInput")->Text.at("Input").Text;
+	mGui_ptr->Get(*mFormName_ptr)->Type = mGui_ptr->Get("FormTypeInput")->Text.at("Input").Text;
+	mGui_ptr->Get(*mFormName_ptr)->For = mGui_ptr->Get("FormForInput")->Text.at("Input").Text;
 }

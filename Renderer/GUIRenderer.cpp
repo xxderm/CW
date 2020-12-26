@@ -93,6 +93,7 @@ void GUIRenderer::Init(SDL_Window* wnd)
 	mCommand.emplace("AddForm", new AddFormCommand(mGuis.get()));
 	mCommand.emplace("GetForm", new GetFormCommand(mGuis.get(), &mFormNameTarget_ptr));
 	mCommand.emplace("SaveForm", new SaveFormCommand(mGuis.get(), &mGuiPathTarget_ptr));
+	mCommand.emplace("ApplyForm", new ApplyFormSettingsCommand(mGuis.get(), &mFormNameTarget_ptr));
 }
 
 void GUIRenderer::Update()

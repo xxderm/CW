@@ -743,7 +743,8 @@
         "Parent": "FormSettings"
     },
     "FormApplyButton": {
-        "Texture": "-1",
+	   "CommandOnClick": "ApplyForm",
+		"Texture": "-1",
         "CenterPoint": {
             "x": "0.867500007",
             "y": "-0.0694443583"

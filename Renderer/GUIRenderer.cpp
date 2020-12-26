@@ -107,8 +107,10 @@ void GUIRenderer::Update()
 	for (auto& gui : mGuis->getGui())
 	{	
 		if (gui.second->Moveable &&
-			(gui.second->Active ||
-			gui.second->isHovered(MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY)))) &&
+			(				
+				gui.second->Active &&
+				gui.second->isHovered(MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY)))								
+			) &&
 			mMouseButtonPressed)
 		{
 			// Движение формы
@@ -119,15 +121,16 @@ void GUIRenderer::Update()
 				mFormDistanceDifference = center - mouse;
 			auto result = mouse + mFormDistanceDifference;			
 			gui.second->Position = result;	
-
-
-			// Получить свойства формы в режиме отладки
-			if (mScene_ptr->getUser()->getStatus() == UserState::DEBUGGING && !gui.second->DebugElement)
-			{
-				mFormNameTarget_ptr = gui.first;
-				mCommand.at("GetForm")->Execute();
-			}
-		}			
+		}		
+		// Получить свойства формы в режиме отладки
+		if (
+			mScene_ptr->getUser()->getStatus() == UserState::DEBUGGING &&
+			!gui.second->DebugElement &&
+			(mMouseButtonPressed && gui.second->Active) )
+		{
+			mFormNameTarget_ptr = gui.first;
+			mCommand.at("GetForm")->Execute();
+		}
 	}
 }
 

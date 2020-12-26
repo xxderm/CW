@@ -98,6 +98,40 @@ void GetFormCommand::Execute()
 			mGui_ptr->Get(*mFormName_ptr)->Type;
 		mGui_ptr->Get("FormForInput")->Text.at("Input").Text =
 			mGui_ptr->Get(*mFormName_ptr)->For;
+		mGui_ptr->Get("FormVisibleInput")->Text.at("Input").Text =
+			std::to_string(mGui_ptr->Get(*mFormName_ptr)->Visible);
+
+		for (auto& element : mGui_ptr->Get(*mFormName_ptr)->ShowToClick)
+		{
+			mGui_ptr->Get("FormShowInput")->Text.at("Input").Text = element;
+			if (element != mGui_ptr->Get(*mFormName_ptr)->ShowToClick.back())
+				element += " ";
+		}
+
+		
+		for (auto& element : mGui_ptr->Get(*mFormName_ptr)->HideToClick)
+		{
+			mGui_ptr->Get("FormHideInput")->Text.at("Input").Text = element;
+
+			if (element != mGui_ptr->Get(*mFormName_ptr)->HideToClick.back())
+				element += " ";
+		}
+
+		mGui_ptr->Get("FormHotKeyInput")->Text.at("Input").Text =
+			(char)mGui_ptr->Get(*mFormName_ptr)->Key.second;
+
+		mGui_ptr->Get("FormCommandInput")->Text.at("Input").Text =
+			mGui_ptr->Get(*mFormName_ptr)->CommandOnClick.first;
+
+		mGui_ptr->Get("FormActHighInput")->Text.at("Input").Text =
+			std::to_string(mGui_ptr->Get(*mFormName_ptr)->ActiveHighlight);
+
+		mGui_ptr->Get("FormActIntenInput")->Text.at("Input").Text =
+			std::to_string(mGui_ptr->Get(*mFormName_ptr)->ActiveHighlightIntensity);
+
+		mGui_ptr->Get("FormPaddingInput")->Text.at("Input").Text =
+			std::to_string(mGui_ptr->Get(*mFormName_ptr)->Padding.x) + " " +
+			std::to_string(mGui_ptr->Get(*mFormName_ptr)->Padding.y);
 	}
 }
 
@@ -114,8 +148,8 @@ void SaveFormCommand::Execute()
 	for (auto& element : mGui_ptr->getGui())
 	{
 		if (element.second->DebugElement)
-			continue;
-		pt.put(element.first + ".Texture", element.second->TextureId);
+			;//continue;
+		pt.put(element.second->Name + ".Texture", element.second->TextureId);
 		pt.put(element.first + ".CenterPoint.x", element.second->Position.x);
 		pt.put(element.first + ".CenterPoint.y", element.second->Position.y);
 		pt.put(element.first + ".Scale.x", element.second->Scale.x);
@@ -240,4 +274,35 @@ void ApplyFormSettingsCommand::Execute()
 	mGui_ptr->Get(*mFormName_ptr)->Parent = mGui_ptr->Get("FormParentInput")->Text.at("Input").Text;
 	mGui_ptr->Get(*mFormName_ptr)->Type = mGui_ptr->Get("FormTypeInput")->Text.at("Input").Text;
 	mGui_ptr->Get(*mFormName_ptr)->For = mGui_ptr->Get("FormForInput")->Text.at("Input").Text;
+
+	mGui_ptr->Get(*mFormName_ptr)->Visible = std::stoi(mGui_ptr->Get("FormVisibleInput")->Text.at("Input").Text);
+
+	
+	auto ShowToClick = Reader::getInstance()->split(mGui_ptr->Get("FormShowInput")->Text.at("Input").Text, " ");
+	mGui_ptr->Get(*mFormName_ptr)->ShowToClick.clear();
+	for (auto& i : ShowToClick)
+		mGui_ptr->Get(*mFormName_ptr)->ShowToClick.push_back(i);
+
+	auto HideToClick = Reader::getInstance()->split(mGui_ptr->Get("FormHideInput")->Text.at("Input").Text, " ");
+	mGui_ptr->Get(*mFormName_ptr)->HideToClick.clear();
+	for (auto& i : HideToClick)
+		mGui_ptr->Get(*mFormName_ptr)->HideToClick.push_back(i);
+
+	if (!mGui_ptr->Get("FormHotKeyInput")->Text.at("Input").Text.empty())
+	{
+		mGui_ptr->Get(*mFormName_ptr)->Key.first = true;
+		mGui_ptr->Get(*mFormName_ptr)->Key.second = (char)mGui_ptr->Get("FormHotKeyInput")->Text.at("Input").Text.c_str()[0];
+	}
+
+	mGui_ptr->Get(*mFormName_ptr)->CommandOnClick.first = mGui_ptr->Get("FormCommandInput")->Text.at("Input").Text;
+		
+	if (!mGui_ptr->Get("FormActHighInput")->Text.at("Input").Text.empty())
+		mGui_ptr->Get(*mFormName_ptr)->ActiveHighlight = std::stoi(mGui_ptr->Get("FormActHighInput")->Text.at("Input").Text);
+
+	if (!mGui_ptr->Get("FormActIntenInput")->Text.at("Input").Text.empty())
+		mGui_ptr->Get(*mFormName_ptr)->ActiveHighlight = std::stof(mGui_ptr->Get("FormActIntenInput")->Text.at("Input").Text);
+
+	auto Padding = Reader::getInstance()->split(mGui_ptr->Get("FormPaddingInput")->Text.at("Input").Text, " ");
+	mGui_ptr->Get(*mFormName_ptr)->Padding.x = std::stof(Padding[0]);
+	mGui_ptr->Get(*mFormName_ptr)->Padding.y = std::stof(Padding[1]);
 }

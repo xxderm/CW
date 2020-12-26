@@ -1,1575 +1,2260 @@
 {
-    "ConsoleInput": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "-0.703000009",
-            "y": "-0.540000021"
-        },
-        "Scale": {
-            "x": "0.289999992",
-            "y": "0.0500000007"
-        },
-        "Padding": {
-            "x": "-0.703000009",
-            "y": "-0.540000021"
-        },
-        "DebugElement": "false",
-        "Text": {
-            "Input": {
-                "String": "Команда",
-                "Location": {
-                    "x": "0.5",
-                    "y": "22"
-                },
-                "Color": {
-                    "r": "0.0500000007",
-                    "g": "0.0500000007",
-                    "b": "0.0500000007",
-                    "a": "1"
-                },
-                "Name": "Input",
-                "Scale": "1"
-            }
-        },
-        "Color": {
-            "r": "0.800000012",
-            "g": "0.800000012",
-            "b": "0.800000012",
-            "a": "0.910000026"
-        },
-        "Hover": {
-            "r": "0.800000012",
-            "g": "0.800000012",
-            "b": "0.800000012",
-            "a": "0.910000026"
-        },
-        "Visible": "false",
-        "Type": "Input",
-        "For": "ConsoleForm",
-        "CommandOnClick": "",
-        "Key": "`",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": ""
+  "FormVisibleInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.842500031",
+      "y": "0.852555633"
     },
-    "ConsoleForm": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "-0.699999988",
-            "y": "-0.49000001"
-        },
-        "Scale": {
-            "x": "0.300000012",
-            "y": "0.109999999"
-        },
-        "Padding": {
-            "x": "-0.699999988",
-            "y": "-0.49000001"
-        },
-        "DebugElement": "false",
-        "Text": {
-            "Title": {
-                "String": "Консоль",
-                "Location": {
-                    "x": "0.5",
-                    "y": "27"
-                },
-                "Color": {
-                    "r": "0.200000003",
-                    "g": "1",
-                    "b": "0.200000003",
-                    "a": "1"
-                },
-                "Name": "Title",
-                "Scale": "1"
-            }
-        },
-        "Color": {
-            "r": "0.200000003",
-            "g": "0.200000003",
-            "b": "0.200000003",
-            "a": "0.850000024"
-        },
-        "Hover": {
-            "r": "0.200000003",
-            "g": "0.200000003",
-            "b": "0.200000003",
-            "a": "0.850000024"
-        },
-        "Visible": "false",
-        "Type": "",
-        "For": "",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": ""
+    "Scale": {
+      "x": "0.129999995",
+      "y": "0.0299999993"
     },
-    "AddUIButtonForm": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0.437500119",
-            "y": "0.930555642"
-        },
-        "Scale": {
-            "x": "0.140000001",
-            "y": "0.0500000007"
-        },
-        "Padding": {
-            "x": "0",
-            "y": "0"
-        },
-        "DebugElement": "true",
-        "Color": {
-            "r": "1",
-            "g": "1",
-            "b": "1",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "0.400000006",
-            "g": "0.400000006",
-            "b": "0.400000006",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "",
-        "For": "",
-        "CommandOnClick": "AddForm",
-        "ShowOnClickEvent": [
-            "FormSettings"
-        ],
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "ToolsForm"
+    "Padding": {
+      "x": "0.0549999997",
+      "y": "0.01"
     },
-    "FormFindNameInput": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0.842500031",
-            "y": "0.852555633"
-        },
-        "Scale": {
-            "x": "0.129999995",
-            "y": "0.0299999993"
-        },
-        "Padding": {
-            "x": "0.0549999997",
-            "y": "0.0979999974"
-        },
-        "DebugElement": "true",
-        "Text": {
-            "Input": {
-                "String": "",
-                "Location": {
-                    "x": "-3",
-                    "y": "-2.5"
-                },
-                "Color": {
-                    "r": "1",
-                    "g": "1",
-                    "b": "1",
-                    "a": "1"
-                },
-                "Name": "Input",
-                "Scale": "0.649999976"
-            }
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
         },
         "Color": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
+          "r": "1",
+          "g": "1",
+          "b": "1",
+          "a": "1"
         },
-        "Hover": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "Input",
-        "For": "FormSettings",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "FormSettings"
+        "Name": "Input",
+        "Scale": "0.649999976"
+      }
     },
-    "FormFindNameButton": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0.867500007",
-            "y": "0.780555606"
-        },
-        "Scale": {
-            "x": "0.104999997",
-            "y": "0.0299999993"
-        },
-        "Padding": {
-            "x": "0.0799999982",
-            "y": "0.170000002"
-        },
-        "DebugElement": "true",
-        "Text": {
-            "FormName": {
-                "String": "Найти и применить",
-                "Location": {
-                    "x": "-3",
-                    "y": "-2.5"
-                },
-                "Color": {
-                    "r": "1",
-                    "g": "1",
-                    "b": "1",
-                    "a": "1"
-                },
-                "Name": "FormName",
-                "Scale": "0.600000024"
-            }
-        },
-        "Color": {
-            "r": "0.100000001",
-            "g": "0.100000001",
-            "b": "0.100000001",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "0.200000003",
-            "g": "0.200000003",
-            "b": "0.200000003",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "",
-        "For": "",
-        "CommandOnClick": "GetForm",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "FormSettings"
+    "Color": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
     },
-    "FormNameInput": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0.842500031",
-            "y": "0.685555637"
-        },
-        "Scale": {
-            "x": "0.129999995",
-            "y": "0.0299999993"
-        },
-        "Padding": {
-            "x": "0.0549999997",
-            "y": "0.264999986"
-        },
-        "DebugElement": "true",
-        "Text": {
-            "Input": {
-                "String": "",
-                "Location": {
-                    "x": "-3",
-                    "y": "-2.5"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "Input",
-                "Scale": "0.649999976"
-            }
-        },
-        "Color": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "Input",
-        "For": "FormSettings",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "FormSettings"
+    "Hover": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
     },
-    "FormScaleInput": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0.842500031",
-            "y": "0.605555654"
-        },
-        "Scale": {
-            "x": "0.129999995",
-            "y": "0.0299999993"
-        },
-        "Padding": {
-            "x": "0.0549999997",
-            "y": "0.344999999"
-        },
-        "DebugElement": "true",
-        "Text": {
-            "Input": {
-                "String": "",
-                "Location": {
-                    "x": "-3",
-                    "y": "-2.5"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "Input",
-                "Scale": "0.649999976"
-            }
-        },
-        "Color": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "Input",
-        "For": "FormSettings",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "FormSettings"
+    "Visible": "true",
+    "Type": "Input",
+    "For": "SecondFormSettings",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "SecondFormSettings"
+  },
+  "FormShowInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.842500031",
+      "y": "0.852555633"
     },
-    "FormPosInput": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0.842500031",
-            "y": "0.525555611"
-        },
-        "Scale": {
-            "x": "0.129999995",
-            "y": "0.0299999993"
-        },
-        "Padding": {
-            "x": "0.0549999997",
-            "y": "0.425000012"
-        },
-        "DebugElement": "true",
-        "Text": {
-            "Input": {
-                "String": "",
-                "Location": {
-                    "x": "-3",
-                    "y": "-2.5"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "Input",
-                "Scale": "0.649999976"
-            }
-        },
-        "Color": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "Input",
-        "For": "FormSettings",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "FormSettings"
+    "Scale": {
+      "x": "0.129999995",
+      "y": "0.0299999993"
     },
-    "FormColorInput": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0.842500031",
-            "y": "0.445555627"
-        },
-        "Scale": {
-            "x": "0.129999995",
-            "y": "0.0299999993"
-        },
-        "Padding": {
-            "x": "0.0549999997",
-            "y": "0.504999995"
-        },
-        "DebugElement": "true",
-        "Text": {
-            "Input": {
-                "String": "",
-                "Location": {
-                    "x": "-3",
-                    "y": "-2.5"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "Input",
-                "Scale": "0.649999976"
-            }
-        },
-        "Color": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "Input",
-        "For": "FormSettings",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "FormSettings"
+    "Padding": {
+      "x": "0.0549999997",
+      "y": "0.09"
     },
-    "FormHoverInput": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0.842500031",
-            "y": "0.365555644"
-        },
-        "Scale": {
-            "x": "0.129999995",
-            "y": "0.0299999993"
-        },
-        "Padding": {
-            "x": "0.0549999997",
-            "y": "0.584999979"
-        },
-        "DebugElement": "true",
-        "Text": {
-            "Input": {
-                "String": "",
-                "Location": {
-                    "x": "-3",
-                    "y": "-2.5"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "Input",
-                "Scale": "0.649999976"
-            }
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
         },
         "Color": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
+          "r": "1",
+          "g": "1",
+          "b": "1",
+          "a": "1"
         },
-        "Hover": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "Input",
-        "For": "FormSettings",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "FormSettings"
+        "Name": "Input",
+        "Scale": "0.649999976"
+      }
     },
-    "FormMoveableInput": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0.842500031",
-            "y": "0.285555601"
-        },
-        "Scale": {
-            "x": "0.129999995",
-            "y": "0.0299999993"
-        },
-        "Padding": {
-            "x": "0.0549999997",
-            "y": "0.665000021"
-        },
-        "DebugElement": "true",
-        "Text": {
-            "Input": {
-                "String": "",
-                "Location": {
-                    "x": "-3",
-                    "y": "-2.5"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "Input",
-                "Scale": "0.649999976"
-            }
-        },
-        "Color": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "Input",
-        "For": "FormSettings",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "FormSettings"
+    "Color": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
     },
-    "FormParentInput": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0.842500031",
-            "y": "0.205555618"
-        },
-        "Scale": {
-            "x": "0.129999995",
-            "y": "0.0299999993"
-        },
-        "Padding": {
-            "x": "0.0549999997",
-            "y": "0.745000005"
-        },
-        "DebugElement": "true",
-        "Text": {
-            "Input": {
-                "String": "",
-                "Location": {
-                    "x": "-3",
-                    "y": "-2.5"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "Input",
-                "Scale": "0.649999976"
-            }
-        },
-        "Color": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "Input",
-        "For": "FormSettings",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "FormSettings"
+    "Hover": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
     },
-    "FormTypeInput": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0.842500031",
-            "y": "0.120555639"
-        },
-        "Scale": {
-            "x": "0.129999995",
-            "y": "0.0299999993"
-        },
-        "Padding": {
-            "x": "0.0549999997",
-            "y": "0.829999983"
-        },
-        "DebugElement": "true",
-        "Text": {
-            "Input": {
-                "String": "",
-                "Location": {
-                    "x": "-3",
-                    "y": "-2.5"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "Input",
-                "Scale": "0.649999976"
-            }
-        },
-        "Color": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "Input",
-        "For": "FormSettings",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "FormSettings"
+    "Visible": "true",
+    "Type": "Input",
+    "For": "SecondFormSettings",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "SecondFormSettings"
+  },
+  "FormHideInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.842500031",
+      "y": "0.852555633"
     },
-    "FormForInput": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0.842500031",
-            "y": "0.0355556011"
-        },
-        "Scale": {
-            "x": "0.129999995",
-            "y": "0.0299999993"
-        },
-        "Padding": {
-            "x": "0.0549999997",
-            "y": "0.915000021"
-        },
-        "DebugElement": "true",
-        "Text": {
-            "Input": {
-                "String": "",
-                "Location": {
-                    "x": "-3",
-                    "y": "-2.5"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "Input",
-                "Scale": "0.649999976"
-            }
-        },
-        "Color": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "0.5",
-            "g": "0.5",
-            "b": "0.5",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "Input",
-        "For": "FormSettings",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "FormSettings"
+    "Scale": {
+      "x": "0.129999995",
+      "y": "0.0299999993"
     },
-    "FormApplyButton": {
-	   "CommandOnClick": "ApplyForm",
-		"Texture": "-1",
-        "CenterPoint": {
-            "x": "0.867500007",
-            "y": "-0.0694443583"
-        },
-        "Scale": {
-            "x": "0.104999997",
-            "y": "0.0299999993"
-        },
-        "Padding": {
-            "x": "0.0799999982",
-            "y": "1.01999998"
-        },
-        "DebugElement": "true",
-        "Text": {
-            "FormName": {
-                "String": "Применить",
-                "Location": {
-                    "x": "-3",
-                    "y": "-2.5"
-                },
-                "Color": {
-                    "r": "1",
-                    "g": "1",
-                    "b": "1",
-                    "a": "1"
-                },
-                "Name": "FormName",
-                "Scale": "0.600000024"
-            }
-        },
-        "Color": {
-            "r": "0.100000001",
-            "g": "0.100000001",
-            "b": "0.100000001",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "0.200000003",
-            "g": "0.200000003",
-            "b": "0.200000003",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "",
-        "For": "",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "FormSettings"
+    "Padding": {
+      "x": "0.0549999997",
+      "y": "0.17"
     },
-    "FormSettings": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0.787500024",
-            "y": "0.430555582"
-        },
-        "Scale": {
-            "x": "0.200000003",
-            "y": "0.550000012"
-        },
-        "Padding": {
-            "x": "0.400000006",
-            "y": "0"
-        },
-        "DebugElement": "true",
-        "Text": {
-            "Title": {
-                "String": "Основные свойства",
-                "Location": {
-                    "x": "0",
-                    "y": "2"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "Title",
-                "Scale": "0.649999976"
-            },
-            "HoverForm": {
-                "String": "Покрытие:",
-                "Location": {
-                    "x": "0",
-                    "y": "210"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "HoverForm",
-                "Scale": "0.649999976"
-            },
-            "TypeForm": {
-                "String": "Тип:",
-                "Location": {
-                    "x": "0",
-                    "y": "300"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "TypeForm",
-                "Scale": "0.649999976"
-            },
-            "FindFormNameTitle": {
-                "String": "Форма:",
-                "Location": {
-                    "x": "0",
-                    "y": "30"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "FindFormNameTitle",
-                "Scale": "0.649999976"
-            },
-            "TitleForm": {
-                "String": "Название:",
-                "Location": {
-                    "x": "0",
-                    "y": "90"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "TitleForm",
-                "Scale": "0.649999976"
-            },
-            "PosForm": {
-                "String": "Позиция:",
-                "Location": {
-                    "x": "0",
-                    "y": "150"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "PosForm",
-                "Scale": "0.649999976"
-            },
-            "ScaleForm": {
-                "String": "Размер:",
-                "Location": {
-                    "x": "0",
-                    "y": "120"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "ScaleForm",
-                "Scale": "0.649999976"
-            },
-            "ColorForm": {
-                "String": "Цвет:",
-                "Location": {
-                    "x": "0",
-                    "y": "180"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "ColorForm",
-                "Scale": "0.649999976"
-            },
-            "MoveableForm": {
-                "String": "Передв.:",
-                "Location": {
-                    "x": "0",
-                    "y": "240"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "MoveableForm",
-                "Scale": "0.649999976"
-            },
-            "ParentForm": {
-                "String": "Род.:",
-                "Location": {
-                    "x": "0",
-                    "y": "270"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "ParentForm",
-                "Scale": "0.649999976"
-            },
-            "ForForm": {
-                "String": "Для:",
-                "Location": {
-                    "x": "0",
-                    "y": "330"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "ForForm",
-                "Scale": "0.649999976"
-            }
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
         },
         "Color": {
-            "r": "1",
-            "g": "1",
-            "b": "1",
-            "a": "1"
+          "r": "1",
+          "g": "1",
+          "b": "1",
+          "a": "1"
         },
-        "Hover": {
-            "r": "1",
-            "g": "1",
-            "b": "1",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "",
-        "For": "",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "true",
-        "Parent": ""
+        "Name": "Input",
+        "Scale": "0.649999976"
+      }
     },
-    "OpenUIButtonForm": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0.437500119",
-            "y": "0.730555654"
-        },
-        "Scale": {
-            "x": "0.140000001",
-            "y": "0.0500000007"
-        },
-        "Padding": {
-            "x": "0",
-            "y": "0.200000003"
-        },
-        "DebugElement": "true",
-        "Color": {
-            "r": "1",
-            "g": "1",
-            "b": "1",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "0.400000006",
-            "g": "0.400000006",
-            "b": "0.400000006",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "",
-        "For": "",
-        "CommandOnClick": "",
-        "ShowOnClickEvent": [
-            "OpenUIForm"
-        ],
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "ToolsForm"
+    "Color": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
     },
-    "OpenUIFormExit": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0.129999995",
-            "y": "-0.400000006"
-        },
-        "Scale": {
-            "x": "0.0199999996",
-            "y": "0.0199999996"
-        },
-        "Padding": {
-            "x": "0.129999995",
-            "y": "0"
-        },
-        "DebugElement": "true",
-        "Color": {
-            "r": "0.800000012",
-            "g": "0",
-            "b": "0",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "1",
-            "g": "0",
-            "b": "0",
-            "a": "1"
-        },
-        "Visible": "false",
-        "Type": "",
-        "For": "",
-        "CommandOnClick": "",
-        "HideOnClickEvent": [
-            "OpenUIForm"
-        ],
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "OpenUIForm"
+    "Hover": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
     },
-    "OpenUIInput": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0",
-            "y": "-0.49000001"
-        },
-        "Scale": {
-            "x": "0.129999995",
-            "y": "0.0299999993"
-        },
-        "Padding": {
-            "x": "0",
-            "y": "0.0799999982"
-        },
-        "DebugElement": "true",
-        "Text": {
-            "Input": {
-                "String": "Resources\/UI\/",
-                "Location": {
-                    "x": "0",
-                    "y": "-2"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "Input",
-                "Scale": "0.649999976"
-            }
-        },
-        "Color": {
-            "r": "1",
-            "g": "1",
-            "b": "1",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "1",
-            "g": "1",
-            "b": "1",
-            "a": "1"
-        },
-        "Visible": "false",
-        "Type": "Input",
-        "For": "OpenUIForm",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "OpenUIForm"
+    "Visible": "true",
+    "Type": "Input",
+    "For": "SecondFormSettings",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "SecondFormSettings"
+  },
+  "FormHotKeyInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.842500031",
+      "y": "0.852555633"
     },
-    "OpenUIInputButton": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0",
-            "y": "-0.560000002"
-        },
-        "Scale": {
-            "x": "0.0799999982",
-            "y": "0.0299999993"
-        },
-        "Padding": {
-            "x": "0",
-            "y": "0.150000006"
-        },
-        "DebugElement": "true",
-        "Text": {
-            "Open": {
-                "String": "Открыть",
-                "Location": {
-                    "x": "17",
-                    "y": "-2"
-                },
-                "Color": {
-                    "r": "1",
-                    "g": "1",
-                    "b": "1",
-                    "a": "1"
-                },
-                "Name": "Open",
-                "Scale": "0.550000012"
-            }
-        },
-        "Color": {
-            "r": "0",
-            "g": "0",
-            "b": "0",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "0.400000006",
-            "g": "0.400000006",
-            "b": "0.400000006",
-            "a": "1"
-        },
-        "Visible": "false",
-        "Type": "",
-        "For": "",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "OpenUIForm"
+    "Scale": {
+      "x": "0.129999995",
+      "y": "0.0299999993"
     },
-    "OpenUIForm": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0",
-            "y": "-0.5"
-        },
-        "Scale": {
-            "x": "0.150000006",
-            "y": "0.119999997"
-        },
-        "Padding": {
-            "x": "0",
-            "y": "-0.5"
-        },
-        "DebugElement": "true",
-        "Color": {
-            "r": "1",
-            "g": "1",
-            "b": "1",
-            "a": "0.5"
-        },
-        "Hover": {
-            "r": "1",
-            "g": "1",
-            "b": "1",
-            "a": "0.5"
-        },
-        "Visible": "false",
-        "Type": "",
-        "For": "",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "true",
-        "Parent": ""
+    "Padding": {
+      "x": "0.0549999997",
+      "y": "0.25"
     },
-    "SaveUIButtonForm": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0.437500119",
-            "y": "0.830555618"
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
         },
-        "Scale": {
-            "x": "0.140000001",
-            "y": "0.0500000007"
-        },
-        "Padding": {
-            "x": "0",
-            "y": "0.100000001"
-        },
-        "DebugElement": "true",
         "Color": {
-            "r": "1",
-            "g": "1",
-            "b": "1",
-            "a": "1"
+          "r": "1",
+          "g": "1",
+          "b": "1",
+          "a": "1"
         },
-        "Hover": {
-            "r": "0.400000006",
-            "g": "0.400000006",
-            "b": "0.400000006",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "",
-        "For": "",
-        "CommandOnClick": "",
-        "ShowOnClickEvent": [
-            "SaveUIForm"
-        ],
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "ToolsForm"
+        "Name": "Input",
+        "Scale": "0.649999976"
+      }
     },
-    "SaveUIInput": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0",
-            "y": "-0.49000001"
-        },
-        "Scale": {
-            "x": "0.129999995",
-            "y": "0.0299999993"
-        },
-        "Padding": {
-            "x": "0",
-            "y": "0.0799999982"
-        },
-        "DebugElement": "true",
-        "Text": {
-            "Input": {
-                "String": "Resources\/UI\/debug",
-                "Location": {
-                    "x": "0",
-                    "y": "-2"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "Input",
-                "Scale": "0.649999976"
-            }
-        },
-        "Color": {
-            "r": "1",
-            "g": "1",
-            "b": "1",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "1",
-            "g": "1",
-            "b": "1",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "Input",
-        "For": "SaveUIForm",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "SaveUIForm"
+    "Color": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
     },
-    "SaveUIInputButton": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0",
-            "y": "-0.560000002"
-        },
-        "Scale": {
-            "x": "0.0799999982",
-            "y": "0.0299999993"
-        },
-        "Padding": {
-            "x": "0",
-            "y": "0.150000006"
-        },
-        "DebugElement": "true",
-        "Text": {
-            "Save": {
-                "String": "Сохранить",
-                "Location": {
-                    "x": "13",
-                    "y": "-2"
-                },
-                "Color": {
-                    "r": "1",
-                    "g": "1",
-                    "b": "1",
-                    "a": "1"
-                },
-                "Name": "Save",
-                "Scale": "0.550000012"
-            }
-        },
-        "Color": {
-            "r": "0",
-            "g": "0",
-            "b": "0",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "0.400000006",
-            "g": "0.400000006",
-            "b": "0.400000006",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "",
-        "For": "",
-        "CommandOnClick": "SaveForm",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "SaveUIForm"
+    "Hover": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
     },
-    "SaveUIFormExit": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0.129999995",
-            "y": "-0.400000006"
-        },
-        "Scale": {
-            "x": "0.0199999996",
-            "y": "0.0199999996"
-        },
-        "Padding": {
-            "x": "0.129999995",
-            "y": "0"
-        },
-        "DebugElement": "true",
-        "Color": {
-            "r": "0.800000012",
-            "g": "0",
-            "b": "0",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "1",
-            "g": "0",
-            "b": "0",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "",
-        "For": "",
-        "CommandOnClick": "",
-        "HideOnClickEvent": [
-            "SaveUIForm"
-        ],
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": "SaveUIForm"
+    "Visible": "true",
+    "Type": "Input",
+    "For": "SecondFormSettings",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "SecondFormSettings"
+  },
+  "FormCommandInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.842500031",
+      "y": "0.852555633"
     },
-    "SaveUIForm": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0",
-            "y": "-0.5"
-        },
-        "Scale": {
-            "x": "0.150000006",
-            "y": "0.119999997"
-        },
-        "Padding": {
-            "x": "0",
-            "y": "-0.5"
-        },
-        "DebugElement": "true",
-        "Color": {
-            "r": "1",
-            "g": "1",
-            "b": "1",
-            "a": "0.5"
-        },
-        "Hover": {
-            "r": "1",
-            "g": "1",
-            "b": "1",
-            "a": "0.5"
-        },
-        "Visible": "true",
-        "Type": "",
-        "For": "",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "true",
-        "Parent": ""
+    "Scale": {
+      "x": "0.129999995",
+      "y": "0.0299999993"
     },
-    "ToolsForm": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0.437500119",
-            "y": "0.63055563"
-        },
-        "Scale": {
-            "x": "0.140000001",
-            "y": "0.349999994"
-        },
-        "Padding": {
-            "x": "0",
-            "y": "0"
-        },
-        "DebugElement": "true",
-        "Text": {
-            "SaveUITitle": {
-                "String": "Сохранить",
-                "Location": {
-                    "x": "16",
-                    "y": "42"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "SaveUITitle",
-                "Scale": "0.800000012"
-            },
-            "AddFormTitle": {
-                "String": "Добавить форму",
-                "Location": {
-                    "x": "16",
-                    "y": "8"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "AddFormTitle",
-                "Scale": "0.800000012"
-            },
-            "OpenUITitle": {
-                "String": "Открыть",
-                "Location": {
-                    "x": "16",
-                    "y": "76"
-                },
-                "Color": {
-                    "r": "0",
-                    "g": "0",
-                    "b": "0",
-                    "a": "1"
-                },
-                "Name": "OpenUITitle",
-                "Scale": "0.800000012"
-            }
-        },
-        "Color": {
-            "r": "1",
-            "g": "1",
-            "b": "1",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "1",
-            "g": "1",
-            "b": "1",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "",
-        "For": "",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "true",
-        "Parent": ""
+    "Padding": {
+      "x": "0.0549999997",
+      "y": "0.33"
     },
-    "Background": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "0",
-            "y": "0"
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
         },
-        "Scale": {
-            "x": "1",
-            "y": "1"
-        },
-        "Padding": {
-            "x": "0",
-            "y": "0"
-        },
-        "DebugElement": "true",
         "Color": {
-            "r": "0",
-            "g": "0",
-            "b": "0",
-            "a": "1"
+          "r": "1",
+          "g": "1",
+          "b": "1",
+          "a": "1"
         },
-        "Hover": {
-            "r": "0",
-            "g": "0",
-            "b": "0",
-            "a": "1"
+        "Name": "Input",
+        "Scale": "0.649999976"
+      }
+    },
+    "Color": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "Input",
+    "For": "SecondFormSettings",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "SecondFormSettings"
+  },
+  "FormActHighInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.842500031",
+      "y": "0.852555633"
+    },
+    "Scale": {
+      "x": "0.024999995",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "-0.0369999997",
+      "y": "0.418"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
         },
-        "Visible": "true",
-        "Type": "",
-        "For": "",
-        "CommandOnClick": "",
-        "Highlight": "false",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": ""
-    }
+        "Color": {
+          "r": "1",
+          "g": "1",
+          "b": "1",
+          "a": "1"
+        },
+        "Name": "Input",
+        "Scale": "0.649999976"
+      }
+    },
+    "Color": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "Input",
+    "For": "SecondFormSettings",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "SecondFormSettings"
+  },
+  "FormActIntenInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.842500031",
+      "y": "0.852555633"
+    },
+    "Scale": {
+      "x": "0.024999995",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "0.159999997",
+      "y": "0.418"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
+        },
+        "Color": {
+          "r": "1",
+          "g": "1",
+          "b": "1",
+          "a": "1"
+        },
+        "Name": "Input",
+        "Scale": "0.649999976"
+      }
+    },
+    "Color": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "Input",
+    "For": "SecondFormSettings",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "SecondFormSettings"
+  },
+  "FormPaddingInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.842500031",
+      "y": "0.852555633"
+    },
+    "Scale": {
+      "x": "0.129999995",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "0.0549999997",
+      "y": "0.505"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
+        },
+        "Color": {
+          "r": "1",
+          "g": "1",
+          "b": "1",
+          "a": "1"
+        },
+        "Name": "Input",
+        "Scale": "0.649999976"
+      }
+    },
+    "Color": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "Input",
+    "For": "SecondFormSettings",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "SecondFormSettings"
+  },
+  "SecondFormSettings": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.785937011",
+      "y": "-0.53055501"
+    },
+    "Scale": {
+      "x": "0.200000003",
+      "y": "0.400000006"
+    },
+    "Padding": {
+      "x": "0",
+      "y": "0"
+    },
+    "DebugElement": "true",
+    "Color": {
+      "r": "1",
+      "g": "1",
+      "b": "1",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "1",
+      "g": "1",
+      "b": "1",
+      "a": "1"
+    },
+    "Text": {
+      "VisibleTitle": {
+        "String": "Видим.:",
+        "Location": {
+          "x": "0.5",
+          "y": "-0.01"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "VisibleTitle",
+        "Scale": "0.649999976"
+      },
+      "ShowTitle": {
+        "String": "Открыв.:",
+        "Location": {
+          "x": "0.5",
+          "y": "30.0"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "ShowTitle",
+        "Scale": "0.649999976"
+      },
+      "HideTitle": {
+        "String": "Закрыв.:",
+        "Location": {
+          "x": "0.5",
+          "y": "60.0"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "HideTitle",
+        "Scale": "0.649999976"
+      },
+      "HotKeyTitle": {
+        "String": "Гор. Клав:",
+        "Location": {
+          "x": "0.5",
+          "y": "90.0"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "HotKeyTitle",
+        "Scale": "0.649999976"
+      },
+      "CommandOCTitle": {
+        "String": "Комман.:",
+        "Location": {
+          "x": "0.5",
+          "y": "120.0"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "CommandOCTitle",
+        "Scale": "0.649999976"
+      },
+      "ActiveHighTitle": {
+        "String": "Акт. Подсв.:",
+        "Location": {
+          "x": "0.5",
+          "y": "150.0"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "ActiveHighTitle",
+        "Scale": "0.649999976"
+      },
+      "ActiveHighIntenTitle": {
+        "String": "Акт. Интен.:",
+        "Location": {
+          "x": "120",
+          "y": "150.0"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "ActiveHighIntenTitle",
+        "Scale": "0.649999976"
+      },
+      "PaddingTitle": {
+        "String": "Отклон.:",
+        "Location": {
+          "x": "0.5",
+          "y": "180.0"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "PaddingTitle",
+        "Scale": "0.649999976"
+      }
+    },
+    "Visible": "true",
+    "Type": "",
+    "For": "",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "true",
+    "Parent": ""
+  },
+  "MainPropertiesExitButton": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.957500041",
+      "y": "0.955555618"
+    },
+    "Scale": {
+      "x": "0.0199999996",
+      "y": "0.0199999996"
+    },
+    "Padding": {
+      "x": "0.170000002",
+      "y": "0.00499999989"
+    },
+    "DebugElement": "true",
+    "Color": {
+      "r": "0.800000012",
+      "g": "0",
+      "b": "0",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "1",
+      "g": "0",
+      "b": "0",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "",
+    "For": "",
+    "CommandOnClick": "",
+    "HideOnClickEvent": [
+      "FormSettings"
+    ],
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "FormSettings"
+  },
+  "ConsoleInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "-0.703000009",
+      "y": "-0.540000021"
+    },
+    "Scale": {
+      "x": "0.289999992",
+      "y": "0.0500000007"
+    },
+    "Padding": {
+      "x": "-0.703000009",
+      "y": "-0.540000021"
+    },
+    "DebugElement": "false",
+    "Text": {
+      "Input": {
+        "String": "Команда",
+        "Location": {
+          "x": "0.5",
+          "y": "22"
+        },
+        "Color": {
+          "r": "0.0500000007",
+          "g": "0.0500000007",
+          "b": "0.0500000007",
+          "a": "1"
+        },
+        "Name": "Input",
+        "Scale": "1"
+      }
+    },
+    "Color": {
+      "r": "0.800000012",
+      "g": "0.800000012",
+      "b": "0.800000012",
+      "a": "0.910000026"
+    },
+    "Hover": {
+      "r": "0.800000012",
+      "g": "0.800000012",
+      "b": "0.800000012",
+      "a": "0.910000026"
+    },
+    "Visible": "false",
+    "Type": "Input",
+    "For": "ConsoleForm",
+    "CommandOnClick": "",
+    "Key": "`",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": ""
+  },
+  "ConsoleForm": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "-0.699999988",
+      "y": "-0.49000001"
+    },
+    "Scale": {
+      "x": "0.300000012",
+      "y": "0.109999999"
+    },
+    "Padding": {
+      "x": "-0.699999988",
+      "y": "-0.49000001"
+    },
+    "DebugElement": "false",
+    "Text": {
+      "Title": {
+        "String": "Консоль",
+        "Location": {
+          "x": "0.5",
+          "y": "27"
+        },
+        "Color": {
+          "r": "0.200000003",
+          "g": "1",
+          "b": "0.200000003",
+          "a": "1"
+        },
+        "Name": "Title",
+        "Scale": "1"
+      }
+    },
+    "Color": {
+      "r": "0.200000003",
+      "g": "0.200000003",
+      "b": "0.200000003",
+      "a": "0.850000024"
+    },
+    "Hover": {
+      "r": "0.200000003",
+      "g": "0.200000003",
+      "b": "0.200000003",
+      "a": "0.850000024"
+    },
+    "Visible": "false",
+    "Type": "",
+    "For": "",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": ""
+  },
+  "AddUIButtonForm": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.437500119",
+      "y": "0.930555642"
+    },
+    "Scale": {
+      "x": "0.140000001",
+      "y": "0.0500000007"
+    },
+    "Padding": {
+      "x": "0",
+      "y": "0"
+    },
+    "DebugElement": "true",
+    "Color": {
+      "r": "1",
+      "g": "1",
+      "b": "1",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.400000006",
+      "g": "0.400000006",
+      "b": "0.400000006",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "",
+    "For": "",
+    "CommandOnClick": "AddForm",
+    "ShowOnClickEvent": [
+      "FormSettings"
+    ],
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "ToolsForm"
+  },
+  "OpenFormMainPropButton": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.437500119",
+      "y": "0.63055563"
+    },
+    "Scale": {
+      "x": "0.140000001",
+      "y": "0.0500000007"
+    },
+    "Padding": {
+      "x": "0",
+      "y": "0.300000012"
+    },
+    "DebugElement": "true",
+    "Color": {
+      "r": "1",
+      "g": "1",
+      "b": "1",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.400000006",
+      "g": "0.400000006",
+      "b": "0.400000006",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "",
+    "For": "",
+    "CommandOnClick": "",
+    "ShowOnClickEvent": [
+      "FormSettings"
+    ],
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "ToolsForm"
+  },
+  "FormFindNameInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.842500031",
+      "y": "0.852555633"
+    },
+    "Scale": {
+      "x": "0.129999995",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "0.0549999997",
+      "y": "0.0979999974"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
+        },
+        "Color": {
+          "r": "1",
+          "g": "1",
+          "b": "1",
+          "a": "1"
+        },
+        "Name": "Input",
+        "Scale": "0.649999976"
+      }
+    },
+    "Color": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "Input",
+    "For": "FormSettings",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "FormSettings"
+  },
+  "FormFindNameButton": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.867500007",
+      "y": "0.780555606"
+    },
+    "Scale": {
+      "x": "0.104999997",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "0.0799999982",
+      "y": "0.170000002"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "FormName": {
+        "String": "Найти и применить",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
+        },
+        "Color": {
+          "r": "1",
+          "g": "1",
+          "b": "1",
+          "a": "1"
+        },
+        "Name": "FormName",
+        "Scale": "0.600000024"
+      }
+    },
+    "Color": {
+      "r": "0.100000001",
+      "g": "0.100000001",
+      "b": "0.100000001",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.200000003",
+      "g": "0.200000003",
+      "b": "0.200000003",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "",
+    "For": "",
+    "CommandOnClick": "GetForm",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "FormSettings"
+  },
+  "FormNameInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.842500031",
+      "y": "0.685555637"
+    },
+    "Scale": {
+      "x": "0.129999995",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "0.0549999997",
+      "y": "0.264999986"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "Test",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "Input",
+        "Scale": "0.649999976"
+      }
+    },
+    "Color": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "Input",
+    "For": "FormSettings",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "FormSettings"
+  },
+  "FormScaleInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.842500031",
+      "y": "0.605555654"
+    },
+    "Scale": {
+      "x": "0.129999995",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "0.0549999997",
+      "y": "0.344999999"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "0.300000 0.600000",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "Input",
+        "Scale": "0.649999976"
+      }
+    },
+    "Color": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "Input",
+    "For": "FormSettings",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "FormSettings"
+  },
+  "FormPosInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.842500031",
+      "y": "0.525555611"
+    },
+    "Scale": {
+      "x": "0.129999995",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "0.0549999997",
+      "y": "0.425000012"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "-0.668750 0.355556",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "Input",
+        "Scale": "0.649999976"
+      }
+    },
+    "Color": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "Input",
+    "For": "FormSettings",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "FormSettings"
+  },
+  "FormColorInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.842500031",
+      "y": "0.445555627"
+    },
+    "Scale": {
+      "x": "0.129999995",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "0.0549999997",
+      "y": "0.504999995"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "1.000000 1.000000 1.000000 1.000000",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "Input",
+        "Scale": "0.399999917"
+      }
+    },
+    "Color": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "Input",
+    "For": "FormSettings",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "FormSettings"
+  },
+  "FormHoverInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.842500031",
+      "y": "0.365555644"
+    },
+    "Scale": {
+      "x": "0.129999995",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "0.0549999997",
+      "y": "0.584999979"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "1.000000 1.000000 1.000000 1.000000",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "Input",
+        "Scale": "0.399999917"
+      }
+    },
+    "Color": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "Input",
+    "For": "FormSettings",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "FormSettings"
+  },
+  "FormMoveableInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.842500031",
+      "y": "0.285555601"
+    },
+    "Scale": {
+      "x": "0.129999995",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "0.0549999997",
+      "y": "0.665000021"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "1",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "Input",
+        "Scale": "0.649999976"
+      }
+    },
+    "Color": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "Input",
+    "For": "FormSettings",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "FormSettings"
+  },
+  "FormParentInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.842500031",
+      "y": "0.205555618"
+    },
+    "Scale": {
+      "x": "0.129999995",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "0.0549999997",
+      "y": "0.745000005"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "Input",
+        "Scale": "0.649999976"
+      }
+    },
+    "Color": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "Input",
+    "For": "FormSettings",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "FormSettings"
+  },
+  "FormTypeInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.842500031",
+      "y": "0.120555639"
+    },
+    "Scale": {
+      "x": "0.129999995",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "0.0549999997",
+      "y": "0.829999983"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "Input",
+        "Scale": "0.649999976"
+      }
+    },
+    "Color": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "Input",
+    "For": "FormSettings",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "FormSettings"
+  },
+  "FormForInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.842500031",
+      "y": "0.0355556011"
+    },
+    "Scale": {
+      "x": "0.129999995",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "0.0549999997",
+      "y": "0.915000021"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "Input",
+        "Scale": "0.649999976"
+      }
+    },
+    "Color": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "Input",
+    "For": "FormSettings",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "FormSettings"
+  },
+  "FormApplyButton": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.867500007",
+      "y": "-0.0694443583"
+    },
+    "Scale": {
+      "x": "0.104999997",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "0.0799999982",
+      "y": "1.01999998"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "FormName": {
+        "String": "Применить",
+        "Location": {
+          "x": "-3",
+          "y": "-2.5"
+        },
+        "Color": {
+          "r": "1",
+          "g": "1",
+          "b": "1",
+          "a": "1"
+        },
+        "Name": "FormName",
+        "Scale": "0.600000024"
+      }
+    },
+    "Color": {
+      "r": "0.100000001",
+      "g": "0.100000001",
+      "b": "0.100000001",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.200000003",
+      "g": "0.200000003",
+      "b": "0.200000003",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "",
+    "For": "",
+    "CommandOnClick": "ApplyForm",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "FormSettings"
+  },
+  "FormSettings": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.787500024",
+      "y": "0.430555582"
+    },
+    "Scale": {
+      "x": "0.200000003",
+      "y": "0.550000012"
+    },
+    "Padding": {
+      "x": "0.400000006",
+      "y": "0"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "Title": {
+        "String": "Основные свойства",
+        "Location": {
+          "x": "0",
+          "y": "2"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "Title",
+        "Scale": "0.649999976"
+      },
+      "TypeForm": {
+        "String": "Тип:",
+        "Location": {
+          "x": "0",
+          "y": "300"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "TypeForm",
+        "Scale": "0.649999976"
+      },
+      "FindFormNameTitle": {
+        "String": "Форма:",
+        "Location": {
+          "x": "0",
+          "y": "30"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "FindFormNameTitle",
+        "Scale": "0.649999976"
+      },
+      "HoverForm": {
+        "String": "Покрытие:",
+        "Location": {
+          "x": "0",
+          "y": "210"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "HoverForm",
+        "Scale": "0.649999976"
+      },
+      "ScaleForm": {
+        "String": "Размер:",
+        "Location": {
+          "x": "0",
+          "y": "120"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "ScaleForm",
+        "Scale": "0.649999976"
+      },
+      "TitleForm": {
+        "String": "Название:",
+        "Location": {
+          "x": "0",
+          "y": "90"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "TitleForm",
+        "Scale": "0.649999976"
+      },
+      "PosForm": {
+        "String": "Позиция:",
+        "Location": {
+          "x": "0",
+          "y": "150"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "PosForm",
+        "Scale": "0.649999976"
+      },
+      "ColorForm": {
+        "String": "Цвет:",
+        "Location": {
+          "x": "0",
+          "y": "180"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "ColorForm",
+        "Scale": "0.649999976"
+      },
+      "MoveableForm": {
+        "String": "Передв.:",
+        "Location": {
+          "x": "0",
+          "y": "240"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "MoveableForm",
+        "Scale": "0.649999976"
+      },
+      "ParentForm": {
+        "String": "Род.:",
+        "Location": {
+          "x": "0",
+          "y": "270"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "ParentForm",
+        "Scale": "0.649999976"
+      },
+      "ForForm": {
+        "String": "Для:",
+        "Location": {
+          "x": "0",
+          "y": "330"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "ForForm",
+        "Scale": "0.649999976"
+      }
+    },
+    "Color": {
+      "r": "1",
+      "g": "1",
+      "b": "1",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "1",
+      "g": "1",
+      "b": "1",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "",
+    "For": "",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "true",
+    "Parent": ""
+  },
+  "OpenUIButtonForm": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.437500119",
+      "y": "0.730555654"
+    },
+    "Scale": {
+      "x": "0.140000001",
+      "y": "0.0500000007"
+    },
+    "Padding": {
+      "x": "0",
+      "y": "0.200000003"
+    },
+    "DebugElement": "true",
+    "Color": {
+      "r": "1",
+      "g": "1",
+      "b": "1",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.400000006",
+      "g": "0.400000006",
+      "b": "0.400000006",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "",
+    "For": "",
+    "CommandOnClick": "",
+    "ShowOnClickEvent": [
+      "OpenUIForm"
+    ],
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "ToolsForm"
+  },
+  "OpenUIFormExit": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.129999995",
+      "y": "-0.400000006"
+    },
+    "Scale": {
+      "x": "0.0199999996",
+      "y": "0.0199999996"
+    },
+    "Padding": {
+      "x": "0.129999995",
+      "y": "0"
+    },
+    "DebugElement": "true",
+    "Color": {
+      "r": "0.800000012",
+      "g": "0",
+      "b": "0",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "1",
+      "g": "0",
+      "b": "0",
+      "a": "1"
+    },
+    "Visible": "false",
+    "Type": "",
+    "For": "",
+    "CommandOnClick": "",
+    "HideOnClickEvent": [
+      "OpenUIForm"
+    ],
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "OpenUIForm"
+  },
+  "OpenUIInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0",
+      "y": "-0.49000001"
+    },
+    "Scale": {
+      "x": "0.129999995",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "0",
+      "y": "0.0799999982"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "Resources\/UI\/",
+        "Location": {
+          "x": "0",
+          "y": "-2"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "Input",
+        "Scale": "0.649999976"
+      }
+    },
+    "Color": {
+      "r": "1",
+      "g": "1",
+      "b": "1",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "1",
+      "g": "1",
+      "b": "1",
+      "a": "1"
+    },
+    "Visible": "false",
+    "Type": "Input",
+    "For": "OpenUIForm",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "OpenUIForm"
+  },
+  "OpenUIInputButton": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0",
+      "y": "-0.560000002"
+    },
+    "Scale": {
+      "x": "0.0799999982",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "0",
+      "y": "0.150000006"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "Open": {
+        "String": "Открыть",
+        "Location": {
+          "x": "17",
+          "y": "-2"
+        },
+        "Color": {
+          "r": "1",
+          "g": "1",
+          "b": "1",
+          "a": "1"
+        },
+        "Name": "Open",
+        "Scale": "0.550000012"
+      }
+    },
+    "Color": {
+      "r": "0",
+      "g": "0",
+      "b": "0",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.400000006",
+      "g": "0.400000006",
+      "b": "0.400000006",
+      "a": "1"
+    },
+    "Visible": "false",
+    "Type": "",
+    "For": "",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "OpenUIForm"
+  },
+  "OpenUIForm": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0",
+      "y": "-0.5"
+    },
+    "Scale": {
+      "x": "0.150000006",
+      "y": "0.119999997"
+    },
+    "Padding": {
+      "x": "0",
+      "y": "-0.5"
+    },
+    "DebugElement": "true",
+    "Color": {
+      "r": "1",
+      "g": "1",
+      "b": "1",
+      "a": "0.5"
+    },
+    "Hover": {
+      "r": "1",
+      "g": "1",
+      "b": "1",
+      "a": "0.5"
+    },
+    "Visible": "false",
+    "Type": "",
+    "For": "",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "true",
+    "Parent": ""
+  },
+  "SaveUIButtonForm": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.437500119",
+      "y": "0.830555618"
+    },
+    "Scale": {
+      "x": "0.140000001",
+      "y": "0.0500000007"
+    },
+    "Padding": {
+      "x": "0",
+      "y": "0.100000001"
+    },
+    "DebugElement": "true",
+    "Color": {
+      "r": "1",
+      "g": "1",
+      "b": "1",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.400000006",
+      "g": "0.400000006",
+      "b": "0.400000006",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "",
+    "For": "",
+    "CommandOnClick": "",
+    "ShowOnClickEvent": [
+      "SaveUIForm"
+    ],
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "ToolsForm"
+  },
+  "SaveUIInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0",
+      "y": "-0.49000001"
+    },
+    "Scale": {
+      "x": "0.129999995",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "0",
+      "y": "0.0799999982"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "Resources\/UI\/debug",
+        "Location": {
+          "x": "0",
+          "y": "-2"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "Input",
+        "Scale": "0.649999976"
+      }
+    },
+    "Color": {
+      "r": "1",
+      "g": "1",
+      "b": "1",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "1",
+      "g": "1",
+      "b": "1",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "Input",
+    "For": "SaveUIForm",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "SaveUIForm"
+  },
+  "SaveUIInputButton": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0",
+      "y": "-0.560000002"
+    },
+    "Scale": {
+      "x": "0.0799999982",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "0",
+      "y": "0.150000006"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "Save": {
+        "String": "Сохранить",
+        "Location": {
+          "x": "13",
+          "y": "-2"
+        },
+        "Color": {
+          "r": "1",
+          "g": "1",
+          "b": "1",
+          "a": "1"
+        },
+        "Name": "Save",
+        "Scale": "0.550000012"
+      }
+    },
+    "Color": {
+      "r": "0",
+      "g": "0",
+      "b": "0",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.400000006",
+      "g": "0.400000006",
+      "b": "0.400000006",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "",
+    "For": "",
+    "CommandOnClick": "SaveForm",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "SaveUIForm"
+  },
+  "SaveUIFormExit": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.129999995",
+      "y": "-0.400000006"
+    },
+    "Scale": {
+      "x": "0.0199999996",
+      "y": "0.0199999996"
+    },
+    "Padding": {
+      "x": "0.129999995",
+      "y": "0"
+    },
+    "DebugElement": "true",
+    "Color": {
+      "r": "0.800000012",
+      "g": "0",
+      "b": "0",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "1",
+      "g": "0",
+      "b": "0",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "",
+    "For": "",
+    "CommandOnClick": "",
+    "HideOnClickEvent": [
+      "SaveUIForm"
+    ],
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "SaveUIForm"
+  },
+  "SaveUIForm": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0",
+      "y": "-0.5"
+    },
+    "Scale": {
+      "x": "0.150000006",
+      "y": "0.119999997"
+    },
+    "Padding": {
+      "x": "0",
+      "y": "-0.5"
+    },
+    "DebugElement": "true",
+    "Color": {
+      "r": "1",
+      "g": "1",
+      "b": "1",
+      "a": "0.5"
+    },
+    "Hover": {
+      "r": "1",
+      "g": "1",
+      "b": "1",
+      "a": "0.5"
+    },
+    "Visible": "true",
+    "Type": "",
+    "For": "",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "true",
+    "Parent": ""
+  },
+  "ToolsForm": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.437500119",
+      "y": "0.63055563"
+    },
+    "Scale": {
+      "x": "0.140000001",
+      "y": "0.349999994"
+    },
+    "Padding": {
+      "x": "0",
+      "y": "0"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "AddFormTitle": {
+        "String": "Добавить форму",
+        "Location": {
+          "x": "16",
+          "y": "8"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "AddFormTitle",
+        "Scale": "0.800000012"
+      },
+      "SaveUITitle": {
+        "String": "Сохранить",
+        "Location": {
+          "x": "16",
+          "y": "42"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "SaveUITitle",
+        "Scale": "0.800000012"
+      },
+      "OpenUITitle": {
+        "String": "Открыть",
+        "Location": {
+          "x": "16",
+          "y": "76"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "OpenUITitle",
+        "Scale": "0.800000012"
+      },
+      "OpenMainFormPropertiesTitle": {
+        "String": "Основ. свойства",
+        "Location": {
+          "x": "16",
+          "y": "112"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "OpenMainFormPropertiesTitle",
+        "Scale": "0.800000012"
+      }
+    },
+    "Color": {
+      "r": "1",
+      "g": "1",
+      "b": "1",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "1",
+      "g": "1",
+      "b": "1",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "",
+    "For": "",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "true",
+    "Parent": ""
+  },
+  "Background": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0",
+      "y": "0"
+    },
+    "Scale": {
+      "x": "1",
+      "y": "1"
+    },
+    "Padding": {
+      "x": "0",
+      "y": "0"
+    },
+    "DebugElement": "true",
+    "Color": {
+      "r": "0",
+      "g": "0",
+      "b": "0",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0",
+      "g": "0",
+      "b": "0",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "",
+    "For": "",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": ""
+  }
 }

@@ -58,6 +58,7 @@ public:
 	void ShareChildsVisible(std::string Parent, bool visible);
 	bool isAllInputHidden();
 	void DeactivateAll();
+	void DeactivateAll(std::string formName);
 	void Clear();
 	~GUITexture();
 private:

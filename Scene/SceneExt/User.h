@@ -14,7 +14,8 @@ enum UserState
 	LOBBY,
 	PLAYING,
 	IDLE,
-	AFK
+	AFK,
+	DEBUGGING
 };
 
 class User final

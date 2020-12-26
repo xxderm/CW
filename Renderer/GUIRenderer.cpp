@@ -110,14 +110,23 @@ void GUIRenderer::Update()
 			gui.second->isHovered(MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY)))) &&
 			mMouseButtonPressed)
 		{
+			// Движение формы
 			auto mouse = MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY));			
 			auto center = gui.second->Position;
 			// Если дистанция сброшена, то определить ее
 			if (mFormDistanceDifference.x == -2)
 				mFormDistanceDifference = center - mouse;
 			auto result = mouse + mFormDistanceDifference;			
-			gui.second->Position = result;
-		}		
+			gui.second->Position = result;	
+
+
+			// Получить свойства формы в режиме отладки
+			if (mScene_ptr->getUser()->getStatus() == UserState::DEBUGGING && !gui.second->DebugElement)
+			{
+				mFormNameTarget_ptr = gui.first;
+				mCommand.at("GetForm")->Execute();
+			}
+		}			
 	}
 }
 
@@ -260,11 +269,14 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 			{
 				mGuis->SetColor(gui.first, gui.second->hoverColor);
 				if (e->type == SDL_MOUSEBUTTONDOWN)
-				{					
+				{							
+
 					if (!gui.second->SelectedCountryTag.empty())
 					{
 						mCountry_ptr = *mWorld_ptr->getCountries()->getCountryByTag(gui.second->SelectedCountryTag);
 					}
+
+					// Комманды интерфейса
 					if (!gui.second->CommandOnClick.first.empty())
 					{
 						if (gui.second->CommandOnClick.first == "GetForm")						
@@ -274,6 +286,7 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 
 						mCommand.at(gui.second->CommandOnClick.first)->Execute();
 					}
+
 					if (!gui.second->ShowToClick.empty())
 					{
 						for (auto& form : gui.second->ShowToClick)

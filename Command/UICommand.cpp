@@ -113,6 +113,8 @@ void SaveFormCommand::Execute()
 	boost::property_tree::ptree children;
 	for (auto& element : mGui_ptr->getGui())
 	{
+		if (element.second->DebugElement)
+			;// continue;
 		pt.put(element.first + ".Texture", element.second->TextureId);
 		pt.put(element.first + ".CenterPoint.x", element.second->Position.x);
 		pt.put(element.first + ".CenterPoint.y", element.second->Position.y);

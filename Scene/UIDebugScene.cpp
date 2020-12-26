@@ -4,6 +4,7 @@ UIDebugScene UIDebugScene::mDebugScene;
 
 void UIDebugScene::Init(Scene* scene)
 {
+	scene->getUser()->setStatus(UserState::DEBUGGING);
 	SDL_GetWindowSize(scene->getWindow(), &mWndWidth, &mWndHeight);
 	mGUIRenderer = new GUIRenderer("Resources/UI/debug.json", 30, scene);
 

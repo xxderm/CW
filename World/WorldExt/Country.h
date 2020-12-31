@@ -5,10 +5,12 @@
 #include <string>
 #include <map>
 #include "../../Reader.h"
+#include "../Division/LandDivision.h"
+#include "../Division/AirDivision.h"
+#include "../Division/NavalDivision.h"
 
 struct CountryFormat
 {
-public:
 	std::string getName();
 	std::string getNameDEF();
 	std::string getNameADJ();
@@ -22,6 +24,10 @@ public:
 	std::unordered_map<std::string, std::string> Name;
 	std::unordered_map<std::string, std::string> NameDEF;
 	std::unordered_map<std::string, std::string> NameADJ;
+
+	std::unordered_map<std::string, LandDivision*> LandDiv;
+	std::unordered_map<std::string, AirDivision*> AirDiv;
+	std::unordered_map<std::string, NavalDivision*> NavDiv;
 };
 
 class Country final 

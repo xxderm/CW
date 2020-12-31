@@ -143,7 +143,7 @@ void GUIRenderer::Update()
 				mFormNameTarget_ptr = gui.first;
 				mCommand.at("GetForm")->Execute();
 			}			
-		}
+		}		
 	}
 }
 
@@ -197,10 +197,14 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 							mGuis->Get(gui.first)->Text.at("Input").Text
 							.erase(mGuis->Get(gui.first)->Text.at("Input").Text.end() - 1);
 						// add sym
-						else if(mShiftIsPressed)
+						else if (mShiftIsPressed)
+						{
 							mGuis->Get(gui.first)->Text.at("Input").Text += std::toupper(e->key.keysym.sym);
-						else 
+						}
+						else
+						{							
 							mGuis->Get(gui.first)->Text.at("Input").Text += e->key.keysym.sym;
+						}
 					}					
 					if (e->key.keysym.sym == int(char(gui.second->Key.second)) && gui.second->Key.first)
 					{		

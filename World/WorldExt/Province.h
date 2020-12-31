@@ -9,6 +9,17 @@
 #include <fstream>
 #include <vector>
 
+enum Resources
+{
+	IRON,
+	OIL,
+	RUBBER,
+	WOOD,
+	GOLD,
+	CORN,
+	COUNT
+};
+
 struct ProvinceFormat
 {
 	std::string Type;
@@ -20,17 +31,8 @@ struct ProvinceFormat
 	unsigned int Id;
 	unsigned int Continent;
 
-	enum TYPE
-	{
-		IRON,
-		OIL,
-		RUBBER,
-		WOOD,
-		GOLD,
-		CORN,
-		MAX
-	};
-	int Resource[MAX]{ 0 };
+	
+	double Resource[Resources::COUNT]{ 0.0 };
 
 };
 

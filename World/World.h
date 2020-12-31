@@ -24,6 +24,27 @@
 #include "WorldExt/State.h"
 #include <boost/thread.hpp>
 
+typedef struct TargetCountry
+{
+	std::string CountryTag;
+	std::string TargetCountryTag;
+};
+
+typedef struct Diplomatic
+{
+	TargetCountry Target;
+	double Relations;
+};
+
+typedef struct Purchase
+{
+	TargetCountry Target;
+	Resources Resource; 
+	double Amount;
+};
+
+using Union = TargetCountry;
+
 class World final 
 {
 public:

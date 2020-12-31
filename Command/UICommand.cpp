@@ -105,7 +105,7 @@ void GetFormCommand::Execute()
 		{
 			mGui_ptr->Get("FormShowInput")->Text.at("Input").Text = element;
 			if (element != mGui_ptr->Get(*mFormName_ptr)->ShowToClick.back())
-				element += " ";
+				mGui_ptr->Get("FormShowInput")->Text.at("Input").Text += " ";
 		}
 
 		
@@ -114,7 +114,7 @@ void GetFormCommand::Execute()
 			mGui_ptr->Get("FormHideInput")->Text.at("Input").Text = element;
 
 			if (element != mGui_ptr->Get(*mFormName_ptr)->HideToClick.back())
-				element += " ";
+				mGui_ptr->Get("FormShowInput")->Text.at("Input").Text += " ";
 		}
 
 		mGui_ptr->Get("FormHotKeyInput")->Text.at("Input").Text =
@@ -229,7 +229,12 @@ void SaveFormCommand::Execute()
 
 	std::stringstream ss;
 	boost::property_tree::json_parser::write_json(ss, pt);
-	std::ofstream save(*this->mGuiSavePath + ".json");
+	std::ofstream save(*this->mGuiSavePath + ".json", std::ios::app);
+
+
+	
+
+
 	save << ss.str();
 	save.close();
 }

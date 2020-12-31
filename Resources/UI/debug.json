@@ -622,7 +622,8 @@
     "For": "",
     "CommandOnClick": "",
     "HideOnClickEvent": [
-      "FormSettings"
+      "FormSettings",
+      "SecondFormSettings"
     ],
     "Highlight": "false",
     "HighlightIntensity": "1",
@@ -811,7 +812,8 @@
     "For": "",
     "CommandOnClick": "",
     "ShowOnClickEvent": [
-      "FormSettings"
+      "FormSettings",
+      "SecondFormSettings"
     ],
     "Highlight": "false",
     "HighlightIntensity": "1",
@@ -2219,42 +2221,5 @@
     "Dynamic": "false",
     "Moveable": "true",
     "Parent": ""
-  },
-  "Background": {
-    "Texture": "-1",
-    "CenterPoint": {
-      "x": "0",
-      "y": "0"
-    },
-    "Scale": {
-      "x": "1",
-      "y": "1"
-    },
-    "Padding": {
-      "x": "0",
-      "y": "0"
-    },
-    "DebugElement": "true",
-    "Color": {
-      "r": "0",
-      "g": "0",
-      "b": "0",
-      "a": "1"
-    },
-    "Hover": {
-      "r": "0",
-      "g": "0",
-      "b": "0",
-      "a": "1"
-    },
-    "Visible": "true",
-    "Type": "",
-    "For": "",
-    "CommandOnClick": "",
-    "Highlight": "false",
-    "HighlightIntensity": "1",
-    "Dynamic": "false",
-    "Moveable": "false",
-    "Parent": ""
-  }
+  }  
 }

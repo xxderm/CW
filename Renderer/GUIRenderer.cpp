@@ -17,9 +17,11 @@ void GUIRenderer::Render()
 			auto parent = mGuis->Get(gui.second->Parent);;
 			auto xPos = parent->Position.x;
 			auto yPos = (parent->Position.y + parent->Scale.y) - gui.second->Scale.y;
+
 			gui.second->Position = glm::vec2(
 				xPos + gui.second->Padding.x,
 				yPos - gui.second->Padding.y);
+			
 
 			gui.second->Visible = mGuis->Get(gui.second->Parent)->Visible;
 		}
@@ -119,17 +121,28 @@ void GUIRenderer::Update()
 			// Если дистанция сброшена, то определить ее
 			if (mFormDistanceDifference.x == -2)
 				mFormDistanceDifference = center - mouse;
-			auto result = mouse + mFormDistanceDifference;			
-			gui.second->Position = result;	
+			auto result = mouse + mFormDistanceDifference;		
+
+			if (gui.second->Parent.empty())
+				gui.second->Position = result;
+			else
+			{				
+				// Движение дочернего элемента
+				auto parentPos = mGuis->Get(gui.second->Parent)->Position;
+				gui.second->Padding.x = mouse.x - parentPos.x;
+				gui.second->Padding.y = ((-mouse.y) - (parentPos.y)) + 0.0;
+			}
 		}		
-		// Получить свойства формы в режиме отладки
-		if (
-			mScene_ptr->getUser()->getStatus() == UserState::DEBUGGING &&
-			!gui.second->DebugElement &&
-			(mMouseButtonPressed && gui.second->Active) )
+		if (mScene_ptr->getUser()->getStatus() == UserState::DEBUGGING)
 		{
-			mFormNameTarget_ptr = gui.first;
-			mCommand.at("GetForm")->Execute();
+			// Получить свойства формы в режиме отладки
+			if (
+				(!gui.second->DebugElement || mScene_ptr->getEvent()->key.keysym.sym == SDLK_LCTRL) &&
+				(mMouseButtonPressed && gui.second->Active))
+			{
+				mFormNameTarget_ptr = gui.first;
+				mCommand.at("GetForm")->Execute();
+			}			
 		}
 	}
 }
@@ -168,9 +181,7 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 		if (e->key.keysym.sym == SDLK_F1)
 		{
 			mGuis->Clear();
-			mGuis->getGui().clear();
-			//mGuis.reset();
-			//mGuis = std::make_unique<GUITexture>();
+			mGuis->getGui().clear();	
 			Reader::getInstance()->getUI(mGuis.get(), mUiPath, true);
 		}
 		try
@@ -307,9 +318,7 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 
 						}
 					}
-					// Если форма активна, то деактивировать другие формы
-					//if (!gui.second->Active)
-						//mGuis->DeactivateAll();
+			
 					gui.second->Active = !gui.second->Active;	
 				}
 			}

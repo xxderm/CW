@@ -280,6 +280,17 @@ void ApplyFormSettingsCommand::Execute()
 	mGui_ptr->Get(*mFormName_ptr)->Type = mGui_ptr->Get("FormTypeInput")->Text.at("Input").Text;
 	mGui_ptr->Get(*mFormName_ptr)->For = mGui_ptr->Get("FormForInput")->Text.at("Input").Text;
 
+	if (mGui_ptr->Get("FormTypeInput")->Text.at("Input").Text == "Input")
+	{
+		Str tmp;
+		tmp.Scale = 1.0;
+		tmp.Color = glm::vec4(1, 1, 1, 1);
+		tmp.Text = "Input";
+		auto forPos = mGui_ptr->Get(mGui_ptr->Get("FormForInput")->Text.at("Input").Text);
+		tmp.Position = forPos->Position;
+		mGui_ptr->Get(*mFormName_ptr)->Text.emplace("Input", tmp);
+	}
+
 	mGui_ptr->Get(*mFormName_ptr)->Visible = std::stoi(mGui_ptr->Get("FormVisibleInput")->Text.at("Input").Text);
 
 	

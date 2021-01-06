@@ -324,7 +324,7 @@
     }
   },
 
-  // FRA
+
   "Country1": {
     "Texture": -1,
     "StaticCountryTag": "FRA",
@@ -351,7 +351,7 @@
     }
   },
 
-  // GER
+  
   "Country2": {
     "Texture": -1,
     "StaticCountryTag": "GER",
@@ -378,7 +378,7 @@
     }
   },
 
-  // SOV
+  
   "Country3": {
     "Texture": -1,
     "StaticCountryTag": "SOV",
@@ -405,7 +405,7 @@
     }
   },
 
-  // ENG
+
   "Country4": {
     "Texture": -1,
     "StaticCountryTag": "ENG",
@@ -432,7 +432,7 @@
     }
   },
 
-  // ITA
+
   "Country5": {
     "Texture": -1,
     "StaticCountryTag": "ITA",

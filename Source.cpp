@@ -1,5 +1,7 @@
 #include "Scene/MenuScene.h"
 #include "Scene/UIDebugScene.h"
+#include "Scene/GameScene.h"
+#include "Scene/CountrySelectScene.h"
 #undef main
 
 int main(int argc, char** argv)

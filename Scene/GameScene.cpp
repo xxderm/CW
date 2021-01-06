@@ -34,7 +34,7 @@ void GameScene::Init(Scene* scene)
 		mWorldRenderer->setMousePicker(mMousePicker);
 	}
 
-	mGUIRenderer = new GUIRenderer("Resources/UI/Main.ui", 30, scene);
+	mGUIRenderer = new GUIRenderer("Resources/UI/main.ui.json", 30, scene);
 	mGUIRenderer->Init(scene->getWindow());
 	mGUIRenderer->setCamera(mCamera);
 	mGUIRenderer->setMousePicker(mMousePicker);

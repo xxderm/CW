@@ -12,7 +12,7 @@ void CountrySelectScene::Init(Scene* scene)
 
 	mFocusCountryPtr = new unsigned char[3];
 	mWorldRenderer = new WorldRenderer(mFocusCountryPtr);
-	mGUIRenderer = new GUIRenderer("Resources/UI/CountrySelect.ui", 24, scene, mWorld);
+	mGUIRenderer = new GUIRenderer("Resources/UI/country select.ui.json", 24, scene, mWorld);
 
 	mWorldRenderer->Init(scene->getWindow());
 	mGUIRenderer->Init(scene->getWindow());

@@ -57,6 +57,15 @@ void Text::Init(const char* font, glm::vec2 scrSize, GLuint fontSize)
 	proj = glm::ortho(0.0f, static_cast<GLfloat>(scrSize.x), 0.0f, static_cast<GLfloat>(scrSize.y));
 }
 
+glm::mat4 CreateTransformationMatrix(glm::vec2 translation, glm::vec2 scale)
+{
+	glm::mat4 matrix =
+		glm::identity<glm::mat4>();
+	matrix *= glm::translate(glm::vec3(translation.x, translation.y, 0));
+	matrix *= glm::scale(glm::vec3(scale.x, scale.y, 1.f));
+	return matrix;
+}
+
 int Text::RenderText(std::string text, int x, int y, float scale, glm::vec4 color)
 {
 	int xLastCoord = x;
@@ -91,7 +100,7 @@ int Text::RenderText(std::string text, int x, int y, float scale, glm::vec4 colo
 			{ xpos, ypos + h, 0.0, 0.0 },
 			{ xpos + w, ypos, 1.0, 1.0 },
 			{ xpos + w, ypos + h, 1.0, 0.0 }
-		};
+		};		
 		glBindTexture(GL_TEXTURE_2D, ch.TextureID);
 		glBindBuffer(GL_ARRAY_BUFFER, mObject->VboID[0]);
 		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);

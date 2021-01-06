@@ -43,25 +43,31 @@ void GUIRenderer::Render()
 			glDisable(GL_DEPTH_TEST);
 			for (auto& text : gui.second->Text)
 			{
-				auto guiWndCoords = MousePicker::NormalizedDevCoordsToWindowsCoords(
+				auto guiWndCoords = glm::vec2(
 					gui.second->Position.x - gui.second->Scale.x,
-					gui.second->Position.y + gui.second->Scale.y,
-					glm::vec2(mWinX, mWinY));
+					gui.second->Position.y + gui.second->Scale.y);
 
-				float x = (guiWndCoords.x + 10) + text.second.Position.x;
-				float y = (guiWndCoords.y - 17.5) - text.second.Position.y;
+				auto normPos = text.second.Position;
+
+				auto x = (guiWndCoords.x + 0.01) + normPos.x;
+				auto y = (guiWndCoords.y - 0.0175) - normPos.y;
+
+				auto pos = MousePicker::NormalizedDevCoordsToWindowsCoords(x, y, glm::vec2(mWinX, mWinY));
+				
 
 				int PosX = mText.RenderText(
 						text.second.Text,
-						x,
-						y,
+					pos.x,
+					pos.y,
 						text.second.Scale,
 						glm::vec4(text.second.Color));
+
 				auto normCoords = MousePicker::getNormalizedDeviceCoords(PosX, y, glm::vec2(mWinX, mWinY));
 				if (normCoords.x >= gui.second->Position.x + gui.second->Scale.x)
 					text.second.Scale -= 0.05;
 				if (normCoords.x + 0.05 < gui.second->Position.x + gui.second->Scale.x && text.second.Scale < text.second.BaseScale)
 					text.second.Scale = text.second.BaseScale;
+
 			}
 			glEnable(GL_DEPTH_TEST);
 		}

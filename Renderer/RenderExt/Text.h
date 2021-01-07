@@ -20,10 +20,18 @@
 
 struct Character final
 {
-	GLuint     TextureID;
+	GLuint TextureID;
 	glm::ivec2 Size;
 	glm::ivec2 Bearing;
-	GLuint     Advance;
+	GLuint Advance;
+};
+
+enum TextAnchor
+{
+	LEFT,
+	RIGHT,
+	CENTER,
+	NONE
 };
 
 struct Str final
@@ -33,6 +41,7 @@ struct Str final
 	glm::vec4 Color;
 	float Scale = 1.0;
 	float BaseScale = 1.0;
+	TextAnchor Anchor = TextAnchor::NONE;
 };
 
 class Text final

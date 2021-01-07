@@ -11,6 +11,8 @@ void GUIRenderer::Render()
 {		
 	for (auto& gui : mGuis->getGui())
 	{
+	
+
 		// Передвигаться вместе с родительским элементом
 		if (!gui.second->Parent.empty())
 		{
@@ -28,6 +30,24 @@ void GUIRenderer::Render()
 
 		if (gui.second->Visible)
 		{
+
+
+			if (gui.second->Scroll)
+			{
+				glEnable(GL_SCISSOR_TEST);
+				gui.second->Position.y =
+					1 - MousePicker::getNormalizedDeviceCoords(0, mMouseY, glm::vec2(mWinX, mWinY)).y;
+
+				auto parentPos = mGuis->Get(gui.second->Parent)->Position;
+				auto parentScale = mGuis->Get(gui.second->Parent)->Scale;
+				
+
+				auto sciPos = MousePicker::NormalizedDevCoordsToWindowsCoords(parentPos.x, parentPos.y, glm::vec2(mWinX, mWinY));
+				auto sciSize = MousePicker::NormalizedDevCoordsToWindowsCoords(parentScale.x, parentScale.y - (1.0 - parentScale.y), glm::vec2(mWinX, mWinY));
+
+				glScissor(sciPos.x - (sciSize.x / 2), sciPos.y - (sciSize.y / 2) + 4, sciSize.x, sciSize.y - 4);
+			}
+
 			mProgram->Bind();
 			mProgram->setMat4("transformationMatrix",
 				CreateTransformationMatrix(gui.second->Position, gui.second->Scale));
@@ -40,6 +60,7 @@ void GUIRenderer::Render()
 			mQuad->Draw(GL_TRIANGLE_STRIP, 8);
 			mProgram->UnBind();	
 
+		
 			glDisable(GL_DEPTH_TEST);
 			for (auto& text : gui.second->Text)
 			{
@@ -69,7 +90,10 @@ void GUIRenderer::Render()
 					text.second.Scale = text.second.BaseScale;
 
 			}
-			glEnable(GL_DEPTH_TEST);
+			glEnable(GL_DEPTH_TEST);	
+
+			if (gui.second->Scroll)
+				glDisable(GL_SCISSOR_TEST);
 		}
 	}
 }
@@ -91,6 +115,54 @@ void GUIRenderer::Init(SDL_Window* wnd)
 	SDL_GetWindowSize(wnd, &mWinX, &mWinY);
 	mText.Init("Resources/font/17541.ttf", glm::vec2(mWinX, mWinY), this->mFontSize);
 	Reader::getInstance()->getUI(mGuis.get(), mUiPath);
+	
+	GuiFormat* slider = new GuiFormat();
+	slider->Position = glm::vec2(0.2, 0.0);
+	slider->Color = glm::vec4(0, 0, 1, 1);
+	slider->baseColor = slider->Color;
+	slider->hoverColor = slider->Color;
+	slider->Visible = 1;
+	slider->Name = "Slider";
+	slider->Scale = glm::vec2(0.02, 0.04);
+	slider->Type = "Scroll";
+	slider->For = "TestG1";
+
+	GuiFormat* parent = new GuiFormat();
+	parent->Name = "parent";
+	parent->Color = glm::vec4(0.5);
+	parent->baseColor = parent->Color;
+	parent->hoverColor = parent->Color;
+	parent->Visible = 1;
+	parent->Position = glm::vec2(-0.5, 0.0);
+	parent->Scale = glm::vec2(0.2, 0.4);
+
+	GuiFormat* format = new GuiFormat();
+	format->Name = "TestG1";
+	format->Color = glm::vec4(1);
+	format->baseColor = format->Color;
+	format->hoverColor = format->Color;
+	format->Visible = 1;
+	format->Position = glm::vec2(0.0, 0.0);
+	format->Padding = format->Position;
+	format->Scale = glm::vec2(0.2, 3);
+	format->Scroll = 1;
+	format->Parent = "parent";
+	Str tmp;
+	tmp.Scale = 1;
+	tmp.BaseScale = 1;
+	tmp.Color = glm::vec4(1, 0, 1, 1);
+	tmp.Text = "Test";
+	tmp.Position = glm::vec2(0.0, 0.126);
+	format->Text.emplace("Test", tmp);
+	for (size_t i = 0; i < 40; i++)
+	{
+		tmp.Position.y += 0.086;
+		format->Text.emplace("Test" + std::to_string(i), tmp);
+	}
+	mGuis->Add("TestG1", format);
+	mGuis->Add("parent", parent);
+	mGuis->Add("Slider", slider);
+
 
 
 	mCommand.emplace("Exit", new ExitCommand(mScene_ptr));

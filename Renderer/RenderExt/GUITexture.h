@@ -44,6 +44,7 @@ struct GuiFormat
 	glm::vec4 baseColor = glm::vec4(1, 1, 1, 0.5);
 	bool Active = false;
 	bool DebugElement = false;
+	bool Scroll = false;
 };
 
 class GUITexture final

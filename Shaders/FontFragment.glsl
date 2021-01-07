@@ -5,7 +5,7 @@ out vec4 color;
 uniform sampler2D text;
 uniform vec4 textColor;
 
-const float width = 0.5;
+const float width = 0.6;
 const float edge = 0.1;
 
 

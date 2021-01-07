@@ -61,7 +61,7 @@ void BufferObject::Draw(GLuint type, GLsizei count)
 {
 	Bind();
 	//glDrawArrays(type, 0, count);	
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, VboID[2]);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, VboID[2]);	
 	glDrawElements(type, count, GL_UNSIGNED_INT, (void*)0);
 	UnBind();
 	/*glBegin(GL_QUADS);

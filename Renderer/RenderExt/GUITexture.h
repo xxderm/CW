@@ -45,6 +45,7 @@ struct GuiFormat
 	bool Active = false;
 	bool DebugElement = false;
 	bool Scroll = false;
+	glm::vec2 ScrollPosition = glm::vec2(0.0);
 };
 
 class GUITexture final
@@ -56,6 +57,9 @@ public:
 	GuiFormat* Get(std::string Name);
 	void SetVisible(std::string Name, bool v);
 	void SetColor(std::string Name, glm::vec4 Color);
+	void SetPosition(std::string Name, glm::vec2 Pos);
+	void SetPositionY(std::string Name, float yPos);
+	void SetPositionX(std::string Name, float xPos);
 	void ShareChildsVisible(std::string Parent, bool visible);
 	bool isAllInputHidden();
 	void DeactivateAll();

@@ -14,12 +14,13 @@ void GUIRenderer::Render()
 	
 
 		// Передвигаться вместе с родительским элементом
-		if (!gui.second->Parent.empty())
+		if (!gui.second->Parent.empty() )
 		{
 			auto parent = mGuis->Get(gui.second->Parent);;
 			auto xPos = parent->Position.x;
-			auto yPos = (parent->Position.y + parent->Scale.y) - gui.second->Scale.y;
+			auto yPos = ( (parent->Position.y + parent->Scale.y) - gui.second->Scale.y) + gui.second->ScrollPosition.y;
 
+			
 			gui.second->Position = glm::vec2(
 				xPos + gui.second->Padding.x,
 				yPos - gui.second->Padding.y);
@@ -30,13 +31,11 @@ void GUIRenderer::Render()
 
 		if (gui.second->Visible)
 		{
-
-
+			// Использовать ножницы при прокрутке
 			if (gui.second->Scroll)
 			{
 				glEnable(GL_SCISSOR_TEST);
-				gui.second->Position.y =
-					1 - MousePicker::getNormalizedDeviceCoords(0, mMouseY, glm::vec2(mWinX, mWinY)).y;
+				
 
 				auto parentPos = mGuis->Get(gui.second->Parent)->Position;
 				auto parentScale = mGuis->Get(gui.second->Parent)->Scale;
@@ -185,7 +184,7 @@ void GUIRenderer::Update()
 	SDL_GetMouseState(&mMouseX, &mMouseY);
 
 	for (auto& gui : mGuis->getGui())
-	{	
+	{			
 		if (gui.second->Moveable &&
 			(				
 				gui.second->Active &&
@@ -221,7 +220,16 @@ void GUIRenderer::Update()
 				mFormNameTarget_ptr = gui.first;
 				mCommand.at("GetForm")->Execute();
 			}			
-		}		
+		}	
+		if (gui.second->Type == "Scroll")
+		{
+			// Если кнопка нажати, то передвигать форму
+			if (mMouseButtonPressed)
+			{
+				auto content = mGuis->Get(gui.second->For);
+				content->ScrollPosition.y = 1. - MousePicker::getNormalizedDeviceCoords(0, mMouseY, glm::vec2(mWinX, mWinY)).y;
+			}
+		}
 	}
 }
 
@@ -265,7 +273,7 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 		try
 		{
 			for (auto& gui : this->mGuis->getGui())
-			{
+			{				
 				if (gui.second->Type == "Input")
 				{
 					if ((e->key.keysym.sym != SDLK_LSHIFT && e->key.keysym.sym != SDLK_LALT && e->key.keysym.sym != SDLK_BACKQUOTE) && gui.second->Active)

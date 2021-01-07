@@ -46,6 +46,27 @@ void GUITexture::SetColor(std::string Name, glm::vec4 Color)
 	}
 }
 
+void GUITexture::SetPosition(std::string Name, glm::vec2 Pos)
+{
+	for (auto& gui : mGuis)
+		if (gui.first == Name)
+			gui.second->Position = Pos;
+}
+
+void GUITexture::SetPositionY(std::string Name, float yPos)
+{
+	for (auto& gui : mGuis)
+		if (gui.first == Name)
+			gui.second->Position.y = yPos;
+}
+
+void GUITexture::SetPositionX(std::string Name, float xPos)
+{
+	for (auto& gui : mGuis)
+		if (gui.first == Name)
+			gui.second->Position.x = xPos;
+}
+
 void GUITexture::ShareChildsVisible(std::string Parent, bool visible)
 {
 	for (auto& i : mGuis)

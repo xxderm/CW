@@ -74,6 +74,10 @@ void GetFormCommand::Execute()
 	{
 		mGui_ptr->Get("FormNameInput")->Text.at("Input").Text =
 			mGui_ptr->Get(*mFormName_ptr)->Name;
+
+		mGui_ptr->Get("FormTextureInput")->Text.at("Input").Text =
+			std::to_string(mGui_ptr->Get(*mFormName_ptr)->TextureId);
+
 		mGui_ptr->Get("FormScaleInput")->Text.at("Input").Text =
 			std::to_string(mGui_ptr->Get(*mFormName_ptr)->Scale.x) + " " +
 			std::to_string(mGui_ptr->Get(*mFormName_ptr)->Scale.y);
@@ -148,42 +152,43 @@ void SaveFormCommand::Execute()
 	for (auto& element : mGui_ptr->getGui())
 	{
 		if (element.second->DebugElement)
-			;//continue;
+			continue;
 		pt.put(element.second->Name + ".Texture", element.second->TextureId);
-		pt.put(element.first + ".CenterPoint.x", element.second->Position.x);
-		pt.put(element.first + ".CenterPoint.y", element.second->Position.y);
-		pt.put(element.first + ".Scale.x", element.second->Scale.x);
-		pt.put(element.first + ".Scale.y", element.second->Scale.y);
+		pt.put(element.second->Name + ".CenterPoint.x", element.second->Position.x);
+		pt.put(element.second->Name + ".CenterPoint.y", element.second->Position.y);
+		pt.put(element.second->Name + ".Scale.x", element.second->Scale.x);
+		pt.put(element.second->Name + ".Scale.y", element.second->Scale.y);
 
-		pt.put(element.first + ".Padding.x", element.second->Padding.x);
-		pt.put(element.first + ".Padding.y", element.second->Padding.y);
+		pt.put(element.second->Name + ".Padding.x", element.second->Padding.x);
+		pt.put(element.second->Name + ".Padding.y", element.second->Padding.y);
 
-		pt.put(element.first + ".DebugElement", element.second->DebugElement);
+		pt.put(element.second->Name + ".DebugElement", element.second->DebugElement);
+		pt.put(element.second->Name + ".Scroll", element.second->Scroll);
 
 		for (auto& text : element.second->Text)
 		{
-			pt.put(element.first + ".Text." + text.first + ".String", text.second.Text);
-			pt.put(element.first + ".Text." + text.first + ".Location.x", text.second.Position.x);
-			pt.put(element.first + ".Text." + text.first + ".Location.y", text.second.Position.y);
-			pt.put(element.first + ".Text." + text.first + ".Color.r", text.second.Color.r);
-			pt.put(element.first + ".Text." + text.first + ".Color.g", text.second.Color.g);
-			pt.put(element.first + ".Text." + text.first + ".Color.b", text.second.Color.b);
-			pt.put(element.first + ".Text." + text.first + ".Color.a", text.second.Color.a);
-			pt.put(element.first + ".Text." + text.first + ".Name", text.first);
-			pt.put(element.first + ".Text." + text.first + ".Scale", text.second.Scale);
+			pt.put(element.second->Name + ".Text." + text.first + ".String", text.second.Text);
+			pt.put(element.second->Name + ".Text." + text.first + ".Location.x", text.second.Position.x);
+			pt.put(element.second->Name + ".Text." + text.first + ".Location.y", text.second.Position.y);
+			pt.put(element.second->Name + ".Text." + text.first + ".Color.r", text.second.Color.r);
+			pt.put(element.second->Name + ".Text." + text.first + ".Color.g", text.second.Color.g);
+			pt.put(element.second->Name + ".Text." + text.first + ".Color.b", text.second.Color.b);
+			pt.put(element.second->Name + ".Text." + text.first + ".Color.a", text.second.Color.a);
+			pt.put(element.second->Name + ".Text." + text.first + ".Name", text.first);
+			pt.put(element.second->Name + ".Text." + text.first + ".Scale", text.second.Scale);
 		}
-		pt.put(element.first + ".Color.r", element.second->baseColor.r);
-		pt.put(element.first + ".Color.g", element.second->baseColor.g);
-		pt.put(element.first + ".Color.b", element.second->baseColor.b);
-		pt.put(element.first + ".Color.a", element.second->baseColor.a);
-		pt.put(element.first + ".Hover.r", element.second->hoverColor.r);
-		pt.put(element.first + ".Hover.g", element.second->hoverColor.g);
-		pt.put(element.first + ".Hover.b", element.second->hoverColor.b);
-		pt.put(element.first + ".Hover.a", element.second->hoverColor.a);
-		pt.put(element.first + ".Visible", element.second->Visible);
-		pt.put(element.first + ".Type", element.second->Type);
-		pt.put(element.first + ".For", element.second->For);
-		pt.put(element.first + ".CommandOnClick", element.second->CommandOnClick.first);
+		pt.put(element.second->Name + ".Color.r", element.second->baseColor.r);
+		pt.put(element.second->Name + ".Color.g", element.second->baseColor.g);
+		pt.put(element.second->Name + ".Color.b", element.second->baseColor.b);
+		pt.put(element.second->Name + ".Color.a", element.second->baseColor.a);
+		pt.put(element.second->Name + ".Hover.r", element.second->hoverColor.r);
+		pt.put(element.second->Name + ".Hover.g", element.second->hoverColor.g);
+		pt.put(element.second->Name + ".Hover.b", element.second->hoverColor.b);
+		pt.put(element.second->Name + ".Hover.a", element.second->hoverColor.a);
+		pt.put(element.second->Name + ".Visible", element.second->Visible);
+		pt.put(element.second->Name + ".Type", element.second->Type);
+		pt.put(element.second->Name + ".For", element.second->For);
+		pt.put(element.second->Name + ".CommandOnClick", element.second->CommandOnClick.first);
 		
 		if (!element.second->ShowToClick.empty())
 		{
@@ -195,7 +200,7 @@ void SaveFormCommand::Execute()
 				children.push_back({"", child});
 			}
 
-			pt.add_child(element.first + ".ShowOnClickEvent", children);
+			pt.add_child(element.second->Name + ".ShowOnClickEvent", children);
 		}
 		if (!element.second->HideToClick.empty())
 		{
@@ -206,25 +211,25 @@ void SaveFormCommand::Execute()
 				child.put("", name);
 				children.push_back({ "", child });
 			}
-			pt.add_child(element.first + ".HideOnClickEvent", children);
+			pt.add_child(element.second->Name + ".HideOnClickEvent", children);
 		}
 
 		if(element.second->Key.first)
-			pt.put(element.first + ".Key", (char)element.second->Key.second);	
+			pt.put(element.second->Name + ".Key", (char)element.second->Key.second);	
 
-		pt.put(element.first + ".Highlight", element.second->ActiveHighlight);
-		pt.put(element.first + ".HighlightIntensity", element.second->ActiveHighlightIntensity);
+		pt.put(element.second->Name + ".Highlight", element.second->ActiveHighlight);
+		pt.put(element.second->Name + ".HighlightIntensity", element.second->ActiveHighlightIntensity);
 		
 		if(element.second->LobbyIndex != -1)
-			pt.put(element.first + ".Lobby", element.second->LobbyIndex);
+			pt.put(element.second->Name + ".Lobby", element.second->LobbyIndex);
 
-		pt.put(element.first + ".Dynamic", element.second->DynamicText);
+		pt.put(element.second->Name + ".Dynamic", element.second->DynamicText);
 
 		if(!element.second->SelectedCountryTag.empty())
-			pt.put(element.first + ".StaticCountryTag", element.second->SelectedCountryTag);
+			pt.put(element.second->Name + ".StaticCountryTag", element.second->SelectedCountryTag);
 
-		pt.put(element.first + ".Moveable", element.second->Moveable);
-		pt.put(element.first + ".Parent", element.second->Parent);
+		pt.put(element.second->Name + ".Moveable", element.second->Moveable);
+		pt.put(element.second->Name + ".Parent", element.second->Parent);
 	}
 
 	std::stringstream ss;
@@ -247,6 +252,8 @@ ApplyFormSettingsCommand::ApplyFormSettingsCommand(GUITexture* Gui_ptr, std::str
 void ApplyFormSettingsCommand::Execute()
 {	 
 	mGui_ptr->Get(*mFormName_ptr)->Name = mGui_ptr->Get("FormNameInput")->Text.at("Input").Text;
+
+	mGui_ptr->Get(*mFormName_ptr)->TextureId = std::stoi(mGui_ptr->Get("FormTextureInput")->Text.at("Input").Text);
 
 	auto Scale = Reader::getInstance()->split(mGui_ptr->Get("FormScaleInput")->Text.at("Input").Text, " ");
 	mGui_ptr->Get(*mFormName_ptr)->Scale.x = std::stof(Scale[0]);

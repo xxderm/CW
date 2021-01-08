@@ -50,12 +50,12 @@ void GUIRenderer::Render()
 			mProgram->Bind();
 			mProgram->setMat4("transformationMatrix",
 				CreateTransformationMatrix(gui.second->Position, gui.second->Scale));
+			if (gui.second->TextureId == -1)
+				mProgram->setBool("TextureMode", false);
+			else
+				mProgram->setBool("TextureMode", true);
 			mProgram->setInt("guiTexture", gui.second->TextureId);
 			mProgram->setVec4("guiColor", gui.second->Color);
-			if (gui.second->TextureId == -1)
-				mProgram->setBool("TextureMode", 0);
-			else
-				mProgram->setBool("TextureMode", 1);
 			mQuad->Draw(GL_TRIANGLE_STRIP, 8);
 			mProgram->UnBind();	
 
@@ -110,6 +110,22 @@ void GUIRenderer::Init(SDL_Window* wnd)
 	float Vertices[] = { -1, 1, -1, -1, 1, 1, 1, -1 };
 	int Indices[] = { 0, 1, 2, 3, 4, 5, 6, 7 };
 	mQuad->Set(Vertices, nullptr, Indices, GL_STATIC_DRAW, 4 * 8, 0, 4 * 8, 2);
+	mTexture = std::make_unique<Texture>();
+
+
+	this->InitTextures("Resources/gui texture.json");
+
+	for (auto& texture : mTextures)
+	{		
+		mTexture->Add(
+			texture->Size,
+			mTextureDatas.at(texture->Name),
+			texture->Format, texture->ID,
+			texture->Param
+		);
+		mProgram->setInt(texture->UniformName, texture->UniformID);
+	}
+
 	mQuad->UnBind();
 	mProgram->UnBind();
 
@@ -120,66 +136,7 @@ void GUIRenderer::Init(SDL_Window* wnd)
 	mText.Init("Resources/font/17541.ttf", glm::vec2(mWinX, mWinY), this->mFontSize);
 	Reader::getInstance()->getUI(mGuis.get(), mUiPath);
 	
-	GuiFormat* slider = new GuiFormat();
-	slider->Padding = glm::vec2(0.18, 0.0);
-	slider->Color = glm::vec4(0, 0, 1, 1);
-	slider->baseColor = slider->Color;
-	slider->hoverColor = slider->Color;
-	slider->Visible = 1;
-	slider->Name = "Slider";
-	slider->Scale = glm::vec2(0.02, 0.04);
-	slider->Type = "Scroll";
-	slider->For = "TestG1";
-	slider->Parent = "parent";
-
-	GuiFormat* parent = new GuiFormat();
-	parent->Name = "parent";
-	parent->Color = glm::vec4(0.5);
-	parent->baseColor = parent->Color;
-	parent->hoverColor = parent->Color;
-	parent->Visible = 1;
-	parent->Position = glm::vec2(-0.5, 0.0);
-	parent->Scale = glm::vec2(0.2, 0.4);
-
-	GuiFormat* format = new GuiFormat();
-	format->Name = "TestG1";
-	format->Color = glm::vec4(1);
-	format->baseColor = format->Color;
-	format->hoverColor = format->Color;
-	format->Visible = 1;
-	format->Position = glm::vec2(0.0, 0.0);
-	format->Padding = format->Position;
-	format->Scale = glm::vec2(0.2, 3);
-	format->Scroll = 1;
-	format->Parent = "parent";
-	Str tmp;
-	tmp.Scale = 1;
-	tmp.BaseScale = 1;
-	tmp.Color = glm::vec4(1, 0, 1, 1);
-	tmp.Text = "Test";
-	tmp.Position = glm::vec2(0.0, 0.126);
-	format->Text.emplace("Test", tmp);
-	for (size_t i = 0; i < 40; i++)
-	{
-		tmp.Position.y += 0.086;
-		format->Text.emplace("Test" + std::to_string(i), tmp);
-	}
-	for (size_t i = 0; i < 15; i++)
-	{
-		GuiFormat* element = new GuiFormat();
-		element->Name = "Element" + std::to_string(i);
-		element->Color = glm::vec4(0.3);
-		element->baseColor = element->Color;
-		element->hoverColor = glm::vec4(0.5);
-		element->Visible = 1;
-		element->Padding = glm::vec2(0.002, 0.1 + (i) );
-		element->Scale = glm::vec2(0.15, 0.1);
-		element->Parent = "TestG1";
-		mGuis->Add(element->Name, element);
-	}
-	mGuis->Add("Slider", slider);
-	mGuis->Add("TestG1", format);
-	mGuis->Add("parent", parent);
+	
 
 	// Комманды
 	mCommand.emplace("Exit", new ExitCommand(mScene_ptr));
@@ -363,10 +320,10 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 	}	
 
 	for (auto& gui : this->mGuis->getGui())
-	{			
+	{	
 		if (gui.second->Visible)
 		{		
-			// Динамически заполнять поля
+			// Динамически заполняемые поля
 			if (gui.second->DynamicText)
 			{
 				if (mScene_ptr->getUser()->getCountry())

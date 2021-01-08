@@ -6,7 +6,7 @@ out vec4 out_Color;
 
 uniform sampler2D guiTexture;
 uniform vec4 guiColor;
-uniform bool TextureMode;
+uniform bool TextureMode = false;
 
 void main()
 {	

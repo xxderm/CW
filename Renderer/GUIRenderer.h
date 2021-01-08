@@ -25,6 +25,7 @@ private:
 private:
 	std::unique_ptr<BufferObject> mQuad;
 	std::unique_ptr<Shader> mProgram;
+	std::unique_ptr<Texture> mTexture;
 	std::unique_ptr<GUITexture> mGuis;
 	Text mText;
 	int mWinX, mWinY;

@@ -32,17 +32,21 @@ void IRenderer::InitTextures(std::string manifest)
 
 	for (auto& texture : mTextures)
 		this->AsyncLoadTexture(texture->Path, texture->Name);
+
 	this->textureLoadThreads.join_all();
 
 	for (auto& thread : this->mThreads)
 		this->textureLoadThreads.remove_thread(thread);
+
+	TextureConfig.close();
 }
 
 void IRenderer::AsyncLoadTexture(std::string Path, std::string TextureName)
 {
 	mThreads.push_back(new boost::thread([this](std::string path, std::string name)
 		{
-			mTextureDatas.emplace(name, stbi_load(path.c_str(), &mTextureX, &mTextureY, &mTextureChanel, 0));
+			boost::lock_guard<boost::mutex> {mThreadMutex};
+			mTextureDatas.try_emplace(name.c_str(), stbi_load(path.c_str(), &mTextureX, &mTextureY, &mTextureChanel, 0));
 		}, Path, TextureName));
 	textureLoadThreads.add_thread(mThreads.back());
 }

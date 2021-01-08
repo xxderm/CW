@@ -24,6 +24,7 @@ protected:
 	void AsyncLoadTexture(std::string Path,	std::string TextureName);
 	int mTextureX, mTextureY, mTextureChanel;
 	boost::thread_group textureLoadThreads;
+	boost::mutex mThreadMutex;
 	std::unordered_map<std::string, stbi_uc*> mTextureDatas;
 	std::vector<boost::thread*> mThreads;
 	std::vector<TextureFormat*> mTextures;

@@ -1,4 +1,58 @@
-{
+{ 
+  "FormTextureInput": {
+    "Texture": "-1",
+    "CenterPoint": {
+      "x": "0.842500031",
+      "y": "0.852555633"
+    },
+    "Scale": {
+      "x": "0.129999995",
+      "y": "0.0299999993"
+    },
+    "Padding": {
+      "x": "0.0549999997",
+      "y": "0.58"
+    },
+    "DebugElement": "true",
+    "Text": {
+      "Input": {
+        "String": "",
+        "Location": {
+          "x": "0",
+          "y": "0.026"
+        },
+        "Color": {
+          "r": "1",
+          "g": "1",
+          "b": "1",
+          "a": "1"
+        },
+        "Name": "Input",
+        "Scale": "0.649999976"
+      }
+    },
+    "Color": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Hover": {
+      "r": "0.5",
+      "g": "0.5",
+      "b": "0.5",
+      "a": "1"
+    },
+    "Visible": "true",
+    "Type": "Input",
+    "For": "SecondFormSettings",
+    "CommandOnClick": "",
+    "Highlight": "false",
+    "HighlightIntensity": "1",
+    "Dynamic": "false",
+    "Moveable": "false",
+    "Parent": "SecondFormSettings"
+  },
   "FormVisibleInput": {
     "Texture": "-1",
     "CenterPoint": {
@@ -577,6 +631,21 @@
           "a": "1"
         },
         "Name": "PaddingTitle",
+        "Scale": "0.649999976"
+      },
+	   "TextureTitle": {
+        "String": "Текстура.:",
+        "Location": {
+          "x": "0.0",
+          "y": "0.61"
+        },
+        "Color": {
+          "r": "0",
+          "g": "0",
+          "b": "0",
+          "a": "1"
+        },
+        "Name": "TextureTitle",
         "Scale": "0.649999976"
       }
     },
@@ -2221,5 +2290,5 @@
     "Dynamic": "false",
     "Moveable": "true",
     "Parent": ""
-  }  
+  } 
 }

@@ -245,6 +245,8 @@ void Reader::getUI(GUITexture* guis, std::string path, bool update)
             );
         if (gui_element.second.count("Visible") > 0) 
             gui->Visible = gui_element.second.get<bool>("Visible");
+        if (gui_element.second.count("Scroll") > 0)
+            gui->Scroll = gui_element.second.get<bool>("Scroll");
         if (gui_element.second.count("Parent") > 0)
             gui->Parent = gui_element.second.get<std::string>("Parent");
         if (gui_element.second.count("Type") > 0)

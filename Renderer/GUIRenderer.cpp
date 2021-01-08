@@ -116,7 +116,7 @@ void GUIRenderer::Init(SDL_Window* wnd)
 	Reader::getInstance()->getUI(mGuis.get(), mUiPath);
 	
 	GuiFormat* slider = new GuiFormat();
-	slider->Position = glm::vec2(0.2, 0.0);
+	slider->Padding = glm::vec2(0.18, 0.0);
 	slider->Color = glm::vec4(0, 0, 1, 1);
 	slider->baseColor = slider->Color;
 	slider->hoverColor = slider->Color;
@@ -125,6 +125,7 @@ void GUIRenderer::Init(SDL_Window* wnd)
 	slider->Scale = glm::vec2(0.02, 0.04);
 	slider->Type = "Scroll";
 	slider->For = "TestG1";
+	slider->Parent = "parent";
 
 	GuiFormat* parent = new GuiFormat();
 	parent->Name = "parent";
@@ -158,9 +159,9 @@ void GUIRenderer::Init(SDL_Window* wnd)
 		tmp.Position.y += 0.086;
 		format->Text.emplace("Test" + std::to_string(i), tmp);
 	}
+	mGuis->Add("Slider", slider);
 	mGuis->Add("TestG1", format);
 	mGuis->Add("parent", parent);
-	mGuis->Add("Slider", slider);
 
 
 
@@ -179,6 +180,7 @@ void GUIRenderer::Update()
 {
 	this->Listen();
 	//Reader::getInstance()->getUI(mGuis.get(), mUiPath, true);
+
 
 
 	SDL_GetMouseState(&mMouseX, &mMouseY);
@@ -223,11 +225,36 @@ void GUIRenderer::Update()
 		}	
 		if (gui.second->Type == "Scroll")
 		{
-			// Если кнопка нажати, то передвигать форму
-			if (mMouseButtonPressed)
+			// Если кнопка нажата, то передвигать форму
+			if (
+				gui.second->isHovered(MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY))) &&
+				mMouseButtonPressed
+				)
 			{
+				auto parent = mGuis->Get(gui.second->Parent);
+				auto minPosY = parent->Position.y + (parent->Scale.y);
+				auto maxPosY = parent->Position.y - (parent->Scale.y);
+				auto currentScrollPos = MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY)).y;									
+				auto different = (minPosY) - (currentScrollPos);				
+				gui.second->Padding.y = different - 0.04;
+
+				auto sliderScale = gui.second->Scale.y * 2;
+				auto sliderPosMin = (gui.second->Padding.y);
+				auto sliderPosMax = gui.second->Padding.y + (sliderScale);
+				auto maxPoint = parent->Scale.y * 2;
+
+				if (sliderPosMin < 0.0)
+					gui.second->Padding.y = 0.0;
+				if (sliderPosMax > maxPoint)
+					gui.second->Padding.y = maxPoint - sliderScale;
+
 				auto content = mGuis->Get(gui.second->For);
-				content->ScrollPosition.y = 1. - MousePicker::getNormalizedDeviceCoords(0, mMouseY, glm::vec2(mWinX, mWinY)).y;
+				auto slidePercent = (gui.second->Padding.y) / maxPoint;
+				auto contentMaxPoint = (content->Scale.y * 2);
+				auto contentPos = contentMaxPoint * slidePercent;
+				if (contentPos + sliderScale > contentMaxPoint)
+					contentPos = contentMaxPoint;
+				content->ScrollPosition.y = contentPos;
 			}
 		}
 	}
@@ -278,11 +305,11 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 				{
 					if ((e->key.keysym.sym != SDLK_LSHIFT && e->key.keysym.sym != SDLK_LALT && e->key.keysym.sym != SDLK_BACKQUOTE) && gui.second->Active)
 					{
-						// erase last sym
+						// Удалить последний символ
 						if (e->key.keysym.sym == SDLK_BACKSPACE && mGuis->Get(gui.first)->Text.at("Input").Text.size() > 0)
 							mGuis->Get(gui.first)->Text.at("Input").Text
 							.erase(mGuis->Get(gui.first)->Text.at("Input").Text.end() - 1);
-						// add sym
+						// Добавить символ
 						else if (mShiftIsPressed)
 						{
 							mGuis->Get(gui.first)->Text.at("Input").Text += std::toupper(e->key.keysym.sym);
@@ -291,7 +318,8 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 						{							
 							mGuis->Get(gui.first)->Text.at("Input").Text += e->key.keysym.sym;
 						}
-					}					
+					}				
+					// Переключить видимость формы при нажатии на горячие клавиши
 					if (e->key.keysym.sym == int(char(gui.second->Key.second)) && gui.second->Key.first)
 					{		
 						gui.second->Visible = !gui.second->Visible;

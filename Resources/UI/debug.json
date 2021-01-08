@@ -1955,7 +1955,7 @@
     "DebugElement": "true",
     "Text": {
       "Input": {
-        "String": "Resources\/UI\/debug",
+        "String": "Resources\/UI\/debug1",
         "Location": {
           "x": "0",
           "y": "0.026"

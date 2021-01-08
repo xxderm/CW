@@ -25,7 +25,7 @@ void GUIRenderer::Render()
 				xPos + gui.second->Padding.x,
 				yPos - gui.second->Padding.y);
 			
-
+			// Принять видимость от родительского элемента
 			gui.second->Visible = mGuis->Get(gui.second->Parent)->Visible;
 		}
 
@@ -34,19 +34,19 @@ void GUIRenderer::Render()
 			// Использовать ножницы при прокрутке
 			if (gui.second->Scroll)
 			{
-				glEnable(GL_SCISSOR_TEST);
-				
-
-				auto parentPos = mGuis->Get(gui.second->Parent)->Position;
-				auto parentScale = mGuis->Get(gui.second->Parent)->Scale;
-				
-
-				auto sciPos = MousePicker::NormalizedDevCoordsToWindowsCoords(parentPos.x, parentPos.y, glm::vec2(mWinX, mWinY));
-				auto sciSize = MousePicker::NormalizedDevCoordsToWindowsCoords(parentScale.x, parentScale.y - (1.0 - parentScale.y), glm::vec2(mWinX, mWinY));
-
-				glScissor(sciPos.x - (sciSize.x / 2), sciPos.y - (sciSize.y / 2) + 4, sciSize.x, sciSize.y - 4);
+				ApplyScissors(gui.second->Parent);
+			}
+			// Если родительский элемент имеет ножницы
+			if (!gui.second->Parent.empty())
+			{
+				if (mGuis->Get(gui.second->Parent)->Scroll)
+				{
+					auto parent = mGuis->Get(gui.second->Parent);
+					ApplyScissors(parent->Parent);
+				}
 			}
 
+			// Рендер формы
 			mProgram->Bind();
 			mProgram->setMat4("transformationMatrix",
 				CreateTransformationMatrix(gui.second->Position, gui.second->Scale));
@@ -60,6 +60,7 @@ void GUIRenderer::Render()
 			mProgram->UnBind();	
 
 		
+			// Рендер текста формы
 			glDisable(GL_DEPTH_TEST);
 			for (auto& text : gui.second->Text)
 			{
@@ -91,6 +92,10 @@ void GUIRenderer::Render()
 			}
 			glEnable(GL_DEPTH_TEST);	
 
+			// Отключать тест на ножницы при наличии возможности прокрутки формы
+			if (!gui.second->Parent.empty())
+				if(mGuis->Get(gui.second->Parent)->Scroll)
+					glDisable(GL_SCISSOR_TEST);
 			if (gui.second->Scroll)
 				glDisable(GL_SCISSOR_TEST);
 		}
@@ -159,12 +164,24 @@ void GUIRenderer::Init(SDL_Window* wnd)
 		tmp.Position.y += 0.086;
 		format->Text.emplace("Test" + std::to_string(i), tmp);
 	}
+	for (size_t i = 0; i < 15; i++)
+	{
+		GuiFormat* element = new GuiFormat();
+		element->Name = "Element" + std::to_string(i);
+		element->Color = glm::vec4(0.3);
+		element->baseColor = element->Color;
+		element->hoverColor = glm::vec4(0.5);
+		element->Visible = 1;
+		element->Padding = glm::vec2(0.002, 0.1 + (i) );
+		element->Scale = glm::vec2(0.15, 0.1);
+		element->Parent = "TestG1";
+		mGuis->Add(element->Name, element);
+	}
 	mGuis->Add("Slider", slider);
 	mGuis->Add("TestG1", format);
 	mGuis->Add("parent", parent);
 
-
-
+	// Комманды
 	mCommand.emplace("Exit", new ExitCommand(mScene_ptr));
 	mCommand.emplace("Start", new ChangeSceneCommand(mScene_ptr, CountrySelectScene::getInstance()));
 	mCommand.emplace("GetLobbies", new GetLobbyListCommand(mScene_ptr->getPacket(), mScene_ptr->getSocket()));
@@ -291,16 +308,20 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 	{
 		if (e->key.keysym.sym == SDLK_LSHIFT)
 			mShiftIsPressed = true;
+
+		// Обновить формы
 		if (e->key.keysym.sym == SDLK_F1)
 		{
 			mGuis->Clear();
 			mGuis->getGui().clear();	
 			Reader::getInstance()->getUI(mGuis.get(), mUiPath, true);
 		}
+
 		try
 		{
 			for (auto& gui : this->mGuis->getGui())
-			{				
+			{		
+				// Обработка форм ввода
 				if (gui.second->Type == "Input")
 				{
 					if ((e->key.keysym.sym != SDLK_LSHIFT && e->key.keysym.sym != SDLK_LALT && e->key.keysym.sym != SDLK_BACKQUOTE) && gui.second->Active)
@@ -319,7 +340,7 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 							mGuis->Get(gui.first)->Text.at("Input").Text += e->key.keysym.sym;
 						}
 					}				
-					// Переключить видимость формы при нажатии на горячие клавиши
+					// Переключить видимость формы при нажатии на горячие клавиши 
 					if (e->key.keysym.sym == int(char(gui.second->Key.second)) && gui.second->Key.first)
 					{		
 						gui.second->Visible = !gui.second->Visible;
@@ -327,6 +348,7 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 						gui.second->Text.at("Input").Text.clear();
 					}
 				}
+				// Переключить видимость для каждой формы при нажатии на горячие клавиши
 				else if (e->key.keysym.sym == int(char(gui.second->Key.second)) && gui.second->Key.first)
 				{
 					if(mGuis->isAllInputHidden())
@@ -344,6 +366,7 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 	{			
 		if (gui.second->Visible)
 		{		
+			// Динамически заполнять поля
 			if (gui.second->DynamicText)
 			{
 				if (mScene_ptr->getUser()->getCountry())
@@ -365,8 +388,9 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 						0;
 
 				}
-
 			}
+
+			// Заполнение списка лобби
 			if (gui.second->LobbyIndex != -1)
 			{
 				std::string IndexT = "L" + std::to_string(gui.second->LobbyIndex) + "T";
@@ -398,12 +422,14 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 						.Text.clear();
 				}
 			}
+
+
 			if (gui.second->isHovered(MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY))))
 			{
 				mGuis->SetColor(gui.first, gui.second->hoverColor);
 				if (e->type == SDL_MOUSEBUTTONDOWN)
 				{							
-
+					// Определить выбранную страну
 					if (!gui.second->SelectedCountryTag.empty())
 					{
 						mCountry_ptr = *mWorld_ptr->getCountries()->getCountryByTag(gui.second->SelectedCountryTag);
@@ -420,6 +446,7 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 						mCommand.at(gui.second->CommandOnClick.first)->Execute();
 					}
 
+					// Открывать элементы по нажатию
 					if (!gui.second->ShowToClick.empty())
 					{
 						for (auto& form : gui.second->ShowToClick)
@@ -427,6 +454,8 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 							mGuis->Get(form)->Visible = true;
 						}
 					}
+
+					// Закрывать элементы по нажатию
 					if (!gui.second->HideToClick.empty())
 					{
 						for (auto& form : gui.second->HideToClick)
@@ -436,7 +465,8 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 
 						}
 					}
-			
+					
+					// При нажатии на форму инверсировать активность формы
 					gui.second->Active = !gui.second->Active;	
 				}
 			}
@@ -460,6 +490,21 @@ glm::mat4 GUIRenderer::CreateTransformationMatrix(glm::vec2 translation, glm::ve
 	matrix *= glm::translate(glm::vec3(translation.x, translation.y, 0));
 	matrix *= glm::scale(glm::vec3(scale.x, scale.y, 1.f));
 	return matrix;
+}
+
+void GUIRenderer::ApplyScissors(std::string parentElementName)
+{
+	glEnable(GL_SCISSOR_TEST);
+
+
+	auto parentPos = mGuis->Get(parentElementName)->Position;
+	auto parentScale = mGuis->Get(parentElementName)->Scale;
+
+
+	auto sciPos = MousePicker::NormalizedDevCoordsToWindowsCoords(parentPos.x, parentPos.y, glm::vec2(mWinX, mWinY));
+	auto sciSize = MousePicker::NormalizedDevCoordsToWindowsCoords(parentScale.x, parentScale.y - (1.0 - parentScale.y), glm::vec2(mWinX, mWinY));
+
+	glScissor(sciPos.x - (sciSize.x / 2), sciPos.y - (sciSize.y / 2) + 4, sciSize.x, sciSize.y - 4);
 }
 
 void GUIRenderer::Listen()

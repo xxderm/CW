@@ -20,6 +20,7 @@ public:
 
 private:
 	glm::mat4 CreateTransformationMatrix(glm::vec2 translation, glm::vec2 scale);
+	void ApplyScissors(std::string parentElementName);
 	void Listen();
 private:
 	std::unique_ptr<BufferObject> mQuad;

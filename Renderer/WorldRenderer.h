@@ -2,15 +2,11 @@
 #ifndef WORLD_RENDERER_HEADER
 #define WORLD_RENDERER_HEADER
 #include "IRenderer.h"
-#include "RenderExt/Texture.h"
-#include "RenderExt/FrameBuffer.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/mat4x4.hpp>
 #include "../World/World.h"
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/json_parser.hpp>
 
 class WorldRenderer final : public IRenderer
 {
@@ -44,12 +40,7 @@ private:
 	std::vector<GLuint> Indices;
 	glm::mat4x4 projection;
 
-	boost::mutex mThreadMutex;
-	int mTextureX, mTextureY, mTextureChanel;
-	boost::thread_group textureLoadThreads;
-	std::unordered_map<std::string, stbi_uc*> mTextureDatas;
-	std::vector<boost::thread*> mThreads;
-	std::vector<TextureFormat*> mTextures;
+
 
 	//stbi_uc* texData;
 	//stbi_uc* provData;

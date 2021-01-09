@@ -44,9 +44,10 @@ void IRenderer::InitTextures(std::string manifest)
 void IRenderer::AsyncLoadTexture(std::string Path, std::string TextureName)
 {
 	mThreads.push_back(new boost::thread([this](std::string path, std::string name)
-		{
-			boost::lock_guard<boost::mutex> {mThreadMutex};
+		{		
+			//boost::lock_guard<boost::mutex> lg{mThreadMutex};
 			mTextureDatas.try_emplace(name.c_str(), stbi_load(path.c_str(), &mTextureX, &mTextureY, &mTextureChanel, 0));
+			
 		}, Path, TextureName));
 	textureLoadThreads.add_thread(mThreads.back());
 }

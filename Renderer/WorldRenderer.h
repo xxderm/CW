@@ -8,6 +8,15 @@
 #include <glm/mat4x4.hpp>
 #include "../World/World.h"
 
+enum ShaderType : unsigned int
+{
+	TERRAIN = 0,
+	WATER,
+	WORLD,
+	FBO_PROVINCE,
+	SCOUNT
+};
+
 class WorldRenderer final : public IRenderer
 {
 public:
@@ -20,10 +29,16 @@ public:
 	void HandleEvent(SDL_Event* e, SDL_Window* wnd) override;
 private:
 	void TerrainInit();
-	void CloudsInit();
+	void WorldInit();
 	void AsyncLoadTexture(std::string Path, std::string TextureName);
 private:
-	std::unique_ptr<Shader> mProgram[4];
+	/*
+		0 - Terrain shader
+		1 - Water shader
+		2 - World shader
+		3 - FBO province shader
+	*/
+	std::unique_ptr<Shader> mProgram[ShaderType::SCOUNT];
 	std::unique_ptr<Texture> mTexture;
 	std::unique_ptr<BufferObject> mBuffer;
 	std::unique_ptr<FrameBuffer> mFbo;

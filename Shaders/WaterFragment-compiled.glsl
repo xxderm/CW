@@ -23,12 +23,14 @@ in vec3 TangentFragPos;
 uniform sampler2D dudv;
 uniform float moveFactor;
 
+void main1()
+{
+
+}
+
 void main()
 {
     float waveStrength = 0.10;
-    //vec2 distortion1 = (texture(dudv, vec2(TexCoord.x + moveFactor, TexCoord.y)).rg * 2.0 - 1.0) * 0.12;
-    //vec2 distortion2 = (texture(dudv, vec2(-TexCoord.x + moveFactor, TexCoord.y + moveFactor)).rg * 2.0 - 1.0) * 0.12;
-    //vec2 distortion = distortion1 + distortion2;
     vec2 distortedTexCoords = texture2D(dudv, vec2(TexCoord.x + moveFactor, TexCoord.y)).rg*0.1;
 	distortedTexCoords = TexCoord + vec2(distortedTexCoords.x, distortedTexCoords.y+moveFactor);
 	vec2 distortion = (texture2D(dudv, distortedTexCoords).rg * 2.0 - 1.0) * waveStrength;

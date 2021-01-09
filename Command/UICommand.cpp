@@ -50,7 +50,7 @@ AddFormCommand::AddFormCommand(GUITexture* Gui_ptr)
 void AddFormCommand::Execute()
 {
 	GuiFormat* format = new GuiFormat();
-	format->Name = "element" + std::to_string(mGui_ptr->getGui().size());
+	format->Name = mGui_ptr->Get("FormNameInput")->Text.at("Input").Text;
 	format->Visible = true;
 	format->Moveable = true;
 	format->TextureId = -1;

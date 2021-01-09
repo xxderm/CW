@@ -11,9 +11,8 @@ void WorldRenderer::Render()
 	mFbo->Bind();
 	glClearColor(0, 0, 0, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	mProgram[3]->Bind();
-	mProgram[3]->setMat4("mvp", mvp);
-	mProgram[3]->setInt("currentDraw", 1);
+	mProgram[ShaderType::FBO_PROVINCE]->Bind();
+	mProgram[ShaderType::FBO_PROVINCE]->setMat4("mvp", mvp);
 	glBindTexture(GL_TEXTURE_2D, 17);
 	glPatchParameteri(GL_PATCH_VERTICES, 4);
 	mBuffer->Draw(GL_PATCHES, Indices.size());
@@ -31,39 +30,43 @@ void WorldRenderer::Render()
 		glReadBuffer(GL_COLOR_ATTACHMENT0);
 		glReadPixels(mx, wy, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, mFocusRGB);
 	}	
-	mProgram[3]->UnBind();
+	mProgram[ShaderType::FBO_PROVINCE]->UnBind();
 
-	/*glClearColor(0, 0, 0, 1);
+	glClearColor(0, 0, 0, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	mProgram[1]->Bind();
+
+	mProgram[ShaderType::WATER]->Bind();
 	glPatchParameteri(GL_PATCH_VERTICES, 4);
 	mBuffer->Draw(GL_PATCHES, Indices.size());
-	mProgram[1]->UnBind();
-	mProgram[0]->Bind();
+	mProgram[ShaderType::WATER]->UnBind();
+
+	mProgram[ShaderType::TERRAIN]->Bind();
 	glPatchParameteri(GL_PATCH_VERTICES, 4);
 	mBuffer->Draw(GL_PATCHES, Indices.size());
-	mProgram[0]->UnBind();*/
+	mProgram[ShaderType::TERRAIN]->UnBind();
 	mFbo->UnBind();
+
 
 
 	glClearColor(0, 0, 0, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	mProgram[1]->Bind();
+	//mProgram[ShaderType::WATER]->Bind();
+	//glPatchParameteri(GL_PATCH_VERTICES, 4);
+	//mBuffer->Draw(GL_PATCHES, Indices.size());
+	//mProgram[ShaderType::WATER]->UnBind();
+
+
+	//mProgram[ShaderType::TERRAIN]->Bind();	
+	//glPatchParameteri(GL_PATCH_VERTICES, 4);
+	//mBuffer->Draw(GL_PATCHES, Indices.size());	
+	//mProgram[ShaderType::TERRAIN]->UnBind();	
+
+	// Рендер земли с облаками
+	mProgram[ShaderType::WORLD]->Bind();
 	glPatchParameteri(GL_PATCH_VERTICES, 4);
 	mBuffer->Draw(GL_PATCHES, Indices.size());
-	mProgram[1]->UnBind();
-
-
-	mProgram[0]->Bind();	
-	glPatchParameteri(GL_PATCH_VERTICES, 4);
-	mBuffer->Draw(GL_PATCHES, Indices.size());	
-	mProgram[0]->UnBind();	
-
-	/*mProgram[2]->Bind();
-	glPatchParameteri(GL_PATCH_VERTICES, 4);
-	mBuffer->Draw(GL_PATCHES, Indices.size());
-	mProgram[2]->UnBind();*/
+	mProgram[ShaderType::WORLD]->UnBind();
 }
 
 void WorldRenderer::Update()
@@ -73,32 +76,35 @@ void WorldRenderer::Update()
 	dudv = fmod(dudv, 1.0f);
 	mvp = projection * mCamera->getViewMatrix();
 	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);
-	mProgram[1]->Bind();
-	mProgram[1]->setMat4("model", glm::make_mat4(modelview));
-	mProgram[1]->setMat4("mvp", mvp);
-	mProgram[1]->setFloat("time", dudv);
-	mProgram[1]->setFloat("moveFactor", dudv);
-	mProgram[1]->setVec3("cameraPos", mCamera->getPosition());
-	mProgram[1]->UnBind();
+	mProgram[ShaderType::WATER]->Bind();
+	mProgram[ShaderType::WATER]->setMat4("model", glm::make_mat4(modelview));
+	mProgram[ShaderType::WATER]->setMat4("mvp", mvp);
+	mProgram[ShaderType::WATER]->setFloat("time", dudv);
+	mProgram[ShaderType::WATER]->setFloat("moveFactor", dudv);
+	mProgram[ShaderType::WATER]->setVec3("cameraPos", mCamera->getPosition());
+	mProgram[ShaderType::WATER]->setInt("TerrainFBO", 17);
+	mProgram[ShaderType::WATER]->UnBind();
 
-	mProgram[0]->Bind();
-	mProgram[0]->setMat4("model", glm::make_mat4(modelview));
-	mProgram[0]->setMat4("mvp", mvp);
-	mProgram[0]->setVec3("campos", mCamera->getPosition());
-	mProgram[0]->setFloat("time", dudv);
+	mProgram[ShaderType::TERRAIN]->Bind();
+	mProgram[ShaderType::TERRAIN]->setMat4("model", glm::make_mat4(modelview));
+	mProgram[ShaderType::TERRAIN]->setMat4("mvp", mvp);
+	mProgram[ShaderType::TERRAIN]->setVec3("campos", mCamera->getPosition());
+	
+	mProgram[ShaderType::TERRAIN]->setFloat("time", dudv);
+	mProgram[ShaderType::TERRAIN]->setInt("TerrainFBO", 17);
 	static float Time = 0.0;
 	Time += 0.05;
-	mProgram[0]->setFloat("Tick", Time);
-	//mProgram[0]->setVec3("hoverEffect", glm::vec3(mFocusRGB[0], mFocusRGB[1], mFocusRGB[2]));
-	mProgram[0]->UnBind();
+	mProgram[ShaderType::TERRAIN]->setFloat("Tick", Time);
+	//mProgram[ShaderType::TERRAIN]->setVec3("hoverEffect", glm::vec3(mFocusRGB[0], mFocusRGB[1], mFocusRGB[2]));
+	mProgram[ShaderType::TERRAIN]->UnBind();
 
-	mProgram[2]->Bind();
-	mProgram[2]->setMat4("model", glm::make_mat4(modelview));
-	mProgram[2]->setMat4("mvp", mvp);
-	mProgram[2]->setFloat("time", dudv * 5.8);
-	mProgram[2]->setVec3("campos", mCamera->getPosition());
-	//mProgram[2]->setInt("terrain", 17);
-	mProgram[2]->UnBind();
+	mProgram[ShaderType::WORLD]->Bind();
+	mProgram[ShaderType::WORLD]->setMat4("model", glm::make_mat4(modelview));
+	mProgram[ShaderType::WORLD]->setMat4("mvp", mvp);
+	mProgram[ShaderType::WORLD]->setFloat("time", dudv * 5.8);
+	mProgram[ShaderType::WORLD]->setVec3("campos", mCamera->getPosition());
+	mProgram[ShaderType::WORLD]->setInt("terrain", 17);
+	mProgram[ShaderType::WORLD]->UnBind();
 	//printf("%d, %d, %d\n", mFocusRGB[0], mFocusRGB[1], mFocusRGB[2]);
 }
 
@@ -108,19 +114,20 @@ void WorldRenderer::Init(SDL_Window* wnd)
 	SDL_GetWindowSize(wnd, &w, &h);
 	projection = glm::perspective<float>(45.f, float((float)w / (float)h), 0.1, 100.f);
 	this->TerrainInit();
-	this->CloudsInit();
+	this->WorldInit();
 
 
 	mFbo = std::make_unique<FrameBuffer>();
 	mFbo->Set(GL_COLOR_ATTACHMENT0, glm::vec2(w, h), GL_TEXTURE17);
-	mProgram[3] = std::make_unique<Shader>("Shaders/ProvinceVertex.glsl", "Shaders/ProvinceFragment.glsl", "Shaders/ProvinceTessControl.glsl", "Shaders/ProvinceTessEval.glsl");
-	mProgram[3]->Bind();
+	mProgram[ShaderType::FBO_PROVINCE] = std::make_unique<Shader>("Shaders/ProvinceVertex.glsl", "Shaders/ProvinceFragment.glsl", "Shaders/ProvinceTessControl.glsl", "Shaders/ProvinceTessEval.glsl");
+	mProgram[ShaderType::FBO_PROVINCE]->Bind();
 	mBuffer->Bind();
-	mProgram[3]->setInt("prov", 9);
-	mProgram[3]->setInt("terrain", 0);
-	mProgram[3]->setInt("Countries", 2);
+	mProgram[ShaderType::FBO_PROVINCE]->setInt("currentDraw", 1);
+	mProgram[ShaderType::FBO_PROVINCE]->setInt("prov", 9);
+	mProgram[ShaderType::FBO_PROVINCE]->setInt("terrain", 0);
+	mProgram[ShaderType::FBO_PROVINCE]->setInt("Countries", 2);
 	mBuffer->UnBind();
-	mProgram[3]->UnBind();
+	mProgram[ShaderType::FBO_PROVINCE]->UnBind();
 }
 
 void WorldRenderer::setCamera(Camera* camera)
@@ -138,21 +145,27 @@ void WorldRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 	{
 		if (e->key.keysym.sym == SDLK_F1)
 		{
-			mProgram[0]->Bind();
-			mProgram[0]->setInt("currentDraw", 0);
-			mProgram[0]->UnBind();
+			mProgram[ShaderType::TERRAIN]->Bind();
+			mProgram[ShaderType::TERRAIN]->setInt("currentDraw", 0);
+			mProgram[ShaderType::TERRAIN]->UnBind();
+			mProgram[ShaderType::FBO_PROVINCE]->Bind();
+			mProgram[ShaderType::FBO_PROVINCE]->setInt("currentDraw", 1);
+			mProgram[ShaderType::FBO_PROVINCE]->UnBind();
 		}
 		if (e->key.keysym.sym == SDLK_F2)
 		{
-			mProgram[0]->Bind();
-			mProgram[0]->setInt("currentDraw", 1);
-			mProgram[0]->UnBind();
+			mProgram[ShaderType::TERRAIN]->Bind();
+			mProgram[ShaderType::TERRAIN]->setInt("currentDraw", 1);
+			mProgram[ShaderType::TERRAIN]->UnBind();
+			mProgram[ShaderType::FBO_PROVINCE]->Bind();
+			mProgram[ShaderType::FBO_PROVINCE]->setInt("currentDraw", 1);
+			mProgram[ShaderType::FBO_PROVINCE]->UnBind();
 		}
 		if (e->key.keysym.sym == SDLK_F3)
 		{
-			mProgram[0]->Bind();
-			mProgram[0]->setInt("currentDraw", 2);
-			mProgram[0]->UnBind();
+			mProgram[ShaderType::TERRAIN]->Bind();
+			mProgram[ShaderType::TERRAIN]->setInt("currentDraw", 2);
+			mProgram[ShaderType::TERRAIN]->UnBind();
 		}
 	}
 }
@@ -205,8 +218,8 @@ void WorldRenderer::TerrainInit()
 	}
 
 
-	mProgram[0] = std::make_unique<Shader>("Shaders/TerrainVertex.glsl", "Shaders/TerrainFragment.glsl", "Shaders/TerrainTessControl.glsl", "Shaders/TerrainTessEval.glsl");
-	mProgram[0]->Bind();
+	mProgram[ShaderType::TERRAIN] = std::make_unique<Shader>("Shaders/TerrainVertex.glsl", "Shaders/TerrainFragment.glsl", "Shaders/TerrainTessControl.glsl", "Shaders/TerrainTessEval.glsl");
+	mProgram[ShaderType::TERRAIN]->Bind();
 	mBuffer = std::make_unique<BufferObject>();
 	mBuffer->Set(Vertices.data(), TexCoord.data(), Indices.data(), GL_STATIC_DRAW, sizeof(glm::vec3) * Vertices.size(), sizeof(glm::vec2) * TexCoord.size(), sizeof(GLuint) * Indices.size());
 	mTexture = std::make_unique<Texture>();
@@ -218,14 +231,14 @@ void WorldRenderer::TerrainInit()
 		"Resources/cache/ht",
 		GL_RGB, GL_TEXTURE0, Parameter::NONE, true, true,
 		"Resources/terrain/ht.bmp");
-	mProgram[0]->setInt("terrain", 0);
+	mProgram[ShaderType::TERRAIN]->setInt("terrain", 0);
 
 	mTexture->AddCache(
 		glm::vec2(5632, 2048),
 		"Resources/cache/countries",
 		GL_RGB, GL_TEXTURE2,
 		Parameter::LINEAR);
-	mProgram[0]->setInt("Countries", 2);
+	mProgram[ShaderType::TERRAIN]->setInt("Countries", 2);
 
 
 	
@@ -241,24 +254,24 @@ void WorldRenderer::TerrainInit()
 				texture->Format, texture->ID,
 				texture->Param
 			);
-			mProgram[0]->setInt(texture->UniformName, texture->UniformID);
+			mProgram[ShaderType::TERRAIN]->setInt(texture->UniformName, texture->UniformID);
 		}
 	}
 	
 	mBuffer->UnBind();
-	mProgram[0]->UnBind();
+	mProgram[ShaderType::TERRAIN]->UnBind();
 
 
-	mProgram[1] = std::make_unique<Shader>(
+	mProgram[ShaderType::WATER] = std::make_unique<Shader>(
 		"Shaders/WaterVertex.glsl",
 		"Shaders/WaterFragment.glsl",
 		"Shaders/WaterTessControl.glsl",
 		"Shaders/WaterTessEval.glsl");
-	mProgram[1]->Bind();
+	mProgram[ShaderType::WATER]->Bind();
 	mBuffer->Bind();
-	mProgram[1]->setFloat("speed", 0.14f);
-	mProgram[1]->setFloat("amount", 990.000101f);
-	mProgram[1]->setFloat("height", 0.001);
+	mProgram[ShaderType::WATER]->setFloat("speed", 0.14f);
+	mProgram[ShaderType::WATER]->setFloat("amount", 990.000101f);
+	mProgram[ShaderType::WATER]->setFloat("height", 0.001);
 	mTexture->LoadCubemap(
 		{ "Resources/terrain/cubemap/right.jpg",
 		"Resources/terrain/cubemap/left.jpg",
@@ -268,7 +281,7 @@ void WorldRenderer::TerrainInit()
 		"Resources/terrain/cubemap/back.jpg" },
 		GL_TEXTURE15
 	);
-	mProgram[1]->setInt("skybox", 15);
+	mProgram[ShaderType::WATER]->setInt("skybox", 15);
 	for (auto& texture : mTextures)
 	{
 		if (texture->Program == 1)
@@ -279,33 +292,24 @@ void WorldRenderer::TerrainInit()
 				texture->Format, texture->ID,
 				texture->Param
 			);
-			mProgram[1]->setInt(texture->UniformName, texture->UniformID);
+			mProgram[ShaderType::WATER]->setInt(texture->UniformName, texture->UniformID);
 		}
 	}
 	mBuffer->UnBind();
-	mProgram[1]->UnBind();
+	mProgram[ShaderType::WATER]->UnBind();
 }
 
-void WorldRenderer::CloudsInit()
+void WorldRenderer::WorldInit()
 {
-	mProgram[2] = std::make_unique<Shader>(
-		"Shaders/CloudsVertex.glsl",
-		"Shaders/CloudsFragment.glsl",
-		"Shaders/CloudsTessControl.glsl",
-		"Shaders/CloudsTessEval.glsl");
-	mProgram[2]->Bind();
+	mProgram[ShaderType::WORLD] = std::make_unique<Shader>(
+		"Shaders/WorldVertex.glsl",
+		"Shaders/WorldFragment.glsl",
+		"Shaders/WorldTessControl.glsl",
+		"Shaders/WorldTessEval.glsl");
+	mProgram[ShaderType::WORLD]->Bind();
 	mBuffer->Bind();
-
-	/*mTexture->Add(
-		"Resources/terrain/clouds.png",
-		GL_RGBA,
-		GL_TEXTURE16,
-		Parameter::LINEAR
-	);
-	mProgram[2]->setInt("clouds", 16);*/
-
 	mBuffer->UnBind();
-	mProgram[2]->UnBind();
+	mProgram[ShaderType::WORLD]->UnBind();
 }
 
 void WorldRenderer::AsyncLoadTexture(std::string Path, std::string TextureName)

@@ -166,5 +166,17 @@
 			"x": 5632,
 			"y": 2048
 		}
+	},
+	"CLEAR": {
+		"ID": -1,
+		"Program": -1,
+		"Path": "Resources/terrain/waterDUDV.png",
+		"Format": "RGBA",
+		"Parameter": "NONE",
+		"UniformName": "CLEAR",
+		"Size": {
+			"x": 512,
+			"y": 512
+		}
 	}
 }

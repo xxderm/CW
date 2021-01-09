@@ -1,18 +1,6 @@
-{
-	"Icon02": {
-		"ID": 16,
-		"Program": 0,
-		"Path": "Resources/UI/Assets/Pack2/PNG/Icon02.png",
-		"Format": "RGBA",
-		"Parameter": "LINEAR",
-		"UniformName": "Icon02GUI",
-		"Size": {
-			"x": 21,
-			"y": 23
-		}
-	},
+{	
 	"Button01": {
-		"ID": 17,
+		"ID": 18,
 		"Program": 0,
 		"Path": "Resources/UI/Assets/Pack2/PNG/Button01.png",
 		"Format": "RGBA",
@@ -24,7 +12,7 @@
 		}
 	},
 	"MiniPanel01": {
-		"ID": 18,
+		"ID": 19,
 		"Program": 0,
 		"Path": "Resources/UI/Assets/Pack2/JPG/MiniPanel01.png",
 		"Format": "RGBA",
@@ -36,7 +24,7 @@
 		}
 	},
 	"MiniPanel02": {
-		"ID": 19,
+		"ID": 20,
 		"Program": 0,
 		"Path": "Resources/UI/Assets/Pack2/JPG/MiniPanel01.png",
 		"Format": "RGBФ",

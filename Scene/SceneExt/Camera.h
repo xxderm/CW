@@ -36,7 +36,7 @@ class Camera final
 {
 public:
 	Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 mwu = glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3 mf = glm::vec3(0.0f, 0.0f, -1.0f));
-    const glm::vec3 getPosition();
+    glm::vec3 getPosition();
     const glm::vec3 getFront();
     const glm::vec3 getUp();
     const glm::mat4 getViewMatrix();
@@ -48,10 +48,10 @@ public:
     void ProcessKeyboard(Camera_Movement direction, float deltaTime);
     void ProcessMouseMovement(float xoffset, float yoffset, bool constrainPitch = true);
     void ProcessMouseScroll(float yoffset);
+    glm::vec3 mPosition;
 private:
     void updateCameraVectors();
 private:   
-    glm::vec3 mPosition;
     glm::vec3 mFront;
     glm::vec3 mUp;
     glm::vec3 mRight;

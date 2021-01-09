@@ -14,7 +14,7 @@ Camera::Camera(glm::vec3 position, glm::vec3 mwu, glm::vec3 mf)
 	this->updateCameraVectors();
 }
 
-const glm::vec3 Camera::getPosition()
+glm::vec3 Camera::getPosition()
 {
 	return mPosition;
 }

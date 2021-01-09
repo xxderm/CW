@@ -1,4 +1,4 @@
-#version 450 compatibility
+#version 330
 out vec4 fColor;
 
 in vec2 TexCoordTE;
@@ -134,6 +134,7 @@ void main()
     vec2 scrTc = gl_FragCoord.xy * (1.0 / vec2(tsize));
     vec4 color = texture2D(terrain, scrTc);
 
+    // Using clouds
     //vec3 result = RenderClouds(color);
 
     fragColor = color;

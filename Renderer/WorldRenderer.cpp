@@ -45,24 +45,15 @@ void WorldRenderer::Render()
 	mBuffer->Draw(GL_PATCHES, Indices.size());
 	mProgram[ShaderType::TERRAIN]->UnBind();
 	mFbo->UnBind();
-
+	
 
 
 	glClearColor(0, 0, 0, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	//mProgram[ShaderType::WATER]->Bind();
-	//glPatchParameteri(GL_PATCH_VERTICES, 4);
-	//mBuffer->Draw(GL_PATCHES, Indices.size());
-	//mProgram[ShaderType::WATER]->UnBind();
+	
 
-
-	//mProgram[ShaderType::TERRAIN]->Bind();	
-	//glPatchParameteri(GL_PATCH_VERTICES, 4);
-	//mBuffer->Draw(GL_PATCHES, Indices.size());	
-	//mProgram[ShaderType::TERRAIN]->UnBind();	
-
-	// Рендер земли с облаками
+	// Рендер земли 
 	mProgram[ShaderType::WORLD]->Bind();
 	glPatchParameteri(GL_PATCH_VERTICES, 4);
 	mBuffer->Draw(GL_PATCHES, Indices.size());

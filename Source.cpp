@@ -8,7 +8,7 @@ int main(int argc, char** argv)
 {	
 	Scene* ApplicationScene = new Scene();
 	ApplicationScene->Init();
-	ApplicationScene->ChangeScene(MenuScene::getInstance());
+	ApplicationScene->ChangeScene(UIDebugScene::getInstance());
 	try
 	{
 		while (ApplicationScene->isRunning())

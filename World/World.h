@@ -17,46 +17,38 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/mat4x4.hpp>
 #include <boost/thread.hpp>
-#include <string>
 #include "easylogging++.h"
-#include "WorldExt/Country.h"
-#include "WorldExt/Province.h"
-#include "WorldExt/State.h"
 #include <boost/thread.hpp>
-
-typedef struct TargetCountry
-{
-	std::string CountryTag;
-	std::string TargetCountryTag;
-};
-
-typedef struct Diplomatic
-{
-	TargetCountry Target;
-	double Relations;
-};
-
-typedef struct Purchase
-{
-	TargetCountry Target;
-	Resources Resource; 
-	double Amount;
-};
-
-using Union = TargetCountry;
+#include "DataTypes/DataTypes.h"
 
 class World final 
 {
+	std::vector<Diplomatic> mDiplomatics;
+	std::vector<Purchase> mPurchases;
+	std::vector<Embargo> mEmbargoes;
+	std::vector<NonAggressionPact> mNonAggressionPacts;
+	std::vector<Stocks> mStocks;
+	std::vector<Loan> mLoans;
+	std::unordered_map<std::string, Union> mUnions;
 public:
 	World();
 	void Create();
+	void Update();
 	Country* getCountries();
 	Province* getProvinces();
 	State* getStates();
+	auto getDiplomatics() -> decltype(mDiplomatics);
+	auto getPurchases() -> decltype(mPurchases);
+	auto getEmbargoes() -> decltype(mEmbargoes);
+	auto getNonAggressionPacts() -> decltype(mNonAggressionPacts);
+	auto getStocks() -> decltype(mStocks);
+	auto getLoans() -> decltype(mLoans);
+	auto getUnion() -> decltype(mUnions);
 private:
 	Country* mCountry;
 	Province* mProvince;
 	State* mState;
+	boost::posix_time::ptime mDate;
 };
 
 #endif

@@ -7,10 +7,6 @@ Texture::Texture()
 
 void Texture::Add(glm::vec2 size, stbi_uc* data, int format, int activeTexture, Parameter param, bool mipmaps, bool mfree)
 {
-	//glm::vec2 size;
-	//int x, y;
-	//int chnls;
-	//auto textureData = stbi_load(path.c_str(), &x, &y, &chnls, 0);	
 	unsigned int textureId;
 	if (activeTexture != -1)
 	{
@@ -41,8 +37,10 @@ void Texture::Add(glm::vec2 size, stbi_uc* data, int format, int activeTexture, 
 	default:
 		break;
 	}
-	if(mipmaps)
+	if (mipmaps)
+	{
 		glGenerateMipmap(GL_TEXTURE_2D);
+	}
 	if(mfree)
 		stbi_image_free(data);
 	mTexture->emplace(textureId, size);

@@ -5,15 +5,15 @@
 #undef main
 
 int main(int argc, char** argv)
-{	
+{		
 	Scene* ApplicationScene = new Scene();
 	ApplicationScene->Init();
-	ApplicationScene->ChangeScene(UIDebugScene::getInstance());
+	ApplicationScene->ChangeScene(MenuScene::getInstance());
 	try
 	{
 		while (ApplicationScene->isRunning())
 		{
-			// TODO: Add request/response interval
+			// TODO: Add response interval
 			ApplicationScene->Response();
 			ApplicationScene->Listen();
 

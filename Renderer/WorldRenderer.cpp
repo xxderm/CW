@@ -101,15 +101,14 @@ void WorldRenderer::Update()
 
 void WorldRenderer::Init(SDL_Window* wnd)
 {	
-	int w, h;
-	SDL_GetWindowSize(wnd, &w, &h);
-	projection = glm::perspective<float>(45.f, float((float)w / (float)h), 0.1, 100.f);
+	SDL_GetWindowSize(wnd, &mWinX, &mWinY);
+	projection = glm::perspective<float>(45.f, float((float)mWinX / (float)mWinY), 0.1, 100.f);
 	this->TerrainInit();
 	this->WorldInit();
 
 
 	mFbo = std::make_unique<FrameBuffer>();
-	mFbo->Set(GL_COLOR_ATTACHMENT0, glm::vec2(w, h), GL_TEXTURE17);
+	mFbo->Set(GL_COLOR_ATTACHMENT0, glm::vec2(mWinX, mWinY), GL_TEXTURE17);
 	mProgram[ShaderType::FBO_PROVINCE] = std::make_unique<Shader>("Shaders/ProvinceVertex.glsl", "Shaders/ProvinceFragment.glsl", "Shaders/ProvinceTessControl.glsl", "Shaders/ProvinceTessEval.glsl");
 	mProgram[ShaderType::FBO_PROVINCE]->Bind();
 	mBuffer->Bind();

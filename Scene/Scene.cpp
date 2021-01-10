@@ -52,6 +52,7 @@ void Scene::Init()
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);*/
 
+
 	glEnable(GL_PRIMITIVE_RESTART);
 	glPrimitiveRestartIndex(0xFFFF);
 

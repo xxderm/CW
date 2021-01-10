@@ -54,7 +54,8 @@ private:
 	std::vector<glm::vec2> TexCoord;
 	std::vector<GLuint> Indices;
 	glm::mat4x4 projection;
-
+	int mWinX;
+	int mWinY;
 
 
 	//stbi_uc* texData;

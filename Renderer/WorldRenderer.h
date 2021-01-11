@@ -20,7 +20,7 @@ enum ShaderType : unsigned int
 class WorldRenderer final : public IRenderer
 {
 public:
-	WorldRenderer(unsigned char* colorDataPtr = nullptr);
+	WorldRenderer(unsigned char* colorDataPtr = nullptr, World* worldPtr = nullptr);
 	void Render() override;
 	void Update() override;
 	void Init(SDL_Window* wnd) override;
@@ -56,7 +56,8 @@ private:
 	glm::mat4x4 projection;
 	int mWinX;
 	int mWinY;
-
+private:
+	World* mWorld = nullptr;
 
 	//stbi_uc* texData;
 	//stbi_uc* provData;

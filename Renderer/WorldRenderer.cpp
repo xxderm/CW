@@ -1,9 +1,10 @@
 #include "WorldRenderer.h"
 
-WorldRenderer::WorldRenderer(unsigned char* colorDataPtr)
+WorldRenderer::WorldRenderer(unsigned char* colorDataPtr, World* worldPtr)
 {
 	mFocusRGB = new unsigned char[3];
 	mFocusRGB = colorDataPtr;
+	mWorld = worldPtr;
 }
 
 void WorldRenderer::Render()

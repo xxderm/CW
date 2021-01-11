@@ -17,6 +17,13 @@ GameScene::GameScene(IRenderer* Render)
 
 void GameScene::Init(Scene* scene)
 {		
+	// TODO: Загружать страны в сцене выбора страны и перемещать указатель в сцену игры
+	mWorld = new World();
+	std::thread th(&World::Create, mWorld);
+	th.detach();
+	
+
+
 	SDL_GetWindowSize(scene->getWindow(), &mWndWidth, &mWndHeight);
 	lastX = mWndWidth / 2;
 	lastY = mWndHeight / 2;
@@ -28,16 +35,22 @@ void GameScene::Init(Scene* scene)
 	
 	if (!mWorldRenderer)
 	{
-		mWorldRenderer = new WorldRenderer();
+		mFocusCountryPtr = new unsigned char[3];
+		mWorldRenderer = new WorldRenderer(mFocusCountryPtr, mWorld);
 		mWorldRenderer->Init(scene->getWindow());
 		mWorldRenderer->setCamera(mCamera);
 		mWorldRenderer->setMousePicker(mMousePicker);
 	}
 
-	mGUIRenderer = new GUIRenderer("Resources/UI/main.ui.json", 30, scene);
+	mGUIRenderer = new GUIRenderer("Resources/UI/game.ui.json", 30, scene, mWorld);
 	mGUIRenderer->Init(scene->getWindow());
 	mGUIRenderer->setCamera(mCamera);
 	mGUIRenderer->setMousePicker(mMousePicker);
+
+	scene->getUser()->setStatus(UserState::PLAYING);
+
+	/* DEBUG */
+	scene->getUser()->setCountry(mWorld->getCountries()->getCountryByTag("SOV"));
 }
 
 void GameScene::Clean()

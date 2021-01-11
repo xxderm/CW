@@ -1,0 +1,464 @@
+{
+    "MyCountryButton": {
+        "Texture": "18",
+        "CenterPoint": {
+            "x": "-0.642188549",
+            "y": "0.944444895"
+        },
+        "Scale": {
+            "x": "0.100000001",
+            "y": "0.0399999991"
+        },
+        "Padding": {
+            "x": "-0.26",
+            "y": "0.005"
+        },
+        "DebugElement": "false",
+        "Scroll": "false",
+        "Color": {
+            "r": "1",
+            "g": "1",
+            "b": "1",
+            "a": "1"
+        },
+        "Hover": {
+            "r": "1",
+            "g": "1",
+            "b": "1",
+            "a": "1"
+        },
+        "Visible": "true",
+        "Type": "",
+        "For": "",
+        "CommandOnClick": "",
+        "Key": " ",
+        "Highlight": "true",
+        "HighlightIntensity": "1",
+        "Dynamic": "false",
+        "Moveable": "0",
+        "Parent": "MainPanel",
+        "ShowOnClickEvent": [
+            "MyCountry"
+        ],
+        "Text": {
+            "MyCountryTitle": {
+                "String": "Страна",
+                "Anchor": "CENTER",
+                "Location": {
+                  "x": 0.0,
+                  "y": 0.0
+                },
+                "Color": {
+                  "r": 1.0,
+                  "g": 1.0,
+                  "b": 1.0,
+                  "a": 1.0
+                },
+                "Name": "MyCountryTitle",
+                "Scale": 0.66
+            }
+        }
+    },
+    "MyCountryFlag": {
+        "Texture": "-1",
+        "CenterPoint": {
+            "x": "-0.876563013",
+            "y": "0.875001013"
+        },
+        "Scale": {
+            "x": "0.119999997",
+            "y": "0.119999997"
+        },
+        "Padding": {
+            "x": "0",
+            "y": "0"
+        },
+        "DebugElement": "false",
+        "Scroll": "false",
+        "Color": {
+            "r": "1",
+            "g": "1",
+            "b": "1",
+            "a": "1"
+        },
+        "Hover": {
+            "r": "1",
+            "g": "1",
+            "b": "1",
+            "a": "1"
+        },
+        "Visible": "true",
+        "Type": "",
+        "For": "",
+        "CommandOnClick": "",
+        "Key": " ",
+        "Highlight": "true",
+        "HighlightIntensity": "1",
+        "Dynamic": "false",
+        "Moveable": "false",
+        "Parent": ""
+    },
+    "MainPanel": {
+        "Texture": "21",
+        "CenterPoint": {
+            "x": "-0.354687005",
+            "y": "0.944446027"
+        },
+        "Scale": {
+            "x": "0.400000006",
+            "y": "0.0500000007"
+        },
+        "Padding": {
+            "x": "0",
+            "y": "0"
+        },
+        "DebugElement": "false",
+        "Scroll": "false",
+        "Color": {
+            "r": "1",
+            "g": "1",
+            "b": "1",
+            "a": "1"
+        },
+        "Hover": {
+            "r": "1",
+            "g": "1",
+            "b": "1",
+            "a": "1"
+        },
+        "Visible": "true",
+        "Type": "",
+        "For": "",
+        "CommandOnClick": "",
+        "Key": " ",
+        "Highlight": "true",
+        "HighlightIntensity": "1",
+        "Dynamic": "false",
+        "Moveable": "false",
+        "Parent": ""
+    },
+    "ConsoleInput": {
+        "Texture": "-1",
+        "CenterPoint": {
+            "x": "-0.703000009",
+            "y": "-0.540000021"
+        },
+        "Scale": {
+            "x": "0.289999992",
+            "y": "0.0500000007"
+        },
+        "Padding": {
+            "x": "-0.703000009",
+            "y": "-0.540000021"
+        },
+        "DebugElement": "false",
+        "Scroll": "false",
+        "Text": {
+            "Input": {
+                "String": "Команда",
+                "Location": {
+                    "x": "0",
+                    "y": "0.0549999997"
+                },
+                "Color": {
+                    "r": "0.0500000007",
+                    "g": "0.0500000007",
+                    "b": "0.0500000007",
+                    "a": "1"
+                },
+                "Name": "Input",
+                "Scale": "1"
+            }
+        },
+        "Color": {
+            "r": "0.800000012",
+            "g": "0.800000012",
+            "b": "0.800000012",
+            "a": "0.910000026"
+        },
+        "Hover": {
+            "r": "0.800000012",
+            "g": "0.800000012",
+            "b": "0.800000012",
+            "a": "0.910000026"
+        },
+        "Visible": "false",
+        "Type": "Input",
+        "For": "ConsoleForm",
+        "CommandOnClick": "",
+        "Key": "`",
+        "Highlight": "false",
+        "HighlightIntensity": "1",
+        "Dynamic": "false",
+        "Moveable": "false",
+        "Parent": ""
+    },
+    "ConsoleForm": {
+        "Texture": "-1",
+        "CenterPoint": {
+            "x": "-0.699999988",
+            "y": "-0.49000001"
+        },
+        "Scale": {
+            "x": "0.300000012",
+            "y": "0.109999999"
+        },
+        "Padding": {
+            "x": "-0.699999988",
+            "y": "-0.49000001"
+        },
+        "DebugElement": "false",
+        "Scroll": "false",
+        "Text": {
+            "Title": {
+                "String": "Консоль",
+                "Location": {
+                    "x": "0",
+                    "y": "0.0549999997"
+                },
+                "Color": {
+                    "r": "0.200000003",
+                    "g": "1",
+                    "b": "0.200000003",
+                    "a": "1"
+                },
+                "Name": "Title",
+                "Scale": "1"
+            }
+        },
+        "Color": {
+            "r": "0.200000003",
+            "g": "0.200000003",
+            "b": "0.200000003",
+            "a": "0.850000024"
+        },
+        "Hover": {
+            "r": "0.200000003",
+            "g": "0.200000003",
+            "b": "0.200000003",
+            "a": "0.850000024"
+        },
+        "Visible": "false",
+        "Type": "",
+        "For": "",
+        "CommandOnClick": "",
+        "Highlight": "false",
+        "HighlightIntensity": "1",
+        "Dynamic": "false",
+        "Moveable": "false",
+        "Parent": ""
+    },
+    "DeclWarButton": {
+        "Texture": "18",
+        "CenterPoint": {
+            "x": "-0.695312977",
+            "y": "0.0500000119"
+        },
+        "Scale": {
+            "x": "0.200000003",
+            "y": "0.0500000007"
+        },
+        "Padding": {
+            "x": "0",
+            "y": "0.600000024"
+        },
+        "DebugElement": "false",
+        "Scroll": "false",
+        "Color": {
+            "r": "1",
+            "g": "1",
+            "b": "1",
+            "a": "1"
+        },
+        "Hover": {
+            "r": "1",
+            "g": "1",
+            "b": "1",
+            "a": "1"
+        },
+        "Visible": "false",
+        "Type": "",
+        "For": "",
+        "CommandOnClick": "",
+        "Key": " ",
+        "Highlight": "true",
+        "HighlightIntensity": "1",
+        "Dynamic": "false",
+        "Moveable": "true",
+        "Parent": "CountryInfo"
+    },
+    "CountryInfo": {
+        "Texture": "19",
+        "CenterPoint": {
+            "x": "-0.695312977",
+            "y": "0.100000001"
+        },
+        "Scale": {
+            "x": "0.300000012",
+            "y": "0.600000024"
+        },
+        "Padding": {
+            "x": "0",
+            "y": "0"
+        },
+        "DebugElement": "false",
+        "Scroll": "false",
+        "Color": {
+            "r": "1",
+            "g": "1",
+            "b": "1",
+            "a": "1"
+        },
+        "Hover": {
+            "r": "1",
+            "g": "1",
+            "b": "1",
+            "a": "1"
+        },
+        "Visible": "false",
+        "Type": "",
+        "For": "",
+        "CommandOnClick": "",
+        "Key": " ",
+        "Highlight": "true",
+        "HighlightIntensity": "1",
+        "Dynamic": "false",
+        "Moveable": "false",
+        "Parent": ""
+    },
+    "MyCountry": {
+        "Texture": "19",
+        "CenterPoint": {
+            "x": "-0.696874976",
+            "y": "0.15"
+        },
+        "Scale": {
+            "x": "0.300000012",
+            "y": "0.600000024"
+        },
+        "Padding": {
+            "x": "0",
+            "y": "0"
+        },
+        "DebugElement": "false",
+        "Scroll": "false",
+        "Color": {
+            "r": "1",
+            "g": "1",
+            "b": "1",
+            "a": "1"
+        },
+        "Hover": {
+            "r": "1",
+            "g": "1",
+            "b": "1",
+            "a": "1"
+        },
+         "Text": {
+            "CountryName": {
+                "String": "",
+                "Anchor": "CENTER",
+                "Location": {
+                    "x": "0.14",
+                    "y": "0.1"
+                },
+                "Color": {
+                    "r": "1.0",
+                    "g": "1",
+                    "b": "1.0",
+                    "a": "1"
+                },
+                "Name": "CountryName",
+                "Scale": "1.0"
+            }
+        },
+        "Visible": "false",
+        "Type": "",
+        "For": "",
+        "CommandOnClick": "",
+        "Key": " ",
+        "Highlight": "true",
+        "HighlightIntensity": "1",
+        "Dynamic": "1",
+        "Moveable": "true",
+        "Parent": ""
+    },
+    "AddDivisionButton": {
+        "Texture": "18",
+        "CenterPoint": {
+            "x": "-0.698437989",
+            "y": "-0.0477769673"
+        },
+        "Scale": {
+            "x": "0.200000003",
+            "y": "0.0500000007"
+        },
+        "Padding": {
+            "x": "0",
+            "y": "0.200000003"
+        },
+        "DebugElement": "false",
+        "Scroll": "false",
+        "Color": {
+            "r": "1",
+            "g": "1",
+            "b": "1",
+            "a": "1"
+        },
+        "Hover": {
+            "r": "1",
+            "g": "1",
+            "b": "1",
+            "a": "1"
+        },
+        "Visible": "false",
+        "Type": "",
+        "For": "",
+        "CommandOnClick": "",
+        "Key": " ",
+        "Highlight": "true",
+        "HighlightIntensity": "1",
+        "Dynamic": "false",
+        "Moveable": "true",
+        "Parent": "StateForm"
+    },
+    "StateForm": {
+        "Texture": "19",
+        "CenterPoint": {
+            "x": "-0.698437989",
+            "y": "-0.397776991"
+        },
+        "Scale": {
+            "x": "0.300000012",
+            "y": "0.600000024"
+        },
+        "Padding": {
+            "x": "0",
+            "y": "0"
+        },
+        "DebugElement": "false",
+        "Scroll": "false",
+        "Color": {
+            "r": "1",
+            "g": "1",
+            "b": "1",
+            "a": "1"
+        },
+        "Hover": {
+            "r": "1",
+            "g": "1",
+            "b": "1",
+            "a": "1"
+        },
+        "Visible": "false",
+        "Type": "",
+        "For": "",
+        "CommandOnClick": "",
+        "Key": " ",
+        "Highlight": "true",
+        "HighlightIntensity": "1",
+        "Dynamic": "false",
+        "Moveable": "false",
+        "Parent": ""
+    }
+}

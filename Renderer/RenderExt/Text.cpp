@@ -78,21 +78,22 @@ int Text::RenderText(std::string text, int x, int y, float scale, glm::vec4 colo
 	int stride = 0;
 	register std::string::const_iterator c;
 	int start = x;
+	Character* ch;
 	for (c = text.begin(); c != text.end(); ++c)
 	{
-		Character ch = mCharacters[*c];
+		ch = &mCharacters[*c];
 		if (*c == '`')
 		{
 			x = start;
-			y -= ((ch.Advance >> 6) + 15) * scale;
+			y -= ((ch->Advance >> 6) + 15) * scale;
 			stride = 0;
 			continue;
 		}
 		
-		GLfloat xpos = x + ch.Bearing.x * scale;
-		GLfloat ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
-		GLfloat w = ch.Size.x * scale;
-		GLfloat h = ch.Size.y * scale;
+		GLfloat xpos = x + ch->Bearing.x * scale;
+		GLfloat ypos = y - (ch->Size.y - ch->Bearing.y) * scale;
+		GLfloat w = ch->Size.x * scale;
+		GLfloat h = ch->Size.y * scale;
 		GLfloat vertices[6][4] = {
 			{ xpos, ypos + h, 0.0, 0.0 },
 			{ xpos, ypos, 0.0, 1.0 },
@@ -101,13 +102,13 @@ int Text::RenderText(std::string text, int x, int y, float scale, glm::vec4 colo
 			{ xpos + w, ypos, 1.0, 1.0 },
 			{ xpos + w, ypos + h, 1.0, 0.0 }
 		};		
-		glBindTexture(GL_TEXTURE_2D, ch.TextureID);
+		glBindTexture(GL_TEXTURE_2D, ch->TextureID);
 		glBindBuffer(GL_ARRAY_BUFFER, mObject->VboID[0]);
 		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
 		glBindTexture(GL_ARRAY_BUFFER, 0);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 
-		float next = (ch.Advance >> 6) * scale;
+		float next = (ch->Advance >> 6) * scale;
 		x += next;
 		xLastCoord = x;
 		stride += next;
@@ -121,4 +122,26 @@ int Text::RenderText(std::string text, int x, int y, float scale, glm::vec4 colo
 void Text::Resize(glm::vec2 scrSize)
 {
 	proj = glm::ortho(0.0f, static_cast<GLfloat>(scrSize.x), 0.0f, static_cast<GLfloat>(scrSize.y));
+}
+
+glm::vec2 Text::GetTextSize(std::string Text, float Scale)
+{
+	glm::vec2 textSize = glm::vec2(0.);
+	register std::string::const_iterator c = Text.begin();
+	Character* ch = &mCharacters[*c];
+	textSize.y = std::floor(ch->Size.y * Scale);
+	for ( ; c != Text.end(); ++c)
+	{
+		ch = &mCharacters[*c];
+		auto scaleX = std::floor(ch->Size.x * Scale);
+		textSize.x += scaleX;
+		if (std::ceilf(ch->Size.y * Scale) < textSize.y)
+			textSize.y = std::ceilf(ch->Size.y * Scale);
+		if (ch->Bearing.x == 0)
+			ch->Bearing.x += 1;
+		textSize.x += ch->Bearing.x;
+		if (*c == ' ')
+			textSize.x += 9.0;
+	}
+	return textSize;
 }

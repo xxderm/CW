@@ -22,6 +22,7 @@ public:
 protected:
 	void InitTextures(std::string manifest);
 	void AsyncLoadTexture(std::string Path,	std::string TextureName);
+protected:
 	int mTextureX, mTextureY, mTextureChanel;
 	boost::thread_group textureLoadThreads;
 	boost::mutex mThreadMutex;

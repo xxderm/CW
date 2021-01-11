@@ -211,6 +211,32 @@ void Reader::getUI(GUITexture* guis, std::string path, bool update)
                 String.Position.y = element.second
                     .get_child("Location")
                     .get<float>("y");
+                if (element.second.count("Anchor") > 0)
+                {
+                    auto Anchor = element.second.get<std::string>("Anchor");
+                    if (Anchor == "TOP")
+                        String.Anchor = TextAnchor::TOP;
+                    if (Anchor == "LEFT")
+                        String.Anchor = TextAnchor::LEFT;
+                    if (Anchor == "CENTER")
+                        String.Anchor = TextAnchor::CENTER;
+                    if (Anchor == "RIGHT")
+                        String.Anchor = TextAnchor::RIGHT;
+                    if (Anchor == "BOTTOM")
+                        String.Anchor = TextAnchor::BOTTOM;
+                    if (Anchor == "TOP_LEFT")
+                        String.Anchor = TextAnchor::TOP_LEFT;
+                    if (Anchor == "TOP_RIGHT")
+                        String.Anchor = TextAnchor::TOP_RIGHT;
+                    if (Anchor == "BOTTOM_LEFT")
+                        String.Anchor = TextAnchor::BOTTOM_LEFT;
+                    if (Anchor == "BOTTOM_RIGHT")
+                        String.Anchor = TextAnchor::BOTTOM_RIGHT;
+                    if (Anchor == "CENTER_LEFT")
+                        String.Anchor = TextAnchor::CENTER_LEFT;
+                    if (Anchor == "CENTER_RIGHT")
+                        String.Anchor = TextAnchor::CENTER_RIGHT;
+                }
                 String.Color.r = element.second
                     .get_child("Color")
                     .get<float>("r");

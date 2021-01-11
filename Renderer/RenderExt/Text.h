@@ -31,6 +31,14 @@ enum TextAnchor
 	LEFT,
 	RIGHT,
 	CENTER,
+	TOP_LEFT,
+	TOP,
+	BOTTOM,
+	TOP_RIGHT,
+	BOTTOM_LEFT,
+	BOTTOM_RIGHT,
+	CENTER_LEFT,
+	CENTER_RIGHT,
 	NONE
 };
 
@@ -47,10 +55,38 @@ struct Str final
 class Text final
 {
 public:
+	/**
+	 * Инициализация текста.
+	 * @param font Путь к файлу.
+	 * @param scrSize Разрешение экрана.
+	 * @param fontSize Ширина текста.
+	*/
 	void Init(const char* font, glm::vec2 scrSize, GLuint fontSize = 12);
-	// Возвращает координату `х` последнего символа
+
+	/**
+	 * Метод рендерит текст.
+	 * @param text Строка, которую необходимо отрендерить.
+	 * @param x Положение текста по координате `x`.
+	 * @param y Положение текста по координате `у`.
+	 * @param scale Масшат текста.
+	 * @param color Цвет текста.
+	 * @return Возвращает координату `х` последнего символа.
+	*/
 	int RenderText(std::string text, int x, int y, float scale, glm::vec4 color);
+
+	/**
+	 * Обновляет матрицу проекции
+	 * @param scrSize Разрешение экрана.
+	*/
 	void Resize(glm::vec2 scrSize);
+
+	/**
+	 * Метод вычисляет высоту и ширину строки.
+	 * @param Text Строка.
+	 * @param Scale Масштаб.
+	 * @return Возвращает ширину и высоту строки.
+	*/
+	glm::vec2 GetTextSize(std::string Text, float Scale);
 private:
 	std::map<char, Character> mCharacters;
 	std::unique_ptr<Shader> mProgram;

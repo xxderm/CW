@@ -36,6 +36,9 @@ private:
 	GLfloat lastY;
 	int mWndWidth, mWndHeight;
 	int mMouseX, mMouseY;
+
+	unsigned char* mFocusCountryPtr;
+	World* mWorld = nullptr;
 };
 
 #endif // !GAMESCENE_HEADER

@@ -4,35 +4,34 @@
 #include "Province.h"
 #include "../../Reader.h"
 
+enum BuildingType
+{
+	CHURCH,
+	CATHEDRAL,
+	UNIVERSITY,
+	SHIPYARD,
+	BARRACKS,
+	MILITARY_FACTORY,
+	CIVILIAN_FACTORY,
+	MARKET,
+	WORKSHOP,
+	TOWN_HALL,
+	MANPOWER,
+	RESISTANCE,
+	MAX
+};
+
 struct StateFormat
 {
 	std::string Name;
 	std::string CountryTag;
 	std::vector<std::string> Provinces;
 	int Id;	
-
-	enum TYPE
-	{
-		CHURCH,
-		CATHEDRAL,
-		UNIVERSITY,
-		SHIPYARD,
-		BARRACKS,
-		MILITARY_FACTORY,
-		CIVILIAN_FACTORY,
-		MARKET,
-		WORKSHOP,
-		TOWN_HALL,
-		MANPOWER,
-		RESISTANCE,
-		MAX
-	};
-	int Buildings[MAX]{ 0 };
+	
+	int Buildings[BuildingType::MAX]{ 0 };
 	float ManpowerIncrease;
 	float ResistanceIncrease;
-
 };
-
 
 class State final 
 {

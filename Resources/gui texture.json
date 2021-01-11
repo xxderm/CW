@@ -2,13 +2,13 @@
 	"Button01": {
 		"ID": 18,
 		"Program": 0,
-		"Path": "Resources/UI/Assets/Pack2/PNG/Button01.png",
+		"Path": "Resources/UI/Assets/Pack2/PNG/Button03.png",
 		"Format": "RGBA",
 		"Parameter": "LINEAR",
 		"UniformName": "Button01GUI",
 		"Size": {
-			"x": 183,
-			"y": 29
+			"x": 338,
+			"y": 51
 		}
 	},
 	"MiniPanel01": {
@@ -23,11 +23,23 @@
 			"y": 377
 		}
 	},
+	"Panel": {
+		"ID": 21,
+		"Program": 0,
+		"Path": "Resources/UI/Assets/Pack2/PNG/Panel.png",
+		"Format": "RGBA",
+		"Parameter": "CTG",
+		"UniformName": "Panel1",
+		"Size": {
+			"x": 438,
+			"y": 51
+		}
+	},
 	"MiniPanel02": {
 		"ID": 20,
 		"Program": 0,
 		"Path": "Resources/UI/Assets/Pack2/JPG/MiniPanel01.png",
-		"Format": "RGBФ",
+		"Format": "RGBA",
 		"Parameter": "LINEAR",
 		"UniformName": "MiniPanel02GUI",
 		"Size": {

@@ -62,6 +62,7 @@ public:
 	void SetPositionX(std::string Name, float xPos);
 	void ShareChildsVisible(std::string Parent, bool visible);
 	bool isAllInputHidden();
+	bool isMouseAvoidForms(glm::vec2 pos);
 	void DeactivateAll();
 	void DeactivateAll(std::string formName);
 	void Clear();

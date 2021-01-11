@@ -87,6 +87,14 @@ bool GUITexture::isAllInputHidden()
 	return true;
 }
 
+bool GUITexture::isMouseAvoidForms(glm::vec2 pos)
+{
+	for (auto& i : mGuis)
+		if (i.second->isHovered(pos))
+			return false;
+	return true;
+}
+
 void GUITexture::DeactivateAll()
 {
 	for (auto& i : mGuis)

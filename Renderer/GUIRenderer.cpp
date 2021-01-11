@@ -60,7 +60,7 @@ void GUIRenderer::Render()
 			mProgram->UnBind();	
 
 		
-			// Рендер текста формы
+			/* Рендер текста формы */
 			glDisable(GL_DEPTH_TEST);
 			for (auto& text : gui.second->Text)
 			{
@@ -74,14 +74,31 @@ void GUIRenderer::Render()
 				auto y = (guiWndCoords.y - 0.0175) - normPos.y;
 
 				auto pos = MousePicker::NormalizedDevCoordsToWindowsCoords(x, y, glm::vec2(mWinX, mWinY));
-				
+
+
+				if (text.second.Anchor != TextAnchor::NONE)
+				{
+					auto textSizeWnd = mText.GetTextSize(text.second.Text, text.second.Scale);
+					auto guiCenterWnd = MousePicker::NormalizedDevCoordsToWindowsCoords(
+						gui.second->Position.x, gui.second->Position.y, glm::vec2(mWinX, mWinY)
+					);
+
+					if (text.second.Anchor == TextAnchor::CENTER)
+					{
+						pos = glm::vec2(
+							guiCenterWnd.x - (textSizeWnd.x / 2), (guiCenterWnd.y) - (textSizeWnd.y / 2)
+						);
+					}
+
+				}
 
 				int PosX = mText.RenderText(
-						text.second.Text,
+					text.second.Text,
 					pos.x,
 					pos.y,
-						text.second.Scale,
-						glm::vec4(text.second.Color));
+					text.second.Scale,
+					glm::vec4(text.second.Color)
+				);
 
 				auto normCoords = MousePicker::getNormalizedDeviceCoords(PosX, y, glm::vec2(mWinX, mWinY));
 				if (normCoords.x >= gui.second->Position.x + gui.second->Scale.x)
@@ -136,9 +153,9 @@ void GUIRenderer::Init(SDL_Window* wnd)
 	mText.Init("Resources/font/17541.ttf", glm::vec2(mWinX, mWinY), this->mFontSize);
 	Reader::getInstance()->getUI(mGuis.get(), mUiPath);
 	
-	
+	//Reader::getInstance()->getUI(mGuis.get(), "Resources/UI/game.ui.json", false);
 
-	// Комманды
+	/* Комманды */
 	mCommand.emplace("Exit", new ExitCommand(mScene_ptr));
 	mCommand.emplace("Start", new ChangeSceneCommand(mScene_ptr, CountrySelectScene::getInstance()));
 	mCommand.emplace("GetLobbies", new GetLobbyListCommand(mScene_ptr->getPacket(), mScene_ptr->getSocket()));
@@ -247,7 +264,6 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 	//Reader::getInstance()->getUI(mGuis.get(), mUiPath);
 	//SDL_GetMouseState(&mMouseX, &mMouseY);
 
-
 	if (e->type == SDL_MOUSEBUTTONDOWN)
 		mMouseButtonPressed = true;
 	// Если кнопка мыши поднята, то сбросить разницу в дистанции от центра формы
@@ -261,12 +277,36 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 		if (e->key.keysym.sym == SDLK_LSHIFT)
 			mShiftIsPressed = false;
 	}
+
+	/* Показывать и заполнить специальные формы в состоянии игры */
+	if (
+			e->type == SDL_MOUSEBUTTONDOWN &&
+			mScene_ptr->getUser()->getStatus() == UserState::PLAYING
+		)
+	{
+		/* Если нет пересечений с формами */
+		if (mGuis->isMouseAvoidForms(MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY))))
+		{
+			/* Показать форму информации о провинции */
+			if (e->button.button == SDL_BUTTON_LEFT)
+			{
+
+			}
+
+			/* Показать форму информации о стране */
+			if (e->button.button == SDL_BUTTON_RIGHT)
+			{
+
+			}
+		}
+	}
+
 	if (e->type == SDL_KEYDOWN)
 	{
 		if (e->key.keysym.sym == SDLK_LSHIFT)
 			mShiftIsPressed = true;
 
-		// Обновить формы
+		/* Обновить формы */
 		if (e->key.keysym.sym == SDLK_F1)
 		{
 			mGuis->Clear();
@@ -278,7 +318,7 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 		{
 			for (auto& gui : this->mGuis->getGui())
 			{		
-				// Обработка форм ввода
+				/* Обработка форм ввода */
 				if (gui.second->Type == "Input")
 				{
 					if ((e->key.keysym.sym != SDLK_LSHIFT && e->key.keysym.sym != SDLK_LALT && e->key.keysym.sym != SDLK_BACKQUOTE) && gui.second->Active)
@@ -328,21 +368,22 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 			{
 				if (mScene_ptr->getUser()->getCountry())
 				{
-					gui.second->Text.count("CountryName") > 0 ?
+					if (gui.second->Text.count("CountryName") > 0)
+					{
 						gui.second->Text.at("CountryName").Text =
-							mScene_ptr->getUser()->getCountry()->Name.at(mScene_ptr->getUser()->getCountry()->RulingParty)
-						:
-						0;
-					gui.second->Text.count("PartyName") > 0 ?
+							mScene_ptr->getUser()->getCountry()->Name.at(mScene_ptr->getUser()->getCountry()->RulingParty);
+					}
+					if (gui.second->Text.count("PartyName") > 0)
+					{
 						gui.second->Text.at("PartyName").Text =
-						mScene_ptr->getUser()->getCountry()->PartyName
-						:
-						0;
-					gui.second->Text.count("PresidentName") > 0 ?
+							mScene_ptr->getUser()->getCountry()->PartyName;
+					}
+
+					if (gui.second->Text.count("PresidentName") > 0)
+					{
 						gui.second->Text.at("PresidentName").Text =
-						mScene_ptr->getUser()->getCountry()->LeaderName
-						:
-						0;
+							mScene_ptr->getUser()->getCountry()->LeaderName;
+					}
 
 				}
 			}
@@ -408,7 +449,7 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 					{
 						for (auto& form : gui.second->ShowToClick)
 						{
-							mGuis->Get(form)->Visible = true;
+							mGuis->Get(form)->Visible = !mGuis->Get(form)->Visible;
 						}
 					}
 
@@ -418,8 +459,6 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 						for (auto& form : gui.second->HideToClick)
 						{
 							mGuis->Get(form)->Visible = false;
-
-
 						}
 					}
 					
@@ -468,7 +507,6 @@ void GUIRenderer::Listen()
 {
 	if (SDLNet_UDP_Recv(*mScene_ptr->getSocket(), mScene_ptr->getPacket()))
 	{
-		//std::cout << "Got: " << scene->getPacket()->data << std::endl;
 		std::stringstream jsonEncodedData((char*)mScene_ptr->getPacket()->data);
 		boost::property_tree::ptree response;
 		boost::property_tree::read_json(jsonEncodedData, response);

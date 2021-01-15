@@ -36,7 +36,7 @@ void GameScene::Init(Scene* scene)
 	if (!mWorldRenderer)
 	{
 		mFocusCountryPtr = new unsigned char[3];
-		mWorldRenderer = new WorldRenderer(mFocusCountryPtr, mWorld);
+		mWorldRenderer = new WorldRenderer(mFocusCountryPtr, mWorld, scene);
 		mWorldRenderer->Init(scene->getWindow());
 		mWorldRenderer->setCamera(mCamera);
 		mWorldRenderer->setMousePicker(mMousePicker);
@@ -76,8 +76,8 @@ void GameScene::HandleEvents(Scene* scene)
 			if (scene->getEvent()->wheel.y < 0)
 				mCamera->ProcessKeyboard(Camera_Movement::CBACKWARD, 0.35);
 		}
-		mGUIRenderer->HandleEvent(scene->getEvent(), scene->getWindow());
 		mWorldRenderer->HandleEvent(scene->getEvent(), scene->getWindow());
+		mGUIRenderer->HandleEvent(scene->getEvent(), scene->getWindow());
 	}
 }
 

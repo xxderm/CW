@@ -19,6 +19,11 @@ const CountryFormat* User::getCountry()
 	return mCountry;
 }
 
+const CountryFormat* User::getSelectedCountry()
+{
+	return mSelectedCountry;
+}
+
 const bool User::isConnected()
 {
 	return mConnected;
@@ -67,6 +72,11 @@ void User::setLobbyName(std::string name)
 void User::setCountry(CountryFormat* country)
 {
 	this->mCountry = country;
+}
+
+void User::setSelectedCountry(CountryFormat* country)
+{
+	this->mSelectedCountry = country;
 }
 
 void User::setStatus(UserState status)

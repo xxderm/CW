@@ -25,6 +25,7 @@ public:
 	const std::string getName();
 	const std::string getLobbyName();
 	const CountryFormat* getCountry();
+	const CountryFormat* getSelectedCountry();
 	const bool isConnected();
 	const long getPing();
 	const uint32_t getId();
@@ -35,11 +36,13 @@ public:
 	void setConnected(bool v);
 	void setLobbyName(std::string name);
 	void setCountry(CountryFormat* country);
+	void setSelectedCountry(CountryFormat* country);
 	void setStatus(UserState status);
 	~User();
 private:
 	std::string mName;
-	CountryFormat* mCountry;
+	CountryFormat* mCountry;			/**< Страна игрока. */
+	CountryFormat* mSelectedCountry;	/**< Выбранная страна. */
 	std::string mLobbyName;
 	long mPing;
 	uint32_t mId;

@@ -84,9 +84,10 @@ public:
 	 * Метод вычисляет высоту и ширину строки.
 	 * @param Text Строка.
 	 * @param Scale Масштаб.
+	 * @param maxHeightSym Возвращать максимальную ширину символа.
 	 * @return Возвращает ширину и высоту строки.
 	*/
-	glm::vec2 GetTextSize(std::string Text, float Scale);
+	glm::vec2 GetTextSize(std::string Text, float Scale, bool maxHeightSym = false);
 private:
 	std::map<char, Character> mCharacters;
 	std::unique_ptr<Shader> mProgram;

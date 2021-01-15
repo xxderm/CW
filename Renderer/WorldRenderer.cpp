@@ -1,6 +1,7 @@
 #include "WorldRenderer.h"
 
-WorldRenderer::WorldRenderer(unsigned char* colorDataPtr, World* worldPtr)
+WorldRenderer::WorldRenderer(unsigned char* colorDataPtr, World* worldPtr, Scene* scene)
+: mScenePtr(scene)
 {
 	mFocusRGB = new unsigned char[3];
 	mFocusRGB = colorDataPtr;
@@ -132,6 +133,22 @@ void WorldRenderer::setMousePicker(MousePicker* mp)
 
 void WorldRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 {
+	if (e->type == SDL_MOUSEBUTTONDOWN && mScenePtr->getUser()->getStatus() == UserState::PLAYING)
+	{
+		if (e->button.button == SDL_BUTTON_RIGHT)
+		{
+			mScenePtr
+				->getUser()
+				->setSelectedCountry(
+					mWorld->getCountries()
+					->getCountryByColor(
+						std::to_string(mFocusRGB[0]) +
+						std::to_string(mFocusRGB[1]) +
+						std::to_string(mFocusRGB[2]))
+				);
+		}
+	}
+
 	if (e->type == SDL_KEYDOWN)
 	{
 		if (e->key.keysym.sym == SDLK_F1)

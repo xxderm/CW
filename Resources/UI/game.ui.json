@@ -33,12 +33,15 @@
         "CommandOnClick": "",
         "Key": " ",
         "Highlight": "true",
-        "HighlightIntensity": "1",
+        "HighlightIntensity": "1.5",
         "Dynamic": "false",
         "Moveable": "0",
         "Parent": "MainPanel",
         "ShowOnClickEvent": [
             "MyCountry"
+        ],
+        "HideOnClickEvent": [
+            "CountryInfo"
         ],
         "Text": {
             "MyCountryTitle": {
@@ -58,50 +61,11 @@
                 "Scale": 0.66
             }
         }
-    },
-    "MyCountryFlag": {
-        "Texture": "-1",
-        "CenterPoint": {
-            "x": "-0.876563013",
-            "y": "0.875001013"
-        },
-        "Scale": {
-            "x": "0.119999997",
-            "y": "0.119999997"
-        },
-        "Padding": {
-            "x": "0",
-            "y": "0"
-        },
-        "DebugElement": "false",
-        "Scroll": "false",
-        "Color": {
-            "r": "1",
-            "g": "1",
-            "b": "1",
-            "a": "1"
-        },
-        "Hover": {
-            "r": "1",
-            "g": "1",
-            "b": "1",
-            "a": "1"
-        },
-        "Visible": "true",
-        "Type": "",
-        "For": "",
-        "CommandOnClick": "",
-        "Key": " ",
-        "Highlight": "true",
-        "HighlightIntensity": "1",
-        "Dynamic": "false",
-        "Moveable": "false",
-        "Parent": ""
-    },
+    },  
     "MainPanel": {
         "Texture": "21",
         "CenterPoint": {
-            "x": "-0.354687005",
+            "x": "-0.6",
             "y": "0.944446027"
         },
         "Scale": {
@@ -282,16 +246,16 @@
         "CommandOnClick": "",
         "Key": " ",
         "Highlight": "true",
-        "HighlightIntensity": "1",
+        "HighlightIntensity": "1.5",
         "Dynamic": "false",
-        "Moveable": "true",
+        "Moveable": "0",
         "Parent": "CountryInfo"
     },
     "CountryInfo": {
         "Texture": "19",
         "CenterPoint": {
-            "x": "-0.695312977",
-            "y": "0.100000001"
+            "x": "-0.7",
+            "y": "0.15"
         },
         "Scale": {
             "x": "0.300000012",
@@ -303,6 +267,24 @@
         },
         "DebugElement": "false",
         "Scroll": "false",
+        "Text": {
+            "SelectedCoutnryName": {
+                "String": "",
+                "Anchor": "TOP",
+                "Location": {
+                    "x": "0.0",
+                    "y": "20.0"
+                },
+                "Color": {
+                    "r": "1.0",
+                    "g": "1",
+                    "b": "1.0",
+                    "a": "1"
+                },
+                "Name": "SelectedCoutnryName",
+                "Scale": "1.0"
+            }
+        },
         "Color": {
             "r": "1",
             "g": "1",
@@ -322,14 +304,14 @@
         "Key": " ",
         "Highlight": "true",
         "HighlightIntensity": "1",
-        "Dynamic": "false",
+        "Dynamic": "1",
         "Moveable": "false",
         "Parent": ""
     },
     "MyCountry": {
         "Texture": "19",
         "CenterPoint": {
-            "x": "-0.696874976",
+            "x": "-0.7",
             "y": "0.15"
         },
         "Scale": {
@@ -339,7 +321,7 @@
         "Padding": {
             "x": "0",
             "y": "0"
-        },
+        },        
         "DebugElement": "false",
         "Scroll": "false",
         "Color": {
@@ -357,10 +339,10 @@
          "Text": {
             "CountryName": {
                 "String": "",
-                "Anchor": "CENTER",
+                "Anchor": "TOP",
                 "Location": {
-                    "x": "0.14",
-                    "y": "0.1"
+                    "x": "0.0",
+                    "y": "20.0"
                 },
                 "Color": {
                     "r": "1.0",
@@ -372,7 +354,7 @@
                 "Scale": "1.0"
             }
         },
-        "Visible": "false",
+        "Visible": "0",
         "Type": "",
         "For": "",
         "CommandOnClick": "",
@@ -380,7 +362,7 @@
         "Highlight": "true",
         "HighlightIntensity": "1",
         "Dynamic": "1",
-        "Moveable": "true",
+        "Moveable": "0",
         "Parent": ""
     },
     "AddDivisionButton": {
@@ -417,9 +399,9 @@
         "CommandOnClick": "",
         "Key": " ",
         "Highlight": "true",
-        "HighlightIntensity": "1",
+        "HighlightIntensity": "1.5",
         "Dynamic": "false",
-        "Moveable": "true",
+        "Moveable": "0",
         "Parent": "StateForm"
     },
     "StateForm": {

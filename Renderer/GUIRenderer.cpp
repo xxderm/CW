@@ -46,7 +46,7 @@ void GUIRenderer::Render()
 				}
 			}
 
-			// Рендер формы
+			/* Рендер формы */
 			mProgram->Bind();
 			mProgram->setMat4("transformationMatrix",
 				CreateTransformationMatrix(gui.second->Position, gui.second->Scale));
@@ -54,6 +54,13 @@ void GUIRenderer::Render()
 				mProgram->setBool("TextureMode", false);
 			else
 				mProgram->setBool("TextureMode", true);
+
+			/* Подсветка текстуры при наведении */
+			if(gui.second->isHovered(MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY))))
+				mProgram->setFloat("HighlightIntensity", gui.second->ActiveHighlightIntensity);
+			else
+				mProgram->setFloat("HighlightIntensity", 1.00);
+
 			mProgram->setInt("guiTexture", gui.second->TextureId);
 			mProgram->setVec4("guiColor", gui.second->Color);
 			mQuad->Draw(GL_TRIANGLE_STRIP, 8);
@@ -63,33 +70,58 @@ void GUIRenderer::Render()
 			/* Рендер текста формы */
 			glDisable(GL_DEPTH_TEST);
 			for (auto& text : gui.second->Text)
-			{
-				auto guiWndCoords = glm::vec2(
-					gui.second->Position.x - gui.second->Scale.x,
-					gui.second->Position.y + gui.second->Scale.y);
-
-				auto normPos = text.second.Position;
-
-				auto x = (guiWndCoords.x + 0.01) + normPos.x;
-				auto y = (guiWndCoords.y - 0.0175) - normPos.y;
-
-				auto pos = MousePicker::NormalizedDevCoordsToWindowsCoords(x, y, glm::vec2(mWinX, mWinY));
-
-
-				if (text.second.Anchor != TextAnchor::NONE)
-				{
-					auto textSizeWnd = mText.GetTextSize(text.second.Text, text.second.Scale);
-					auto guiCenterWnd = MousePicker::NormalizedDevCoordsToWindowsCoords(
-						gui.second->Position.x, gui.second->Position.y, glm::vec2(mWinX, mWinY)
+			{				
+				auto pos = glm::vec2(
+					text.second.Position.x,
+					text.second.Position.y
 					);
 
-					if (text.second.Anchor == TextAnchor::CENTER)
-					{
-						pos = glm::vec2(
-							guiCenterWnd.x - (textSizeWnd.x / 2), (guiCenterWnd.y) - (textSizeWnd.y / 2)
-						);
-					}
+				/* Если используется якорь, подстроить позицию текста под форму */
+				if (text.second.Anchor != TextAnchor::NONE)
+				{
+					glm::vec2 textSizeWnd = glm::vec2(0);
+					if(text.second.Anchor == TextAnchor::TOP)
+						textSizeWnd = mText.GetTextSize(text.second.Text, text.second.Scale, true);
+					else
+						textSizeWnd = mText.GetTextSize(text.second.Text, text.second.Scale);
+					auto guiCenterWnd = MousePicker::NormalizedDevCoordsToWindowsCoords(
+						gui.second->Position.x,
+						gui.second->Position.y,
+						glm::vec2(mWinX, mWinY)
+					);
+					auto topPoint = MousePicker::NormalizedDevCoordsToWindowsCoords(
+						gui.second->Position.x,
+						gui.second->Position.y + gui.second->Scale.y,
+						glm::vec2(mWinX, mWinY)
+					);
+					
 
+					if (text.second.Anchor == TextAnchor::CENTER)
+						pos = glm::vec2(
+							(guiCenterWnd.x - (textSizeWnd.x / 2)) + pos.x,
+							((guiCenterWnd.y) - (textSizeWnd.y / 2)) - pos.y
+						);
+					if (text.second.Anchor == TextAnchor::TOP)
+						pos = glm::vec2(
+							(guiCenterWnd.x - (textSizeWnd.x / 2)) + pos.x,
+							topPoint.y - textSizeWnd.y - pos.y
+						);
+					if (text.second.Anchor == TextAnchor::LEFT)
+						pos = glm::vec2(
+							gui.second->Position.x + pos.x,
+							((guiCenterWnd.y) - (textSizeWnd.y / 2)) - pos.y
+						);
+					// TODO: Добавить определение всех позиций якоря
+				}
+				else
+				{
+					auto guiWndCoords = glm::vec2(
+						gui.second->Position.x - gui.second->Scale.x,
+						gui.second->Position.y + gui.second->Scale.y);
+					auto normPos = text.second.Position;
+					auto x = (guiWndCoords.x + 0.01) + normPos.x;
+					auto y = (guiWndCoords.y - 0.0175) - normPos.y;
+					pos = MousePicker::NormalizedDevCoordsToWindowsCoords(x, y, glm::vec2(mWinX, mWinY));
 				}
 
 				int PosX = mText.RenderText(
@@ -100,7 +132,8 @@ void GUIRenderer::Render()
 					glm::vec4(text.second.Color)
 				);
 
-				auto normCoords = MousePicker::getNormalizedDeviceCoords(PosX, y, glm::vec2(mWinX, mWinY));
+				/* Масштабировать текст под размер формы */
+				auto normCoords = MousePicker::getNormalizedDeviceCoords(PosX, pos.y, glm::vec2(mWinX, mWinY));
 				if (normCoords.x >= gui.second->Position.x + gui.second->Scale.x)
 					text.second.Scale -= 0.05;
 				if (normCoords.x + 0.05 < gui.second->Position.x + gui.second->Scale.x && text.second.Scale < text.second.BaseScale)
@@ -287,7 +320,7 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 		/* Если нет пересечений с формами */
 		if (mGuis->isMouseAvoidForms(MousePicker::getNormalizedDeviceCoords(mMouseX, mMouseY, glm::vec2(mWinX, mWinY))))
 		{
-			/* Показать форму информации о провинции */
+			/* Показать форму информации о штате/райне */
 			if (e->button.button == SDL_BUTTON_LEFT)
 			{
 
@@ -296,7 +329,17 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 			/* Показать форму информации о стране */
 			if (e->button.button == SDL_BUTTON_RIGHT)
 			{
-
+				/* Если пользователь выбрал свою страну */
+				if (mScene_ptr->getUser()->getCountry() == mScene_ptr->getUser()->getSelectedCountry())
+				{
+					mGuis->Get("MyCountry")->Visible = true;
+					mGuis->Get("CountryInfo")->Visible = false;
+				}
+				else
+				{
+					mGuis->Get("MyCountry")->Visible = false;
+					mGuis->Get("CountryInfo")->Visible = true;
+				}
 			}
 		}
 	}
@@ -363,7 +406,7 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 	{	
 		if (gui.second->Visible)
 		{		
-			// Динамически заполняемые поля
+			/* Динамически заполняемые поля */
 			if (gui.second->DynamicText)
 			{
 				if (mScene_ptr->getUser()->getCountry())
@@ -385,10 +428,22 @@ void GUIRenderer::HandleEvent(SDL_Event* e, SDL_Window* wnd)
 							mScene_ptr->getUser()->getCountry()->LeaderName;
 					}
 
+					/* Если пользователь сфокусировался на стране. */
+					if (mScene_ptr->getUser()->getSelectedCountry())
+					{
+						if (gui.second->Text.count("SelectedCoutnryName") > 0)
+						{
+							gui.second->Text.at("SelectedCoutnryName").Text =
+								mScene_ptr->getUser()->getSelectedCountry()->Name.at(
+									mScene_ptr->getUser()->getSelectedCountry()->RulingParty
+								);
+						}
+					}
+
 				}
 			}
 
-			// Заполнение списка лобби
+			/* Заполнение списка лобби */
 			if (gui.second->LobbyIndex != -1)
 			{
 				std::string IndexT = "L" + std::to_string(gui.second->LobbyIndex) + "T";
@@ -496,9 +551,9 @@ void GUIRenderer::ApplyScissors(std::string parentElementName)
 	auto parentPos = mGuis->Get(parentElementName)->Position;
 	auto parentScale = mGuis->Get(parentElementName)->Scale;
 
-
 	auto sciPos = MousePicker::NormalizedDevCoordsToWindowsCoords(parentPos.x, parentPos.y, glm::vec2(mWinX, mWinY));
 	auto sciSize = MousePicker::NormalizedDevCoordsToWindowsCoords(parentScale.x, parentScale.y - (1.0 - parentScale.y), glm::vec2(mWinX, mWinY));
+
 
 	glScissor(sciPos.x - (sciSize.x / 2), sciPos.y - (sciSize.y / 2) + 4, sciSize.x, sciSize.y - 4);
 }

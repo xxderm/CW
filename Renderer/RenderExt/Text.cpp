@@ -124,7 +124,7 @@ void Text::Resize(glm::vec2 scrSize)
 	proj = glm::ortho(0.0f, static_cast<GLfloat>(scrSize.x), 0.0f, static_cast<GLfloat>(scrSize.y));
 }
 
-glm::vec2 Text::GetTextSize(std::string Text, float Scale)
+glm::vec2 Text::GetTextSize(std::string Text, float Scale, bool maxHeightSym)
 {
 	glm::vec2 textSize = glm::vec2(0.);
 	register std::string::const_iterator c = Text.begin();
@@ -132,16 +132,16 @@ glm::vec2 Text::GetTextSize(std::string Text, float Scale)
 	textSize.y = std::floor(ch->Size.y * Scale);
 	for ( ; c != Text.end(); ++c)
 	{
-		ch = &mCharacters[*c];
-		auto scaleX = std::floor(ch->Size.x * Scale);
-		textSize.x += scaleX;
-		if (std::ceilf(ch->Size.y * Scale) < textSize.y)
-			textSize.y = std::ceilf(ch->Size.y * Scale);
-		if (ch->Bearing.x == 0)
-			ch->Bearing.x += 1;
-		textSize.x += ch->Bearing.x;
-		if (*c == ' ')
-			textSize.x += 9.0;
+		ch = &mCharacters[*c];			
+		if (ch->Size.y > 0.0)
+		{
+			if (std::ceilf(ch->Size.y * Scale) < textSize.y && !maxHeightSym)
+				textSize.y = std::ceilf(ch->Size.y * Scale);
+			else if(std::ceilf(ch->Size.y * Scale) > textSize.y)
+				textSize.y = std::ceilf(ch->Size.y * Scale);
+
+		}
+		textSize.x += (ch->Advance >> 6) * Scale;
 	}
 	return textSize;
 }

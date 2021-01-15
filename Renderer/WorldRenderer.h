@@ -7,6 +7,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/mat4x4.hpp>
 #include "../World/World.h"
+#include "../Scene/Scene.h"
 
 enum ShaderType : unsigned int
 {
@@ -20,7 +21,7 @@ enum ShaderType : unsigned int
 class WorldRenderer final : public IRenderer
 {
 public:
-	WorldRenderer(unsigned char* colorDataPtr = nullptr, World* worldPtr = nullptr);
+	WorldRenderer(unsigned char* colorDataPtr = nullptr, World* worldPtr = nullptr, Scene* scene = nullptr);
 	void Render() override;
 	void Update() override;
 	void Init(SDL_Window* wnd) override;
@@ -49,6 +50,7 @@ private:
 	GLuint mTexId = 0;
 	glm::mat4x4 mvp;
 	unsigned char* mFocusRGB;
+	Scene* mScenePtr = nullptr;
 private:
 	std::vector<glm::vec3> Vertices;
 	std::vector<glm::vec2> TexCoord;
